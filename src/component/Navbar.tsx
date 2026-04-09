@@ -17,9 +17,9 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="w-full border-b border-white/10 bg-linear-to-r from-[#004F3B] to-[#003126] px-4 md:px-10">
+    <header className="navbar-enter sticky top-0 z-50 w-full border-b border-white/10 bg-linear-to-r from-[#004F3B] to-[#003126] px-4 backdrop-blur-[2px] md:px-10">
       <div className="mx-auto flex min-h-12 w-full max-w-7xl flex-col gap-2.5 py-2 md:h-14 md:flex-row md:items-center md:justify-between md:gap-4 md:py-0">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="hero-reveal flex items-center gap-2 [animation-delay:80ms]">
           <img
             src="/img/image.png"
             alt="Logo Desa Pametingan"
@@ -33,7 +33,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav className="order-3 flex w-full items-center justify-start gap-3.5 overflow-x-auto pb-1 md:order-0 md:w-auto md:justify-center md:gap-5 md:overflow-visible md:pb-0">
+        <nav className="hero-reveal order-3 flex w-full items-center justify-start gap-3.5 overflow-x-auto pb-1 [animation-delay:160ms] md:order-0 md:w-auto md:justify-center md:gap-5 md:overflow-visible md:pb-0">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
 
@@ -41,9 +41,9 @@ export default function Navbar() {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`whitespace-nowrap text-xs font-medium transition-colors md:text-[13px] ${
+                className={`nav-link-animated whitespace-nowrap text-xs font-medium md:text-[13px] ${
                   isActive
-                    ? "text-white"
+                    ? "is-active text-white"
                     : "text-[#D0FAE5] hover:text-white"
                 }`}
               >
@@ -55,7 +55,7 @@ export default function Navbar() {
 
         <Link
           href="/layanan-masyarakat"
-          className="inline-flex h-8 items-center justify-center self-start rounded-full bg-white px-4 text-xs font-semibold text-[#004F3B] shadow-[0_6px_10px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.07)] transition hover:bg-emerald-50 md:self-auto"
+          className="hero-reveal nav-cta inline-flex h-8 items-center justify-center self-start rounded-full bg-white px-4 text-xs font-semibold text-[#004F3B] shadow-[0_6px_10px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.07)] hover:bg-emerald-50 [animation-delay:240ms] md:self-auto"
         >
           Layanan Masyarakat
         </Link>

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "../component/Navbar";
+import Footer from "../component/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -11,6 +13,23 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const upakarti = localFont({
+  src: [
+    {
+      path: "../../public/upakarti.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/Upakarti Serong.ttf",
+      weight: "400",
+      style: "italic",
+    },
+  ],
+  variable: "--font-upakarti",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -31,11 +50,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${upakarti.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#f5f7f6]">
         <Navbar />
         <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );
