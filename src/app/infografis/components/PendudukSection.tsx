@@ -136,7 +136,7 @@ function DemografiCard({
       >
         <path
           d="M0 17C0 7.61117 7.61116 0 17 0H182.991C196.74 0 206.049 17.9028 206.049 31.652C206.049 59.4921 228.588 82.0608 256.39 82.0608C270.113 82.0608 288 91.3484 288 105.071V330C288 339.389 280.389 347 271 347H17C7.61116 347 0 339.389 0 330V17Z"
-          fill={bgColor}
+          fill="#D9D9D9"
         />
       </svg>
 
@@ -145,7 +145,7 @@ function DemografiCard({
       <div className="pointer-events-none absolute bottom-[11%] right-[8%] h-[22%] w-[34%] rounded-full bg-[#6FF2C9]/12 blur-[14px]" />
 
       <div className="absolute left-[17%] top-[20.5%]">
-        <div className="flex flex-col items-start justify-center gap-8" style={{ color: textColor }}>
+        <div className="flex flex-col items-start justify-center gap-8" style={{ color: '#070C10' }}>
           <h3
             className="whitespace-pre-line font-[Georgia,serif] text-[19px] font-bold leading-[1.2]"
             style={{ color: labelColor }}
@@ -342,5 +342,5 @@ export function PendudukSection() {
         </div>
       </section>
     </div>
-  );
+  )
 }

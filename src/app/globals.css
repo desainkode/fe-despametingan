@@ -1,8 +1,39 @@
+/* Font Faces */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins-600.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins-700.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
 @import "tailwindcss";
 
 :root {
   --background: #0b281f;
   --foreground: #f4f3ef;
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Poppins', sans-serif;
 }
 
 @theme inline {
@@ -22,8 +53,18 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
   min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
 }
 
 @keyframes hero-reveal {
@@ -31,6 +72,7 @@ body {
     opacity: 0;
     transform: translateY(24px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -38,10 +80,12 @@ body {
 }
 
 @keyframes hero-float {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0);
   }
+
   50% {
     transform: translate3d(0, -14px, 0);
   }
@@ -51,16 +95,19 @@ body {
   from {
     transform: scale(1);
   }
+
   to {
     transform: scale(1.06);
   }
 }
 
 @keyframes hero-pulse {
+
   0%,
   100% {
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
   }
+
   50% {
     box-shadow: 0 16px 24px rgba(0, 0, 0, 0.2), 0 8px 12px rgba(0, 0, 0, 0.15);
   }
@@ -70,6 +117,7 @@ body {
   0% {
     transform: scale(1.03) translate3d(-1.5%, 0, 0);
   }
+
   100% {
     transform: scale(1.08) translate3d(1.5%, -1%, 0);
   }
@@ -80,6 +128,7 @@ body {
     opacity: 0;
     transform: translateY(-14px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -150,6 +199,7 @@ body {
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -161,6 +211,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .hero-reveal,
   .hero-float,
   .hero-zoom,
