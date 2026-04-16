@@ -162,7 +162,7 @@ export default function InfografisTabs() {
         onChangeTab={setActiveTab}
       />
 
-      <section className="bg-[#F5F7F6] px-4 py-8 md:px-10 md:py-10 lg:px-12 lg:py-12 transition-colors duration-300 ease-out">
+      <section className="bg-[#FFFFFF] px-4 py-8 md:px-10 md:py-10 lg:px-12 lg:py-12 transition-colors duration-300 ease-out">
         <div className="animate-fade-in">
           {featurePanels[activeTab]}
         </div>
