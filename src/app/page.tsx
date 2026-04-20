@@ -589,7 +589,7 @@ export default function Home() {
                 <object
                   ref={combinedMapObjectRef}
                   type="image/svg+xml"
-                  data="/img/peta-batas-wilayah-figma.svg"
+                  data="/img/peta-batas-wilayah-figma.svg?v=3"
                   aria-label="Peta batas wilayah desa"
                   className={`h-full w-full rounded-xl transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/map:drop-shadow-[0_20px_34px_rgba(11,40,31,0.28)] ${
                     isMapLayerActive
@@ -598,7 +598,7 @@ export default function Home() {
                   }`}
                 >
                   <img
-                    src="/img/peta-batas-wilayah-figma.svg"
+                    src="/img/peta-batas-wilayah-figma.svg?v=3"
                     alt="Peta batas wilayah desa"
                     className="h-full w-full object-contain"
                     loading="lazy"
