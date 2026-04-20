@@ -1,23 +1,17 @@
 import Link from "next/link";
+import {
+  Camera,
+  Globe,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  PhoneCall,
+  Shield,
+} from "lucide-react";
 
 const footerLogo =
   "https://www.figma.com/api/mcp/asset/27d73b78-2be8-4fb9-8da3-0a5a9d1bab1f";
-const iconMapPin =
-  "https://www.figma.com/api/mcp/asset/55c452a2-66b8-4b09-8e4c-e8b726d6bf8f";
-const iconPhone =
-  "https://www.figma.com/api/mcp/asset/b0ddbade-026b-489b-8482-f507e5a5c1c3";
-const iconMail =
-  "https://www.figma.com/api/mcp/asset/d6028988-159a-4aa2-b955-a6085d2c8482";
-const iconFacebook =
-  "https://www.figma.com/api/mcp/asset/ea70c302-4494-4f7b-975c-4faa9ced6ac8";
-const iconTwitter =
-  "https://www.figma.com/api/mcp/asset/c3a3a68b-9412-4979-b81f-9b36491f5fd7";
-const iconInstagram =
-  "https://www.figma.com/api/mcp/asset/d9451fda-347d-4f2a-bfb3-0ad2ed4aa20d";
-const iconCallEmergency =
-  "https://www.figma.com/api/mcp/asset/bb61bfac-019c-4c5d-a5d1-aae4a35a11c7";
-const iconCallSecurity =
-  "https://www.figma.com/api/mcp/asset/40920825-2833-400c-9fe0-0e737950dc0e";
 
 const profilDesaLinks = [
   "Sejarah",
@@ -49,7 +43,7 @@ function FooterList({
       className="hero-reveal flex flex-col gap-6"
       style={{ animationDelay: `${delayStart}ms` }}
     >
-      <h4 className="font-[Georgia,serif] text-[20px] font-semibold text-white md:text-[22px]">
+      <h4 className="font-timeless text-[20px] font-semibold text-white md:text-[22px]">
         {title}
       </h4>
 
@@ -95,12 +89,7 @@ export default function Footer() {
 
               <div className="space-y-3.5">
                 <div className="flex items-start gap-3">
-                  <img
-                    src={iconMapPin}
-                    alt="Alamat"
-                    className="mt-1 h-5 w-5 shrink-0"
-                    loading="lazy"
-                  />
+                  <MapPin size={18} className="mt-1 shrink-0 text-[#00D492]" aria-hidden="true" />
                   <p className="max-w-65 text-[14px] leading-6 text-[#00D492]/80">
                     Jl. Raya Cipatujah No.16, RT.01/RW.01, Kp. Pameutingan,
                     Desa Pameutingan, Kec. Cipatujah, Kabupaten Tasikmalaya, Jawa Barat
@@ -109,12 +98,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <img
-                    src={iconPhone}
-                    alt="Telepon"
-                    className="h-4 w-4 shrink-0"
-                    loading="lazy"
-                  />
+                  <Phone size={16} className="shrink-0 text-[#00D492]" aria-hidden="true" />
                   <a
                     href="tel:08138944493"
                     className="text-[14px] text-[#00D492]/80 transition-colors duration-300 hover:text-[#A4F4CF]"
@@ -124,12 +108,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <img
-                    src={iconMail}
-                    alt="Email"
-                    className="h-4 w-4 shrink-0"
-                    loading="lazy"
-                  />
+                  <Mail size={16} className="shrink-0 text-[#00D492]" aria-hidden="true" />
                   <a
                     href="mailto:kantor@desaasri.go.id"
                     className="text-[14px] text-[#00D492]/80 transition-colors duration-300 hover:text-[#A4F4CF]"
@@ -145,36 +124,21 @@ export default function Footer() {
                   aria-label="Facebook"
                   className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#006045]/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#006045]/50"
                 >
-                  <img
-                    src={iconFacebook}
-                    alt=""
-                    className="h-4.5 w-4.5"
-                    loading="lazy"
-                  />
+                  <Globe size={16} aria-hidden="true" />
                 </Link>
                 <Link
                   href="#"
                   aria-label="Twitter"
                   className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#006045]/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#006045]/50"
                 >
-                  <img
-                    src={iconTwitter}
-                    alt=""
-                    className="h-4.5 w-4.5"
-                    loading="lazy"
-                  />
+                  <MessageCircle size={16} aria-hidden="true" />
                 </Link>
                 <Link
                   href="#"
                   aria-label="Instagram"
                   className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#006045]/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#006045]/50"
                 >
-                  <img
-                    src={iconInstagram}
-                    alt=""
-                    className="h-4.5 w-4.5"
-                    loading="lazy"
-                  />
+                  <Camera size={16} aria-hidden="true" />
                 </Link>
               </div>
             </div>
@@ -184,7 +148,7 @@ export default function Footer() {
             <FooterList title="Layanan Publik" items={layananPublikLinks} delayStart={280} />
 
             <div className="hero-reveal flex flex-col gap-4 [animation-delay:360ms]">
-              <h4 className="font-[Georgia,serif] text-[20px] font-semibold text-white md:text-[22px]">
+              <h4 className="font-timeless text-[20px] font-semibold text-white md:text-[22px]">
                 Nomor Darurat
               </h4>
 
@@ -200,12 +164,7 @@ export default function Footer() {
                   <span className="text-[14px] font-medium text-[#FFC9C9]">
                     Ambulans Desa
                   </span>
-                  <img
-                    src={iconCallEmergency}
-                    alt="Telepon Ambulans"
-                    className="h-4 w-4"
-                    loading="lazy"
-                  />
+                  <PhoneCall size={16} aria-hidden="true" />
                 </button>
 
                 <button
@@ -215,12 +174,7 @@ export default function Footer() {
                   <span className="text-[14px] font-medium text-[#A4F4CF]">
                     Posko Keamanan
                   </span>
-                  <img
-                    src={iconCallSecurity}
-                    alt="Telepon Posko"
-                    className="h-4 w-4"
-                    loading="lazy"
-                  />
+                  <Shield size={16} aria-hidden="true" />
                 </button>
               </div>
             </div>
