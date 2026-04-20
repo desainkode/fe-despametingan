@@ -62,18 +62,26 @@ const batasWilayahCards = [
   {
     arah: "Utara",
     detail: "Bagian utara berbatasan langsung dengan kawasan hutan lindung.",
+    markerId: "dusun-1",
+    layerClass: "layer-1",
   },
   {
     arah: "Timur",
     detail: "Wilayah timur berbatasan dengan jalur penghubung antar desa.",
+    markerId: "dusun-2",
+    layerClass: "layer-2",
   },
   {
     arah: "Selatan",
     detail: "Sisi selatan berbatasan dengan area persawahan produktif warga.",
+    markerId: "dusun-3",
+    layerClass: "layer-3",
   },
   {
     arah: "Barat",
     detail: "Batas barat terhubung dengan kawasan perbukitan dan kebun rakyat.",
+    markerId: "dusun-4",
+    layerClass: "layer-4",
   },
 ];
 
@@ -119,6 +127,66 @@ const dusunLegendItems = [
     vectorPath: "/img/peta-vector-355-567.svg",
   },
 ] as const;
+
+const dusunMapMarkers = [
+  {
+    id: "dusun-1",
+    nama: "Dusun Cimawate",
+    kepala: "Koordinator Dusun",
+    penduduk: "845",
+    laki_laki: "338",
+    perempuan: "507",
+    keterangan: "Dusun Cimawate berada di sisi utara dengan akses utama ke kawasan lindung.",
+    warna: "#9FEFD4",
+    position: { left: "50%", top: "43%" },
+    popupPlacement: "right",
+  },
+  {
+    id: "dusun-2",
+    nama: "Dusun Karang",
+    kepala: "Koordinator Dusun",
+    penduduk: "772",
+    laki_laki: "309",
+    perempuan: "463",
+    keterangan: "Dusun Karang berada di sisi timur dan terhubung langsung ke jalur antar desa.",
+    warna: "#74DFC0",
+    position: { left: "56%", top: "50%" },
+    popupPlacement: "left",
+  },
+  {
+    id: "dusun-3",
+    nama: "Dusun Pameutingan",
+    kepala: "Koordinator Dusun",
+    penduduk: "988",
+    laki_laki: "395",
+    perempuan: "593",
+    keterangan: "Dusun Pameutingan terletak di sisi selatan dengan dominasi lahan produktif warga.",
+    warna: "#55D4B1",
+    position: { left: "51%", top: "58%" },
+    popupPlacement: "top",
+  },
+  {
+    id: "dusun-4",
+    nama: "Dusun Cianjuang",
+    kepala: "Koordinator Dusun",
+    penduduk: "915",
+    laki_laki: "366",
+    perempuan: "549",
+    keterangan: "Dusun Cianjuang berada di sisi barat yang berbatasan dengan perbukitan dan kebun rakyat.",
+    warna: "#35C89F",
+    position: { left: "45%", top: "50%" },
+    popupPlacement: "right",
+  },
+] as const;
+
+const markerPopupPlacementClass: Record<
+  (typeof dusunMapMarkers)[number]["popupPlacement"],
+  string
+> = {
+  left: "right-full mr-3 top-1/2 -translate-y-1/2",
+  right: "left-full ml-3 top-1/2 -translate-y-1/2",
+  top: "bottom-full left-1/2 mb-3 -translate-x-1/2",
+};
 
 const strukturTataKelola = [
   {
@@ -208,14 +276,18 @@ export default function Home() {
   const [combinedMapActiveLayer, setCombinedMapActiveLayerState] = useState<string | null>(
     null,
   );
+  const [hoveredMapMarkerId, setHoveredMapMarkerId] = useState<string | null>(null);
+  const [pinnedMapMarkerId, setPinnedMapMarkerId] = useState<string | null>(null);
+  const [isBoundaryCardHoverActive, setIsBoundaryCardHoverActive] = useState<boolean>(false);
   const strukturSliderRef = useRef<HTMLDivElement | null>(null);
   const yearDropdownRef = useRef<HTMLDivElement | null>(null);
   const combinedMapObjectRef = useRef<HTMLObjectElement | null>(null);
 
+  const activeMapMarkerId = pinnedMapMarkerId ?? hoveredMapMarkerId;
   const activeDusunInfo =
-    dusunLegendItems.find((item) => item.layerClass === combinedMapActiveLayer) ??
-    dusunLegendItems[0];
-  const isMapLayerActive = Boolean(combinedMapActiveLayer);
+    dusunMapMarkers.find((item) => item.id === activeMapMarkerId) ??
+    dusunMapMarkers[0];
+  const isMapLayerActive = Boolean(activeMapMarkerId || combinedMapActiveLayer);
 
   const setCombinedMapActiveLayer = (layerClass: string | null) => {
     setCombinedMapActiveLayerState(layerClass);
@@ -329,6 +401,8 @@ export default function Home() {
 
     const handleMapLoad = () => {
       setCombinedMapActiveLayer(null);
+      setHoveredMapMarkerId(null);
+      setPinnedMapMarkerId(null);
     };
 
     mapObject.addEventListener("load", handleMapLoad);
@@ -566,6 +640,26 @@ export default function Home() {
                 <div
                   key={item.arah}
                   className="hero-reveal group rounded-2xl border border-white/14 bg-linear-to-br from-white/16 via-white/12 to-white/8 p-3.5 shadow-[inset_8px_-8px_14px_rgba(165,165,165,0.08),inset_-8px_8px_14px_rgba(255,255,255,0.08),0_10px_18px_rgba(0,0,0,0.12)] backdrop-blur-md transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-[#B9FEE0]/35 hover:shadow-[0_20px_24px_rgba(0,0,0,0.2)]"
+                  onMouseEnter={() => {
+                    setIsBoundaryCardHoverActive(true);
+                    setHoveredMapMarkerId(null);
+                    setCombinedMapActiveLayer(item.layerClass);
+                  }}
+                  onMouseLeave={() => {
+                    const hasPinned = Boolean(pinnedMapMarkerId);
+                    setIsBoundaryCardHoverActive(hasPinned);
+                    setCombinedMapActiveLayer(hasPinned ? "layer-5" : null);
+                  }}
+                  onFocus={() => {
+                    setIsBoundaryCardHoverActive(true);
+                    setHoveredMapMarkerId(null);
+                    setCombinedMapActiveLayer(item.layerClass);
+                  }}
+                  onBlur={() => {
+                    const hasPinned = Boolean(pinnedMapMarkerId);
+                    setIsBoundaryCardHoverActive(hasPinned);
+                    setCombinedMapActiveLayer(hasPinned ? "layer-5" : null);
+                  }}
                   style={{ animationDelay: `${120 + index * 70}ms` }}
                 >
                   <div className="inline-flex min-w-24 items-center justify-center rounded-lg bg-[#F0B100] px-4 py-1.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] group-hover:shadow-[0_8px_14px_rgba(240,177,0,0.34)]">
@@ -583,9 +677,9 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="group/mapWrap relative overflow-hidden rounded-3xl border border-white/12 bg-transparent p-2 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_20px_30px_rgba(0,0,0,0.2)] md:p-4">
+            <div className={`group/mapWrap relative overflow-hidden rounded-3xl border border-white/12 bg-transparent p-2 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-[0_20px_30px_rgba(0,0,0,0.2)] md:p-4 ${isBoundaryCardHoverActive ? "shadow-[0_24px_34px_rgba(0,0,0,0.24)]" : ""}`}>
 
-              <div className="group/map relative z-10 mx-auto w-full max-w-180 aspect-[1081.5/1033.96] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.015]">
+              <div className={`group/map relative z-10 mx-auto w-full max-w-180 aspect-[1081.5/1033.96] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.015] ${isBoundaryCardHoverActive ? "scale-[1.015]" : ""}`}>
                 <object
                   ref={combinedMapObjectRef}
                   type="image/svg+xml"
@@ -594,6 +688,8 @@ export default function Home() {
                   className={`h-full w-full rounded-xl transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/map:drop-shadow-[0_20px_34px_rgba(11,40,31,0.28)] ${
                     isMapLayerActive
                       ? "drop-shadow-[0_14px_28px_rgba(11,40,31,0.24)]"
+                      : isBoundaryCardHoverActive
+                        ? "drop-shadow-[0_18px_30px_rgba(11,40,31,0.22)]"
                       : ""
                   }`}
                 >
@@ -604,6 +700,91 @@ export default function Home() {
                     loading="lazy"
                   />
                 </object>
+
+                <div className="pointer-events-none absolute inset-0 z-20">
+                  {dusunMapMarkers.map((marker) => {
+                    const isActiveMarker =
+                      activeMapMarkerId === marker.id;
+
+                    return (
+                      <div
+                        key={marker.id}
+                        className={`absolute ${isActiveMarker ? "z-50" : "z-10"}`}
+                        style={{
+                          left: marker.position.left,
+                          top: marker.position.top,
+                          transform: "translate(-50%, -50%)",
+                        }}
+                      >
+                        <button
+                          type="button"
+                          aria-label={marker.nama}
+                          aria-pressed={isActiveMarker}
+                          className={`pointer-events-auto relative flex h-6 w-6 items-center justify-center rounded-full border-2 border-white shadow-[0_0_0_0_rgba(0,212,146,0.35)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A4F4CF]/80 ${
+                            isActiveMarker
+                              ? "scale-125 bg-[#00D492] shadow-[0_0_0_10px_rgba(0,212,146,0.16),0_10px_20px_rgba(11,40,31,0.24)]"
+                              : "bg-[#F0B100] hover:scale-110 hover:bg-[#00D492]"
+                          }`}
+                          onMouseEnter={() => {
+                            setIsBoundaryCardHoverActive(true);
+                            setHoveredMapMarkerId(marker.id);
+                            setCombinedMapActiveLayer("layer-5");
+                          }}
+                          onMouseLeave={() => {
+                            setIsBoundaryCardHoverActive(Boolean(pinnedMapMarkerId));
+                            setHoveredMapMarkerId(null);
+                            setCombinedMapActiveLayer(pinnedMapMarkerId ? "layer-5" : null);
+                          }}
+                          onFocus={() => {
+                            setIsBoundaryCardHoverActive(true);
+                            setHoveredMapMarkerId(marker.id);
+                            setCombinedMapActiveLayer("layer-5");
+                          }}
+                          onBlur={() => {
+                            setIsBoundaryCardHoverActive(Boolean(pinnedMapMarkerId));
+                            setHoveredMapMarkerId(null);
+                            setCombinedMapActiveLayer(pinnedMapMarkerId ? "layer-5" : null);
+                          }}
+                          onClick={() => {
+                            const nextPinnedId = pinnedMapMarkerId === marker.id ? null : marker.id;
+                            setPinnedMapMarkerId(nextPinnedId);
+                            setHoveredMapMarkerId(nextPinnedId ? marker.id : null);
+                            setIsBoundaryCardHoverActive(Boolean(nextPinnedId));
+                            setCombinedMapActiveLayer(nextPinnedId ? "layer-5" : null);
+                          }}
+                        >
+                          <span className="h-2.5 w-2.5 rounded-full bg-white/95" />
+                        </button>
+
+                        {isActiveMarker ? (
+                          <div
+                            className={`absolute z-30 w-54 rounded-2xl border border-white/14 bg-[#F4F3EF] px-4 py-3 text-[#0B281F] shadow-[0_18px_28px_rgba(0,0,0,0.24)] backdrop-blur-md ${markerPopupPlacementClass[marker.popupPlacement]}`}
+                          >
+                            <div className="flex items-start justify-between gap-3">
+                              <div>
+                                <p className="text-[13px] font-semibold leading-4">
+                                  {marker.nama}
+                                </p>
+                                <p className="mt-1 text-[8px] text-[#0B281F]/65">
+                                  {marker.kepala}
+                                </p>
+                              </div>
+                              <span
+                                className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white"
+                                style={{ backgroundColor: marker.warna }}
+                              >
+                                {marker.penduduk}
+                              </span>
+                            </div>
+                            <p className="mt-2 text-[11px] leading-5 text-[#0B281F]/82">
+                              {marker.keterangan}
+                            </p>
+                          </div>
+                        ) : null}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
 
               <div className="relative z-20 mt-4 grid gap-4 md:mt-0">
@@ -631,38 +812,63 @@ export default function Home() {
                     Legenda Dusun
                   </h3>
                   <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
-                    {dusunLegendItems.map((item) => (
-                      <button
-                        key={item.nama}
-                        type="button"
-                        className={`group/legend flex items-center gap-2 rounded-lg border p-1.5 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#0B281F]/18 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A4F4CF]/75 ${
-                          combinedMapActiveLayer === item.layerClass
-                            ? "border-[#8EE7C5]/45 bg-[#0B281F]/22 shadow-[0_10px_16px_rgba(0,0,0,0.18)]"
-                            : "border-white/10 bg-transparent"
-                        }`}
-                        aria-label={`Legenda ${item.nama}`}
-                        aria-pressed={combinedMapActiveLayer === item.layerClass}
-                        onMouseEnter={() => setCombinedMapActiveLayer(item.layerClass)}
-                        onMouseLeave={() => setCombinedMapActiveLayer(null)}
-                        onFocus={() => setCombinedMapActiveLayer(item.layerClass)}
-                        onBlur={() => setCombinedMapActiveLayer(null)}
-                      >
-                        <span
-                          className={`h-2.5 w-2.5 shrink-0 rounded-xs transition-all duration-500 ${
-                            combinedMapActiveLayer === item.layerClass
-                              ? "scale-125"
-                              : "scale-100"
-                          }`}
-                          style={{ backgroundColor: item.warna }}
-                        />
+                    {dusunMapMarkers.map((marker) => {
+                      const isActive = activeMapMarkerId === marker.id;
 
-                        <div className="min-w-0 flex-1">
-                          <p className="truncate text-[11px] text-[#F4F3EF] transition-all duration-500 md:text-[12px]">
-                            {item.nama}
-                          </p>
-                        </div>
-                      </button>
-                    ))}
+                      return (
+                        <button
+                          key={marker.id}
+                          type="button"
+                          className={`group/legend flex items-center gap-2 rounded-lg border p-1.5 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#0B281F]/18 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A4F4CF]/75 ${
+                            isActive
+                              ? "border-[#8EE7C5]/45 bg-[#0B281F]/22 shadow-[0_10px_16px_rgba(0,0,0,0.18)]"
+                              : "border-white/10 bg-transparent"
+                          }`}
+                          aria-label={`Legenda ${marker.nama}`}
+                          aria-pressed={isActive}
+                          onMouseEnter={() => {
+                            setIsBoundaryCardHoverActive(true);
+                            setHoveredMapMarkerId(marker.id);
+                            setCombinedMapActiveLayer("layer-5");
+                          }}
+                          onMouseLeave={() => {
+                            setIsBoundaryCardHoverActive(Boolean(pinnedMapMarkerId));
+                            setHoveredMapMarkerId(null);
+                            setCombinedMapActiveLayer(pinnedMapMarkerId ? "layer-5" : null);
+                          }}
+                          onFocus={() => {
+                            setIsBoundaryCardHoverActive(true);
+                            setHoveredMapMarkerId(marker.id);
+                            setCombinedMapActiveLayer("layer-5");
+                          }}
+                          onBlur={() => {
+                            setIsBoundaryCardHoverActive(Boolean(pinnedMapMarkerId));
+                            setHoveredMapMarkerId(null);
+                            setCombinedMapActiveLayer(pinnedMapMarkerId ? "layer-5" : null);
+                          }}
+                          onClick={() => {
+                            const nextPinnedId = pinnedMapMarkerId === marker.id ? null : marker.id;
+                            setPinnedMapMarkerId(nextPinnedId);
+                            setHoveredMapMarkerId(nextPinnedId ? marker.id : null);
+                            setIsBoundaryCardHoverActive(Boolean(nextPinnedId));
+                            setCombinedMapActiveLayer(nextPinnedId ? "layer-5" : null);
+                          }}
+                        >
+                          <span
+                            className={`h-2.5 w-2.5 shrink-0 rounded-xs transition-all duration-500 ${
+                              isActive ? "scale-125" : "scale-100"
+                            }`}
+                            style={{ backgroundColor: marker.warna }}
+                          />
+
+                          <div className="min-w-0 flex-1">
+                            <p className="truncate text-[11px] text-[#F4F3EF] transition-all duration-500 md:text-[12px]">
+                              {marker.nama}
+                            </p>
+                          </div>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -682,7 +888,7 @@ export default function Home() {
                   <span className="h-2.5 w-2.5 rounded-full bg-[#A4F4CF]" />
                   <span className="h-2.5 w-2.5 rounded-full bg-[#A4F4CF]" />
                 </div>
-                <p className="text-[14px] font-semibold text-[#A4F4CF]">3520+</p>
+                <p className="text-[14px] font-semibold text-[#A4F4CF] transition-all duration-500">{activeMapMarkerId ? activeDusunInfo.penduduk : "3520"}</p>
               </div>
             </div>
 
@@ -699,7 +905,7 @@ export default function Home() {
                   <span className="h-2.5 w-2.5 rounded-full bg-white" />
                   <span className="h-2.5 w-2.5 rounded-full bg-white" />
                 </div>
-                <p className="text-[14px] font-semibold">40%</p>
+                <p className="text-[14px] font-semibold transition-all duration-500">{activeMapMarkerId ? activeDusunInfo.laki_laki : "1408"}</p>
               </div>
             </div>
 
@@ -716,7 +922,7 @@ export default function Home() {
                   <span className="h-2.5 w-2.5 rounded-full bg-[#A4F4CF]" />
                   <span className="h-2.5 w-2.5 rounded-full bg-[#A4F4CF]" />
                 </div>
-                <p className="text-[14px] font-semibold">60%</p>
+                <p className="text-[14px] font-semibold transition-all duration-500">{activeMapMarkerId ? activeDusunInfo.perempuan : "2112"}</p>
               </div>
             </div>
           </div>
