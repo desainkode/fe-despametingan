@@ -1,16 +1,18 @@
 "use client";
 
+import * as React from "react";
 import { Info } from "lucide-react";
 import {
   Building2,
   ChartNoAxesCombined,
+  GraduationCap,
   House,
   Mars,
   MapPinned,
   Users,
   Venus,
 } from "lucide-react";
-import { Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Cell, Label, Pie, PieChart, XAxis, YAxis } from "recharts";
 
 import {
   ChartContainer,
@@ -33,39 +35,39 @@ const kartuDemografi: Array<{
     className?: string;
   }>;
 }> = [
-  {
-    label: "Total\nPenduduk",
-    angka: "3.542",
-    bgColor: "#D9D9D9",
-    textColor: "#070C10",
-    labelColor: "#070C10",
-    icon: Users,
-  },
-  {
-    label: "Total\nDusun",
-    angka: "4",
-    bgColor: "#F0B100",
-    textColor: "#FEFEFE",
-    labelColor: "#FEFEFE",
-    icon: House,
-  },
-  {
-    label: "Total\nKepala Keluarga",
-    angka: "1.087",
-    bgColor: "#009966",
-    textColor: "#FEFEFE",
-    labelColor: "#FEFEFE",
-    icon: Building2,
-  },
-  {
-    label: "Total\nWilayah RT/RW",
-    angka: "12/5",
-    bgColor: "#006045",
-    textColor: "#FEFEFE",
-    labelColor: "#FEFEFE",
-    icon: MapPinned,
-  },
-];
+    {
+      label: "Total\nPenduduk",
+      angka: "3.542",
+      bgColor: "#D9D9D9",
+      textColor: "#070C10",
+      labelColor: "#070C10",
+      icon: Users,
+    },
+    {
+      label: "Total\nDusun",
+      angka: "4",
+      bgColor: "#F0B100",
+      textColor: "#FEFEFE",
+      labelColor: "#FEFEFE",
+      icon: House,
+    },
+    {
+      label: "Total\nKepala Keluarga",
+      angka: "1.087",
+      bgColor: "#009966",
+      textColor: "#FEFEFE",
+      labelColor: "#FEFEFE",
+      icon: Building2,
+    },
+    {
+      label: "Total\nWilayah RT/RW",
+      angka: "12/5",
+      bgColor: "#006045",
+      textColor: "#FEFEFE",
+      labelColor: "#FEFEFE",
+      icon: MapPinned,
+    },
+  ];
 
 const kartuJumlahPenduduk: Array<{
   label: string;
@@ -77,43 +79,43 @@ const kartuJumlahPenduduk: Array<{
     className?: string;
   }>;
 }> = [
-  {
-    label: "Total Penduduk",
-    angka: "3.542",
-    tone: "light",
-    icon: Users,
-  },
-  {
-    label: "Laki-laki",
-    angka: "3.542",
-    tone: "light",
-    icon: House,
-  },
-  {
-    label: "Perempuan",
-    angka: "3.542",
-    tone: "dark",
-    icon: Building2,
-  },
-  {
-    label: "Kepala Keluarga",
-    angka: "3.542",
-    tone: "light",
-    icon: House,
-  },
-  {
-    label: "Mutasi Penduduk",
-    angka: "3.542",
-    tone: "light",
-    icon: MapPinned,
-  },
-  {
-    label: "Penduduk Sementara",
-    angka: "3.542",
-    tone: "dark",
-    icon: Users,
-  },
-];
+    {
+      label: "Total Penduduk",
+      angka: "3.542",
+      tone: "light",
+      icon: Users,
+    },
+    {
+      label: "Laki-laki",
+      angka: "3.542",
+      tone: "light",
+      icon: House,
+    },
+    {
+      label: "Perempuan",
+      angka: "3.542",
+      tone: "dark",
+      icon: Building2,
+    },
+    {
+      label: "Kepala Keluarga",
+      angka: "3.542",
+      tone: "light",
+      icon: House,
+    },
+    {
+      label: "Mutasi Penduduk",
+      angka: "3.542",
+      tone: "light",
+      icon: MapPinned,
+    },
+    {
+      label: "Penduduk Sementara",
+      angka: "3.542",
+      tone: "dark",
+      icon: Users,
+    },
+  ];
 
 const kelompokUmurLabels = [
   "80-84",
@@ -136,17 +138,17 @@ const diagramKelompokUmur: Array<{
   }>;
   bars: number[];
 }> = [
-  {
-    title: "Diagram Umur\nLaki - Laki",
-    icon: Mars,
-    bars: [100, 50, 83, 94, 67, 90, 97, 46, 64],
-  },
-  {
-    title: "Diagram Umur\nPerempuan",
-    icon: Venus,
-    bars: [97, 48, 81, 91, 65, 87, 100, 45, 62],
-  },
-];
+    {
+      title: "Diagram Umur\nLaki - Laki",
+      icon: Mars,
+      bars: [100, 50, 83, 94, 67, 90, 97, 46, 64],
+    },
+    {
+      title: "Diagram Umur\nPerempuan",
+      icon: Venus,
+      bars: [97, 48, 81, 91, 65, 87, 100, 45, 62],
+    },
+  ];
 
 const berdasarkanDusunCards: Array<{
   kode: string;
@@ -154,37 +156,49 @@ const berdasarkanDusunCards: Array<{
   deskripsi: string;
   persentase: number;
 }> = [
-  {
-    kode: "01",
-    nama: "Dusun Pameutingan",
-    deskripsi: "Sebaran umur warga untuk mendukung program desa.",
-    persentase: 30,
-  },
-  {
-    kode: "02",
-    nama: "Dusun Citalem",
-    deskripsi: "Jumlah warga berdasarkan usia untuk perencanaan dusun.",
-    persentase: 18,
-  },
-  {
-    kode: "03",
-    nama: "Dusun Pencut",
-    deskripsi: "Data usia warga untuk melihat kebutuhan masyarakat.",
-    persentase: 24,
-  },
-  {
-    kode: "04",
-    nama: "Dusun Mekarjaya",
-    deskripsi: "Kelompok usia warga sebagai dasar pembangunan dusun.",
-    persentase: 28,
-  },
-];
+    {
+      kode: "01",
+      nama: "Dusun Pameutingan",
+      deskripsi: "Sebaran umur warga untuk mendukung program desa.",
+      persentase: 30,
+    },
+    {
+      kode: "02",
+      nama: "Dusun Citalem",
+      deskripsi: "Jumlah warga berdasarkan usia untuk perencanaan dusun.",
+      persentase: 18,
+    },
+    {
+      kode: "03",
+      nama: "Dusun Pencut",
+      deskripsi: "Data usia warga untuk melihat kebutuhan masyarakat.",
+      persentase: 24,
+    },
+    {
+      kode: "04",
+      nama: "Dusun Mekarjaya",
+      deskripsi: "Kelompok usia warga sebagai dasar pembangunan dusun.",
+      persentase: 28,
+    },
+  ];
 
 const dusunChartData = [
-  { dusun: "Dusun 1", value: 30, fill: "#006548", textColor: "#F4F6F5" },
-  { dusun: "Dusun 2", value: 18, fill: "#12D5A5", textColor: "#F4F6F5" },
-  { dusun: "Dusun 3", value: 24, fill: "#0B0B0B", textColor: "#F4F6F5" },
-  { dusun: "Dusun 4", value: 28, fill: "#F2F2F2", textColor: "#111316" },
+  { dusun: "dusun1", label: "Dusun Pameutingan", value: 30, fill: "var(--color-dusun1)" },
+  { dusun: "dusun2", label: "Dusun Citalem", value: 18, fill: "var(--color-dusun2)" },
+  { dusun: "dusun4", label: "Dusun Mekarjaya", value: 28, fill: "var(--color-dusun4)" },
+];
+
+const pendidikanChartData = [
+  { tingkat: "Tidak Sekolah", jumlah: 120 },
+  { tingkat: "SD/MI", jumlah: 450 },
+  { tingkat: "SMP/MTS", jumlah: 380 },
+  { tingkat: "SMA/SMK/MA", jumlah: 520 },
+  { tingkat: "D1", jumlah: 40 },
+  { tingkat: "D2", jumlah: 35 },
+  { tingkat: "D3", jumlah: 150 },
+  { tingkat: "S1/D4", jumlah: 310 },
+  { tingkat: "S2", jumlah: 45 },
+  { tingkat: "S3", jumlah: 10 },
 ];
 
 function DemografiCard({
@@ -275,22 +289,20 @@ function JumlahPendudukCard({
 
   return (
     <article
-      className={`hero-reveal relative isolate h-67.5 overflow-hidden rounded-tl-[28px] rounded-br-[28px]  p-6 sm:h-75 md:h-80 ${
-        isDark
-          ? "bg-linear-to-br from-[#001F18] via-[#003326] to-[#005239] text-[#F3F8F6]"
-          : "bg-[#D9D9D9] text-[#070C10]"
-      }`}
+      className={`hero-reveal relative isolate h-67.5 overflow-hidden rounded-tl-[28px] rounded-br-[28px]  p-6 sm:h-75 md:h-80 ${isDark
+        ? "bg-linear-to-br from-[#001F18] via-[#003326] to-[#005239] text-[#F3F8F6]"
+        : "bg-[#D9D9D9] text-[#070C10]"
+        }`}
       style={{ animationDelay: `${delayMs}ms` }}
     >
       <div className="pointer-events-none absolute -right-14 -top-14 h-28 w-28 rotate-45 bg-[#FFFFFF]" />
       <div className="pointer-events-none absolute -bottom-14 -left-14 h-28 w-28 rotate-45 bg-[#FFFFFF]" />
 
       <div
-        className={`relative inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-[0_6px_14px_rgba(11,40,31,0.12)] ${
-          isDark
-            ? "border-white/18 bg-[#0B281F]/48 text-[#EAF7F1]"
-            : "border-[#0B281F]/8 bg-white/42 text-[#0B281F]"
-        }`}
+        className={`relative inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-[0_6px_14px_rgba(11,40,31,0.12)] ${isDark
+          ? "border-white/18 bg-[#0B281F]/48 text-[#EAF7F1]"
+          : "border-[#0B281F]/8 bg-white/42 text-[#0B281F]"
+          }`}
       >
         <Icon size={18} strokeWidth={2.1} />
       </div>
@@ -474,26 +486,28 @@ function DusunInfoCard({
   delayMs: number;
 }) {
   return (
-    <article className="hero-reveal relative pt-4" style={{ animationDelay: `${delayMs}ms` }}>
-      <div className="absolute -left-3 -top-5 z-0 inline-flex h-17 w-19 items-start justify-start rounded-xl bg-[#F0B100] px-2.5 pt-1 shadow-[0_10px_16px_rgba(0,0,0,0.16)]">
+    <article className="hero-reveal group relative pt-4" style={{ animationDelay: `${delayMs}ms` }}>
+      <div className="absolute -left-3 -top-5 z-20 inline-flex h-17 w-19 items-start justify-start rounded-xl bg-[#F0B100] px-2.5 pt-1 shadow-[0_10px_16px_rgba(0,0,0,0.16)] transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
         <span className="text-[38px] leading-none text-white" style={{ fontFamily: "var(--font-upakarti)" }}>
           {kode}
         </span>
       </div>
 
-      <span className="absolute right-2 top-1 z-20 inline-flex items-center gap-1 rounded-full bg-[#00A977] px-2.5 py-1 text-[11px] text-[#E7FFF6] shadow-[0_8px_12px_rgba(0,0,0,0.16)]">
-        <span className="h-1.5 w-1.5 rounded-full bg-[#F0B100]" />
+      <span className="absolute right-2 top-1 z-30 inline-flex items-center gap-1.5 rounded-full bg-[#00E0A1] px-3 py-1 text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(0,0,0,0.2)] border border-white/20">
+        <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
         {persentase}%
       </span>
 
-      <div className="relative z-10 min-h-38 overflow-hidden rounded-[14px] border border-white/15 bg-linear-to-br from-white/20 via-white/14 to-white/10 px-4 pb-3.5 pt-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_14px_24px_rgba(0,0,0,0.18)] backdrop-blur-[2px]">
-        <div className="pointer-events-none absolute -right-7 -top-7 h-20 w-20 rounded-full bg-[#F0B100]/22 blur-md" />
+      <div className="relative z-10 min-h-38 overflow-hidden rounded-[24px] border border-white/10 bg-linear-to-br from-white/15 via-white/5 to-transparent px-5 pb-5 pt-7 shadow-[0_20px_40px_rgba(0,0,0,0.15)] backdrop-blur-[8px] transition-all duration-300 group-hover:border-white/25 group-hover:bg-white/10">
+        <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#00E0A1]/15 blur-2xl transition-all duration-500 group-hover:bg-[#00E0A1]/25" />
 
-        <h3 className="font-[Georgia,serif] text-[39px] leading-[0.78] text-[#F4F6F5]">
-          <span className="block text-[43px] leading-[0.8]">Dusun</span>
-          <span className="mt-1 block text-[43px] leading-[0.86]">{nama.replace("Dusun ", "")}</span>
-        </h3>
-        <p className="mt-2 text-[12px] leading-5 text-[#E7F5F0]/90">{deskripsi}</p>
+        <div className="relative">
+          <h3 className="font-[Georgia,serif] text-[34px] leading-[0.85] text-white">
+            <span className="block text-[38px] opacity-70">Dusun</span>
+            <span className="mt-1 block font-bold tracking-tight">{nama.replace("Dusun ", "")}</span>
+          </h3>
+          <p className="mt-3 text-[13px] leading-relaxed text-white/70">{deskripsi}</p>
+        </div>
       </div>
     </article>
   );
@@ -501,69 +515,157 @@ function DusunInfoCard({
 
 function DusunPieChart({ delayMs }: { delayMs: number }) {
   const chartConfig = {
-    dusun1: { label: "Dusun 1", color: "#006548" },
-    dusun2: { label: "Dusun 2", color: "#12D5A5" },
-    dusun3: { label: "Dusun 3", color: "#0B0B0B" },
-    dusun4: { label: "Dusun 4", color: "#F2F2F2" },
-  } satisfies ChartConfig;
+    dusun1: { label: "Dusun Pameutingan", color: "#00E0A1" },
+    dusun2: { label: "Dusun Citalem", color: "#F0B100" },
+    dusun3: { label: "Dusun Pencut", color: "#FFFFFF" },
+    dusun4: { label: "Dusun Mekarjaya", color: "#34D399" },
+  };
+
+  const totalValue = React.useMemo(() => {
+    return dusunChartData.reduce((acc, curr) => acc + curr.value, 0);
+  }, []);
 
   return (
-    <article className="hero-reveal flex flex-col items-center" style={{ animationDelay: `${delayMs}ms` }}>
-      <ChartContainer config={chartConfig} className="mx-auto h-74 w-full max-w-95 aspect-auto!">
-        <PieChart>
-          <Pie
-            data={dusunChartData}
-            dataKey="value"
-            nameKey="dusun"
-            cx="50%"
-            cy="50%"
-            innerRadius={0}
-            outerRadius={126}
-            startAngle={90}
-            endAngle={-270}
-            paddingAngle={3}
-            stroke="rgba(0,0,0,0.32)"
-            strokeWidth={1.5}
-            labelLine={false}
-            label={({ cx, cy, midAngle, innerRadius, outerRadius, payload }) => {
-              const RADIAN = Math.PI / 180;
-              const radius = Number(innerRadius) + (Number(outerRadius) - Number(innerRadius)) * 0.56;
-              const x = Number(cx) + radius * Math.cos(-Number(midAngle) * RADIAN);
-              const y = Number(cy) + radius * Math.sin(-Number(midAngle) * RADIAN);
+    <article className="hero-reveal flex w-full flex-col items-center justify-center" style={{ animationDelay: `${delayMs}ms` }}>
+      <div className="relative aspect-square w-full max-w-[240px] sm:max-w-[280px]">
+        <div className="absolute inset-0 rounded-full bg-[#00E0A1]/5 blur-3xl" />
+        <ChartContainer config={chartConfig as ChartConfig} className="mx-auto h-full w-full">
+          <PieChart>
+            <defs>
+              {dusunChartData.map((item) => (
+                <linearGradient key={`grad-${item.dusun}`} id={`grad-${item.dusun}`} x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor={chartConfig[item.dusun as keyof typeof chartConfig]?.color} stopOpacity={1} />
+                  <stop offset="100%" stopColor={chartConfig[item.dusun as keyof typeof chartConfig]?.color} stopOpacity={0.6} />
+                </linearGradient>
+              ))}
+            </defs>
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel className="rounded-xl border-white/20 bg-black/90 backdrop-blur-xl" />}
+            />
+            <Pie
+              data={dusunChartData}
+              dataKey="value"
+              nameKey="dusun"
+              innerRadius={75}
+              outerRadius={110}
+              strokeWidth={4}
+              stroke="rgba(255,255,255,0.05)"
+              paddingAngle={8}
+              cornerRadius={6}
+            >
+              {dusunChartData.map((entry) => (
+                <Cell key={entry.dusun} fill={`url(#grad-${entry.dusun})`} className="transition-all duration-500 hover:opacity-80" />
+              ))}
+              <Label
+                content={({ viewBox }) => {
+                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                    return (
+                      <text x={viewBox.cx} y={viewBox.cy} textAnchor="middle" dominantBaseline="middle">
+                        <tspan x={viewBox.cx} y={viewBox.cy} className="fill-white text-4xl font-bold" style={{ fontFamily: "var(--font-upakarti)" }}>
+                          {totalValue}%
+                        </tspan>
+                        <tspan x={viewBox.cx} y={(viewBox.cy || 0) + 22} className="fill-white/40 text-[9px] font-bold uppercase tracking-[0.4em]">
+                          DATA
+                        </tspan>
+                      </text>
+                    );
+                  }
+                }}
+              />
+            </Pie>
+          </PieChart>
+        </ChartContainer>
+      </div>
 
-              return (
-                <text
-                  x={x}
-                  y={y}
-                  fill={payload.textColor}
-                  textAnchor="middle"
-                  dominantBaseline="central"
-                  style={{ fontSize: 24, fontFamily: "var(--font-upakarti)", fontWeight: 700 }}
-                >
-                  {payload.value}%
-                </text>
-              );
-            }}
-            isAnimationActive
-            animationDuration={900}
-            animationBegin={120}
-            animationEasing="ease-out"
-          >
-            {dusunChartData.map((entry) => (
-              <Cell key={entry.dusun} fill={entry.fill} />
-            ))}
-          </Pie>
-        </PieChart>
-      </ChartContainer>
-
-      <div className="mt-2 w-full rounded-2xl border border-[#0DD08C]/45 bg-linear-to-r from-[#8A9228]/42 via-[#0B513F]/46 to-[#0AA06E]/42 p-4 shadow-[0_10px_18px_rgba(0,0,0,0.18)]">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-2.5 text-[14px] text-[#EBF9F3]">
-          {dusunChartData.map((item) => (
-            <div key={item.dusun} className="flex items-center gap-2">
-              <span className="h-3 w-3 rounded-xs" style={{ backgroundColor: item.fill }} />
-              <span style={{ fontFamily: "var(--font-upakarti)" }}>{item.dusun}</span>
+      <div className="mt-8 flex w-full flex-wrap justify-center gap-x-4 gap-y-3">
+        {dusunChartData.map((item) => (
+          <div key={item.dusun} className="flex items-center gap-2 rounded-full border border-white/5 bg-white/[0.03] py-1.5 pl-2.5 pr-3.5 backdrop-blur-sm transition-all duration-300 hover:bg-white/10">
+            <div className="h-2 w-2 shrink-0 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.1)]" style={{ backgroundColor: chartConfig[item.dusun as keyof typeof chartConfig]?.color }} />
+            <div className="flex items-baseline gap-2">
+              <span className="text-[12px] font-medium text-white/70" style={{ fontFamily: "var(--font-upakarti)" }}>
+                {item.label.replace("Dusun ", "")}
+              </span>
+              <span className="text-[13px] font-bold text-[#00E0A1]">{item.value}%</span>
             </div>
-          ))}
+          </div>
+        ))}
+      </div>
+    </article>
+  );
+}
+
+function PendidikanChart({ delayMs }: { delayMs: number }) {
+  const chartConfig = {
+    jumlah: {
+      label: "Jumlah",
+    },
+  };
+
+  return (
+    <article className="hero-reveal w-full pt-4" style={{ animationDelay: `${delayMs}ms` }}>
+      <div className="relative overflow-hidden rounded-[32px] bg-linear-to-br from-[#002B22] via-[#004234] to-[#001A14] p-6 sm:p-8 md:p-10">
+        <div className="pointer-events-none absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-[#00E0A1]/10 blur-[100px]" />
+        <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#F0B100]/10 blur-[110px]" />
+        
+        <div className="relative z-10">
+          <div className="mb-10 text-center md:text-left md:flex md:items-center md:justify-between">
+            <div>
+              <h3 className="font-[Georgia,serif] text-[28px] leading-[1.2] text-white md:text-[32px]">
+                Statistik Pendidikan
+              </h3>
+              <p className="mt-2 text-[13px] text-white/60 max-w-lg">
+                Sebaran tingkat pendidikan warga sebagai dasar perencanaan program peningkatan SDM dan kesejahteraan desa.
+              </p>
+            </div>
+            <div className="hidden md:flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#00E0A1]/10 backdrop-blur-md">
+              <GraduationCap className="text-[#00E0A1]" size={32} />
+            </div>
+          </div>
+          
+          <div className="h-[350px] w-full">
+            <ChartContainer config={chartConfig as ChartConfig} className="h-full w-full">
+              <BarChart
+                data={pendidikanChartData}
+                margin={{ top: 20, right: 0, left: -20, bottom: 20 }}
+                barSize={32}
+              >
+                <defs>
+                  <linearGradient id="pendidikanGrad" x1="0" y1="1" x2="0" y2="0">
+                    <stop offset="0%" stopColor="#00E0A1" />
+                    <stop offset="100%" stopColor="#F0B100" />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
+                <XAxis 
+                  dataKey="tingkat" 
+                  tickLine={false} 
+                  axisLine={false} 
+                  tick={{ fill: "rgba(255,255,255,0.7)", fontSize: 11, fontFamily: "var(--font-upakarti)" }}
+                  interval={0}
+                  angle={-45}
+                  textAnchor="end"
+                  height={80}
+                />
+                <YAxis 
+                  tickLine={false} 
+                  axisLine={false} 
+                  tick={{ fill: "rgba(255,255,255,0.5)", fontSize: 11 }}
+                  tickFormatter={(value) => `${value}`}
+                />
+                <ChartTooltip
+                  cursor={{ fill: "rgba(255,255,255,0.05)" }}
+                  content={<ChartTooltipContent className="rounded-xl border-white/20 bg-black/90 backdrop-blur-xl" />}
+                />
+                <Bar 
+                  dataKey="jumlah" 
+                  fill="url(#pendidikanGrad)" 
+                  radius={[6, 6, 0, 0]} 
+                  className="transition-all duration-500 hover:opacity-80"
+                />
+              </BarChart>
+            </ChartContainer>
+          </div>
         </div>
       </div>
     </article>
@@ -736,12 +838,13 @@ export function PendudukSection() {
             </button>
           </div>
 
-          <div className="relative overflow-hidden rounded-[20px] bg-linear-to-r from-[#003C30] via-[#0A5A43] to-[#003628] px-5 py-6 sm:px-6 sm:py-7 md:px-7 md:py-8">
-            <div className="pointer-events-none absolute -left-20 bottom-0 h-56 w-56 rounded-full bg-[#006548]/35 blur-[80px]" />
-            <div className="pointer-events-none absolute -right-24 top-0 h-64 w-64 rounded-full bg-[#00B179]/25 blur-[86px]" />
+          <div className="relative overflow-hidden rounded-[32px] bg-linear-to-br from-[#002B22] via-[#004234] to-[#001A14] px-6 py-10 sm:px-10 sm:py-14 md:px-12 md:py-16">
+            <div className="pointer-events-none absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-[#00E0A1]/10 blur-[100px]" />
+            <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#00B179]/10 blur-[110px]" />
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle_at_center,rgba(0,224,161,0.05)_0%,transparent_70%)]" />
 
-            <div className="relative z-10 grid gap-6 xl:grid-cols-[minmax(0,1.35fr)_minmax(340px,0.95fr)] xl:items-start">
-              <div className="grid gap-6 md:grid-cols-2">
+            <div className="relative z-10 grid items-stretch gap-10 xl:grid-cols-[1fr_minmax(280px,0.6fr)] xl:gap-16">
+              <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
                 {berdasarkanDusunCards.map((item, idx) => (
                   <DusunInfoCard
                     key={`${item.kode}-${item.nama}`}
@@ -754,9 +857,39 @@ export function PendudukSection() {
                 ))}
               </div>
 
-              <DusunPieChart delayMs={220} />
+              <div className="flex flex-col items-center justify-center rounded-[28px] border border-white/5 bg-white/[0.02] p-8 shadow-3xl backdrop-blur-md">
+                <DusunPieChart delayMs={220} />
+              </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className={sectionCardClass + " bg-[#ffffff]"}>
+        <div className="flex flex-col gap-7">
+          <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+            <h2 className="hero-reveal font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
+              Berdasarkan
+              <br />
+              Pendidikan
+            </h2>
+
+            <p className="hero-reveal max-w-none pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7">
+              Berdasarkan Pendidikan merupakan penyajian data penduduk menurut
+              tingkat pendidikan terakhir yang disajikan secara transparan dan
+              akurat untuk mendukung perencanaan pembangunan desa.
+            </p>
+
+            <button
+              type="button"
+              aria-label="Informasi berdasarkan pendidikan"
+              className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5"
+            >
+              <GraduationCap size={22} strokeWidth={2.2} />
+            </button>
+          </div>
+
+          <PendidikanChart delayMs={120} />
         </div>
       </section>
     </div>
