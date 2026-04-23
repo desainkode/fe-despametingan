@@ -1,14 +1,23 @@
 "use client";
 
 import * as React from "react";
-import { Info } from "lucide-react";
+import Link from "next/link";
+import { BookOpenText, Info, X } from "lucide-react";
 import {
   Building2,
+  CheckCircle2,
   ChartNoAxesCombined,
+  Church,
+  CircleOff,
+  Cross,
+  Flower2,
   GraduationCap,
+  HeartHandshake,
   House,
   Mars,
+  MoonStar,
   MapPinned,
+  Paperclip,
   Users,
   Venus,
 } from "lucide-react";
@@ -22,6 +31,7 @@ import {
 } from "@/components/ui/chart";
 
 import { sectionCardClass } from "./section-ui";
+import { Briefcase } from "lucide-react";
 
 const kartuDemografi: Array<{
   label: string;
@@ -201,6 +211,199 @@ const pendidikanChartData = [
   { tingkat: "S3", jumlah: 10 },
 ];
 
+const pekerjaanTopCards: Array<{
+  nama: string;
+  jumlah: string;
+  rank: "TOP 1" | "TOP 2" | "TOP 3";
+  icon: React.ComponentType<{
+    size?: number | string;
+    strokeWidth?: number;
+    className?: string;
+  }>;
+}> = [
+  {
+    nama: "Belum Bekerja",
+    jumlah: "3.542",
+    rank: "TOP 1",
+    icon: Users,
+  },
+  {
+    nama: "Petani",
+    jumlah: "3.542",
+    rank: "TOP 2",
+    icon: Users,
+  },
+  {
+    nama: "Buruh",
+    jumlah: "3.542",
+    rank: "TOP 3",
+    icon: Users,
+  },
+];
+
+const pekerjaanKiriBahasan: Array<{
+  kode: string;
+  nama: string;
+  jumlah: string;
+  persentase: number;
+}> = [
+  {
+    kode: "01",
+    nama: "Tidak/Belum Bekerja",
+    jumlah: "3.542",
+    persentase: 88,
+  },
+  {
+    kode: "02",
+    nama: "Petani",
+    jumlah: "3.542",
+    persentase: 77,
+  },
+  {
+    kode: "03",
+    nama: "Buruh Tani",
+    jumlah: "3.542",
+    persentase: 89,
+  },
+  {
+    kode: "04",
+    nama: "Peternak",
+    jumlah: "3.542",
+    persentase: 85,
+  },
+  {
+    kode: "05",
+    nama: "Pedagang",
+    jumlah: "3.542",
+    persentase: 80,
+  },
+];
+
+const pekerjaanKananBahasan: Array<{
+  kode: string;
+  nama: string;
+  jumlah: string;
+  persentase: number;
+}> = [
+  {
+    kode: "01",
+    nama: "Karyawan Swasta",
+    jumlah: "3.542",
+    persentase: 48,
+  },
+  {
+    kode: "02",
+    nama: "PNS",
+    jumlah: "3.542",
+    persentase: 40,
+  },
+  {
+    kode: "03",
+    nama: "TNI/Polri",
+    jumlah: "3.542",
+    persentase: 36,
+  },
+  {
+    kode: "04",
+    nama: "Guru/Dosen",
+    jumlah: "3.542",
+    persentase: 32,
+  },
+  {
+    kode: "05",
+    nama: "Tenaga Kesehatan",
+    jumlah: "3.542",
+    persentase: 24,
+  },
+];
+
+const statusPerkawinanImage =
+  "https://www.figma.com/api/mcp/asset/051b391e-0d2e-4961-9454-313757f454b0";
+
+const statusPerkawinanCards: Array<{
+  title: string;
+  description: string;
+  jumlah: string;
+  icon: "kawin" | "belum";
+}> = [
+  {
+    title: "Data Sudah\nKawin",
+    description:
+    "Data sudah kawin merupakan jumlah keseluruhan penduduk yang tercatat berstatus kawin berdasarkan data administrasi kependudukan di wilayah desa.",
+    jumlah: "3.542",
+    icon: "kawin",
+  },
+  {
+    title: "Data Belum\nKawin",
+    description:
+    "Data belum kawin merupakan jumlah keseluruhan penduduk yang tercatat belum menikah berdasarkan data administrasi kependudukan di wilayah desa.",
+    jumlah: "3.542",
+    icon: "belum",
+  },
+];
+
+const agamaCards: Array<{
+  nama: string;
+  deskripsi: string;
+  jumlah: string;
+  persentase: number;
+  tema: "yellow" | "green";
+  icon: React.ComponentType<{
+    size?: number | string;
+    strokeWidth?: number;
+    className?: string;
+  }>;
+}> = [
+  {
+    nama: "Islam",
+    deskripsi: "Penduduk beragama Islam adalah jumlah warga yang menganut agama Islam di suatu wilayah.",
+    jumlah: "3.542",
+    persentase: 89,
+    tema: "yellow",
+    icon: MoonStar,
+  },
+  {
+    nama: "Kristen",
+    deskripsi: "Penduduk beragama Kristen adalah jumlah warga yang menganut agama Kristen di suatu wilayah.",
+    jumlah: "3.542",
+    persentase: 5,
+    tema: "green",
+    icon: Cross,
+  },
+  {
+    nama: "Katolik",
+    deskripsi: "Penduduk beragama Katolik adalah jumlah warga yang menganut agama Katolik di suatu wilayah.",
+    jumlah: "3.542",
+    persentase: 2,
+    tema: "yellow",
+    icon: Church,
+  },
+  {
+    nama: "Hindu",
+    deskripsi: "Penduduk beragama Hindu adalah jumlah warga yang menganut agama Hindu di suatu wilayah.",
+    jumlah: "3.542",
+    persentase: 2,
+    tema: "green",
+    icon: Flower2,
+  },
+  {
+    nama: "Konghucu",
+    deskripsi: "Penduduk beragama Konghucu adalah jumlah warga yang menganut agama Konghucu di suatu wilayah.",
+    jumlah: "3.542",
+    persentase: 1,
+    tema: "yellow",
+    icon: BookOpenText,
+  },
+  {
+    nama: "Budha",
+    deskripsi: "Penduduk beragama Budha adalah jumlah warga yang menganut agama Budha di suatu wilayah.",
+    jumlah: "3.542",
+    persentase: 1,
+    tema: "green",
+    icon: Flower2,
+  },
+];
+
 function DemografiCard({
   label,
   angka,
@@ -224,7 +427,7 @@ function DemografiCard({
 }) {
   return (
     <article
-      className="hero-reveal relative h-75.5 w-62.5 shrink-0 transform-gpu transition-transform duration-300 ease-out hover:-translate-y-1"
+      className="hero-reveal group relative h-75.5 w-62.5 shrink-0 transform-gpu transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_20px_38px_rgba(0,0,0,0.18)]"
       style={{ animationDelay: `${delayMs}ms` }}
     >
       <svg
@@ -243,7 +446,7 @@ function DemografiCard({
       <div className="pointer-events-none absolute left-[13%] top-[13%] h-[21%] w-[60%] rounded-xl bg-linear-to-b from-white/26 to-transparent blur-[1px]" />
       <div className="pointer-events-none absolute bottom-[11%] right-[8%] h-[22%] w-[34%] rounded-full bg-[#6FF2C9]/12 blur-[14px]" />
 
-      <div className="absolute left-[17%] top-[20.5%]">
+      <div className="absolute left-[17%] top-[20.5%] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5">
         <div className="flex flex-col items-start justify-center gap-8" style={{ color: textColor }}>
           <h3
             className="whitespace-pre-line font-[Georgia,serif] text-[19px] font-bold leading-[1.2]"
@@ -261,7 +464,7 @@ function DemografiCard({
         </div>
       </div>
 
-      <div className="absolute left-[76.5%] top-0 z-10 flex h-14.5 w-14.5 items-center justify-center rounded-full bg-black text-white shadow-[0_10px_20px_rgba(0,0,0,0.22)]">
+      <div className="absolute left-[76.5%] top-0 z-10 flex h-14.5 w-14.5 items-center justify-center rounded-full bg-black text-white shadow-[0_10px_20px_rgba(0,0,0,0.22)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-hover:-rotate-3">
         <Icon size={21} strokeWidth={2.2} />
       </div>
     </article>
@@ -289,7 +492,7 @@ function JumlahPendudukCard({
 
   return (
     <article
-      className={`hero-reveal relative isolate h-67.5 overflow-hidden rounded-tl-[28px] rounded-br-[28px]  p-6 sm:h-75 md:h-80 ${isDark
+      className={`hero-reveal group relative isolate h-67.5 overflow-hidden rounded-tl-[28px] rounded-br-[28px] p-6 text-[#F3F8F6] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.18)] sm:h-75 md:h-80 ${isDark
         ? "bg-linear-to-br from-[#001F18] via-[#003326] to-[#005239] text-[#F3F8F6]"
         : "bg-[#D9D9D9] text-[#070C10]"
         }`}
@@ -299,7 +502,7 @@ function JumlahPendudukCard({
       <div className="pointer-events-none absolute -bottom-14 -left-14 h-28 w-28 rotate-45 bg-[#FFFFFF]" />
 
       <div
-        className={`relative inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-[0_6px_14px_rgba(11,40,31,0.12)] ${isDark
+        className={`relative inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-[0_6px_14px_rgba(11,40,31,0.12)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 ${isDark
           ? "border-white/18 bg-[#0B281F]/48 text-[#EAF7F1]"
           : "border-[#0B281F]/8 bg-white/42 text-[#0B281F]"
           }`}
@@ -370,19 +573,19 @@ function KelompokUmurChart({
   const gradientKey = title.includes("Laki") ? "umur-laki" : "umur-perempuan";
 
   return (
-    <article className="hero-reveal" style={{ animationDelay: `${delayMs}ms` }}>
+    <article className="hero-reveal group" style={{ animationDelay: `${delayMs}ms` }}>
       <div className="mb-3.5 flex items-center gap-4 sm:mb-4 sm:gap-5">
-        <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-black text-white shadow-[0_10px_20px_rgba(0,0,0,0.22)] sm:h-18.5 sm:w-18.5">
+        <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-black text-white shadow-[0_10px_20px_rgba(0,0,0,0.22)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 sm:h-18.5 sm:w-18.5">
           <div className="absolute inset-0.75 rounded-full border border-white/8" />
           <Icon size={24} strokeWidth={2.2} className="relative z-10" />
         </div>
 
-        <h3 className="whitespace-pre-line font-[Georgia,serif] text-[31px] font-bold leading-[1.05] text-[#0B0D10]">
+        <h3 className="whitespace-pre-line font-[Georgia,serif] text-[31px] font-bold leading-[1.05] text-[#0B0D10] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
           {title}
         </h3>
       </div>
 
-      <div className="relative overflow-hidden rounded-[20px] bg-linear-to-b from-[#FFFFFF] to-[#0B281F] p-4 sm:p-5 md:p-6">
+      <div className="relative overflow-hidden rounded-[20px] bg-linear-to-b from-[#FFFFFF] to-[#0B281F] p-4 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 group-hover:shadow-[0_18px_34px_rgba(0,0,0,0.16)] sm:p-5 md:p-6">
         <div className="absolute inset-5 rounded-2xl border border-white/10 bg-linear-to-b from-white/20 via-white/12 to-[#0B281F]/18 backdrop-blur-[2px]" />
 
         <div className="relative z-10">
@@ -498,7 +701,7 @@ function DusunInfoCard({
         {persentase}%
       </span>
 
-      <div className="relative z-10 min-h-38 overflow-hidden rounded-[24px] border border-white/10 bg-linear-to-br from-white/15 via-white/5 to-transparent px-5 pb-5 pt-7 shadow-[0_20px_40px_rgba(0,0,0,0.15)] backdrop-blur-[8px] transition-all duration-300 group-hover:border-white/25 group-hover:bg-white/10">
+      <div className="relative z-10 min-h-38 overflow-hidden rounded-[24px] border border-white/10 bg-linear-to-br from-white/15 via-white/5 to-transparent px-5 pb-5 pt-7 shadow-[0_20px_40px_rgba(0,0,0,0.15)] backdrop-blur-sm transition-all duration-300 group-hover:border-white/25 group-hover:bg-white/10">
         <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#00E0A1]/15 blur-2xl transition-all duration-500 group-hover:bg-[#00E0A1]/25" />
 
         <div className="relative">
@@ -527,7 +730,7 @@ function DusunPieChart({ delayMs }: { delayMs: number }) {
 
   return (
     <article className="hero-reveal flex w-full flex-col items-center justify-center" style={{ animationDelay: `${delayMs}ms` }}>
-      <div className="relative aspect-square w-full max-w-[240px] sm:max-w-[280px]">
+      <div className="relative aspect-square w-full max-w-60 sm:max-w-70">
         <div className="absolute inset-0 rounded-full bg-[#00E0A1]/5 blur-3xl" />
         <ChartContainer config={chartConfig as ChartConfig} className="mx-auto h-full w-full">
           <PieChart>
@@ -580,7 +783,7 @@ function DusunPieChart({ delayMs }: { delayMs: number }) {
 
       <div className="mt-8 flex w-full flex-wrap justify-center gap-x-4 gap-y-3">
         {dusunChartData.map((item) => (
-          <div key={item.dusun} className="flex items-center gap-2 rounded-full border border-white/5 bg-white/[0.03] py-1.5 pl-2.5 pr-3.5 backdrop-blur-sm transition-all duration-300 hover:bg-white/10">
+          <div key={item.dusun} className="flex items-center gap-2 rounded-full border border-white/5 bg-white/3 py-1.5 pl-2.5 pr-3.5 backdrop-blur-sm transition-all duration-300 hover:bg-white/10">
             <div className="h-2 w-2 shrink-0 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.1)]" style={{ backgroundColor: chartConfig[item.dusun as keyof typeof chartConfig]?.color }} />
             <div className="flex items-baseline gap-2">
               <span className="text-[12px] font-medium text-white/70" style={{ fontFamily: "var(--font-upakarti)" }}>
@@ -600,75 +803,722 @@ function PendidikanChart({ delayMs }: { delayMs: number }) {
     jumlah: {
       label: "Jumlah",
     },
-  };
+  } satisfies ChartConfig;
 
   return (
     <article className="hero-reveal w-full pt-4" style={{ animationDelay: `${delayMs}ms` }}>
-      <div className="relative overflow-hidden rounded-[32px] bg-linear-to-br from-[#002B22] via-[#004234] to-[#001A14] p-6 sm:p-8 md:p-10">
-        <div className="pointer-events-none absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-[#00E0A1]/10 blur-[100px]" />
-        <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#F0B100]/10 blur-[110px]" />
-        
+      <div className="relative overflow-hidden rounded-[20px] bg-linear-to-b from-[#FFFFFF] to-[#0B281F] p-4 sm:p-5 md:p-6">
+        <div className="absolute inset-5 rounded-2xl border border-white/10 bg-linear-to-b from-white/20 via-white/12 to-[#0B281F]/18 backdrop-blur-[2px]" />
+
         <div className="relative z-10">
-          <div className="mb-10 text-center md:text-left md:flex md:items-center md:justify-between">
-            <div>
-              <h3 className="font-[Georgia,serif] text-[28px] leading-[1.2] text-white md:text-[32px]">
-                Statistik Pendidikan
-              </h3>
-              <p className="mt-2 text-[13px] text-white/60 max-w-lg">
-                Sebaran tingkat pendidikan warga sebagai dasar perencanaan program peningkatan SDM dan kesejahteraan desa.
-              </p>
-            </div>
-            <div className="hidden md:flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#00E0A1]/10 backdrop-blur-md">
-              <GraduationCap className="text-[#00E0A1]" size={32} />
-            </div>
+          <ChartContainer
+            config={chartConfig}
+            className="h-80 w-full max-w-none aspect-auto!"
+          >
+            <BarChart
+              accessibilityLayer
+              data={pendidikanChartData}
+              margin={{ top: 20, right: 20, left: 20, bottom: 60 }}
+              barSize={32}
+            >
+              <defs>
+                <linearGradient id="pendidikan-total" x1="0" y1="1" x2="0" y2="0">
+                  <stop offset="0%" stopColor="#009966" />
+                  <stop offset="56%" stopColor="#8EA95A" />
+                  <stop offset="100%" stopColor="#F0B100" />
+                </linearGradient>
+              </defs>
+              <CartesianGrid horizontal={true} vertical={false} stroke="rgba(0,0,0,0.05)" />
+              <XAxis
+                dataKey="tingkat"
+                tickLine={false}
+                axisLine={false}
+                tick={{
+                  fill: "#000000",
+                  fontSize: 12,
+                  fontWeight: 600,
+                  fontFamily: "Georgia, serif",
+                }}
+                interval={0}
+                angle={-45}
+                textAnchor="end"
+                height={80}
+              />
+              <YAxis
+                tickLine={false}
+                axisLine={false}
+                tick={{
+                  fill: "#000000",
+                  fontSize: 13,
+                  fontWeight: 600,
+                  fontFamily: "Georgia, serif",
+                }}
+                ticks={[0, 100, 200, 300, 400, 500]}
+                domain={[0, 520]}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={
+                  <ChartTooltipContent
+                    indicator="line"
+                    formatter={(_, __, item) => {
+                      return (
+                        <div className="flex w-full items-center justify-between gap-3">
+                          <span className="text-[#111316]">Jumlah</span>
+                          <span className="font-semibold text-[#111316]">
+                            {item?.payload?.jumlah}
+                          </span>
+                        </div>
+                      );
+                    }}
+                    labelFormatter={(label) => `${label}`}
+                  />
+                }
+              />
+              <Bar
+                dataKey="jumlah"
+                fill="url(#pendidikan-total)"
+                radius={[6, 6, 0, 0]}
+                isAnimationActive
+                animationDuration={1100}
+                animationBegin={120}
+                animationEasing="ease-out"
+              />
+            </BarChart>
+          </ChartContainer>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function StatusPerkawinanStatCard({
+  title,
+  description,
+  jumlah,
+  icon,
+  delayMs,
+}: {
+  title: string;
+  description: string;
+  jumlah: string;
+  icon: "kawin" | "belum";
+  delayMs: number;
+}) {
+  return (
+    <article
+      className="hero-reveal group relative overflow-hidden rounded-[20px] border border-[#00E0A1]/35 bg-[rgba(217,217,217,0.10)] px-5 py-5 shadow-[inset_26px_-26px_26px_rgba(165,165,165,0.08),inset_-26px_26px_26px_rgba(255,255,255,0.08),0_18px_38px_rgba(0,0,0,0.12)] backdrop-blur-[14px] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[#00E0A1]/55 hover:shadow-[inset_26px_-26px_26px_rgba(165,165,165,0.08),inset_-26px_26px_26px_rgba(255,255,255,0.08),0_24px_48px_rgba(0,0,0,0.16)] sm:px-6 sm:py-6"
+      style={{ animationDelay: `${delayMs}ms` }}
+    >
+      <div className="grid min-h-44 gap-4 md:min-h-48 md:grid-cols-[minmax(0,1fr)_auto] md:gap-6">
+        <div className="flex min-w-0 items-start gap-3 sm:gap-4">
+          <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F0B100] text-white shadow-[0_10px_20px_rgba(0,0,0,0.18)] transition-transform duration-500 ease-out group-hover:scale-105 sm:h-13 sm:w-13">
+            {icon === "kawin" ? (
+              <CheckCircle2 size={22} strokeWidth={2.2} />
+            ) : (
+              <CircleOff size={22} strokeWidth={2.2} />
+            )}
           </div>
-          
-          <div className="h-[350px] w-full">
-            <ChartContainer config={chartConfig as ChartConfig} className="h-full w-full">
-              <BarChart
-                data={pendidikanChartData}
-                margin={{ top: 20, right: 0, left: -20, bottom: 20 }}
-                barSize={32}
-              >
-                <defs>
-                  <linearGradient id="pendidikanGrad" x1="0" y1="1" x2="0" y2="0">
-                    <stop offset="0%" stopColor="#00E0A1" />
-                    <stop offset="100%" stopColor="#F0B100" />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
-                <XAxis 
-                  dataKey="tingkat" 
-                  tickLine={false} 
-                  axisLine={false} 
-                  tick={{ fill: "rgba(255,255,255,0.7)", fontSize: 11, fontFamily: "var(--font-upakarti)" }}
-                  interval={0}
-                  angle={-45}
-                  textAnchor="end"
-                  height={80}
-                />
-                <YAxis 
-                  tickLine={false} 
-                  axisLine={false} 
-                  tick={{ fill: "rgba(255,255,255,0.5)", fontSize: 11 }}
-                  tickFormatter={(value) => `${value}`}
-                />
-                <ChartTooltip
-                  cursor={{ fill: "rgba(255,255,255,0.05)" }}
-                  content={<ChartTooltipContent className="rounded-xl border-white/20 bg-black/90 backdrop-blur-xl" />}
-                />
-                <Bar 
-                  dataKey="jumlah" 
-                  fill="url(#pendidikanGrad)" 
-                  radius={[6, 6, 0, 0]} 
-                  className="transition-all duration-500 hover:opacity-80"
-                />
-              </BarChart>
-            </ChartContainer>
+
+          <div className="min-w-0">
+            <h3 className="whitespace-pre-line font-[Georgia,serif] text-[26px] font-bold leading-[1.02] text-white sm:text-[30px]">
+              {title}
+            </h3>
+            <p className="mt-2 max-w-[42ch] text-[12px] leading-[1.38] text-[#ECFDF5] sm:text-[13px]">
+              {description}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-end justify-end text-right md:items-start md:pt-1">
+          <div>
+            <p
+              className="text-[42px] leading-[0.9] text-white sm:text-[48px]"
+              style={{ fontFamily: "var(--font-upakarti)" }}
+            >
+              {jumlah}
+            </p>
+            <p className="font-[Georgia,serif] text-[17px] font-bold leading-none text-white sm:text-[20px]">
+              Orang
+            </p>
+            <div className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-white/75">
+              Tercatat
+            </div>
           </div>
         </div>
       </div>
     </article>
+  );
+}
+
+function StatusPerkawinanSection() {
+  return (
+    <section className={sectionCardClass + " bg-[#ffffff]"}>
+      <div className="flex flex-col gap-7">
+        <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+          <h2 className="hero-reveal font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
+            Berdasarkan
+            <br />
+            Status Perkawinan
+          </h2>
+
+          <p className="hero-reveal max-w-none pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7">
+            Kelompok Berdasarkan Status Perkawinan merupakan penyajian data penduduk menurut status
+            perkawinan, seperti belum kawin, kawin, cerai hidup, atau cerai mati, untuk memberikan
+            gambaran kondisi sosial masyarakat di suatu wilayah.
+          </p>
+
+          <button
+            type="button"
+            aria-label="Informasi berdasarkan status perkawinan"
+            className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5"
+          >
+            <HeartHandshake size={22} strokeWidth={2.2} />
+          </button>
+        </div>
+
+        <div className="relative overflow-hidden rounded-[24px] bg-linear-to-br from-[#0B281F] to-[#174738]">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(280px,0.88fr)_minmax(0,1.12fr)] lg:items-center">
+            <div className="flex min-h-90 items-center justify-center border-b border-white/10 p-4 sm:p-6 lg:min-h-125 lg:border-b-0 lg:border-r lg:border-white/10 lg:p-8">
+              <div className="hero-reveal relative aspect-4/5 w-full max-w-90 overflow-hidden rounded-[28px] border border-white/15 bg-black/20 shadow-[0_24px_50px_rgba(0,0,0,0.28)]" style={{ animationDelay: "160ms" }}>
+                <img
+                  src={statusPerkawinanImage}
+                  alt="Ilustrasi status perkawinan"
+                  className="h-full w-full object-cover grayscale hero-zoom"
+                />
+
+                <div className="absolute inset-x-3 bottom-3 rounded-[14px] border border-white/20 bg-black/35 p-3 shadow-[0_8px_18px_rgba(0,0,0,0.2)] backdrop-blur-sm sm:inset-x-4 sm:bottom-4 sm:p-4">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+                    <div>
+                      <p className="font-bold text-[#F4F3EF] sm:text-[15px]">
+                        Data Perkawinan <span className="text-[#F0B100]">Desa Pameutingan</span>
+                      </p>
+                      <p className="mt-1 text-[12px] text-[#A4F4CF]">Total presentase kawin dan belum kawin</p>
+                    </div>
+                    <div className="inline-flex items-center gap-1.5 rounded-full border border-[#00E397]/70 bg-[#009966] px-3 py-1 text-[12px] font-medium text-white">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#F0B100]" />
+                      83%
+                    </div>
+                  </div>
+                  <p className="mt-3 text-[10.5px] italic leading-[1.35] text-[#D0FAE5CC] sm:text-[11px]">
+                    Data perkawinan Desa Pameutingan menampilkan persentase penduduk yang berstatus
+                    kawin dan belum kawin sebagai gambaran kondisi sosial masyarakat.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex h-full items-center p-4 sm:p-6 md:p-8 lg:p-9">
+              <div className="w-full space-y-4 sm:space-y-5">
+                {statusPerkawinanCards.map((item, idx) => (
+                  <StatusPerkawinanStatCard
+                    key={`${item.title}-${idx}`}
+                    title={item.title}
+                    description={item.description}
+                    jumlah={item.jumlah}
+                    icon={item.icon}
+                    delayMs={140 + idx * 80}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+type AgamaStatCardProps = {
+  nama: string;
+  deskripsi: string;
+  jumlah: string;
+  persentase: number;
+  tema: "yellow" | "green";
+  icon: React.ComponentType<{
+    size?: number | string;
+    strokeWidth?: number;
+    className?: string;
+  }>;
+  delayMs: number;
+};
+
+function AgamaStatCard({
+  nama,
+  deskripsi,
+  jumlah,
+  persentase,
+  tema,
+  icon: Icon,
+  delayMs,
+}: AgamaStatCardProps) {
+  const isYellow = tema === "yellow";
+
+  return (
+    <article
+      className="hero-reveal group relative h-69 w-78 shrink-0 snap-start overflow-hidden rounded-[41px] text-white transition-transform duration-500 ease-out hover:-translate-y-1"
+      style={{
+        animationDelay: `${delayMs}ms`,
+        backgroundImage: isYellow
+          ? "linear-gradient(180deg, #F0B100 0%, #D9A000 100%)"
+          : "linear-gradient(180deg, #00A56A 0%, #009966 100%)",
+      }}
+    >
+      <div className="pointer-events-none absolute inset-2.75 rounded-[33px] border border-white/12 bg-white/5 shadow-[inset_4px_-4px_18px_rgba(255,255,255,0.08),inset_-4px_4px_18px_rgba(0,0,0,0.08)] backdrop-blur-xs" />
+      <div className="pointer-events-none absolute -right-12 top-7 h-28 w-28 rounded-full bg-black/10 blur-3xl transition-opacity duration-500 group-hover:opacity-80" />
+
+      <div className="relative z-10 flex h-full flex-col px-5 pb-5 pt-5 sm:px-6 sm:pt-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="inline-flex h-17 w-17 items-center justify-center rounded-full bg-[#0B281F] text-white shadow-[0_10px_18px_rgba(0,0,0,0.18),inset_0_0_0_1px_rgba(255,255,255,0.08)] transition-transform duration-300 group-hover:scale-105">
+            <Icon size={28} strokeWidth={2.2} />
+          </div>
+
+          <div className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[#00E397] bg-[#0B281F] px-3 py-1 text-white shadow-[0_8px_16px_rgba(0,0,0,0.18)]">
+            <span className="size-2 rounded-full bg-[#FD0000]/70" />
+            <span className="text-[12px] font-medium uppercase tracking-[0.6px]">{persentase}%</span>
+          </div>
+        </div>
+
+        <div className="mt-2.5 flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <p className="font-upakarti text-[52px] leading-[0.82] text-white sm:text-[58px]">
+              {jumlah}
+            </p>
+            <p className="mt-0.5 font-timeless text-[14px] leading-none text-white sm:text-[16px]">
+              Orang
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-4 grid gap-2 pt-0">
+          <h3 className="font-timeless text-[20px] leading-[1.05] text-white sm:text-[22px]">
+            {nama}
+          </h3>
+          <p className="max-w-56 text-[11px] leading-[1.3] text-[#ECFDF5] sm:text-[12px]">
+            {deskripsi}
+          </p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function AgamaSection() {
+  const scrollRef = React.useRef<HTMLDivElement | null>(null);
+  const paginationRef = React.useRef<HTMLDivElement | null>(null);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+
+  const updateActiveIndex = React.useCallback((scrollLeft: number, scrollWidth: number, clientWidth: number) => {
+    const maxScroll = scrollWidth - clientWidth;
+
+    if (maxScroll <= 0) {
+      setActiveIndex(0);
+      return;
+    }
+
+    const progress = scrollLeft / maxScroll;
+    const nextIndex = Math.round(progress * (agamaCards.length - 1));
+
+    setActiveIndex(nextIndex);
+
+    const pagination = paginationRef.current;
+
+    if (pagination) {
+      pagination.dataset.activeIndex = String(nextIndex);
+      Array.from(pagination.querySelectorAll<HTMLSpanElement>("span")).forEach((dot, index) => {
+        const isActive = index === nextIndex;
+
+        dot.className = isActive
+          ? "h-2 rounded-full transition-all duration-300 ease-out w-8 bg-[#0B281F] shadow-[0_0_0_4px_rgba(11,40,31,0.08)]"
+          : "h-2 rounded-full transition-all duration-300 ease-out w-2.5 bg-[#0B281F]/20";
+      });
+    }
+  }, []);
+
+  return (
+    <section className={sectionCardClass + " bg-[#ffffff]"}>
+      <div className="flex flex-col gap-7">
+        <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+          <h2 className="hero-reveal font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
+            Berdasarkan
+            <br />
+            Agama
+          </h2>
+
+          <p className="hero-reveal max-w-none pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7">
+            Kelompok Berdasarkan Agama merupakan penyajian data penduduk menurut agama yang dianut,
+            guna memberikan gambaran komposisi keagamaan masyarakat di suatu wilayah.
+          </p>
+
+          <button
+            type="button"
+            aria-label="Informasi berdasarkan agama"
+            className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5"
+          >
+            <Paperclip size={22} strokeWidth={2.2} />
+          </button>
+        </div>
+
+        <div
+          ref={scrollRef}
+          onScroll={(event) => {
+            const element = event.currentTarget;
+            updateActiveIndex(element.scrollLeft, element.scrollWidth, element.clientWidth);
+          }}
+          className="overflow-x-auto px-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          <div className="flex w-max min-w-full snap-x snap-mandatory gap-4 pr-1 sm:gap-4.25">
+            {agamaCards.map((item, idx) => (
+              <AgamaStatCard
+                key={`${item.nama}-${idx}`}
+                nama={item.nama}
+                deskripsi={item.deskripsi}
+                jumlah={item.jumlah}
+                persentase={item.persentase}
+                tema={item.tema}
+                icon={item.icon}
+                delayMs={120 + idx * 70}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div ref={paginationRef} className="flex items-center justify-center gap-2 pt-1" data-active-index={activeIndex}>
+          {agamaCards.map((item, idx) => {
+            const isActive = idx === activeIndex;
+
+            return (
+              <span
+                key={`agama-pagination-${item.nama}`}
+                className={`h-2 rounded-full transition-all duration-300 ease-out ${isActive
+                  ? "w-8 bg-[#0B281F] shadow-[0_0_0_4px_rgba(11,40,31,0.08)]"
+                  : "w-2.5 bg-[#0B281F]/20"
+                  }`}
+                aria-hidden="true"
+              />
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PekerjaanTopCard({
+  nama,
+  jumlah,
+  rank,
+  icon: Icon,
+  delayMs,
+}: {
+  nama: string;
+  jumlah: string;
+  rank: "TOP 1" | "TOP 2" | "TOP 3";
+  icon: React.ComponentType<{
+    size?: number | string;
+    strokeWidth?: number;
+    className?: string;
+  }>;
+  delayMs: number;
+}) {
+  return (
+    <article
+      className="hero-reveal group relative isolate h-67.5 overflow-hidden rounded-tl-[28px] rounded-br-[28px] bg-linear-to-br from-[#001F18] via-[#003326] to-[#005239] p-6 text-[#F3F8F6] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.18)] sm:h-75 md:h-80"
+      style={{ animationDelay: `${delayMs}ms` }}
+    >
+      <div className="pointer-events-none absolute -right-14 -top-14 h-28 w-28 rotate-45 bg-[#FFFFFF]" />
+      <div className="pointer-events-none absolute -bottom-14 -left-14 h-28 w-28 rotate-45 bg-[#FFFFFF]" />
+
+      <div className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/18 bg-[#0B281F]/48 text-[#EAF7F1] shadow-[0_6px_14px_rgba(11,40,31,0.12)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:-rotate-3">
+        <Icon size={18} strokeWidth={2.1} />
+      </div>
+
+      <div className="relative mt-6 flex h-[calc(100%-4.75rem)] flex-col justify-between transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5">
+        <div>
+          <div className="mb-3 inline-flex items-center gap-2 rounded-lg bg-[#00E0A1] px-3 py-1 text-[11px] leading-none font-bold text-[#0B281F] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#0B281F]" />
+            {rank}
+          </div>
+
+          <p
+            className="text-[54px] font-bold leading-[0.9] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 sm:text-[58px]"
+            style={{ fontFamily: "var(--font-upakarti)" }}
+          >
+            {jumlah}
+          </p>
+
+          <h3 className="mt-3 font-[Georgia,serif] text-[19px] font-bold leading-[1.15] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 sm:text-[21px] md:text-[23px]">
+            {nama}
+          </h3>
+        </div>
+
+        <p className="self-end text-right text-[12px] leading-tight text-[#F5F7F6]/85">
+          Terdata
+          <br />
+          oleh sistem
+        </p>
+      </div>
+    </article>
+  );
+}
+
+function PekerjaanDetailCard({
+  kode,
+  nama,
+  jumlah,
+  persentase,
+  bgColor,
+  textColor,
+  delayMs,
+}: {
+  kode: string;
+  nama: string;
+  jumlah: string;
+  persentase: number;
+  bgColor: string;
+  textColor: string;
+  delayMs: number;
+}) {
+  return (
+    <article
+      className="hero-reveal group relative overflow-hidden rounded-[22px] border border-white/15 p-5 shadow-[0_14px_30px_rgba(0,0,0,0.12)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.16)] sm:p-6"
+      style={{ backgroundColor: bgColor, animationDelay: `${delayMs}ms` }}
+    >
+      <div
+        className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full opacity-18 blur-xl transition-opacity group-hover:opacity-30"
+        style={{ backgroundColor: textColor }}
+      />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-white/15" />
+
+      <div className="relative z-10 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex min-w-0 items-start gap-3">
+            <div className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-white/25 bg-black text-white shadow-[0_10px_24px_rgba(0,0,0,0.16)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 sm:h-17 sm:w-17">
+              <div className="text-center leading-none">
+                <span
+                  className="block text-[21px] font-bold sm:text-[24px]"
+                  style={{ fontFamily: "var(--font-upakarti)" }}
+                >
+                  {kode}
+                </span>
+              </div>
+            </div>
+            <div className="min-w-0">
+              <h3
+                className="font-[Georgia,serif] text-[18px] font-bold leading-[1.12] sm:text-[19px]"
+                style={{ color: textColor }}
+              >
+                {nama}
+              </h3>
+              <p
+                className="mt-1.5 max-w-[34ch] text-[12px] leading-5"
+                style={{ color: textColor, opacity: 0.74 }}
+              >
+                Data kategori ini ditampilkan sebagai ringkasan pekerjaan utama penduduk.
+              </p>
+            </div>
+          </div>
+          <div className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-white/20 bg-[#0B281F] px-3.5 py-1.5 text-[11px] font-bold text-white/92 backdrop-blur-sm transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#00E0A1]" />
+            {persentase}%
+          </div>
+        </div>
+
+        <div className="mt-5 flex items-end justify-between border-t border-white/12 pt-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.14em]" style={{ color: textColor, opacity: 0.62 }}>
+              Jumlah penduduk
+            </p>
+            <p
+              className="mt-1 text-[32px] font-bold leading-none sm:text-[36px]"
+              style={{ color: textColor, fontFamily: "var(--font-upakarti)" }}
+            >
+              {jumlah}
+            </p>
+          </div>
+          <div className="rounded-full border border-white/15 bg-black/16 px-3 py-2 text-[11px] font-semibold text-white/85">
+            Detail kategori
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function PekerjaanViewAllModal({
+  isOpen,
+  onClose,
+  title,
+  data,
+  bgColor,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  data: Array<{
+    kode: string;
+    nama: string;
+    jumlah: string;
+    persentase: number;
+  }>;
+  bgColor: "yellow" | "green";
+}) {
+  const gradients = {
+    yellow: "from-[#F0B100] via-[#D4940A] to-[#B8860B]",
+    green: "from-[#009966] via-[#005239] to-[#003d2e]",
+  };
+
+  const accentColors = {
+    yellow: "#F0B100",
+    green: "#00E0A1",
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        onClick={onClose}
+        style={{
+          animation: "fadeIn 0.3s ease-out",
+        }}
+      />
+
+      {/* Modal */}
+      <div
+        className={`relative bg-linear-to-br ${gradients[bgColor]} rounded-[32px] shadow-2xl overflow-hidden max-h-[90vh] w-full max-w-2xl`}
+        style={{
+          animation: "slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        }}
+      >
+        {/* Decorative elements */}
+        <div className="absolute -right-24 -top-24 w-56 h-56 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute -left-16 -bottom-16 w-48 h-48 rounded-full bg-white/5 blur-3xl" />
+
+        {/* Content */}
+        <div className="relative z-10 p-8 sm:p-10">
+          {/* Header */}
+          <div className="flex items-start justify-between mb-8">
+            <div>
+              <h2 className="font-[Georgia,serif] text-[36px] sm:text-[42px] font-bold leading-[1.1] text-white">
+                {title}
+              </h2>
+              <p className="mt-2 text-[14px] sm:text-[15px] text-white/80">
+                Daftar lengkap jenis pekerjaan penduduk di desa
+              </p>
+            </div>
+            <button
+              onClick={onClose}
+              className="shrink-0 ml-4 inline-flex items-center justify-center h-12 w-12 rounded-full bg-white/20 text-white hover:bg-white/30 transition-all duration-300 backdrop-blur-sm"
+            >
+              <X size={24} strokeWidth={2.2} />
+            </button>
+          </div>
+
+          {/* Grid of items */}
+          <div className="overflow-y-auto max-h-[calc(90vh-200px)]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {data.map((item, idx) => (
+                <div
+                  key={`modal-${item.kode}-${idx}`}
+                  className="group relative overflow-hidden rounded-[20px] bg-white/15 backdrop-blur-md border border-white/20 p-6 hover:bg-white/20 transition-all duration-300"
+                  style={{
+                    animation: `slideInUp 0.5s ease-out ${idx * 50}ms both`,
+                  }}
+                >
+                  <div className="pointer-events-none absolute -right-12 -top-12 w-32 h-32 rounded-full bg-white/10 blur-2xl group-hover:bg-white/20 transition-all" />
+
+                  <div className="relative z-10">
+                    {/* Top row */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className="inline-flex items-center justify-center h-10 w-10 rounded-full font-bold text-[12px]"
+                          style={{
+                            backgroundColor: `rgba(255, 255, 255, 0.2)`,
+                            color: "#FFFFFF",
+                            fontFamily: "var(--font-upakarti)",
+                          }}
+                        >
+                          {item.kode}
+                        </div>
+                        <div>
+                          <h3 className="font-[Georgia,serif] text-[16px] sm:text-[17px] font-bold text-white leading-tight">
+                            {item.nama}
+                          </h3>
+                          <p className="mt-1 text-[12px] text-white/70">
+                            {item.persentase}% dari total
+                          </p>
+                        </div>
+                      </div>
+
+                      <div
+                        className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] font-bold text-white border border-white/30"
+                        style={{ backgroundColor: `rgba(255, 255, 255, 0.15)` }}
+                      >
+                        <span className="inline-block h-2 w-2 rounded-full" style={{ backgroundColor: accentColors[bgColor] }} />
+                        {item.persentase}%
+                      </div>
+                    </div>
+
+                    {/* Bottom row */}
+                    <div className="flex items-end justify-between">
+                      <div>
+                        <p className="text-[11px] text-white/70 mb-1">Jumlah</p>
+                        <p
+                          className="text-[28px] sm:text-[32px] font-bold text-white"
+                          style={{ fontFamily: "var(--font-upakarti)" }}
+                        >
+                          {item.jumlah}
+                        </p>
+                      </div>
+                      <div className="text-[11px] text-white/70 text-right">
+                        <p>Orang</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideUp {
+          from {
+            transform: translateY(20px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideInUp {
+          from {
+            transform: translateY(10px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      `}</style>
+    </div>
   );
 }
 
@@ -752,13 +1602,13 @@ export function PendudukSection() {
             <button
               type="button"
               aria-label="Informasi jumlah penduduk"
-              className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5"
+              className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-black transition-transform duration-300 hover:-translate-y-0.5"
             >
               <Info size={22} strokeWidth={2.2} />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="hero-reveal grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3" style={{ animationDelay: "180ms" }}>
             {kartuJumlahPenduduk.map((item, idx) => (
               <JumlahPendudukCard
                 key={`${item.label}-${idx}`}
@@ -776,13 +1626,13 @@ export function PendudukSection() {
       <section className={sectionCardClass + " bg-[#ffffff]"}>
         <div className="flex flex-col gap-7">
           <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
-            <h2 className="hero-reveal font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
+            <h2 className="hero-reveal font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]" style={{ animationDelay: "40ms" }}>
               Berdasarkan
               <br />
               Kelompok Umur
             </h2>
 
-            <p className="hero-reveal max-w-none pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7">
+            <p className="hero-reveal max-w-none pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7" style={{ animationDelay: "140ms" }}>
               Kelompok Umur merupakan penyajian data penduduk berdasarkan
               rentang usia tertentu yang ditampilkan secara transparan, akurat,
               dan terintegrasi guna mendukung proses perencanaan pembangunan,
@@ -794,12 +1644,13 @@ export function PendudukSection() {
               type="button"
               aria-label="Informasi kelompok umur"
               className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5"
+              style={{ animationDelay: "220ms" }}
             >
               <ChartNoAxesCombined size={22} strokeWidth={2.2} />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-5">
+          <div className="hero-reveal grid grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-5" style={{ animationDelay: "180ms" }}>
             {diagramKelompokUmur.map((item, idx) => (
               <KelompokUmurChart
                 key={`${item.title}-${idx}`}
@@ -857,7 +1708,7 @@ export function PendudukSection() {
                 ))}
               </div>
 
-              <div className="flex flex-col items-center justify-center rounded-[28px] border border-white/5 bg-white/[0.02] p-8 shadow-3xl backdrop-blur-md">
+              <div className="flex flex-col items-center justify-center rounded-[28px] border border-white/5 bg-white/2 p-8 shadow-3xl backdrop-blur-md">
                 <DusunPieChart delayMs={220} />
               </div>
             </div>
@@ -892,6 +1743,126 @@ export function PendudukSection() {
           <PendidikanChart delayMs={120} />
         </div>
       </section>
+
+      <section className={sectionCardClass + " bg-[#ffffff]"}>
+        <div className="flex flex-col gap-7">
+          <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+            <h2 className="hero-reveal font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]" style={{ animationDelay: "40ms" }}>
+              Berdasarkan
+              <br />
+              Pekerjaan
+            </h2>
+
+            <p className="hero-reveal max-w-none pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7" style={{ animationDelay: "140ms" }}>
+              Kelompok Berdasarkan Pekerjaan merupakan penyajian data penduduk
+              menurut jenis atau bidang pekerjaan yang disajikan secara
+              transparan dan akurat untuk mendukung perencanaan serta
+              pengambilan kebijakan secara tepat sasaran.
+            </p>
+
+            <button
+              type="button"
+              aria-label="Informasi berdasarkan pekerjaan"
+              className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5"
+              style={{ animationDelay: "220ms" }}
+            >
+              <Briefcase size={22} strokeWidth={2.2} />
+            </button>
+          </div>
+
+          <div className="hero-reveal grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-5" style={{ animationDelay: "180ms" }}>
+            {pekerjaanTopCards.map((item, idx) => (
+              <PekerjaanTopCard
+                key={`${item.nama}-${idx}`}
+                nama={item.nama}
+                jumlah={item.jumlah}
+                rank={item.rank}
+                icon={item.icon}
+                delayMs={120 + idx * 80}
+              />
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
+            <div className="hero-reveal relative overflow-hidden rounded-[24px] bg-linear-to-br from-[#F0B100] to-[#D4940A] p-6 sm:p-8 md:p-10" style={{ animationDelay: "260ms" }}>
+              <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/5 blur-3xl" />
+              <div className="pointer-events-none absolute -bottom-12 -left-12 h-40 w-40 rounded-full bg-black/5 blur-2xl" />
+
+              <div className="relative z-10">
+                <div className="mb-8 flex items-center justify-between">
+                  <h3 className="font-[Georgia,serif] text-[28px] font-bold leading-[1.2] text-white md:text-[32px]">
+                    Jenis
+                    <br />
+                    Pekerjaan
+                  </h3>
+                  <Link
+                    href="/infografis/pekerjaan?section=pertanian"
+                    className="inline-flex items-center gap-2 rounded-lg border border-white/30 bg-white/10 px-4 py-2 text-[12px] font-bold text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20"
+                  >
+                    View All <span>→</span>
+                  </Link>
+                </div>
+
+                <div className="space-y-3">
+                  {pekerjaanKiriBahasan.map((item, idx) => (
+                    <PekerjaanDetailCard
+                      key={`kiri-${item.kode}-${idx}`}
+                      kode={item.kode}
+                      nama={item.nama}
+                      jumlah={item.jumlah}
+                      persentase={item.persentase}
+                      bgColor="rgba(255, 255, 255, 0.15)"
+                      textColor="#FEFEFE"
+                      delayMs={200 + idx * 60}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="hero-reveal relative overflow-hidden rounded-[24px] bg-linear-to-br from-[#009966] to-[#005239] p-6 sm:p-8 md:p-10" style={{ animationDelay: "340ms" }}>
+              <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/5 blur-3xl" />
+              <div className="pointer-events-none absolute -bottom-12 -left-12 h-40 w-40 rounded-full bg-black/10 blur-2xl" />
+
+              <div className="relative z-10">
+                <div className="mb-8 flex items-center justify-between">
+                  <h3 className="font-[Georgia,serif] text-[28px] font-bold leading-[1.2] text-white md:text-[32px]">
+                    Jenis
+                    <br />
+                    Pekerjaan
+                  </h3>
+                  <Link
+                    href="/infografis/pekerjaan?section=profesional"
+                    className="inline-flex items-center gap-2 rounded-lg border border-white/30 bg-white/10 px-4 py-2 text-[12px] font-bold text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20"
+                  >
+                    View All <span>→</span>
+                  </Link>
+                </div>
+
+                <div className="space-y-3">
+                  {pekerjaanKananBahasan.map((item, idx) => (
+                    <PekerjaanDetailCard
+                      key={`kanan-${item.kode}-${idx}`}
+                      kode={item.kode}
+                      nama={item.nama}
+                      jumlah={item.jumlah}
+                      persentase={item.persentase}
+                      bgColor="rgba(255, 255, 255, 0.12)"
+                      textColor="#FEFEFE"
+                      delayMs={200 + idx * 60}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <StatusPerkawinanSection />
+
+      <AgamaSection />
     </div>
   );
 }
