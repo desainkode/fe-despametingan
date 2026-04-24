@@ -28,8 +28,13 @@ export default function Navbar() {
             className="h-8 w-8 object-contain"
             loading="eager"
           />
-          <span className="text-[1.3rem] font-bold leading-none tracking-tight text-white md:text-[1.5rem]" style={{ fontFamily: 'var(--font-heading)' }}>
-            Desa Pameutingan
+          <span className="flex flex-col leading-none" style={{ fontFamily: 'var(--font-heading)' }}>
+            <span className="text-[1.3rem] font-bold tracking-tight text-white md:text-[1.5rem]">
+              Desa Pameutingan
+            </span>
+            <span className="mt-1 text-[0.68rem] font-medium tracking-[0.16em] text-[#D0FAE5]/78 md:text-[0.72rem]">
+              Kec. Cipatujah, Kab. Tasikmalaya
+            </span>
           </span>
         </Link>
 

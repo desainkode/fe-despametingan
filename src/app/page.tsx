@@ -2,20 +2,130 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ChevronDown, ArrowRight, Info, BarChart, Leaf } from "lucide-react";
+import { ChevronDown, ArrowRight, Info, BarChart, Leaf, Sprout, Store, Mountain, Camera, Images } from "lucide-react";
 
 const kepalaDesaImage = "/img/unsplash_jiOJQF5xEdw.png";
 const strukturKepalaDesaImg = "/img/unsplash_jiOJQF5xEdw.png";
 const strukturSekDesImg = "/img/unsplash_bBuUjB98PPY.png";
 const strukturKaPelImg1 = "/img/unsplash_tB5ZZtHZ_tI.png";
 const strukturKaPelImg2 = "/img/unsplash_KIPqvvTOC1s.png";
-const informasiTerkiniImage = "/img/image.png";
+const informasiTerkiniCards = [
+  {
+    title: "Gotong Royong Bersih Lingkungan RT 03",
+    description: "Warga bersama perangkat desa membersihkan saluran air dan jalan utama.",
+    image:
+      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    title: "Pelatihan UMKM untuk Ibu-Ibu PKK",
+    description: "Pendampingan usaha kecil untuk memperkuat produk lokal desa.",
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    title: "Musyawarah Desa Bahas Program Prioritas",
+    description: "Warga berdiskusi tentang rencana pembangunan dan kebutuhan layanan publik.",
+    image:
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    title: "Posyandu Balita Gelar Pemeriksaan Rutin",
+    description: "Pelayanan kesehatan ibu dan anak berjalan tertib bersama tenaga kesehatan.",
+    image:
+      "https://images.unsplash.com/photo-1511688878354-3a2f5be94cd7?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    title: "Layanan Administrasi Keliling Mempermudah Warga",
+    description: "Pengurusan dokumen kependudukan hadir lebih dekat untuk masyarakat.",
+    image:
+      "https://images.unsplash.com/photo-1529421308418-eab98863cee5?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    title: "Perbaikan Jalan Usaha Tani Dimulai",
+    description: "Akses menuju lahan pertanian diperkuat agar distribusi hasil panen lancar.",
+    image:
+      "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    title: "Pembinaan Karang Taruna dan Olahraga Desa",
+    description: "Generasi muda didorong aktif dalam kegiatan sosial dan olahraga desa.",
+    image:
+      "https://images.unsplash.com/photo-1517832207067-4db24a2ae47c?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    title: "Peringatan Hari Besar Nasional di Balai Desa",
+    description: "Kegiatan bersama masyarakat berlangsung tertib dan penuh kebersamaan.",
+    image:
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+  },
+];
 
-const informasiTerkiniCards = Array.from({ length: 8 }, () => ({
-  title: "Panen Raya Bulan Januari Melimpah",
-  description:
-    "Tanah yang subur jadi faktor utama melimpahnya hasil tani",
-}));
+const potensiPreviewCards = [
+  {
+    title: "Pertanian Unggulan",
+    description: "Lahan produktif mendukung hasil tani, hortikultura, dan penguatan ketahanan pangan warga.",
+    image: "/img/unsplash_jiOJQF5xEdw.png",
+    icon: Sprout,
+    accent: "#00E0A1",
+  },
+  {
+    title: "UMKM & Produk Lokal",
+    description: "Kerajinan, olahan pangan, dan usaha rumahan tumbuh sebagai penggerak ekonomi desa.",
+    image: "/img/unsplash_bBuUjB98PPY.png",
+    icon: Store,
+    accent: "#F0B100",
+  },
+  {
+    title: "Alam & Daya Tarik Desa",
+    description: "Potensi panorama alam dan ruang terbuka yang dapat dikembangkan secara bertahap.",
+    image: "/img/unsplash_KIPqvvTOC1s.png",
+    icon: Mountain,
+    accent: "#55D4B1",
+  },
+] as const;
+
+const galeriPreviewCards = [
+  {
+    title: "Festival Desa & Seni Warga",
+    description: "Cuplikan suasana kegiatan budaya dan kebersamaan masyarakat.",
+    image: "/img/hero-kepala-desa.png",
+    tag: "Utama",
+    spanClass: "xl:col-span-2 xl:row-span-2 min-h-[24rem]",
+    accent: "#F0B100",
+  },
+  {
+    title: "Gotong Royong Kampung",
+    description: "Dokumentasi aksi warga menjaga kebersihan lingkungan desa.",
+    image: "/img/unsplash_tB5ZZtHZ_tI.png",
+    tag: "Kegiatan",
+    spanClass: "min-h-56",
+    accent: "#00E0A1",
+  },
+  {
+    title: "Pelayanan dan Administrasi",
+    description: "Momen layanan publik yang dekat dan mudah dijangkau warga.",
+    image: "/img/unsplash_bBuUjB98PPY.png",
+    tag: "Layanan",
+    spanClass: "min-h-56",
+    accent: "#55D4B1",
+  },
+  {
+    title: "Ruang Pertemuan Desa",
+    description: "Suasana musyawarah dan koordinasi program kerja bersama perangkat desa.",
+    image: "/img/unsplash_KIPqvvTOC1s.png",
+    tag: "Musyawarah",
+    spanClass: "xl:col-span-2 min-h-56",
+    accent: "#0B281F",
+  },
+  {
+    title: "Dokumentasi Lapangan",
+    description: "Cuplikan aktivitas di luar ruangan yang menunjukkan dinamika desa.",
+    image: "/img/unsplash_jiOJQF5xEdw.png",
+    tag: "Lapangan",
+    spanClass: "min-h-56",
+    accent: "#7DCBFF",
+  },
+] as const;
 
 const statistikDemografi = [
   {
@@ -224,9 +334,27 @@ const strukturTataKelola = [
 type InformasiTerkiniCardProps = {
   title: string;
   description: string;
+  image: string;
 };
 
-function InformasiTerkiniCard({ title, description }: InformasiTerkiniCardProps) {
+type PotensiPreviewCardProps = {
+  title: string;
+  description: string;
+  image: string;
+  icon: typeof Sprout;
+  accent: string;
+};
+
+type GaleriPreviewCardProps = {
+  title: string;
+  description: string;
+  image: string;
+  tag: string;
+  spanClass: string;
+  accent: string;
+};
+
+function InformasiTerkiniCard({ title, description, image }: InformasiTerkiniCardProps) {
   return (
     <button
       type="button"
@@ -248,8 +376,8 @@ function InformasiTerkiniCard({ title, description }: InformasiTerkiniCardProps)
 
       <div className="relative mt-auto h-43.5 w-full overflow-hidden rounded-[7px]">
         <img
-          src={informasiTerkiniImage}
-          alt="Panen raya dan hasil tani"
+          src={image}
+          alt={title}
           className="h-full w-full rounded-[7px] object-cover"
           loading="lazy"
         />
@@ -259,6 +387,191 @@ function InformasiTerkiniCard({ title, description }: InformasiTerkiniCardProps)
         </span>
       </div>
     </button>
+  );
+}
+
+function PotensiPreviewCard({ title, description, image, icon: Icon, accent }: PotensiPreviewCardProps) {
+  return (
+    <article className="hero-reveal group relative overflow-hidden rounded-[24px] border border-white/10 bg-[linear-gradient(160deg,rgba(0,43,34,0.98)_0%,rgba(0,61,48,0.96)_55%,rgba(0,29,23,0.99)_100%)] p-4 shadow-[0_18px_38px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(0,0,0,0.24)]">
+      <div
+        className="pointer-events-none absolute -right-14 -top-14 h-36 w-36 rounded-full blur-3xl"
+        style={{ backgroundColor: `${accent}22` }}
+      />
+
+      <div className="relative flex h-full flex-col gap-4">
+        <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-[#001A14]">
+          <img
+            src={image}
+            alt={title}
+            className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+
+          <div className="absolute inset-0 bg-linear-to-t from-black/55 via-black/10 to-transparent" />
+
+          <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-black/35 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
+            <Icon size={14} strokeWidth={2.4} />
+            Preview
+          </div>
+        </div>
+
+        <div className="flex flex-1 flex-col gap-3">
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="max-w-[12ch] text-[22px] font-bold leading-[1.05] text-white" style={{ fontFamily: 'var(--font-heading)' }}>
+              {title}
+            </h3>
+            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/8 text-white/90">
+              <ArrowRight size={18} strokeWidth={2.4} />
+            </span>
+          </div>
+
+          <p className="text-[13px] leading-6 text-[#D4FBEA]/82">{description}</p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function PotensiSection() {
+  return (
+    <section className="bg-[#FFFFFF] px-4 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 lg:gap-10">
+        <div className="flex flex-col gap-6 border-b border-[#0B281F]/10 pb-8 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
+          <h2 className="hero-reveal font-timeless max-w-99 text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px] [animation-delay:80ms]">
+            <span className="block">Potensi Desa</span>
+            <span className="block">Pameutingan</span>
+          </h2>
+
+          <p className="hero-reveal max-w-147 pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7 lg:pt-1 [animation-delay:150ms]">
+            Menampilkan sebagian potensi desa seperti pertanian, UMKM, dan daya tarik alam sebagai preview sebelum melihat detail
+            lengkap di halaman potensi.
+          </p>
+
+          <div className="hero-reveal inline-flex h-11 w-11 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-[#F4F3EF] shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg [animation-delay:180ms] md:h-12 md:w-12">
+            <Sprout size={18} strokeWidth={2.3} />
+          </div>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 xl:gap-8">
+          {potensiPreviewCards.map((item, index) => (
+            <div
+              key={item.title}
+              className="hero-reveal w-full"
+              style={{ animationDelay: `${240 + index * 80}ms` }}
+            >
+              <PotensiPreviewCard
+                title={item.title}
+                description={item.description}
+                image={item.image}
+                icon={item.icon}
+                accent={item.accent}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="flex justify-start pt-1">
+          <Link
+            href="/potensi"
+            className="hero-reveal inline-flex h-11 w-fit items-center gap-2 rounded-full bg-[#F0B100] px-5 py-2.5 text-[13px] font-bold text-[#0B281F] shadow-[0_10px_20px_rgba(240,177,0,0.34)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_13px_24px_rgba(240,177,0,0.46)] [animation-delay:520ms]"
+          >
+            Lihat Selengkapnya
+            <ArrowRight size={17} strokeWidth={2.5} />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function GaleriPreviewCard({ title, description, image, tag, spanClass, accent }: GaleriPreviewCardProps) {
+  return (
+    <article className={`hero-reveal group relative overflow-hidden rounded-[28px] border border-[#0B281F]/10 bg-white shadow-[0_16px_34px_rgba(11,40,31,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_44px_rgba(11,40,31,0.14)] ${spanClass}`}>
+      <div className="absolute inset-x-0 top-0 h-1" style={{ backgroundColor: accent }} />
+      <div
+        className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full blur-3xl"
+        style={{ backgroundColor: `${accent}18` }}
+      />
+
+      <div className="relative flex h-full flex-col">
+        <div className="relative h-full min-h-40 overflow-hidden">
+          <img
+            src={image}
+            alt={title}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/18 to-transparent" />
+
+          <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-black/34 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
+            <Camera size={13} strokeWidth={2.4} />
+            {tag}
+          </div>
+
+          <div className="absolute bottom-4 left-4 right-4">
+            <h3 className="max-w-[12ch] text-[22px] font-bold leading-[1.06] text-white" style={{ fontFamily: 'var(--font-heading)' }}>
+              {title}
+            </h3>
+            <p className="mt-2 max-w-72 text-[12px] leading-5 text-white/80">
+              {description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function GaleriSection() {
+  return (
+    <section className="bg-[#F5F1E8] px-4 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 lg:gap-10">
+        <div className="grid gap-4 border-b border-[#0B281F]/10 pb-8 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+          <h2 className="hero-reveal font-timeless max-w-99 text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px] [animation-delay:80ms]">
+            <span className="block">Galeri Desa</span>
+            <span className="block">Pameutingan</span>
+          </h2>
+
+          <p className="hero-reveal max-w-147 pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7 lg:pt-1 [animation-delay:150ms]">
+            Menampilkan sebagian dokumentasi kegiatan desa, suasana layanan, dan momen kebersamaan warga sebagai preview sebelum melihat
+            galeri lengkap.
+          </p>
+
+          <div className="hero-reveal inline-flex h-11 w-11 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-[#F4F3EF] shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg [animation-delay:180ms] md:h-12 md:w-12">
+            <Images size={18} strokeWidth={2.2} />
+          </div>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4 xl:auto-rows-[14rem] xl:gap-5">
+          {galeriPreviewCards.map((item, index) => (
+            <div
+              key={item.title}
+              className="hero-reveal w-full"
+              style={{ animationDelay: `${220 + index * 80}ms` }}
+            >
+              <GaleriPreviewCard
+                title={item.title}
+                description={item.description}
+                image={item.image}
+                tag={item.tag}
+                spanClass={item.spanClass}
+                accent={item.accent}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="flex justify-start pt-2">
+          <Link
+            href="/galeri"
+            className="hero-reveal inline-flex h-11 w-fit items-center gap-2 rounded-full bg-[#0B281F] px-5 py-2.5 text-[13px] font-bold text-[#F4F3EF] shadow-[0_10px_20px_rgba(11,40,31,0.16)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_13px_24px_rgba(11,40,31,0.22)] [animation-delay:560ms]"
+          >
+            Lihat Selengkapnya
+            <ArrowRight size={17} strokeWidth={2.5} />
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -1243,12 +1556,17 @@ export default function Home() {
                 <InformasiTerkiniCard
                   title={item.title}
                   description={item.description}
+                  image={item.image}
                 />
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      <PotensiSection />
+
+      <GaleriSection />
     </>
   );
 }

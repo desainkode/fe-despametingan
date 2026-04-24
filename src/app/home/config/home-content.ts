@@ -21,6 +21,17 @@ const FIGMA_ASSETS = {
   kepalaDesaFullImage: 'https://www.figma.com/api/mcp/asset/cf08a028-4907-4714-9bd2-aa3783b7175a',
 }
 
+const NEWS_IMAGES = [
+  'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80&sat=-25',
+  'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
+]
+
 // ============================================================================
 // HERO SECTION CONTENT
 // ============================================================================
@@ -180,12 +191,56 @@ export const newsContent: NewsSectionContent = {
   heading: 'Informasi Terkini Desa Pameutingan',
   description:
     'Menyajikan ringkasan kabar terbaru desa secara transparan, akurat, dan mudah diakses agar warga dapat mengikuti aktivitas, program, serta perkembangan desa secara cepat.',
-  cards: Array.from({ length: 8 }, () => ({
-    title: 'Panen Raya Bulan Januari Melimpah',
-    description: 'Tanah yang subur jadi faktor utama melimpahnya hasil tani',
-    image: FIGMA_ASSETS.informasiTerkiniImage,
-    icon: FIGMA_ASSETS.informasiTerkiniBadgeIcon,
-  })),
+  cards: [
+    {
+      title: 'Gotong Royong Bersih Lingkungan RT 03',
+      description: 'Warga bersama perangkat desa membersihkan saluran air dan area jalan utama.',
+      image: NEWS_IMAGES[0],
+      icon: FIGMA_ASSETS.informasiTerkiniBadgeIcon,
+    },
+    {
+      title: 'Pelatihan UMKM untuk Ibu-Ibu PKK',
+      description: 'Kegiatan pendampingan usaha kecil untuk meningkatkan kualitas produk lokal.',
+      image: NEWS_IMAGES[1],
+      icon: FIGMA_ASSETS.informasiTerkiniBadgeIcon,
+    },
+    {
+      title: 'Musyawarah Desa Bahas Program Prioritas',
+      description: 'Forum warga membahas rencana pembangunan dan kebutuhan layanan publik tahun berjalan.',
+      image: NEWS_IMAGES[2],
+      icon: FIGMA_ASSETS.informasiTerkiniBadgeIcon,
+    },
+    {
+      title: 'Posyandu Balita Gelar Pemeriksaan Rutin',
+      description: 'Pelayanan kesehatan anak dan ibu dilakukan bersama tenaga kesehatan setempat.',
+      image: NEWS_IMAGES[3],
+      icon: FIGMA_ASSETS.informasiTerkiniBadgeIcon,
+    },
+    {
+      title: 'Layanan Administrasi Keliling Mempermudah Warga',
+      description: 'Pengurusan dokumen kependudukan hadir lebih dekat untuk warga di dusun.',
+      image: NEWS_IMAGES[4],
+      icon: FIGMA_ASSETS.informasiTerkiniBadgeIcon,
+    },
+    {
+      title: 'Perbaikan Jalan Usaha Tani Dimulai',
+      description: 'Akses menuju lahan pertanian diperkuat agar distribusi hasil panen lebih lancar.',
+      image: NEWS_IMAGES[5],
+      icon: FIGMA_ASSETS.informasiTerkiniBadgeIcon,
+    },
+    {
+      title: 'Pembinaan Karang Taruna dan Olahraga Desa',
+      description: 'Generasi muda didorong aktif dalam kegiatan sosial, seni, dan olahraga desa.',
+      image: NEWS_IMAGES[6],
+      icon: FIGMA_ASSETS.informasiTerkiniBadgeIcon,
+    },
+    {
+      title: 'Peringatan Hari Besar Nasional di Balai Desa',
+      description: 'Kegiatan bersama masyarakat berlangsung tertib dan penuh semangat kebersamaan.',
+      image: NEWS_IMAGES[7],
+      icon: FIGMA_ASSETS.informasiTerkiniBadgeIcon,
+    },
+  ],
 }
 
 // ============================================================================
