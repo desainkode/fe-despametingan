@@ -13,8 +13,14 @@ export function StuntingSection() {
       />
 
       <div className="grid gap-3 md:grid-cols-3">
-        {stuntingContent.indicators.map((item) => (
-          <MiniMetric key={item.label} label={item.label} value={item.value} />
+        {stuntingContent.indicators.map((item, index) => (
+          <MiniMetric
+            key={item.label}
+            label={item.label}
+            value={item.value}
+            description={item.description}
+            index={index}
+          />
         ))}
       </div>
     </div>

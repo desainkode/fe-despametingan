@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import InfografisTabs from "./components/InfografisTabs";
+import InfografisTabs from "@/features/infografis/components/InfografisTabs";
 
 export const metadata: Metadata = {
   title: "Infografis | Desa Pameutingan",

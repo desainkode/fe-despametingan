@@ -82,6 +82,7 @@ export interface BansosSectionContent {
 export interface StuntingIndicator {
   label: string
   value: string
+  description: string
 }
 
 export interface StuntingSectionContent {

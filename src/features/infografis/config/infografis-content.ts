@@ -195,9 +195,9 @@ export const stuntingContent: StuntingSectionContent = {
   description:
     'Menyajikan data tumbuh kembang anak, risiko stunting, dan tindak lanjut intervensi gizi dalam format yang mudah dipantau.',
   indicators: [
-    { label: 'Balita Terpantau', value: '124' },
-    { label: 'Risiko Stunting', value: '18' },
-    { label: 'Intervensi Aktif', value: '96%' },
+    { label: 'Balita Terpantau', value: '124', description : 'Jumlah balita yang terdata dalam sistem pemantauan tumbuh kembang anak' },
+    { label: 'Risiko Stunting', value: '18', description: 'Jumlah balita yang teridentifikasi memiliki risiko stunting berdasarkan data yang terkumpul' },
+    { label: 'Intervensi Aktif', value: '96%', description: 'Persentase balita yang mendapatkan intervensi gizi aktif untuk pencegahan stunting' },
   ],
 }
 
