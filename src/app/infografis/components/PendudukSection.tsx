@@ -492,7 +492,7 @@ function JumlahPendudukCard({
 
   return (
     <article
-      className={`hero-reveal group relative isolate h-67.5 overflow-hidden rounded-tl-[28px] rounded-br-[28px] p-6 text-[#F3F8F6] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.18)] sm:h-75 md:h-80 ${isDark
+      className={`hero-reveal group relative isolate h-67.5 overflow-hidden rounded-tl-[28px] rounded-br-[28px] p-6 text-[#F3F8F6] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:h-75 md:h-80 ${isDark
         ? "bg-linear-to-br from-[#001F18] via-[#003326] to-[#005239] text-[#F3F8F6]"
         : "bg-[#D9D9D9] text-[#070C10]"
         }`}
@@ -512,7 +512,7 @@ function JumlahPendudukCard({
 
       <div className="relative mt-6 flex h-[calc(100%-4.75rem)] flex-col justify-between">
         <div>
-          <div className={`mb-3 inline-flex items-center gap-1.5 rounded-md px-2 py-1 ${isDark ? "bg-[#009966] text-white" : "bg-[#0B281F] text-white"}`}>
+          <div className={`mb-3 inline-flex items-center gap-1.5 rounded-md px-2 py-1 ${isDark ? "bg-[#009966] text-white" : "bg-[#009966] text-white"}`}>
             <span className="h-1.5 w-1.5 rounded-full bg-[#F0B100]" />
             <span className="text-[11px] leading-none" style={{ fontFamily: "var(--font-upakarti)" }}>
               Jiwa
@@ -520,18 +520,18 @@ function JumlahPendudukCard({
           </div>
 
           <p
-            className="text-[54px] leading-[0.9] sm:text-[58px]"
+            className={`text-[54px] leading-[0.9] sm:text-[58px] ${isDark ? "text-[#F3F8F6]" : "text-black"}`}
             style={{ fontFamily: "var(--font-upakarti)" }}
           >
             {angka}
           </p>
 
-          <h3 className="mt-3 font-[Georgia,serif] text-[19px] font-bold leading-[1.15] sm:text-[21px] md:text-[23px]">
+          <h3 className={`mt-3 font-[Georgia,serif] text-[19px] font-bold leading-[1.15] sm:text-[21px] md:text-[23px] ${isDark ? "text-[#F3F8F6]" : "text-black"}`}>
             {label}
           </h3>
         </div>
 
-        <p className={`self-end text-right text-[12px] leading-tight ${isDark ? "text-[#F5F7F6]/85" : "text-[#070C10]/72"}`}>
+        <p className={`self-end text-right text-[12px] leading-tight ${isDark ? "text-[#F5F7F6]/85" : "text-black"}`}>
           Terdata
           <br />
           oleh sistem
@@ -1223,7 +1223,7 @@ function PekerjaanTopCard({
 }) {
   return (
     <article
-      className="hero-reveal group relative isolate h-67.5 overflow-hidden rounded-tl-[28px] rounded-br-[28px] bg-linear-to-br from-[#001F18] via-[#003326] to-[#005239] p-6 text-[#F3F8F6] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(0,0,0,0.18)] sm:h-75 md:h-80"
+      className="hero-reveal group relative isolate h-67.5 overflow-hidden rounded-tl-[28px] rounded-br-[28px] bg-linear-to-br from-[#001F18] via-[#003326] to-[#005239] p-6 text-[#F3F8F6] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:h-75 md:h-80"
       style={{ animationDelay: `${delayMs}ms` }}
     >
       <div className="pointer-events-none absolute -right-14 -top-14 h-28 w-28 rotate-45 bg-[#FFFFFF]" />
@@ -1281,7 +1281,7 @@ function PekerjaanDetailCard({
 }) {
   return (
     <article
-      className="hero-reveal group relative overflow-hidden rounded-[22px] border border-white/15 p-5 shadow-[0_14px_30px_rgba(0,0,0,0.12)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.16)] sm:p-6"
+      className="hero-reveal group relative overflow-hidden rounded-[22px] border border-white/15 p-5 shadow-[0_14px_30px_rgba(0,0,0,0.12)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:p-6"
       style={{ backgroundColor: bgColor, animationDelay: `${delayMs}ms` }}
     >
       <div

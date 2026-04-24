@@ -10,8 +10,7 @@ import {
   Shield,
 } from "lucide-react";
 
-const footerLogo =
-  "https://www.figma.com/api/mcp/asset/27d73b78-2be8-4fb9-8da3-0a5a9d1bab1f";
+const footerLogo = "/img/image.png";
 
 const profilDesaLinks = [
   "Sejarah",

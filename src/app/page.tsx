@@ -4,18 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, ArrowRight, Info, BarChart, Leaf } from "lucide-react";
 
-const kepalaDesaImage =
-  "https://www.figma.com/api/mcp/asset/54a3370e-5465-41c4-b4a4-52cb6b9a36f6";
-const strukturKepalaDesaImg =
-  "https://www.figma.com/api/mcp/asset/0895496f-e839-41bf-8153-dd47d048090f";
-const strukturSekDesImg =
-  "https://www.figma.com/api/mcp/asset/d14230b2-1a35-4453-b313-abd9c41dde1c";
-const strukturKaPelImg1 =
-  "https://www.figma.com/api/mcp/asset/c2f5f60e-b119-47f3-be75-eb6638d020f7";
-const strukturKaPelImg2 =
-  "https://www.figma.com/api/mcp/asset/88a11b2d-c2ee-47b3-9500-21d8ee9e0ac8";
-const informasiTerkiniImage =
-  "https://www.figma.com/api/mcp/asset/a4641f83-6a04-4589-9a97-55016b8a2e2c";
+const kepalaDesaImage = "/img/unsplash_jiOJQF5xEdw.png";
+const strukturKepalaDesaImg = "/img/unsplash_jiOJQF5xEdw.png";
+const strukturSekDesImg = "/img/unsplash_bBuUjB98PPY.png";
+const strukturKaPelImg1 = "/img/unsplash_tB5ZZtHZ_tI.png";
+const strukturKaPelImg2 = "/img/unsplash_KIPqvvTOC1s.png";
+const informasiTerkiniImage = "/img/image.png";
 
 const informasiTerkiniCards = Array.from({ length: 8 }, () => ({
   title: "Panen Raya Bulan Januari Melimpah",
@@ -519,7 +513,7 @@ export default function Home() {
 
             <div className="relative h-88 overflow-hidden rounded-4xl bg-linear-to-b from-[#006045] to-[#0B281F] shadow-[0_18px_36px_-12px_rgba(0,0,0,0.25)] md:h-112">
               <img
-                src="https://www.figma.com/api/mcp/asset/cf08a028-4907-4714-9bd2-aa3783b7175a"
+                src="/img/hero-kepala-desa.png"
                 alt="Kepala Desa"
                 className="hero-zoom h-full w-full object-cover"
                 loading="eager"
@@ -564,7 +558,7 @@ export default function Home() {
           <div className="absolute inset-0 flex flex-col justify-center gap-5 px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:px-10 lg:py-8">
             <div className="hero-reveal w-full max-w-76 rounded-3xl border border-[#00A172]/35 bg-linear-to-br from-[#0B281F]/98 via-[#004F3B]/96 to-[#006548]/95 p-4 shadow-[0_12px_30px_rgba(0,0,0,0.25)] [animation-delay:120ms] md:p-5 lg:p-6">
               <div className="flex items-center gap-3">
-                <div className="hero-float inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#F0B100] text-[#0B281F] [animation-duration:6s]">
+                <div className="hero-float inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#F0B100] text-[#0B281F] animation-duration-[6s]">
                   <BarChart size={22} strokeWidth={2.5} aria-hidden="true" />
                 </div>
                 <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#A4F4CF] md:text-xs">
@@ -1148,7 +1142,7 @@ export default function Home() {
                 <img
                   src={kepalaDesaImage}
                   alt="Foto Kepala Desa"
-                  className="absolute -bottom-8 -right-6 z-10 h-[116%] w-auto max-w-none object-contain sm:-right-4 lg:-right-12 lg:-top-12 lg:bottom-auto lg:h-[114%]"
+                  className="absolute -bottom-8 -left-6 z-10 h-[116%] w-auto max-w-none object-contain sm:-left-4 lg:left-0 lg:-top-12 lg:bottom-auto lg:h-[114%]"
                   loading="lazy"
                 />
               </div>
