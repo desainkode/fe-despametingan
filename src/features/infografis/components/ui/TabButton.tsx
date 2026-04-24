@@ -3,17 +3,30 @@
 import type { TabButtonProps } from '../../types/infografis'
 
 export function TabButton({ item, active, onClick }: TabButtonProps) {
+  const dropShadow = active
+    ? "drop-shadow-[0_-4px_10px_rgba(255,255,255,0.4)]"
+    : "drop-shadow-[0_-2px_6px_rgba(0,0,0,0.15)]";
+
+  const bgClass = active ? "bg-[#FFFFFF]" : "bg-[#F0B100] group-hover:bg-[#FFC814]";
+  const zIndex = active ? "z-10" : "z-0";
+  const heightClass = active ? "h-11 md:h-13" : "h-9 md:h-11";
+  const hoverAnim = "";
+
   return (
     <button
       type="button"
       onClick={() => onClick(item.key)}
       aria-pressed={active}
-      className={`inline-flex h-11 shrink-0 items-center justify-center rounded-2xl border px-5 text-[13px] font-semibold tracking-[0.01em] transform-gpu transition-[transform,box-shadow,border-color,background-color,color] duration-350 ease-[cubic-bezier(0.22,0.61,0.36,1)] md:h-12 md:px-6 md:text-[14px] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${active
-          ? 'border-[#E7A900] bg-[#F0B100] text-[#0B281F] shadow-[0_10px_20px_rgba(240,177,0,0.3)] focus-visible:ring-[#F0B100]/60 focus-visible:ring-offset-transparent'
-          : 'border-white/18 bg-white/10 text-[#E4F8EE] hover:-translate-y-0.5 hover:border-[#A4F4CF]/55 hover:bg-white/15 hover:text-white hover:shadow-[0_10px_18px_rgba(0,125,90,0.24)] focus-visible:-translate-y-0.5 focus-visible:border-[#A4F4CF]/55 focus-visible:bg-white/15 focus-visible:text-white focus-visible:shadow-[0_10px_18px_rgba(0,125,90,0.24)] focus-visible:ring-[#A4F4CF]/50 focus-visible:ring-offset-[#0B281F]'
-        }`}
+      className={`group relative flex items-center justify-center focus:outline-none transition-all duration-300 ${zIndex} ${dropShadow} ${heightClass} ${hoverAnim}`}
     >
-      {item.label}
+      <div className="absolute inset-0 flex transition-transform duration-300">
+        <div className={`w-8 h-full origin-bottom skew-x-[-24deg] rounded-tl-[6px] transition-colors duration-300 ${bgClass}`} />
+        <div className={`flex-1 h-full rounded-tr-[8px] rounded-tl-[6px] transition-colors duration-300 ${bgClass}`} />
+      </div>
+
+      <span className={`relative z-10 pl-8 pr-6 md:pl-10 md:pr-8 text-[13px] md:text-[14.5px] font-bold tracking-wide transition-colors duration-300 ${active ? 'text-[#0B281F]' : 'text-[#0B281F]/90'}`}>
+        {item.label}
+      </span>
     </button>
   )
 }

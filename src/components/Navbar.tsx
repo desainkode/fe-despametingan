@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
 const navItems = [
   { label: "Beranda", href: "/" },
@@ -15,9 +16,27 @@ const navItems = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="navbar-enter sticky top-0 z-50 w-full border-b border-white/10 bg-linear-to-r from-[#004F3B] to-[#003126] px-4 backdrop-blur-[2px] md:px-10">
+    <header 
+      className={`navbar-enter fixed top-0 z-50 w-full px-4 transition-all duration-300 md:px-10 ${
+        isScrolled
+          ? "border-b border-white/10 bg-linear-to-r from-[#004F3B]/95 to-[#003126]/95 shadow-md backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
       <div className="mx-auto flex min-h-12 w-full max-w-7xl flex-col gap-2.5 py-2 md:h-14 md:flex-row md:items-center md:justify-between md:gap-4 md:py-0">
         <Link href="/" className="hero-reveal flex items-center gap-2 [animation-delay:80ms]">
           <img

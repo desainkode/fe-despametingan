@@ -66,7 +66,7 @@ const potensiPreviewCards = [
     description: "Lahan produktif mendukung hasil tani, hortikultura, dan penguatan ketahanan pangan warga.",
     image: "/img/unsplash_jiOJQF5xEdw.png",
     icon: Sprout,
-    accent: "#00E0A1",
+    accent: "#009966",
   },
   {
     title: "UMKM & Produk Lokal",
@@ -80,7 +80,7 @@ const potensiPreviewCards = [
     description: "Potensi panorama alam dan ruang terbuka yang dapat dikembangkan secara bertahap.",
     image: "/img/unsplash_KIPqvvTOC1s.png",
     icon: Mountain,
-    accent: "#55D4B1",
+    accent: "#009966",
   },
 ] as const;
 
@@ -88,42 +88,44 @@ const galeriPreviewCards = [
   {
     title: "Festival Desa & Seni Warga",
     description: "Cuplikan suasana kegiatan budaya dan kebersamaan masyarakat.",
-    image: "/img/hero-kepala-desa.png",
-    tag: "Utama",
-    spanClass: "xl:col-span-2 xl:row-span-2 min-h-[24rem]",
+    image: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=1200&q=80",
+    tag: "Seni Budaya",
     accent: "#F0B100",
   },
   {
     title: "Gotong Royong Kampung",
     description: "Dokumentasi aksi warga menjaga kebersihan lingkungan desa.",
-    image: "/img/unsplash_tB5ZZtHZ_tI.png",
+    image: "https://images.unsplash.com/photo-1593113511432-84da4528ce05?auto=format&fit=crop&w=1200&q=80",
     tag: "Kegiatan",
-    spanClass: "min-h-56",
     accent: "#00E0A1",
   },
   {
     title: "Pelayanan dan Administrasi",
     description: "Momen layanan publik yang dekat dan mudah dijangkau warga.",
-    image: "/img/unsplash_bBuUjB98PPY.png",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
     tag: "Layanan",
-    spanClass: "min-h-56",
     accent: "#55D4B1",
   },
   {
     title: "Ruang Pertemuan Desa",
     description: "Suasana musyawarah dan koordinasi program kerja bersama perangkat desa.",
-    image: "/img/unsplash_KIPqvvTOC1s.png",
+    image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=80",
     tag: "Musyawarah",
-    spanClass: "xl:col-span-2 min-h-56",
     accent: "#0B281F",
   },
   {
     title: "Dokumentasi Lapangan",
     description: "Cuplikan aktivitas di luar ruangan yang menunjukkan dinamika desa.",
-    image: "/img/unsplash_jiOJQF5xEdw.png",
+    image: "https://images.unsplash.com/photo-1592659762303-90081d34b277?auto=format&fit=crop&w=1200&q=80",
     tag: "Lapangan",
-    spanClass: "min-h-56",
     accent: "#7DCBFF",
+  },
+  {
+    title: "Infrastruktur & Pembangunan",
+    description: "Perkembangan sarana prasarana yang mendukung mobilitas dan ekonomi desa.",
+    image: "https://images.unsplash.com/photo-1541888081628-9c2b4c553930?auto=format&fit=crop&w=1200&q=80",
+    tag: "Infrastruktur",
+    accent: "#FF8C42",
   },
 ] as const;
 
@@ -350,7 +352,6 @@ type GaleriPreviewCardProps = {
   description: string;
   image: string;
   tag: string;
-  spanClass: string;
   accent: string;
 };
 
@@ -392,41 +393,37 @@ function InformasiTerkiniCard({ title, description, image }: InformasiTerkiniCar
 
 function PotensiPreviewCard({ title, description, image, icon: Icon, accent }: PotensiPreviewCardProps) {
   return (
-    <article className="hero-reveal group relative overflow-hidden rounded-[24px] border border-white/10 bg-[linear-gradient(160deg,rgba(0,43,34,0.98)_0%,rgba(0,61,48,0.96)_55%,rgba(0,29,23,0.99)_100%)] p-4 shadow-[0_18px_38px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(0,0,0,0.24)]">
-      <div
-        className="pointer-events-none absolute -right-14 -top-14 h-36 w-36 rounded-full blur-3xl"
-        style={{ backgroundColor: `${accent}22` }}
-      />
+    <article className="group relative flex h-full min-h-[360px] w-full flex-col items-start gap-3 rounded-[20px] border border-[#0B281F]/5 bg-[#F4F3EF] p-5 text-left shadow-[0_12px_24px_rgba(11,40,31,0.04)] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(11,40,31,0.1)] md:gap-4 md:p-6">
+      <div className="flex w-full items-start justify-between gap-4">
+        <h3 className="font-timeless max-w-[200px] text-[20px] font-bold leading-[1.28] text-[#004F3B] md:text-[22px]">
+          {title}
+        </h3>
 
-      <div className="relative flex h-full flex-col gap-4">
-        <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-[#001A14]">
-          <img
-            src={image}
-            alt={title}
-            className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-          />
+        <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#004F3B]/5 text-[#004F3B] transition-all duration-300 group-hover:rotate-[-5deg] group-hover:bg-[#004F3B] group-hover:text-white">
+          <ArrowRight size={20} strokeWidth={2.2} />
+        </span>
+      </div>
 
-          <div className="absolute inset-0 bg-linear-to-t from-black/55 via-black/10 to-transparent" />
+      <p className="max-w-[260px] text-[13.5px] leading-relaxed text-[#0B281F]/80">
+        {description}
+      </p>
 
-          <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-black/35 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
-            <Icon size={14} strokeWidth={2.4} />
-            Preview
-          </div>
-        </div>
+      <div className="relative mt-auto h-[170px] w-full overflow-hidden rounded-[14px]">
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+          loading="lazy"
+        />
 
-        <div className="flex flex-1 flex-col gap-3">
-          <div className="flex items-start justify-between gap-3">
-            <h3 className="max-w-[12ch] text-[22px] font-bold leading-[1.05] text-white" style={{ fontFamily: 'var(--font-heading)' }}>
-              {title}
-            </h3>
-            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/8 text-white/90">
-              <ArrowRight size={18} strokeWidth={2.4} />
-            </span>
-          </div>
+        <div className="absolute inset-0 bg-linear-to-t from-[#001A14]/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-          <p className="text-[13px] leading-6 text-[#D4FBEA]/82">{description}</p>
-        </div>
+        <span
+          className="absolute bottom-4 left-4 inline-flex h-11 w-11 items-center justify-center rounded-xl text-[#0B281F] shadow-[0_8px_16px_rgba(0,0,0,0.15)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1"
+          style={{ backgroundColor: accent }}
+        >
+          <Icon size={20} strokeWidth={2.2} aria-hidden="true" />
+        </span>
       </div>
     </article>
   );
@@ -484,39 +481,40 @@ function PotensiSection() {
   );
 }
 
-function GaleriPreviewCard({ title, description, image, tag, spanClass, accent }: GaleriPreviewCardProps) {
+function GaleriPreviewCard({ title, description, image, tag, accent }: GaleriPreviewCardProps) {
   return (
-    <article className={`hero-reveal group relative overflow-hidden rounded-[28px] border border-[#0B281F]/10 bg-white shadow-[0_16px_34px_rgba(11,40,31,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_44px_rgba(11,40,31,0.14)] ${spanClass}`}>
-      <div className="absolute inset-x-0 top-0 h-1" style={{ backgroundColor: accent }} />
-      <div
-        className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full blur-3xl"
-        style={{ backgroundColor: `${accent}18` }}
-      />
+    <article className="group relative flex h-full min-h-[360px] w-full flex-col rounded-[24px] border border-[#0B281F]/5 bg-white p-5 text-left shadow-[0_12px_24px_rgba(11,40,31,0.04)] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(11,40,31,0.1)] md:p-6">
+      <div className="mb-3 flex w-full items-start justify-between gap-4">
+        <h3 className="font-timeless text-[20px] font-bold leading-[1.28] text-[#004F3B] md:text-[22px]">
+          {title}
+        </h3>
 
-      <div className="relative flex h-full flex-col">
-        <div className="relative h-full min-h-40 overflow-hidden">
-          <img
-            src={image}
-            alt={title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/18 to-transparent" />
+        <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#004F3B]/5 text-[#004F3B] transition-all duration-300 group-hover:rotate-[15deg] group-hover:bg-[#004F3B] group-hover:text-white">
+          <ArrowRight size={20} strokeWidth={2.2} />
+        </span>
+      </div>
 
-          <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-black/34 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
-            <Camera size={13} strokeWidth={2.4} />
-            {tag}
-          </div>
+      <p className="mb-4 text-[13.5px] leading-relaxed text-[#0B281F]/80">
+        {description}
+      </p>
 
-          <div className="absolute bottom-4 left-4 right-4">
-            <h3 className="max-w-[12ch] text-[22px] font-bold leading-[1.06] text-white" style={{ fontFamily: 'var(--font-heading)' }}>
-              {title}
-            </h3>
-            <p className="mt-2 max-w-72 text-[12px] leading-5 text-white/80">
-              {description}
-            </p>
-          </div>
-        </div>
+      <div className="relative mt-auto min-h-[140px] w-full flex-1 overflow-hidden rounded-[16px]">
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+          loading="lazy"
+        />
+
+        <div className="absolute inset-0 bg-linear-to-t from-[#001A14]/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+        <span 
+          className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-xl px-3 py-2 text-white shadow-[0_8px_16px_rgba(0,0,0,0.15)] backdrop-blur-md transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1"
+          style={{ backgroundColor: accent ? `${accent}E6` : '#0B281FE6' }}
+        >
+          <Camera size={16} strokeWidth={2.2} aria-hidden="true" />
+          <span className="text-[11px] font-bold uppercase tracking-wider">{tag}</span>
+        </span>
       </div>
     </article>
   );
@@ -542,7 +540,7 @@ function GaleriSection() {
           </div>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4 xl:auto-rows-[14rem] xl:gap-5">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-8">
           {galeriPreviewCards.map((item, index) => (
             <div
               key={item.title}
@@ -554,7 +552,6 @@ function GaleriSection() {
                 description={item.description}
                 image={item.image}
                 tag={item.tag}
-                spanClass={item.spanClass}
                 accent={item.accent}
               />
             </div>
@@ -746,11 +743,24 @@ export default function Home() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-[#0B281F] pb-5 pt-6 text-[#F4F3EF] h-screen md:pb-0 md:pt-0">
-        <div className="hero-float pointer-events-none absolute -right-28 -top-44 h-130 w-130 rounded-full bg-[#006045]/30 blur-[110px]" />
-        <div className="hero-float pointer-events-none absolute -bottom-28 -left-24 h-72 w-72 rounded-full bg-[#F0B100]/16 blur-[90px] [animation-delay:900ms]" />
+      <section className="relative overflow-hidden bg-[#0B281F] pb-5 pt-6 text-[#F4F3EF] h-[100svh] min-h-[600px] md:pb-0 md:pt-0">
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="h-full w-full object-cover opacity-35"
+          >
+            <source src="/video/thumbnail.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-linear-to-b from-[#0B281F]/40 via-[#0B281F]/20 to-[#0B281F]" />
+        </div>
 
-        <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 gap-5 px-4 md:h-full md:items-center md:px-10 md:py-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,400px)] lg:gap-10">
+        <div className="hero-float pointer-events-none absolute -right-28 -top-44 z-0 h-130 w-130 rounded-full bg-[#006045]/40 blur-[110px]" />
+        <div className="hero-float pointer-events-none absolute -bottom-28 -left-24 z-0 h-72 w-72 rounded-full bg-[#F0B100]/20 blur-[90px] [animation-delay:900ms]" />
+
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-5 px-4 md:h-full md:items-center md:px-10 md:py-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,400px)] lg:gap-10">
           <div className="max-w-155 pt-0 md:pt-1">
             <div className="hero-reveal inline-flex items-center rounded-full border border-[#006045] bg-[#004F3B]/55 px-3 py-1">
               <span className="mr-2 h-1.5 w-1.5 rounded-full bg-[#FDC700]/70" />
@@ -821,18 +831,18 @@ export default function Home() {
           </div>
 
           <div className="hero-reveal relative mx-auto w-full max-w-sm pt-2 [animation-delay:180ms] lg:pt-0">
-            <div className="absolute -right-2 top-4 h-full w-full rotate-2 rounded-4xl bg-[#006045]/30" />
-            <div className="absolute -left-3 -top-2 h-full w-full -rotate-2 rounded-4xl border border-[#007A55]/70" />
+            <div className="hero-float absolute -right-2 top-4 h-full w-full rotate-2 rounded-4xl bg-[#006045]/30 [animation-delay:300ms]" />
+            <div className="hero-float absolute -left-3 -top-2 h-full w-full -rotate-2 rounded-4xl border border-[#007A55]/70 [animation-delay:600ms]" />
 
-            <div className="relative h-88 overflow-hidden rounded-4xl bg-linear-to-b from-[#006045] to-[#0B281F] shadow-[0_18px_36px_-12px_rgba(0,0,0,0.25)] md:h-112">
+            <div className="hero-float group relative h-88 overflow-hidden rounded-4xl bg-linear-to-b from-[#006045] to-[#0B281F] shadow-[0_18px_36px_-12px_rgba(0,0,0,0.25)] [animation-delay:0ms] md:h-112">
               <img
                 src="/img/hero-kepala-desa.png"
                 alt="Kepala Desa"
-                className="hero-zoom h-full w-full object-cover"
+                className="hero-zoom h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                 loading="eager"
               />
 
-              <div className="hero-pulse absolute bottom-3 left-3 right-3 rounded-2xl border border-white/20 bg-black/35 p-2.5 shadow-[0_10px_15px_rgba(0,0,0,0.1),0_4px_6px_rgba(0,0,0,0.1)] backdrop-blur-[2px] md:bottom-4 md:left-4 md:right-4 md:p-3">
+              <div className="hero-float absolute bottom-3 left-3 right-3 rounded-2xl border border-white/20 bg-black/40 p-2.5 shadow-[0_10px_25px_rgba(0,0,0,0.2)] backdrop-blur-[4px] transition-transform duration-500 hover:-translate-y-1 [animation-delay:900ms] md:bottom-4 md:left-4 md:right-4 md:p-3">
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="text-[13px] font-bold leading-5 md:text-sm">Bapak Sutrisno</p>
@@ -895,11 +905,10 @@ export default function Home() {
               {statistikDemografi.map((item, index) => (
                 <div
                   key={item.label}
-                  className={`hero-reveal min-w-0 rounded-xl bg-[#0B281F]/30 p-3 text-center sm:rounded-none sm:bg-transparent sm:p-0 sm:text-left ${
-                    index > 0
-                      ? "sm:border-l sm:border-[#5EE9B5]/20 sm:pl-4 lg:pl-5"
-                      : ""
-                  }`}
+                  className={`hero-reveal min-w-0 rounded-xl bg-[#0B281F]/30 p-3 text-center sm:rounded-none sm:bg-transparent sm:p-0 sm:text-left ${index > 0
+                    ? "sm:border-l sm:border-[#5EE9B5]/20 sm:pl-4 lg:pl-5"
+                    : ""
+                    }`}
                   style={{ animationDelay: `${260 + index * 120}ms` }}
                 >
                   <p className="font-[Georgia,serif] text-[30px] leading-none tracking-[0.01em] text-white md:text-[36px] md:leading-9">
@@ -992,13 +1001,12 @@ export default function Home() {
                   type="image/svg+xml"
                   data="/img/peta-batas-wilayah-figma.svg?v=3"
                   aria-label="Peta batas wilayah desa"
-                  className={`h-full w-full rounded-xl transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/map:drop-shadow-[0_20px_34px_rgba(11,40,31,0.28)] ${
-                    isMapLayerActive
-                      ? "drop-shadow-[0_14px_28px_rgba(11,40,31,0.24)]"
-                      : isBoundaryCardHoverActive
-                        ? "drop-shadow-[0_18px_30px_rgba(11,40,31,0.22)]"
+                  className={`h-full w-full rounded-xl transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/map:drop-shadow-[0_20px_34px_rgba(11,40,31,0.28)] ${isMapLayerActive
+                    ? "drop-shadow-[0_14px_28px_rgba(11,40,31,0.24)]"
+                    : isBoundaryCardHoverActive
+                      ? "drop-shadow-[0_18px_30px_rgba(11,40,31,0.22)]"
                       : ""
-                  }`}
+                    }`}
                 >
                   <img
                     src="/img/peta-batas-wilayah-figma.svg?v=3"
@@ -1027,11 +1035,10 @@ export default function Home() {
                           type="button"
                           aria-label={marker.nama}
                           aria-pressed={isActiveMarker}
-                          className={`pointer-events-auto relative flex h-6 w-6 items-center justify-center rounded-full border-2 border-white shadow-[0_0_0_0_rgba(0,212,146,0.35)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A4F4CF]/80 ${
-                            isActiveMarker
-                              ? "scale-125 bg-[#00D492] shadow-[0_0_0_10px_rgba(0,212,146,0.16),0_10px_20px_rgba(11,40,31,0.24)]"
-                              : "bg-[#F0B100] hover:scale-110 hover:bg-[#00D492]"
-                          }`}
+                          className={`pointer-events-auto relative flex h-6 w-6 items-center justify-center rounded-full border-2 border-white shadow-[0_0_0_0_rgba(0,212,146,0.35)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A4F4CF]/80 ${isActiveMarker
+                            ? "scale-125 bg-[#00D492] shadow-[0_0_0_10px_rgba(0,212,146,0.16),0_10px_20px_rgba(11,40,31,0.24)]"
+                            : "bg-[#F0B100] hover:scale-110 hover:bg-[#00D492]"
+                            }`}
                           onMouseEnter={() => {
                             setIsBoundaryCardHoverActive(true);
                             setHoveredMapMarkerId(marker.id);
@@ -1096,11 +1103,10 @@ export default function Home() {
 
               <div className="relative z-20 mt-4 grid gap-4 md:mt-0">
                 <div
-                  className={`rounded-xl bg-[#F4F3EF] text-[#0B281F] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:absolute md:left-[18%] md:top-6 md:z-30 md:w-73 ${
-                    isMapLayerActive
-                      ? "-translate-y-0.5 shadow-[0_18px_28px_rgba(0,0,0,0.24)]"
-                      : "shadow-[0_10px_18px_rgba(0,0,0,0.18)]"
-                  }`}
+                  className={`rounded-xl bg-[#F4F3EF] text-[#0B281F] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:absolute md:left-[18%] md:top-6 md:z-30 md:w-73 ${isMapLayerActive
+                    ? "-translate-y-0.5 shadow-[0_18px_28px_rgba(0,0,0,0.24)]"
+                    : "shadow-[0_10px_18px_rgba(0,0,0,0.18)]"
+                    }`}
                 >
                   <div className="flex items-center justify-between gap-0">
                     <div className="px-4 py-2.5">
@@ -1126,11 +1132,10 @@ export default function Home() {
                         <button
                           key={marker.id}
                           type="button"
-                          className={`group/legend flex items-center gap-2 rounded-lg border p-1.5 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#0B281F]/18 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A4F4CF]/75 ${
-                            isActive
-                              ? "border-[#8EE7C5]/45 bg-[#0B281F]/22 shadow-[0_10px_16px_rgba(0,0,0,0.18)]"
-                              : "border-white/10 bg-transparent"
-                          }`}
+                          className={`group/legend flex items-center gap-2 rounded-lg border p-1.5 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#0B281F]/18 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A4F4CF]/75 ${isActive
+                            ? "border-[#8EE7C5]/45 bg-[#0B281F]/22 shadow-[0_10px_16px_rgba(0,0,0,0.18)]"
+                            : "border-white/10 bg-transparent"
+                            }`}
                           aria-label={`Legenda ${marker.nama}`}
                           aria-pressed={isActive}
                           onMouseEnter={() => {
@@ -1162,9 +1167,8 @@ export default function Home() {
                           }}
                         >
                           <span
-                            className={`h-2.5 w-2.5 shrink-0 rounded-xs transition-all duration-500 ${
-                              isActive ? "scale-125" : "scale-100"
-                            }`}
+                            className={`h-2.5 w-2.5 shrink-0 rounded-xs transition-all duration-500 ${isActive ? "scale-125" : "scale-100"
+                              }`}
                             style={{ backgroundColor: marker.warna }}
                           />
 
@@ -1302,18 +1306,16 @@ export default function Home() {
                   <ChevronDown
                     size={16}
                     strokeWidth={2.5}
-                    className={`text-[#20332F] transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                      isYearDropdownOpen ? "rotate-180" : "rotate-0"
-                    }`}
+                    className={`text-[#20332F] transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${isYearDropdownOpen ? "rotate-180" : "rotate-0"
+                      }`}
                   />
                 </button>
 
                 <div
-                  className={`absolute right-0 top-[calc(100%+12px)] z-60 w-44 origin-top-right rounded-2xl border border-[#D3E7DE]/70 bg-[#EEF5F1]/95 p-2 shadow-[0_18px_30px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isYearDropdownOpen
-                      ? "pointer-events-auto translate-y-0 scale-100 opacity-100"
-                      : "pointer-events-none -translate-y-1 scale-95 opacity-0"
-                  }`}
+                  className={`absolute right-0 top-[calc(100%+12px)] z-60 w-44 origin-top-right rounded-2xl border border-[#D3E7DE]/70 bg-[#EEF5F1]/95 p-2 shadow-[0_18px_30px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${isYearDropdownOpen
+                    ? "pointer-events-auto translate-y-0 scale-100 opacity-100"
+                    : "pointer-events-none -translate-y-1 scale-95 opacity-0"
+                    }`}
                 >
                   <ul role="listbox" aria-label="Daftar tahun APBDes" className="space-y-1">
                     {apbdesYears.map((year, index) => {
@@ -1329,11 +1331,10 @@ export default function Home() {
                               setSelectedApbdesYear(year);
                               setIsYearDropdownOpen(false);
                             }}
-                            className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-[12px] font-medium transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] md:text-[13px] ${
-                              isActive
-                                ? "bg-[#0B281F] text-[#A4F4CF]"
-                                : "text-[#26423B] hover:bg-[#DCEBE4]"
-                            }`}
+                            className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-[12px] font-medium transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] md:text-[13px] ${isActive
+                              ? "bg-[#0B281F] text-[#A4F4CF]"
+                              : "text-[#26423B] hover:bg-[#DCEBE4]"
+                              }`}
                             style={{ transitionDelay: isYearDropdownOpen ? `${index * 24}ms` : "0ms" }}
                           >
                             <span>Tahun {year}</span>
@@ -1359,9 +1360,8 @@ export default function Home() {
                   {apbdesStatistik.map((item, index) => (
                     <div
                       key={item.label}
-                      className={`hero-reveal relative flex h-40 flex-1 flex-col items-center justify-center rounded-full border border-white/22 bg-white/20 px-4 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_12px_24px_rgba(0,0,0,0.16)] backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform hover:z-20 hover:-translate-y-1 hover:scale-[1.015] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_18px_30px_rgba(0,0,0,0.24)] md:h-44 ${
-                        index > 0 ? "md:-ml-5" : ""
-                      }`}
+                      className={`hero-reveal relative flex h-40 flex-1 flex-col items-center justify-center rounded-full border border-white/22 bg-white/20 px-4 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_12px_24px_rgba(0,0,0,0.16)] backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform hover:z-20 hover:-translate-y-1 hover:scale-[1.015] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_18px_30px_rgba(0,0,0,0.24)] md:h-44 ${index > 0 ? "md:-ml-5" : ""
+                        }`}
                       style={{ animationDelay: `${420 + index * 120}ms` }}
                     >
                       <p className="text-[10px] font-semibold uppercase tracking-widest text-[#F4F3EF]/82">
@@ -1463,7 +1463,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
       <section className="bg-white px-4 py-8 md:px-10 md:py-10 lg:px-12 lg:py-12">
         <div className="mx-auto w-full max-w-7xl">
           <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,300px)_1fr] lg:gap-12">
@@ -1522,7 +1522,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
       <section className="bg-[#FFFFFF] px-4 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14 ">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 lg:gap-10 ">
           <div className="mb-8 flex flex-col gap-6 border-b border-[#0B281F]/10 pb-8 md:mb-10 lg:flex-row lg:items-start lg:justify-between lg:gap-10">

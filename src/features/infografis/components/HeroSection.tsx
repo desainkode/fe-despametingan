@@ -16,7 +16,7 @@ export function HeroSection({ activeTab, onChangeTab }: HeroSectionProps) {
   const hero = heroContentByFeature[activeTab]
 
   return (
-    <section className="relative overflow-hidden bg-transparent pb-8 pt-6 text-[#F4F3EF] md:pb-10 md:pt-0 lg:pb-12">
+    <section className="relative overflow-hidden bg-transparent pt-6 text-[#F4F3EF] md:pt-14">
       <div className="hero-float pointer-events-none absolute -right-28 -top-44 h-130 w-130 rounded-full bg-[#006045]/30 blur-[110px]" />
       <div className="hero-float pointer-events-none absolute -bottom-28 -left-24 h-72 w-72 rounded-full bg-[#F0B100]/16 blur-[90px] [animation-delay:900ms]" />
 
@@ -82,23 +82,18 @@ export function HeroSection({ activeTab, onChangeTab }: HeroSectionProps) {
 
       <div
         id="feature-tabs"
-        className="relative mx-auto mt-6 w-full max-w-7xl px-4 md:mt-4 md:px-10 lg:mt-2 lg:px-12"
+        className="relative mx-auto mt-8 w-full max-w-7xl px-4 md:mt-12 md:px-10 lg:px-12"
       >
-        <div className="pointer-events-none absolute -left-16 top-0 h-40 w-40 rounded-full bg-[#00D492]/12 blur-3xl" />
-        <div className="pointer-events-none absolute -right-12 bottom-0 h-44 w-44 rounded-full bg-[#F0B100]/12 blur-3xl" />
-
-        <div className="relative overflow-visible rounded-3xl border border-white/10 bg-[#0B281F]/22 p-4 backdrop-blur-[2px] transition-all duration-300 ease-out hover:border-white/15 hover:bg-[#0B281F]/28 md:p-5">
-          <div className="overflow-x-auto px-1 pb-3 pt-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex w-max min-w-full items-center justify-center gap-3 py-1 transition-all duration-300 md:gap-4">
-              {infografisTabs.map((item) => (
-                <TabButton
-                  key={item.key}
-                  item={item}
-                  active={activeTab === item.key}
-                  onClick={onChangeTab}
-                />
-              ))}
-            </div>
+        <div className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex w-max min-w-full items-end justify-center gap-1 md:gap-2 transition-all duration-300">
+            {infografisTabs.map((item) => (
+              <TabButton
+                key={item.key}
+                item={item}
+                active={activeTab === item.key}
+                onClick={onChangeTab}
+              />
+            ))}
           </div>
         </div>
       </div>
