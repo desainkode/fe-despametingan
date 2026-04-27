@@ -69,8 +69,8 @@ function FooterList({
 
 export default function Footer() {
   return (
-    <footer className="mt-8 px-4 md:mt-12 md:px-10 lg:px-12">
-      <div className="overflow-hidden rounded-t-[48px] border border-[#006045] border-b-0 bg-[#0B281F] text-[#F4F3EF]">
+    <footer className="mt-8 md:mt-12 w-full">
+      <div className="border-t border-[#006045] bg-[#0B281F] text-[#F4F3EF]">
         <div className="mx-auto w-full max-w-7xl px-4 pb-5 pt-10 md:px-8 md:pt-12 lg:px-10">
           <div className="grid gap-8 border-b border-[#006045]/50 pb-8 md:grid-cols-2 md:gap-10 lg:grid-cols-4 lg:gap-12 lg:pb-10">
             <div className="hero-reveal flex flex-col gap-5 [animation-delay:120ms]">

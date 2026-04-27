@@ -11,7 +11,7 @@ import {
 interface MiniMetricProps {
   label: string
   value: string
-  description: string
+  description?: string
   index?: number
 }
 
