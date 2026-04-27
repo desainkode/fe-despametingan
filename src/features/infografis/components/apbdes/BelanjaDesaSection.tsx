@@ -1,4 +1,4 @@
-import { ShoppingBag, Users, Settings, Building2 } from 'lucide-react'
+import { ShoppingBag, Landmark, HardHat, Users, Sprout, ShieldAlert } from 'lucide-react'
 import { BelanjaCardPrimary } from './BelanjaCardPrimary'
 import { BelanjaCardSecondary } from './BelanjaCardSecondary'
 
@@ -26,45 +26,67 @@ export function BelanjaDesaSection() {
         </button>
       </div>
 
-      <div className="relative mt-4 grid items-stretch gap-y-12 gap-x-8 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="relative mt-4 grid items-stretch gap-y-12 gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
         <div className="pointer-events-none absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-[#00E0A1]/10 blur-[100px]" />
         <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#00B179]/10 blur-[110px]" />
 
         {/* Card 1: Primary (Green) */}
-        <div className="hero-reveal relative z-10 sm:col-span-2 xl:col-span-1" style={{ animationDelay: '300ms' }}>
+        <div className="hero-reveal relative z-10" style={{ animationDelay: '300ms' }}>
           <BelanjaCardPrimary />
         </div>
 
-        {/* Card 2: Secondary */}
+        {/* Card 2: Pemerintahan Desa */}
         <div className="hero-reveal relative z-10" style={{ animationDelay: '380ms' }}>
           <BelanjaCardSecondary
-            title="Pegawai"
-            value="50%"
-            description="Alokasi anggaran untuk penghasilan tetap dan tunjangan aparatur desa yang menjalankan roda pemerintahan."
-            percentage={50}
+            title="Pemerintahan"
+            value="Rp. 300.000"
+            description="Penyelenggaraan tata praja pemerintahan, operasional, dan pelayanan administrasi publik desa."
+            percentage={30}
+            icon={<Landmark size={20} />}
+          />
+        </div>
+
+        {/* Card 3: Pembangunan Desa */}
+        <div className="hero-reveal relative z-10" style={{ animationDelay: '460ms' }}>
+          <BelanjaCardSecondary
+            title="Pembangunan"
+            value="Rp. 400.000"
+            description="Pengadaan infrastruktur dan fasilitas fisik berkelanjutan untuk kemajuan wilayah."
+            percentage={40}
+            icon={<HardHat size={20} />}
+          />
+        </div>
+
+        {/* Card 4: Pembinaan Kemasyarakatan */}
+        <div className="hero-reveal relative z-10" style={{ animationDelay: '540ms' }}>
+          <BelanjaCardSecondary
+            title="Pembinaan"
+            value="Rp. 100.000"
+            description="Pembinaan pemuda, kesenian, olahraga, dan kegiatan sosial untuk kerukunan warga."
+            percentage={10}
             icon={<Users size={20} />}
           />
         </div>
 
-        {/* Card 3: Secondary */}
-        <div className="hero-reveal relative z-10" style={{ animationDelay: '460ms' }}>
+        {/* Card 5: Pemberdayaan Masyarakat */}
+        <div className="hero-reveal relative z-10" style={{ animationDelay: '620ms' }}>
           <BelanjaCardSecondary
-            title="Barang & Jasa"
-            value="0%"
-            description="Pembelian barang dan jasa pendukung operasional pemerintah desa secara transparan."
-            percentage={0}
-            icon={<Settings size={20} />}
+            title="Pemberdayaan"
+            value="Rp. 100.000"
+            description="Peningkatan kapasitas keterampilan dan dukungan ekonomi produktif masyarakat."
+            percentage={10}
+            icon={<Sprout size={20} />}
           />
         </div>
 
-        {/* Card 4: Secondary */}
-        <div className="hero-reveal relative z-10" style={{ animationDelay: '540ms' }}>
+        {/* Card 6: Penanggulangan Bencana */}
+        <div className="hero-reveal relative z-10" style={{ animationDelay: '700ms' }}>
           <BelanjaCardSecondary
-            title="Modal"
-            value="0%"
-            description="Pengadaan aset tetap dan infrastruktur berkelanjutan untuk kepentingan seluruh lapisan publik."
-            percentage={0}
-            icon={<Building2 size={20} />}
+            title="Bencana/Darurat"
+            value="Rp. 100.000"
+            description="Dana cadangan untuk penanggulangan keadaan darurat dan bencana mendesak di desa."
+            percentage={10}
+            icon={<ShieldAlert size={20} />}
           />
         </div>
       </div>

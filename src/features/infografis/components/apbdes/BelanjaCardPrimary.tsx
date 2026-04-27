@@ -14,9 +14,9 @@ export function BelanjaCardPrimary() {
 
       <div className="relative z-10 flex-1 pr-10 sm:pr-14">
         <h3 className="font-[Georgia,serif] text-[20px] font-bold leading-tight sm:text-[24px]">
-          Total Belanja
+          Rincian Belanja
           <br />
-          per Bidang
+          Desa
         </h3>
 
         <div className="mt-4 flex items-end gap-2">
@@ -25,8 +25,8 @@ export function BelanjaCardPrimary() {
           </span>
         </div>
 
-        <p className="mt-4 max-w-[90%] text-[11px] leading-relaxed text-white/90 sm:text-[13px]">
-          Pembiayaan tiap bidang difokuskan pada prioritas pembangunan dan kebutuhan desa.
+        <p className="mt-4 max-w-[90%] text-[12px] leading-relaxed text-white/90 sm:text-[14px]">
+          Dibagi per bidang agar transparan:
         </p>
       </div>
 

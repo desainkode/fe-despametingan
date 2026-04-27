@@ -4,6 +4,9 @@ import { apbdesCards } from '../config/apbdes-data'
 import { ApbdesCard } from './apbdes/ApbdesCard'
 import { PendapatanDesaSection } from './apbdes/PendapatanDesaSection'
 import { BelanjaDesaSection } from './apbdes/BelanjaDesaSection'
+import { ProgramDesaSection } from './apbdes/ProgramDesaSection'
+import { RealisasiAnggaranSection } from './apbdes/RealisasiAnggaranSection'
+import { GrafikVisualisasiSection } from './apbdes/GrafikVisualisasiSection'
 
 export function ApbdesSection() {
   return (
@@ -40,6 +43,18 @@ export function ApbdesSection() {
 
       <div className="mt-20 md:mt-24">
         <BelanjaDesaSection />
+      </div>
+
+      <div className="mt-20 md:mt-24">
+        <ProgramDesaSection />
+      </div>
+
+      <div className="mt-40 md:mt-24">
+        <RealisasiAnggaranSection />
+      </div>
+
+      <div className="mt-40 md:mt-24">
+        <GrafikVisualisasiSection />
       </div>
     </section>
   )
