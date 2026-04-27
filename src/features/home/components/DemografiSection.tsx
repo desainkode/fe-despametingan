@@ -17,7 +17,7 @@ export function DemografiSection({
         <img
           src={demografiImage}
           alt="Latar demografi"
-          className="hero-pan h-full w-full object-cover"
+          className="animate-demografi-wave h-full w-full object-cover"
           loading="lazy"
         />
 

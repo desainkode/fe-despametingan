@@ -5,7 +5,7 @@ import { heroContentByFeature, infografisTabs } from '../config/infografis-conte
 import { TabButton } from './ui/TabButton'
 
 const kepalaDesaImage =
-  'https://www.figma.com/api/mcp/asset/54a3370e-5465-41c4-b4a4-52cb6b9a36f6'
+  'img/unsplash_tB5ZZtHZ_tI.png'
 
 interface HeroSectionProps {
   activeTab: InfografisKey

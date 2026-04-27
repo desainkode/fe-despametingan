@@ -866,7 +866,7 @@ export default function Home() {
         <div className="relative mx-auto h-80 w-full max-w-7xl overflow-hidden rounded-4xl border border-[#007A55]/40 md:h-96 lg:h-105">
           <div className="absolute inset-0 bg-linear-to-r from-[#005E45] via-[#006548] to-[#005C44]" />
           <svg
-            className="pointer-events-none absolute bottom-0 left-0 h-30 w-full md:h-34 lg:h-38"
+            className="animate-ocean-wave pointer-events-none absolute bottom-0 left-0 h-30 w-[150%] md:h-34 lg:h-38"
             viewBox="0 0 1300 220"
             preserveAspectRatio="none"
             aria-hidden="true"
@@ -1272,7 +1272,7 @@ export default function Home() {
             <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
               <div className="absolute inset-0 bg-linear-to-r from-[#005E45] via-[#006548] to-[#005C44] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/apbdes:scale-[1.01]" />
               <svg
-                className="apbdes-wave absolute bottom-0 left-0 h-26 w-full md:h-30"
+                className="animate-ocean-wave absolute bottom-0 left-0 h-26 w-[150%] md:h-30"
                 viewBox="0 0 1300 220"
                 preserveAspectRatio="none"
                 aria-hidden="true"
