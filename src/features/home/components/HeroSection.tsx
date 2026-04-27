@@ -39,7 +39,7 @@ export function HeroSection({
             <span className="mt-2 block">{titleLines[2]}</span>
           </h1>
 
-          <p className="hero-reveal mt-3 max-w-140 text-[11px] font-light leading-5 text-[#A4F4CF]/80 md:text-[13px] md:leading-6 [animation-delay:220ms]">
+          <p className="hero-reveal mt-3 max-w-140 text-[14px] font-light leading-relaxed text-[#A4F4CF]/80 md:text-[18px] md:leading-[1.625] [animation-delay:220ms]">
             {description}
           </p>
 
@@ -63,10 +63,16 @@ export function HeroSection({
           <div className="hero-reveal mt-5 grid grid-cols-1 gap-2.5 border-t border-[#006045]/55 pt-3 [animation-delay:420ms] sm:grid-cols-3 sm:gap-3">
             {stats.map((stat, i) => (
               <div key={stat.label}>
-                <p className="text-[10px] font-medium uppercase tracking-[0.08em] text-[#00D492]/70 md:text-[11px]">
+                <p 
+                  className="text-[10px] font-medium uppercase tracking-[0.08em] text-[#00D492]/70 md:text-[11px]"
+                  style={{ fontFamily: 'var(--font-heading)' }}
+                >
                   {stat.label}
                 </p>
-                <p className="mt-1 text-[22px] leading-tight md:text-[24px]">
+                <p 
+                  className="mt-1 text-[22px] leading-tight md:text-[24px]"
+                  style={{ fontFamily: 'var(--font-heading)' }}
+                >
                   {stat.value}
                 </p>
               </div>

@@ -47,7 +47,7 @@ export default function Navbar() {
             className="h-8 w-8 object-contain"
             loading="eager"
           />
-          <span className="flex flex-col leading-none" style={{ fontFamily: 'var(--font-heading)' }}>
+          <span className="flex flex-col leading-none" style={{ fontFamily: 'var(--font-sans)' }}>
             <span className="text-[1.3rem] font-bold tracking-tight text-white md:text-[1.5rem]">
               Desa Pameutingan
             </span>
@@ -69,7 +69,7 @@ export default function Navbar() {
                     ? "is-active text-white"
                     : "text-[#D0FAE5] hover:text-white"
                   }`}
-                style={{ fontFamily: 'var(--font-heading)' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 {item.label}
               </Link>
@@ -80,7 +80,7 @@ export default function Navbar() {
         <Link
           href="/layanan-masyarakat"
           className="hero-reveal nav-cta inline-flex h-9 items-center justify-center self-start rounded-full bg-white px-5 text-sm font-semibold text-[#004F3B] shadow-[0_6px_10px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.07)] hover:bg-emerald-50 [animation-delay:240ms] md:self-auto"
-          style={{ fontFamily: 'var(--font-heading)' }}
+          style={{ fontFamily: 'var(--font-sans)' }}
         >
           Layanan Masyarakat
         </Link>
