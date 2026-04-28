@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { upakarti } from "../lib/fonts";
 
 export const metadata: Metadata = {
@@ -14,6 +12,8 @@ export const metadata: Metadata = {
   },
 };
 
+import MainLayout from "./MainLayout";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,9 +25,7 @@ export default function RootLayout({
       className={`${upakarti.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#f5f7f6]">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <MainLayout>{children}</MainLayout>
       </body>
     </html>
   );
