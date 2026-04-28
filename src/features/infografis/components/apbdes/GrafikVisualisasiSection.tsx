@@ -98,7 +98,7 @@ export function GrafikVisualisasiSection() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-70 aspect-square">
+          <div className="relative mx-auto w-full max-w-[280px] aspect-square">
             <div className="absolute inset-0 rounded-full bg-[#00E0A1]/10 blur-3xl" />
             <ChartContainer config={pieConfig} className="mx-auto h-full w-full">
               <PieChart>
@@ -237,7 +237,7 @@ export function GrafikVisualisasiSection() {
             <div className="flex-1 min-h-[300px]">
               <ChartContainer
                 config={barConfig}
-                className="h-[300px] w-full max-w-none aspect-auto!"
+                className="h-[300px] w-full max-w-none !aspect-auto"
               >
                 <BarChart
                   accessibilityLayer

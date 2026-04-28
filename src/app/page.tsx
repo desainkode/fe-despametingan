@@ -483,7 +483,7 @@ function PotensiSection() {
 
 function GaleriPreviewCard({ title, description, image, tag, accent }: GaleriPreviewCardProps) {
   return (
-    <article className="group relative flex h-full min-h-[360px] w-full flex-col rounded-[24px] border border-[#0B281F]/5 bg-white p-5 text-left shadow-[0_12px_24px_rgba(11,40,31,0.04)] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(11,40,31,0.1)] md:p-6">
+    <article className="group relative flex h-full min-h-[360px] w-full flex-col rounded-[24px] border border-[#0B281F]/5 bg-[#F4F3EF] p-5 text-left shadow-[0_12px_24px_rgba(11,40,31,0.04)] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(11,40,31,0.1)] md:p-6">
       <div className="mb-3 flex w-full items-start justify-between gap-4">
         <h3 className="font-timeless text-[20px] font-bold leading-[1.28] text-[#004F3B] md:text-[22px]">
           {title}
@@ -522,7 +522,7 @@ function GaleriPreviewCard({ title, description, image, tag, accent }: GaleriPre
 
 function GaleriSection() {
   return (
-    <section className="bg-[#F5F1E8] px-4 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14">
+    <section className="bg-[#FFFFFF] px-4 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 lg:gap-10">
         <div className="grid gap-4 border-b border-[#0B281F]/10 pb-8 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
           <h2 className="hero-reveal font-timeless max-w-99 text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px] [animation-delay:80ms]">

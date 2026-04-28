@@ -44,7 +44,7 @@ export function PendapatanInfoCard({
           <div className="flex items-end justify-between gap-4 border-t border-white/10 pt-4">
             <div>
               <p className="text-[10px] uppercase tracking-[0.28em] text-white/45">Nominal</p>
-              <p className="mt-1 text-[18px] font-bold text-white sm:text-[20px]" style={{ fontFamily: 'var(--font-upakarti)' }}>
+              <p className="mt-1 font-timeless text-[18px] font-bold text-white sm:text-[20px]">
                 {nominal}
               </p>
             </div>

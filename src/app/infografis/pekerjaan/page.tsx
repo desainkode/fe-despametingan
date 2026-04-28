@@ -208,8 +208,33 @@ export default async function PekerjaanPage({
     ];
 
   return (
-    <main className="min-h-screen bg-[#F6F8F7] px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
+    <main className="min-h-screen bg-[#F6F8F7] pb-12">
+      {/* Full Width Hero Section */}
+      <section className="relative overflow-hidden bg-[#0B281F] pt-28 pb-16 text-white shadow-2xl sm:pt-32 md:pt-36 lg:pt-40 lg:pb-24">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[#00E0A1]/12 blur-[100px]" />
+        <div className="pointer-events-none absolute -left-16 -bottom-16 h-80 w-80 rounded-full bg-[#F0B100]/10 blur-[110px]" />
+        
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 flex flex-col items-center text-center">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#00E0A1] backdrop-blur-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#00E0A1] animate-pulse" />
+              Detail Infografis Desa
+            </div>
+
+            <h1 className="max-w-4xl font-[Georgia,serif] text-[40px] font-bold leading-[1.05] tracking-tight sm:text-[52px] lg:text-[64px]">
+              Eksplorasi <span className="text-[#00E0A1]">Jenis Pekerjaan</span>
+              <br />
+              Warga Pameutingan
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-white/70 sm:text-[17px]">
+              Data komprehensif mengenai sebaran mata pencaharian penduduk yang mencerminkan dinamika ekonomi dan potensi sumber daya manusia di desa kami.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <Link
             href="/infografis"
@@ -225,13 +250,14 @@ export default async function PekerjaanPage({
           </div>
         </div>
 
+
         <section className="rounded-[30px] bg-white px-5 py-6 shadow-[0_18px_50px_rgba(11,40,31,0.08)] sm:px-6 md:px-7 md:py-7 lg:px-8 lg:py-8">
           <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
-            <h1 className="font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
-              Detail
+            <h2 className="font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
+              Ringkasan
               <br />
-              Jenis Pekerjaan
-            </h1>
+              Statistik
+            </h2>
 
             <p className="max-w-none pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7">
               Menampilkan data View All pekerjaan dengan cakupan lebih lengkap agar mudah dibaca, lebih rapi, dan konsisten dengan desain infografis lainnya.

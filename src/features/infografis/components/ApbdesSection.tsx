@@ -1,4 +1,5 @@
-import { CircleDollarSign } from 'lucide-react'
+import { CircleDollarSign, ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 import { sectionCardClass } from '../constants/styles'
 import { apbdesCards } from '../config/apbdes-data'
 import { ApbdesCard } from './apbdes/ApbdesCard'
@@ -13,9 +14,18 @@ export function ApbdesSection() {
     <section
       className={
         sectionCardClass +
-        ''
+        ' overflow-hidden'
       }
     >
+
+      <div className="hero-reveal mb-4 flex justify-end">
+        <Link
+          href="/infografis/apbdes"
+          className="inline-flex items-center gap-2 rounded-full border border-[#0B281F]/10 bg-white px-4 py-2 text-[11px] font-bold text-[#0B281F] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+        >
+          Lihat Semua Detail <ArrowRight size={14} />
+        </Link>
+      </div>
       <div className="mb-6 grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
         <h2 className="hero-reveal whitespace-pre-line font-[Georgia,serif] text-[26px] font-bold leading-[1.08] tracking-[0.01em] text-[#0B0D10] md:text-[30px] lg:text-[38px]">
           APB Desa{`\n`}Pameutingan

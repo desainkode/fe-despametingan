@@ -53,10 +53,10 @@ export function ApbdesCard({ card, index }: ApbdesCardProps) {
             }`}
           >
             <div className="pointer-events-none absolute -right-8 -top-8 h-22 w-22 rounded-full bg-white/10 blur-2xl" />
-            <p className="relative text-[14px] font-bold uppercase tracking-[0.04em] text-[#E8F7F1]/88 sm:text-[15px]" style={{ fontFamily: 'var(--font-upakarti)' }}>
+            <p className="relative font-timeless text-[14px] font-bold uppercase tracking-[0.04em] text-[#E8F7F1]/88 sm:text-[15px]">
               RP.
             </p>
-            <p className="relative mt-1 text-[28px] font-bold leading-[0.92] tracking-[-0.02em] text-[#F2FAF7] sm:text-[30px] lg:text-[34px]" style={{ fontFamily: 'var(--font-upakarti)' }}>
+            <p className="relative mt-1 font-timeless text-[28px] font-bold leading-[0.92] tracking-[-0.02em] text-[#F2FAF7] sm:text-[30px] lg:text-[34px]">
               {card.amount}
             </p>
           </div>

@@ -29,7 +29,7 @@ export function BelanjaCardSecondary({
         </h3>
 
         <div className="mt-4 flex items-end gap-2">
-          <span className="font-[Georgia,serif] text-[34px] font-bold leading-none tracking-tight text-[#111] sm:text-[40px]">
+          <span className="font-timeless text-[34px] font-bold leading-none tracking-tight text-[#111] sm:text-[40px]">
             {value}
           </span>
         </div>

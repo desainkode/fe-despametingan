@@ -20,7 +20,7 @@ export function BelanjaCardPrimary() {
         </h3>
 
         <div className="mt-4 flex items-end gap-2">
-          <span className="font-[Georgia,serif] text-[34px] font-bold leading-none tracking-tight sm:text-[40px]">
+          <span className="font-timeless text-[34px] font-bold leading-none tracking-tight sm:text-[40px]">
             Rp. 1.000.000
           </span>
         </div>
