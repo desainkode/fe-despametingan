@@ -7,10 +7,10 @@ import { useState, useEffect } from "react";
 const navItems = [
   { label: "Beranda", href: "/" },
   { label: "Profil", href: "/profil" },
-  { label: "Infografis", href: "/infografis" },
   { label: "Potensi", href: "/potensi" },
   { label: "Berita", href: "/berita" },
   { label: "Galeri", href: "/galeri" },
+  { label: "Infografis", href: "/infografis" },
   { label: "Kontak", href: "/kontak" },
 ];
 
