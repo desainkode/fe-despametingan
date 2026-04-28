@@ -249,11 +249,11 @@ export const bansosContent: BansosSectionContent = {
     },
   ],
   distributions: [
-    { dusun: 'Darmacaang', count: '3.542', description: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Darmacaang' },
-    { dusun: 'Mekarsari', count: '3.542', description: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Mekarsari' },
-    { dusun: 'Cibiru', count: '3.542', description: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Cibiru' },
-    { dusun: 'Sukamaju', count: '3.542', description: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Sukamaju' },
-    { dusun: 'Dago', count: '3.542', description: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Dago' },
+    { dusun: 'Darmacaang', keluarga: 3542, alokasi: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Darmacaang' },
+    { dusun: 'Mekarsari', keluarga: 3542, alokasi: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Mekarsari' },
+    { dusun: 'Cibiru', keluarga: 3542, alokasi: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Cibiru' },
+    { dusun: 'Sukamaju', keluarga: 3542, alokasi: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Sukamaju' },
+    { dusun: 'Dago', keluarga: 3542, alokasi: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Dago' },
   ],
   benefitTypes: [
     { name: 'PKH', count: '3.542', color: 'bg-[#D9D9D9]' },

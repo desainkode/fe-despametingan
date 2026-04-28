@@ -19,7 +19,7 @@ export function BansosDistributionCard({ data }: BansosDistributionCardProps) {
       </div>
 
       <p className="text-[9px] font-normal opacity-70 leading-relaxed z-10 line-clamp-2">
-        {data.description}
+        {data.alokasi}
       </p>
 
       <div className="flex justify-between items-end mt-auto relative z-10">
@@ -29,7 +29,7 @@ export function BansosDistributionCard({ data }: BansosDistributionCardProps) {
             className="text-4xl font-normal leading-none" 
             style={{ fontFamily: 'var(--font-upakarti)' }}
           >
-            {data.count}
+            {data.keluarga}
           </span>
           <span className="text-amber-400 text-[9px] font-medium">Orang</span>
         </div>

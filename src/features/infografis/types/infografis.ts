@@ -71,7 +71,7 @@ export interface BansosIndicator {
   color: string
 }
 
-export interface BansosAllocationSummary {
+export interface BansosAllocation {
   label: string
   value: string
   description: string
@@ -81,8 +81,8 @@ export interface BansosAllocationSummary {
 
 export interface BansosDistributionData {
   dusun: string
-  count: string
-  description: string
+  keluarga: number
+  alokasi: string
 }
 
 export interface BansosBenefitType {
@@ -95,7 +95,7 @@ export interface BansosSectionContent {
   title: string
   description: string
   indicators: BansosIndicator[]
-  summaries: BansosAllocationSummary[]
+  summaries: BansosAllocation[]
   distributions: BansosDistributionData[]
   benefitTypes: BansosBenefitType[]
 }

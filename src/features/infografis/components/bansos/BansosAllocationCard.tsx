@@ -1,8 +1,8 @@
 import { ArrowUpRight } from 'lucide-react'
-import { BansosAllocationSummary } from '../../types/infografis'
+import { BansosAllocation } from '../../types/infografis'
 
 interface BansosAllocationCardProps {
-  summary: BansosAllocationSummary
+  summary: BansosAllocation
 }
 
 export function BansosAllocationCard({ summary }: BansosAllocationCardProps) {
