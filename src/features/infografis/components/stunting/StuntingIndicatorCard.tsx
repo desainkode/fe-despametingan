@@ -17,7 +17,7 @@ export function StuntingIndicatorCard({ indicator }: StuntingIndicatorCardProps)
 
   return (
     <div
-      className={`${indicator.color} relative overflow-hidden rounded-xl p-5 text-white shadow-lg`}
+      className={`${indicator.color} relative overflow-hidden rounded-xl p-5 text-white shadow-lg h-full flex flex-col`}
     >
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
