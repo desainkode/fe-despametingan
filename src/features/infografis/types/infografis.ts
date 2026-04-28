@@ -64,15 +64,40 @@ export interface ApbdesSectionContent {
 // BANSOS SECTION TYPES
 // ============================================================================
 
-export interface BansosStatus {
+export interface BansosIndicator {
   label: string
   value: string
+  description: string
+  color: string
+}
+
+export interface BansosAllocationSummary {
+  label: string
+  value: string
+  description: string
+  unit: string
+  color: string
+}
+
+export interface BansosDistributionData {
+  dusun: string
+  count: string
+  description: string
+}
+
+export interface BansosBenefitType {
+  name: string
+  count: string
+  color: string
 }
 
 export interface BansosSectionContent {
   title: string
   description: string
-  statuses: BansosStatus[]
+  indicators: BansosIndicator[]
+  summaries: BansosAllocationSummary[]
+  distributions: BansosDistributionData[]
+  benefitTypes: BansosBenefitType[]
 }
 
 // ============================================================================
@@ -83,12 +108,40 @@ export interface StuntingIndicator {
   label: string
   value: string
   description: string
+  icon?: string
+  color?: string
+}
+
+export interface StuntingPrevalenceData {
+  ageGroup: string
+  percentage?: number
+  targetPercentage?: string
+  count: string
+  description?: string
+}
+
+export interface StuntingTrendData {
+  year: string
+  prevalence: number
+  intervention?: number
+}
+
+export interface StuntingProgramData {
+  name: string
+  coverage: number
+  description: string
+  target: string
+  icon?: string
+  color?: string
 }
 
 export interface StuntingSectionContent {
   title: string
   description: string
   indicators: StuntingIndicator[]
+  prevalenceByAge?: StuntingPrevalenceData[]
+  trendData?: StuntingTrendData[]
+  programs?: StuntingProgramData[]
 }
 
 // ============================================================================

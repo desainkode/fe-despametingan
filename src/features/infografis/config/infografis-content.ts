@@ -59,14 +59,14 @@ export const heroContentByFeature: Record<InfografisKey, HeroContent> = {
       'Transparansi keuangan adalah komitmen kami kepada masyarakat desa.',
   },
   stunting: {
-    eyebrow: 'Kesehatan Anak',
-    titleLines: ['Jaga Gizi,', 'Cegah', 'Stunting'],
+    eyebrow: 'WEBSITE RESMI PEMERINTAH DESA',
+    titleLines: ['data stunting', 'desa pameutingan', ''],
     description:
-      'Monitoring terpadu untuk pencegahan stunting melalui data balita terpantau, identifikasi risiko, dan intervensi gizi yang efektif.',
+      'Statistik Stunting Desa Pameutingan merupakan data jumlah dan persentase balita yang mengalami stunting sebagai gambaran kondisi gizi dan pertumbuhan anak.',
     stats: [
-      { label: 'Balita', value: '124' },
-      { label: 'Risiko', value: '18' },
-      { label: 'Intervensi', value: '96%' },
+      { label: 'Balita', value: '3.542' },
+      { label: 'Stunting', value: '3.542' },
+      { label: 'Prevalensi', value: '3.542' },
     ],
     quoteName: 'Petugas Kesehatan',
     quoteRole: 'Puskesmas Desa',
@@ -74,14 +74,14 @@ export const heroContentByFeature: Record<InfografisKey, HeroContent> = {
       'Anak yang sehat adalah investasi masa depan desa yang lebih baik.',
   },
   bansos: {
-    eyebrow: 'Bantuan Sosial',
-    titleLines: ['Layanan Sosial,', 'Tepat', 'Sasaran'],
+    eyebrow: 'Website Resmi Pemerintah Desa',
+    titleLines: ['Data Bansos', 'Desa Pameutingan', ''],
     description:
-      'Manajemen program bantuan sosial dengan sistem validasi data berbasis teknologi untuk memastikan bantuan tepat sasaran dan akuntabel.',
+      'Ringkasan Bantuan Sosial Desa Pameutingan merupakan data jumlah dan jenis bantuan sosial yang diterima masyarakat sebagai gambaran kondisi kesejahteraan warga serta dasar perencanaan dan penyaluran bantuan di desa.',
     stats: [
-      { label: 'Penerima', value: '423' },
-      { label: 'Tersalurkan', value: '91%' },
-      { label: 'Validasi', value: 'Aktif' },
+      { label: 'Penerima', value: '3.542' },
+      { label: 'Kepala Keluarga', value: '1.087' },
+      { label: 'Dusun', value: '4' },
     ],
     quoteName: 'Koordinator Bansos',
     quoteRole: 'Aparatur Desa',
@@ -177,12 +177,91 @@ export const apbdesContent: ApbdesSectionContent = {
 
 export const bansosContent: BansosSectionContent = {
   title: 'Bantuan Sosial',
-  description:
-    'Ringkasan penerima, status penyaluran, dan validasi data agar distribusi bantuan lebih transparan dan tepat sasaran.',
-  statuses: [
-    { label: 'Keluarga Penerima', value: '423' },
-    { label: 'Tersalurkan', value: '91%' },
-    { label: 'Validasi Data', value: 'Aktif' },
+  description: 'Ringkasan Bantuan Sosial Desa Pameutingan merupakan data jumlah and jenis bantuan sosial yang diterima masyarakat sebagai gambaran kondisi kesejahteraan warga serta dasar perencanaan and penyaluran bantuan di desa.',
+  indicators: [
+    {
+      label: 'Total Penerima Bansos',
+      value: '10',
+      description: 'Jumlah keseluruhan masyarakat yang menerima bantuan sosial di desa.',
+      color: 'bg-neutral-900',
+    },
+    {
+      label: 'Jenis Bantuan',
+      value: '10',
+      description: 'Total program bantuan sosial yang dijalankan di desa.',
+      color: 'bg-emerald-800',
+    },
+    {
+      label: 'Total Anggaran Tahunan',
+      value: '10',
+      description: 'Jumlah dana dialokasikan untuk program bantuan sosial selama satu tahun.',
+      color: 'bg-emerald-600',
+    },
+    {
+      label: 'Jumlah Program Bantuan',
+      value: '10',
+      description: 'Jumlah keseluruhan masyarakat yang menerima bantuan sosial di desa.',
+      color: 'bg-yellow-500',
+    },
+  ],
+  summaries: [
+    {
+      label: 'Penerima Aktif',
+      value: '3.542',
+      unit: 'Orang',
+      description: 'Jumlah warga yang masih terdaftar sebagai penerima bantuan sosial.',
+      color: 'from-emerald-950 via-emerald-600 to-emerald-950',
+    },
+    {
+      label: 'Penerima Baru',
+      value: '3.542',
+      unit: 'Orang',
+      description: 'Jumlah warga yang baru terdaftar sebagai penerima bantuan.',
+      color: 'bg-[#0B281F]',
+    },
+    {
+      label: 'Alokasi Bantuan',
+      value: '3.542',
+      unit: 'RP.',
+      description: 'Jumlah anggaran bantuan yang dialokasikan untuk masyarakat.',
+      color: 'bg-[#0B281F]',
+    },
+    {
+      label: 'Bantuan Tersalurkan',
+      value: '3.542',
+      unit: 'RP.',
+      description: 'Jumlah bantuan yang telah disalurkan kepada penerima.',
+      color: 'from-emerald-950 via-emerald-600 to-emerald-950',
+    },
+    {
+      label: 'Sisa Alokasi Bantuan',
+      value: '3.542',
+      unit: 'RP.',
+      description: 'Sisa anggaran bantuan yang belum disalurkan.',
+      color: 'bg-[#0B281F]',
+    },
+    {
+      label: 'Total Penerima',
+      value: '3.542',
+      unit: 'RP.',
+      description: 'Jumlah keseluruhan warga yang menerima bantuan sosial.',
+      color: 'bg-[#0B281F]',
+    },
+  ],
+  distributions: [
+    { dusun: 'Darmacaang', count: '3.542', description: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Darmacaang' },
+    { dusun: 'Mekarsari', count: '3.542', description: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Mekarsari' },
+    { dusun: 'Cibiru', count: '3.542', description: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Cibiru' },
+    { dusun: 'Sukamaju', count: '3.542', description: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Sukamaju' },
+    { dusun: 'Dago', count: '3.542', description: 'Menampilkan jumlah penerima bantuan sosial yang berada di Dusun Dago' },
+  ],
+  benefitTypes: [
+    { name: 'PKH', count: '3.542', color: 'bg-[#D9D9D9]' },
+    { name: 'BPMT', count: '3.542', color: 'bg-[#F0B100]' },
+    { name: 'BLT', count: '3.542', color: 'bg-[#D9D9D9]' },
+    { name: 'Sembako', count: '3.542', color: 'bg-[#2D7A65]' },
+    { name: 'Beasiswa', count: '3.542', color: 'bg-[#D9D9D9]' },
+    { name: 'Rutilahu', count: '3.542', color: 'bg-[#00945E]' },
   ],
 }
 
@@ -191,13 +270,102 @@ export const bansosContent: BansosSectionContent = {
 // ============================================================================
 
 export const stuntingContent: StuntingSectionContent = {
-  title: 'Pemantauan Stunting',
+  title: 'Statistik Stunting',
   description:
-    'Menyajikan data tumbuh kembang anak, risiko stunting, dan tindak lanjut intervensi gizi dalam format yang mudah dipantau.',
+    'Statistik Stunting Desa Pameutingan merupakan data jumlah dan persentase balita yang mengalami stunting sebagai gambaran kondisi gizi dan pertumbuhan anak, yang menjadi dasar perencanaan program kesehatan dan pencegahan stunting di desa.',
   indicators: [
-    { label: 'Balita Terpantau', value: '124', description : 'Jumlah balita yang terdata dalam sistem pemantauan tumbuh kembang anak' },
-    { label: 'Risiko Stunting', value: '18', description: 'Jumlah balita yang teridentifikasi memiliki risiko stunting berdasarkan data yang terkumpul' },
-    { label: 'Intervensi Aktif', value: '96%', description: 'Persentase balita yang mendapatkan intervensi gizi aktif untuk pencegahan stunting' },
+    {
+      label: 'Total Anak',
+      value: '3.542',
+      description: 'Jumlah keseluruhan anak yang menjadi sasaran pendataan di desa.',
+      icon: 'User',
+      color: 'bg-linear-to-br from-[#0B281F] to-[#006045]',
+    },
+    {
+      label: 'Anak Stunting',
+      value: '3.542',
+      description: 'Jumlah anak yang terdata mengalami stunting di desa.',
+      icon: 'TrendingDown',
+      color: 'bg-linear-to-br from-[#0B281F] to-[#008F5D]',
+    },
+    {
+      label: 'Prevalensi',
+      value: '3.542',
+      description: 'Anak stunting dibandingkan dengan total anak yang didata.',
+      icon: 'Activity',
+      color: 'bg-linear-to-br from-[#008F5D] to-[#00C48C]',
+    },
+    {
+      label: 'Target',
+      value: '3.542',
+      description: 'Target penurunan angka stunting dalam periode tertentu.',
+      icon: 'Target',
+      color: 'bg-[#F0B100]',
+    },
+  ],
+  prevalenceByAge: [
+    {
+      ageGroup: '0-6 bulan',
+      count: '3.542',
+      targetPercentage: '14,0%',
+      description: 'Kelompok usia bayi sejak lahir hingga 6 bulan.',
+    },
+    {
+      ageGroup: '6-12 bulan',
+      count: '3.542',
+      targetPercentage: '14,0%',
+      description: 'Kelompok usia bayi 6 bulan hingga 12 bulan.',
+    },
+    {
+      ageGroup: '1-2 tahun',
+      count: '3.542',
+      targetPercentage: '14,0%',
+      description: 'Kelompok usia bayi 1 tahun hingga 2 tahun.',
+    },
+    {
+      ageGroup: '2-3 tahun',
+      count: '3.542',
+      targetPercentage: '14,0%',
+      description: 'Kelompok usia bayi 2 tahun hingga 3 tahun.',
+    },
+    {
+      ageGroup: '3-5 tahun',
+      count: '3.542',
+      targetPercentage: '14,0%',
+      description: 'Kelompok usia bayi 3 tahun hingga 5 tahun.',
+    },
+  ],
+  trendData: [
+    { year: '2018', prevalence: 65 },
+    { year: '2019', prevalence: 45 },
+    { year: '2020', prevalence: 92 },
+    { year: '2021', prevalence: 88 },
+    { year: '2022', prevalence: 67 },
+    { year: '2023', prevalence: 90 },
+    { year: '2024', prevalence: 82 },
+    { year: '2025', prevalence: 50 },
+    { year: '2026', prevalence: 98 },
+    { year: '2027', prevalence: 63 },
+  ],
+  programs: [
+    {
+      name: 'Posyandu Rutin Bulanan',
+      coverage: 36,
+      description: 'Pelayanan kesehatan ibu dan anak setiap bulan.',
+      target: '275/227 sasaran',
+    },
+    {
+      name: 'Tablet Tambah Darah',
+      coverage: 66,
+      description: 'Suplemen zat besi untuk mencegah dan mengatasi anemia.',
+      target: '75/53 sasaran',
+    },
+    {
+      name: 'Penyuluhan Gizi Keluarga',
+      coverage: 26,
+      description: 'Kegiatan edukasi tentang pemenuhan gizi seimbang bagi keluarga.',
+      target: '147/118 sasaran',
+    },
   ],
 }
 

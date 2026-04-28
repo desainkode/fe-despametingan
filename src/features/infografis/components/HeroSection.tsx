@@ -14,6 +14,9 @@ interface HeroSectionProps {
 
 export function HeroSection({ activeTab, onChangeTab }: HeroSectionProps) {
   const hero = heroContentByFeature[activeTab]
+  const isStunting = activeTab === 'stunting'
+  const isBansos = activeTab === 'bansos'
+  const isCustomHero = isStunting || isBansos
 
   return (
     <section className="relative overflow-hidden bg-transparent pt-6 text-[#F4F3EF] md:pt-14">
@@ -30,15 +33,32 @@ export function HeroSection({ activeTab, onChangeTab }: HeroSectionProps) {
           </div>
 
           <h1
-            className="hero-reveal mt-3 max-w-132 text-[40px] font-bold leading-[1.02] tracking-[0.052em] md:text-[56px] lg:text-[64px] [animation-delay:120ms]"
-            style={{ fontFamily: 'var(--font-upakarti)' }}
+            className={`hero-reveal mt-3 max-w-132 leading-[1.02] tracking-[0.052em] [animation-delay:120ms] ${
+              isCustomHero
+                ? 'text-[48px] md:text-[72px] font-bold lowercase'
+                : 'text-[40px] md:text-[56px] lg:text-[64px] font-bold'
+            }`}
+            style={{ fontFamily: isCustomHero ? 'var(--font-heading)' : 'var(--font-upakarti)' }}
           >
-            <span className="block">{hero.titleLines[0]}</span>
-            <span className="relative mt-2 block text-[#00D492]">
-              {hero.titleLines[1]}
-              <span className="absolute -bottom-1 left-[34%] h-0.75 w-[44%] rounded-full bg-[#F0B100] md:h-1" />
-            </span>
-            <span className="mt-2 block">{hero.titleLines[2]}</span>
+            {isCustomHero ? (
+              <>
+                <span className="block">{hero.titleLines[0]}</span>
+                <span className="relative mt-2 block">
+                  <span className="text-white">{hero.titleLines[1]}</span>{' '}
+                  <span className="text-[#00D492]">{hero.titleLines[2]}</span>
+                  <span className="absolute -bottom-1 left-[0] h-1.5 w-[60%] rounded-full bg-[#F0B100] md:h-2" />
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="block">{hero.titleLines[0]}</span>
+                <span className="relative mt-2 block text-[#00D492]">
+                  {hero.titleLines[1]}
+                  <span className="absolute -bottom-1 left-[34%] h-0.75 w-[44%] rounded-full bg-[#F0B100] md:h-1" />
+                </span>
+                <span className="mt-2 block">{hero.titleLines[2]}</span>
+              </>
+            )}
           </h1>
 
           <p className="hero-reveal mt-3 max-w-140 text-[11px] font-light leading-5 text-[#A4F4CF]/80 md:text-[13px] md:leading-6 [animation-delay:220ms]">
@@ -47,36 +67,53 @@ export function HeroSection({ activeTab, onChangeTab }: HeroSectionProps) {
         </div>
 
         <div className="hero-reveal relative mx-auto w-full max-w-sm pt-2 [animation-delay:180ms] lg:pt-0">
-          <div className="absolute -right-2 top-4 h-full w-full rotate-2 rounded-4xl bg-[#006045]/30" />
-          <div className="absolute -left-3 -top-2 h-full w-full -rotate-2 rounded-4xl border border-[#007A55]/70" />
+          {isCustomHero ? (
+            <div className="relative h-88 w-full md:h-112">
+              {/* Overlapping images as seen in Figma */}
+              <div className="absolute -right-8 top-0 h-4/5 w-4/5 overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+                <img src="img/unsplash_tB5ZZtHZ_tI.png" className="h-full w-full object-cover opacity-60" alt="" />
+              </div>
+              <div className="absolute -left-12 bottom-4 h-4/5 w-4/5 overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+                <img src="img/unsplash_tB5ZZtHZ_tI.png" className="h-full w-full object-cover opacity-80" alt="" />
+              </div>
+              <div className="absolute left-4 top-12 h-[85%] w-[85%] overflow-hidden rounded-3xl border-4 border-[#006045] shadow-2xl">
+                <img src="img/unsplash_tB5ZZtHZ_tI.png" className="h-full w-full object-cover" alt="" />
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="absolute -right-2 top-4 h-full w-full rotate-2 rounded-4xl bg-[#006045]/30" />
+              <div className="absolute -left-3 -top-2 h-full w-full -rotate-2 rounded-4xl border border-[#007A55]/70" />
 
-          <div className="relative h-88 overflow-hidden rounded-4xl bg-linear-to-b from-[#006045] to-[#0B281F] shadow-[0_18px_36px_-12px_rgba(0,0,0,0.25)] md:h-112">
-            <img
-              src={kepalaDesaImage}
-              alt="Kepala Desa"
-              className="hero-zoom h-full w-full object-cover"
-              loading="eager"
-            />
+              <div className="relative h-88 overflow-hidden rounded-4xl bg-linear-to-b from-[#006045] to-[#0B281F] shadow-[0_18px_36px_-12px_rgba(0,0,0,0.25)] md:h-112">
+                <img
+                  src={kepalaDesaImage}
+                  alt="Kepala Desa"
+                  className="hero-zoom h-full w-full object-cover"
+                  loading="eager"
+                />
 
-            <div className="hero-pulse absolute bottom-3 left-3 right-3 rounded-2xl border border-white/20 bg-black/35 p-2.5 shadow-[0_10px_15px_rgba(0,0,0,0.1),0_4px_6px_rgba(0,0,0,0.1)] backdrop-blur-[2px] md:bottom-4 md:left-4 md:right-4 md:p-3">
-              <div className="flex items-start justify-between">
-                <div>
-                  <p className="text-[13px] font-bold leading-5 md:text-sm">
-                    {hero.quoteName}
-                  </p>
-                  <p className="mt-1 text-[10px] text-[#A4F4CF] md:text-[11px]">
-                    {hero.quoteRole}
+                <div className="hero-pulse absolute bottom-3 left-3 right-3 rounded-2xl border border-white/20 bg-black/35 p-2.5 shadow-[0_10px_15px_rgba(0,0,0,0.1),0_4px_6px_rgba(0,0,0,0.1)] backdrop-blur-[2px] md:bottom-4 md:left-4 md:right-4 md:p-3">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <p className="text-[13px] font-bold leading-5 md:text-sm">
+                        {hero.quoteName}
+                      </p>
+                      <p className="mt-1 text-[10px] text-[#A4F4CF] md:text-[11px]">
+                        {hero.quoteRole}
+                      </p>
+                    </div>
+                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#F0B100] text-xs font-bold text-[#0B281F]">
+                      &quot;
+                    </span>
+                  </div>
+                  <p className="mt-1.5 text-[10px] italic leading-4 text-[#D0FAE5]/80">
+                    &quot;{hero.quoteText}&quot;
                   </p>
                 </div>
-                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#F0B100] text-xs font-bold text-[#0B281F]">
-                  &quot;
-                </span>
               </div>
-              <p className="mt-1.5 text-[10px] italic leading-4 text-[#D0FAE5]/80">
-                &quot;{hero.quoteText}&quot;
-              </p>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </div>
 
