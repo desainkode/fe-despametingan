@@ -22,7 +22,7 @@ export function SectionHeader({
       className="mb-8 grid gap-4 border-b border-[#0B281F]/10 pb-8 md:mb-10 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6"
       style={{ animationDelay: `${delay}ms` }}
     >
-      <h2 className="hero-reveal text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
+      <h2 className="hero-reveal font-upakarti text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
         {titleLines.map((line, i) => (
           <span key={i} className="block">
             {line}

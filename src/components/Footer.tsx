@@ -141,7 +141,7 @@ export default function Footer() {
 
           {/* Footer Bottom */}
           <div className="flex flex-col gap-4 border-t border-white/5 pt-8 text-[12px] text-[#00D492]/40 md:flex-row md:items-center md:justify-between">
-            <p>© 2026 Pemerintah Desa Asri. Hak Cipta Dilindungi.</p>
+            <p>© 2026 Pemerintah Desa Pameutingan. Hak Cipta Dilindungi.</p>
 
             <div className="flex items-center gap-6">
               <Link href="#" className="hover:text-[#A4F4CF] transition-colors">Kebijakan Privasi</Link>

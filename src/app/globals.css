@@ -58,7 +58,11 @@ body {
 }
 
 .font-timeless {
-  font-family: "Timeless", var(--font-upakarti), Georgia, serif;
+  font-family: "Timeless", Georgia, serif;
+}
+
+.font-upakarti {
+  font-family: var(--font-upakarti), serif;
 }
 
 @keyframes hero-reveal {
