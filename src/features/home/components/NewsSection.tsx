@@ -1,51 +1,64 @@
 "use client";
 
-import { ArrowRight, Leaf } from "lucide-react";
+import { ArrowRight, Leaf, Calendar } from "lucide-react";
 import { SectionHeader } from "./ui/SectionHeader";
 import Image from "next/image";
 import { INFORMASI_TERKINI } from "../config/home-data";
 
 export default function NewsSection() {
   return (
-    <section className="bg-[#FFFFFF] px-4 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 lg:gap-10">
+    <section className="bg-white px-6 py-12 md:px-10 md:py-16 lg:px-12">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
         <SectionHeader 
           title={["Informasi Terkini", "Desa Pameutingan"]}
-          description="Menyajikan ringkasan kabar terbaru desa secara transparan, akurat, dan mudah diakses agar warga dapat mengikuti aktivitas, program, serta perkembangan desa secara cepat."
+          description="Menyajikan ringkasan kabar terbaru desa secara transparan, akurat, dan mudah diakses agar warga dapat mengikuti perkembangan desa secara cepat."
           showInfoButton
         />
 
-        <div className="grid justify-items-center gap-6 sm:grid-cols-2 xl:grid-cols-4 xl:gap-x-8 xl:gap-y-8">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {INFORMASI_TERKINI.map((item, index) => (
             <button
               key={index}
               type="button"
-              className="hero-reveal group relative flex h-93.25 w-full max-w-72 flex-col items-start gap-3 rounded-[17px] bg-[#D9D9D9] px-5.75 py-5.5 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-              style={{ animationDelay: `${220 + index * 70}ms` }}
+              className="hero-reveal group relative flex h-full flex-col overflow-hidden rounded-[32px] bg-[#F4F3EF] border border-[#0B281F]/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl text-left"
+              style={{ animationDelay: `${200 + index * 100}ms` }}
             >
-              <div className="flex w-full items-start justify-between gap-4">
-                <h3 className="font-timeless max-w-43 text-[20px] font-bold leading-[1.28] text-[#004F3B]">
-                  {item.title}
-                </h3>
-                <span className="inline-flex h-11.25 w-11.25 shrink-0 items-center justify-center rounded-full border border-[#004F3B]/80 text-[#004F3B] group-hover:bg-[#004F3B] group-hover:text-white transition-colors duration-300">
-                  <ArrowRight size={20} strokeWidth={2} />
-                </span>
-              </div>
-
-              <p className="max-w-52.5 text-[14px] leading-5 text-[#0B281F]">
-                {item.description}
-              </p>
-
-              <div className="relative mt-auto h-43.5 w-full overflow-hidden rounded-[7px]">
+              {/* Image Header */}
+              <div className="relative h-56 w-full overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <span className="absolute bottom-5 left-5 inline-flex h-11.25 w-11.25 items-center justify-center rounded-full bg-[#004F3B] text-white shadow-lg">
-                  <Leaf size={16} strokeWidth={2.2} />
+                <div className="absolute inset-0 bg-linear-to-t from-[#052119]/80 via-transparent to-transparent" />
+                <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-[#F0B100] px-3 py-1.5 text-[10px] font-black text-[#052119] shadow-lg">
+                  <Leaf size={12} strokeWidth={3} />
+                  BERITA TERBARU
                 </span>
+              </div>
+
+              {/* Content Body */}
+              <div className="flex flex-1 flex-col p-6">
+                <div className="mb-4 flex items-center gap-2 text-[11px] font-bold text-[#052119]/40 uppercase tracking-widest">
+                  <Calendar size={14} />
+                  <span>Januari 2024</span>
+                </div>
+                
+                <h3 className="font-upakarti text-[20px] font-bold leading-tight text-[#052119] group-hover:text-[#00D492] transition-colors">
+                  {item.title}
+                </h3>
+                
+                <p className="mt-4 text-[13px] leading-relaxed text-[#052119]/60 line-clamp-3">
+                  {item.description}
+                </p>
+                
+                <div className="mt-auto pt-6 flex items-center justify-between">
+                  <span className="text-[12px] font-black text-[#052119] uppercase tracking-tighter">Selengkapnya</span>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#052119] text-[#00D492] transition-all group-hover:translate-x-1">
+                    <ArrowRight size={18} strokeWidth={2.5} />
+                  </div>
+                </div>
               </div>
             </button>
           ))}

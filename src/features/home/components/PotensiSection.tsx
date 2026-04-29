@@ -2,65 +2,77 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Sprout } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { SectionHeader } from "./ui/SectionHeader";
 import { POTENSI_PREVIEW } from "../config/home-data";
 
 export default function PotensiSection() {
   return (
-    <section className="bg-[#FFFFFF] px-4 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 lg:gap-10">
+    <section className="bg-white px-6 py-12 md:px-10 md:py-16 lg:px-12">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
         <SectionHeader 
           title={["Potensi Desa", "Pameutingan"]}
-          description="Menampilkan sebagian potensi desa seperti pertanian, UMKM, dan daya tarik alam sebagai preview sebelum melihat detail lengkap di halaman potensi."
+          description="Menampilkan sebagian potensi desa seperti pertanian, UMKM, dan daya tarik alam sebagai preview sebelum melihat detail lengkap."
           showInfoButton
         />
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 xl:gap-8">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {POTENSI_PREVIEW.map((item, index) => (
             <article 
               key={item.title} 
-              className="hero-reveal group relative flex h-full min-h-[360px] w-full flex-col items-start gap-3 rounded-[20px] border border-[#0B281F]/5 bg-[#F4F3EF] p-5 text-left shadow-md transition-all duration-400 hover:-translate-y-1.5 md:gap-4 md:p-6"
-              style={{ animationDelay: `${240 + index * 80}ms` }}
+              className="hero-reveal group relative flex flex-col overflow-hidden rounded-[40px] bg-[#052119] p-8 text-left shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+              style={{ animationDelay: `${200 + index * 100}ms` }}
             >
-              <div className="flex w-full items-start justify-between gap-4">
-                <h3 className="font-timeless max-w-[200px] text-[20px] font-bold leading-[1.28] text-[#004F3B] md:text-[22px]">
+              {/* Background Accent */}
+              <div 
+                className="absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-10 blur-[80px] transition-opacity group-hover:opacity-20"
+                style={{ backgroundColor: item.accent }}
+              />
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-center justify-between">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 text-white/80 transition-all group-hover:bg-white/10 group-hover:text-[#00D492]">
+                    <item.icon size={28} strokeWidth={1.5} />
+                  </div>
+                  <Sparkles size={20} className="text-[#F0B100] opacity-0 transition-opacity group-hover:opacity-100" />
+                </div>
+
+                <h3 className="font-upakarti mt-8 text-[28px] font-bold leading-tight text-white md:text-[32px]">
                   {item.title}
                 </h3>
-                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#004F3B]/5 text-[#004F3B] transition-all duration-300 group-hover:bg-[#004F3B] group-hover:text-white">
-                  <ArrowRight size={20} strokeWidth={2.2} />
-                </span>
-              </div>
 
-              <p className="max-w-[260px] text-[13.5px] leading-relaxed text-[#0B281F]/80">
-                {item.description}
-              </p>
+                <p className="mt-4 text-[14px] leading-relaxed text-[#D0FAE5]/50">
+                  {item.description}
+                </p>
 
-              <div className="relative mt-auto h-[170px] w-full overflow-hidden rounded-[14px]">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <span
-                  className="absolute bottom-4 left-4 inline-flex h-11 w-11 items-center justify-center rounded-xl text-[#0B281F] shadow-lg"
-                  style={{ backgroundColor: item.accent }}
-                >
-                  <item.icon size={20} strokeWidth={2.2} />
-                </span>
+                <div className="relative mt-10 aspect-video w-full overflow-hidden rounded-3xl border border-white/5">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-[#052119] via-transparent to-transparent opacity-60" />
+                </div>
+
+                <div className="mt-8 flex items-center justify-between border-t border-white/5 pt-6">
+                  <span className="text-[12px] font-black uppercase tracking-widest text-[#00D492]">Eksplorasi</span>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#F0B100] text-[#052119] transition-all group-hover:rotate-45">
+                    <ArrowRight size={20} strokeWidth={2.5} />
+                  </div>
+                </div>
               </div>
             </article>
           ))}
         </div>
 
-        <div className="flex justify-start pt-1">
+        <div className="flex justify-center pt-4">
           <Link
             href="/potensi"
-            className="hero-reveal inline-flex h-11 w-fit items-center gap-2 rounded-full bg-[#F0B100] px-5 py-2.5 text-[13px] font-bold text-[#0B281F] shadow-md transition-all duration-300 hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-3 rounded-2xl border border-[#052119]/10 bg-[#F4F3EF] px-10 py-4 text-[15px] font-black text-[#052119] transition-all hover:bg-[#052119] hover:text-[#00D492] hover:shadow-xl active:scale-95"
           >
-            Lihat Selengkapnya
-            <ArrowRight size={17} strokeWidth={2.5} />
+            Lihat Potensi Lainnya
+            <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

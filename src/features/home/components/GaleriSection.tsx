@@ -2,66 +2,71 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Images, Camera } from "lucide-react";
+import { ArrowRight, Camera, Maximize2 } from "lucide-react";
 import { SectionHeader } from "./ui/SectionHeader";
 import { GALERI_PREVIEW } from "../config/home-data";
 
 export default function GaleriSection() {
   return (
-    <section className="bg-[#FFFFFF] px-4 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 lg:gap-10">
+    <section className="bg-white px-6 py-12 md:px-10 md:py-16 lg:px-12">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
         <SectionHeader 
           title={["Galeri Desa", "Pameutingan"]}
           description="Menampilkan sebagian dokumentasi kegiatan desa, suasana layanan, dan momen kebersamaan warga sebagai preview sebelum melihat galeri lengkap."
           showInfoButton
         />
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-8">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {GALERI_PREVIEW.map((item, index) => (
             <article 
               key={item.title} 
-              className="hero-reveal group relative flex h-full min-h-[360px] w-full flex-col rounded-[24px] border border-[#0B281F]/5 bg-[#F4F3EF] p-5 text-left shadow-md transition-all duration-400 hover:-translate-y-1.5 md:p-6"
-              style={{ animationDelay: `${220 + index * 80}ms` }}
+              className="hero-reveal group relative h-full flex-col overflow-hidden rounded-[32px] bg-[#F4F3EF] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+              style={{ animationDelay: `${200 + index * 100}ms` }}
             >
-              <div className="mb-3 flex w-full items-start justify-between gap-4">
-                <h3 className="font-timeless text-[20px] font-bold leading-[1.28] text-[#004F3B] md:text-[22px]">
-                  {item.title}
-                </h3>
-                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#004F3B]/5 text-[#004F3B] transition-all duration-300 group-hover:bg-[#004F3B] group-hover:text-white">
-                  <ArrowRight size={20} strokeWidth={2.2} />
-                </span>
-              </div>
-
-              <p className="mb-4 text-[13.5px] leading-relaxed text-[#0B281F]/80">
-                {item.description}
-              </p>
-
-              <div className="relative mt-auto min-h-[140px] w-full flex-1 overflow-hidden rounded-[16px]">
+              {/* Image Container */}
+              <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                <span 
-                  className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-xl px-3 py-2 text-white shadow-lg backdrop-blur-md"
-                  style={{ backgroundColor: `${item.accent}E6` }}
-                >
-                  <Camera size={16} strokeWidth={2.2} />
-                  <span className="text-[11px] font-bold uppercase tracking-wider">{item.tag}</span>
-                </span>
+                <div className="absolute inset-0 bg-linear-to-t from-[#052119]/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                
+                {/* Floating Badge */}
+                <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-white/20 px-3 py-1.5 text-white backdrop-blur-md border border-white/10">
+                  <Camera size={14} />
+                  <span className="text-[10px] font-black uppercase tracking-widest">{item.tag}</span>
+                </div>
+
+                {/* Hover Icon */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-500 group-hover:opacity-100">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#F0B100] text-[#052119] shadow-2xl scale-50 group-hover:scale-100 transition-transform">
+                    <Maximize2 size={24} strokeWidth={2.5} />
+                  </div>
+                </div>
+              </div>
+
+              {/* Info Body */}
+              <div className="flex flex-col p-8">
+                <h3 className="font-upakarti text-[22px] font-bold leading-tight text-[#052119]">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-[14px] leading-relaxed text-[#052119]/60">
+                  {item.description}
+                </p>
               </div>
             </article>
           ))}
         </div>
 
-        <div className="flex justify-start pt-2">
+        <div className="flex justify-center pt-6">
           <Link
             href="/galeri"
-            className="hero-reveal inline-flex h-11 w-fit items-center gap-2 rounded-full bg-[#0B281F] px-5 py-2.5 text-[13px] font-bold text-[#F4F3EF] shadow-md transition-all duration-300 hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-4 rounded-2xl bg-[#052119] px-10 py-4 text-[15px] font-black text-[#00D492] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"
           >
-            Lihat Selengkapnya
-            <ArrowRight size={17} strokeWidth={2.5} />
+            Lihat Galeri Lengkap
+            <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

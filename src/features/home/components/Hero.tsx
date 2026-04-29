@@ -2,121 +2,121 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight, Map, Users, LayoutGrid } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#0B281F] pb-5 pt-6 text-[#F4F3EF] h-[100svh] min-h-[600px] md:pb-0 md:pt-0">
+    <section className="relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-[#0B281F] text-[#F4F3EF]">
+      {/* Background Media */}
       <div className="absolute inset-0 z-0">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="h-full w-full object-cover opacity-35"
+          className="h-full w-full object-cover opacity-30 brightness-[0.7] contrast-[1.1]"
         >
           <source src="/video/thumbnail.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-linear-to-b from-[#0B281F]/40 via-[#0B281F]/20 to-[#0B281F]" />
+        <div className="absolute inset-0 bg-linear-to-b from-[#0B281F]/60 via-[#0B281F]/40 to-[#0B281F]" />
+        
+        {/* Subtle Noise Overlay */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
       </div>
 
-      <div className="hero-float pointer-events-none absolute -right-28 -top-44 z-0 h-130 w-130 rounded-full bg-[#006045]/40 blur-[110px]" />
-      <div className="hero-float pointer-events-none absolute -bottom-28 -left-24 z-0 h-72 w-72 rounded-full bg-[#F0B100]/20 blur-[90px] [animation-delay:900ms]" />
+      {/* Decorative Blobs */}
+      <div className="hero-float pointer-events-none absolute -right-20 -top-20 z-0 h-80 w-80 rounded-full bg-[#00D492]/20 blur-[100px] md:h-130 md:w-130 md:blur-[120px]" />
+      <div className="hero-float pointer-events-none absolute -bottom-20 -left-20 z-0 h-60 w-60 rounded-full bg-[#F0B100]/10 blur-[80px] [animation-delay:1.5s] md:h-100 md:w-100 md:blur-[100px]" />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-5 px-4 md:h-full md:items-center md:px-10 md:py-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,400px)] lg:gap-10">
-        <div className="max-w-155 pt-0 md:pt-1">
-          <div className="hero-reveal inline-flex items-center rounded-full border border-[#006045] bg-[#004F3B]/55 px-3 py-1">
-            <span className="mr-2 h-1.5 w-1.5 rounded-full bg-[#FDC700]/70" />
-            <span className="text-[9px] font-medium uppercase tracking-[0.14em] text-[#A4F4CF] md:text-[10px]">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 pt-24 pb-12 md:px-10 lg:flex-row lg:items-center lg:gap-16 lg:pt-32">
+        {/* Content Column */}
+        <div className="flex flex-col items-center text-center lg:flex-1 lg:items-start lg:text-left">
+          <div className="hero-reveal inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-md">
+            <span className="mr-2.5 h-2 w-2 animate-pulse rounded-full bg-[#F0B100]" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#00D492] md:text-[11px]">
               Website Resmi Pemerintah Desa
             </span>
           </div>
 
-          <h1
-            className="hero-reveal font-upakarti mt-3 max-w-132 text-[40px] font-bold leading-[1.02] tracking-[0.052em] md:text-[56px] lg:text-[64px] [animation-delay:120ms]"
-          >
-            <span className="block">Membangun Desa,</span>
-            <span className="relative mt-2 block text-[#00D492]">
+          <h1 className="hero-reveal mt-6 font-upakarti text-[42px] font-bold leading-[1.05] tracking-tight sm:text-[56px] md:text-[68px] lg:text-[76px] [animation-delay:150ms]">
+            <span className="block opacity-90">Membangun Desa,</span>
+            <span className="relative mt-2 block text-transparent bg-clip-text bg-linear-to-r from-[#00D492] to-[#A4F4CF]">
               Mensejahterakan
-              <span className="absolute -bottom-1 left-[34%] h-0.75 w-[44%] rounded-full bg-[#F0B100] md:h-1" />
+              <span className="absolute -bottom-2 left-1/2 h-1 w-24 -translate-x-1/2 rounded-full bg-[#F0B100] lg:left-0 lg:translate-x-0" />
             </span>
-            <span className="mt-2 block">Warga</span>
+            <span className="mt-3 block opacity-90">Warga</span>
           </h1>
 
-          <p className="hero-reveal mt-3 max-w-140 text-[11px] font-light leading-5 text-[#A4F4CF]/80 md:text-[13px] md:leading-6 [animation-delay:220ms]">
-            Selamat datang di portal informasi digital Desa Pameutingan. Kami
-            berkomitmen memberikan pelayanan publik yang transparan, cepat,
-            dan mudah diakses bagi seluruh masyarakat.
+          <p className="hero-reveal mt-8 max-w-xl text-[14px] font-medium leading-relaxed text-[#D0FAE5]/70 sm:text-[16px] [animation-delay:250ms]">
+            Selamat datang di portal digital Desa Pameutingan. Transformasi tata kelola desa yang transparan, modern, dan melayani sepenuh hati.
           </p>
 
-          <div className="hero-reveal mt-4 flex flex-wrap items-center gap-2.5 [animation-delay:320ms]">
+          <div className="hero-reveal mt-10 flex flex-col items-center gap-4 sm:flex-row sm:gap-5 [animation-delay:350ms] lg:items-start">
             <Link
               href="/layanan-masyarakat"
-              className="inline-flex h-9 items-center rounded-full bg-[#F0B100] px-4.5 text-[12px] font-bold text-[#0B281F] shadow-[0_8px_12px_rgba(240,177,0,0.18),0_3px_5px_rgba(240,177,0,0.14)] transition-transform duration-300 hover:-translate-y-0.5 md:h-10 md:px-5 md:text-[13px]"
+              className="group relative flex h-13 items-center justify-center overflow-hidden rounded-2xl bg-[#F0B100] px-8 text-[15px] font-black text-[#0B281F] shadow-[0_20px_40px_rgba(240,177,0,0.25)] transition-all hover:-translate-y-1 hover:shadow-[0_25px_50px_rgba(240,177,0,0.35)] active:scale-95 w-full sm:w-auto"
             >
-              Layanan Mandiri <span className="ml-2">→</span>
+              <span className="relative z-10 flex items-center gap-2">
+                Layanan Mandiri <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+              </span>
             </Link>
             <Link
               href="/profil"
-              className="inline-flex h-9 items-center rounded-full border border-[#007A55] px-4.5 text-[12px] font-medium text-[#F4F3EF] transition-colors duration-300 hover:bg-[#007A55]/25 md:h-10 md:px-5 md:text-[13px]"
+              className="flex h-13 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-8 text-[15px] font-bold text-white backdrop-blur-md transition-all hover:bg-white/10 hover:border-white/20 active:scale-95 w-full sm:w-auto"
             >
-              Profil Desa
+              Jelajahi Profil
             </Link>
           </div>
 
-          <div className="hero-reveal mt-5 grid grid-cols-1 gap-2.5 border-t border-[#006045]/55 pt-3 [animation-delay:420ms] sm:grid-cols-3 sm:gap-3">
-            <div>
-              <p className="text-[10px] font-medium uppercase tracking-[0.08em] text-[#00D492]/70 md:text-[11px]">
-                Luas Wilayah
-              </p>
-              <p className="mt-1 font-[Georgia,serif] text-[22px] leading-tight md:text-[24px]">
-                12.5 km²
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] font-medium uppercase tracking-[0.08em] text-[#00D492]/70 md:text-[11px]">
-                Batas Wilayah
-              </p>
-              <p className="mt-1 font-[Georgia,serif] text-[22px] leading-tight md:text-[24px]">
-                4 Desa
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] font-medium uppercase tracking-[0.08em] text-[#00D492]/70 md:text-[11px]">
-                Jumlah Penduduk
-              </p>
-              <p className="mt-1 font-[Georgia,serif] text-[22px] leading-tight md:text-[24px]">
-                3.500+
-              </p>
-            </div>
+          {/* Quick Stats */}
+          <div className="hero-reveal mt-14 grid w-full grid-cols-2 gap-4 sm:grid-cols-3 lg:max-w-xl [animation-delay:450ms]">
+            {[
+              { label: "Luas Wilayah", value: "12.5", unit: "km²", icon: Map },
+              { label: "Total Penduduk", value: "3.5k", unit: "+", icon: Users },
+              { label: "Potensi Desa", value: "8", unit: "Sektor", icon: LayoutGrid },
+            ].map((stat, i) => (
+              <div key={i} className="group flex flex-col items-center rounded-2xl border border-white/5 bg-white/2 px-4 py-5 backdrop-blur-sm transition-all hover:bg-white/5 lg:items-start">
+                <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-lg bg-[#00D492]/10 text-[#00D492] transition-colors group-hover:bg-[#00D492] group-hover:text-[#0B281F]">
+                  <stat.icon size={16} />
+                </div>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-2xl font-black text-white">{stat.value}</span>
+                  <span className="text-[10px] font-bold text-[#00D492]/60 uppercase tracking-tighter">{stat.unit}</span>
+                </div>
+                <span className="mt-1 text-[10px] font-bold uppercase tracking-widest text-white/30">{stat.label}</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="hero-reveal relative mx-auto w-full max-w-sm pt-2 [animation-delay:180ms] lg:pt-0">
-          <div className="hero-float absolute -right-2 top-4 h-full w-full rotate-2 rounded-4xl bg-[#006045]/30 [animation-delay:300ms]" />
-          <div className="hero-float absolute -left-3 -top-2 h-full w-full -rotate-2 rounded-4xl border border-[#007A55]/70 [animation-delay:600ms]" />
+        {/* Hero Image / Card Column */}
+        <div className="hero-reveal relative mx-auto w-full max-w-sm [animation-delay:200ms] lg:max-w-md">
+          {/* Decorative Frames */}
+          <div className="hero-float absolute -right-4 top-6 h-full w-full rotate-3 rounded-[40px] bg-emerald-500/10 backdrop-blur-3xl [animation-delay:0.5s]" />
+          <div className="hero-float absolute -left-4 -top-4 h-full w-full -rotate-2 rounded-[40px] border border-white/5 [animation-delay:1s]" />
 
-          <div className="hero-float group relative h-88 overflow-hidden rounded-4xl bg-linear-to-b from-[#006045] to-[#0B281F] shadow-[0_18px_36px_-12px_rgba(0,0,0,0.25)] [animation-delay:0ms] md:h-112">
+          <div className="hero-float group relative aspect-[4/5] overflow-hidden rounded-[40px] bg-linear-to-b from-emerald-900 to-[#0B281F] shadow-2xl [animation-delay:0s]">
             <Image
               src="/img/hero-kepala-desa.png"
               alt="Kepala Desa Pameutingan"
               fill
-              className="hero-zoom object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+              className="hero-zoom object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
               priority
             />
 
-            <div className="hero-float absolute bottom-3 left-3 right-3 rounded-2xl border border-white/20 bg-black/40 p-2.5 shadow-[0_10px_25px_rgba(0,0,0,0.2)] backdrop-blur-[4px] transition-transform duration-500 hover:-translate-y-1 [animation-delay:900ms] md:bottom-4 md:left-4 md:right-4 md:p-3">
+            {/* Floating Info Badge */}
+            <div className="absolute bottom-6 left-6 right-6 rounded-3xl border border-white/10 bg-black/40 p-5 shadow-2xl backdrop-blur-xl transition-all duration-500 group-hover:-translate-y-2">
               <div className="flex items-start justify-between">
                 <div>
-                  <p className="text-[13px] font-bold leading-5 md:text-sm">Majang Dudi Budiana</p>
-                  <p className="mt-1 text-[10px] text-[#A4F4CF] md:text-[11px]">Kepala Desa Pameutingan</p>
+                  <h3 className="text-lg font-black leading-tight text-white">Majang Dudi B.</h3>
+                  <p className="mt-1 text-[11px] font-bold uppercase tracking-widest text-[#00D492]">Kepala Desa</p>
                 </div>
-                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#F0B100] text-xs font-bold text-[#0B281F]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#F0B100] text-xl font-black text-[#0B281F]">
                   &quot;
-                </span>
+                </div>
               </div>
-              <p className="mt-1.5 text-[10px] italic leading-4 text-[#D0FAE5]/80">
-                &quot;Melayani dengan hati, membangun dengan inovasi untuk
-                kemajuan bersama.&quot;
+              <p className="mt-4 text-[12px] italic leading-relaxed text-[#D0FAE5]/80">
+                &quot;Melayani dengan hati, membangun dengan inovasi untuk kemajuan bersama.&quot;
               </p>
             </div>
           </div>
