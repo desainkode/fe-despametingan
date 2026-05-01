@@ -7,7 +7,7 @@ import { ArrowRight, Quote } from "lucide-react";
 
 export default function ProfileSection() {
   return (
-    <section className="bg-white px-6 py-12 md:px-10 md:py-16 lg:px-12">
+    <section className="bg-white px-6 py-8 md:px-10 md:py-12 lg:px-12">
       <div className="mx-auto w-full max-w-7xl">
         <SectionHeader 
           title={["Mengenal Lebih", "Dekat Kepala Desa"]}
@@ -15,11 +15,11 @@ export default function ProfileSection() {
           showInfoButton
         />
 
-        <div className="hero-reveal relative overflow-hidden rounded-[40px] bg-[#052119] px-6 py-10 text-[#F4F3EF] shadow-2xl transition-all duration-500 md:px-10 md:py-12 lg:rounded-[60px] lg:px-16 lg:py-0">
+        <div className="hero-reveal relative overflow-hidden rounded-[40px] bg-[#052119] px-6 py-8 text-[#F4F3EF] shadow-2xl transition-all duration-500 md:px-10 md:py-10 lg:rounded-[60px] lg:px-16 lg:py-0">
           {/* Decorative Elements */}
           <div className="absolute top-0 right-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-[#00D492]/10 blur-[80px]" />
           
-          <div className="relative z-10 grid items-center gap-12 lg:grid-cols-[1fr_420px] lg:gap-16">
+          <div className="relative z-10 grid items-center gap-8 lg:grid-cols-[1fr_420px] lg:gap-16">
             <div className="hero-reveal flex flex-col items-center text-center lg:items-start lg:py-20 lg:text-left">
               <div className="inline-flex items-center gap-2 rounded-full bg-[#00D492]/10 px-4 py-1.5 border border-[#00D492]/20">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#00D492] animate-pulse" />
@@ -41,7 +41,7 @@ export default function ProfileSection() {
 
               <Link
                 href="/profil"
-                className="group mt-10 inline-flex items-center gap-3 rounded-2xl bg-[#F0B100] px-8 py-4 text-[15px] font-black text-[#052119] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"
+                className="group mt-8 inline-flex items-center gap-3 rounded-2xl bg-[#F0B100] px-8 py-4 text-[15px] font-black text-[#052119] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"
               >
                 Profil Lengkap
                 <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />

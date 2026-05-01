@@ -26,19 +26,21 @@ export function ApbdesSection() {
           Lihat Semua Detail <ArrowRight size={14} />
         </Link>
       </div>
-      <div className="mb-6 grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
-        <h2 className="hero-reveal whitespace-pre-line font-[Georgia,serif] text-[26px] font-bold leading-[1.08] tracking-[0.01em] text-[#0B0D10] md:text-[30px] lg:text-[38px]">
-          APB Desa{`\n`}Pameutingan
-        </h2>
+      <div className="mb-6 border-b border-[#0B281F]/10 pb-6 md:grid md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+        <div className="flex items-start justify-between gap-4 md:contents">
+          <h2 className="hero-reveal whitespace-pre-line font-[Georgia,serif] text-[26px] font-bold leading-[1.08] tracking-[0.01em] text-[#0B0D10] md:text-[30px] lg:text-[38px]">
+            APB Desa{`\n`}Pameutingan
+          </h2>
 
-        <p className="hero-reveal max-w-none pt-0.5 text-[12px] leading-6 text-[#0B0D10]/82 md:text-[13px] md:leading-7">
+          <div className="hero-reveal inline-flex h-12 w-12 shrink-0 items-center justify-center self-start rounded-full bg-[#022F25] text-[#F3F8F6] shadow-[0_10px_20px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_24px_rgba(0,0,0,0.2)] md:order-last md:h-14 md:w-14">
+            <CircleDollarSign size={20} strokeWidth={2.4} />
+          </div>
+        </div>
+
+        <p className="hero-reveal mt-4 max-w-none pt-0.5 text-[12px] leading-6 text-[#0B0D10]/82 md:mt-0 md:text-[13px] md:leading-7">
           APBDes Pameutingan merupakan informasi mengenai anggaran pendapatan dan belanja desa yang mencakup rincian pendapatan,
           belanja, dan pembiayaan sebagai dasar transparansi serta perencanaan pembangunan desa.
         </p>
-
-        <div className="hero-reveal inline-flex h-12 w-12 shrink-0 items-center justify-center self-start rounded-full bg-[#022F25] text-[#F3F8F6] shadow-[0_10px_20px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_24px_rgba(0,0,0,0.2)] md:h-14 md:w-14">
-          <CircleDollarSign size={20} strokeWidth={2.4} />
-        </div>
       </div>
 
       <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3">

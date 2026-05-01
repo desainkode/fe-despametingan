@@ -29,7 +29,7 @@ export default function ApbdesSection() {
   }, []);
 
   return (
-    <section className="bg-white px-6 py-12 md:px-10 md:py-16 lg:px-12">
+    <section className="bg-white px-6 py-8 md:px-10 md:py-12 lg:px-12">
       <div className="mx-auto w-full max-w-7xl">
         <SectionHeader 
           title={["Anggaran Pendapatan", "& Belanja Desa"]}
@@ -37,7 +37,7 @@ export default function ApbdesSection() {
           showInfoButton
         />
 
-        <div className="hero-reveal group/apbdes relative overflow-visible rounded-[40px] bg-[#004D39] p-8 text-[#F4F3EF] shadow-2xl transition-all duration-500 md:p-12 lg:p-16">
+        <div className="hero-reveal group/apbdes relative overflow-visible rounded-[40px] bg-[#004D39] p-6 text-[#F4F3EF] shadow-2xl transition-all duration-500 md:p-10 lg:p-14">
           {/* Background Elements */}
           <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[40px]">
             <div className="absolute inset-0 bg-linear-to-br from-[#004D39] via-[#003B2C] to-[#002B20]" />
@@ -55,7 +55,7 @@ export default function ApbdesSection() {
             </svg>
           </div>
 
-          <div className="relative z-30 mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+          <div className="relative z-30 mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
             <div className="flex flex-col gap-2">
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#00D492]">Laporan Keuangan</span>
               <h3 className="font-upakarti text-[32px] font-bold leading-tight md:text-[42px]">
@@ -97,20 +97,20 @@ export default function ApbdesSection() {
             </div>
           </div>
 
-          <div className="relative z-10 grid gap-12 lg:grid-cols-[1fr_340px] lg:items-center">
+          <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_340px] lg:items-center">
             {/* Circular Stats Container */}
-            <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center lg:justify-start">
+            <div className="flex flex-row flex-wrap justify-center gap-4 sm:gap-6 lg:justify-start lg:flex-nowrap lg:gap-0">
               {apbdesStatistik.map((item, index) => (
                 <div
                   key={item.label}
-                  className={`hero-reveal relative flex h-40 w-40 flex-col items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:z-20 hover:-translate-y-2 group/card sm:h-44 sm:w-44 lg:h-52 lg:w-52 ${index > 0 ? "sm:-ml-8 lg:-ml-12" : ""}`}
+                  className={`hero-reveal relative flex h-[120px] w-[120px] flex-col items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:z-20 hover:-translate-y-2 group/card sm:h-44 sm:w-44 lg:h-52 lg:w-52 ${index > 0 ? "lg:-ml-12" : ""}`}
                   style={{ animationDelay: `${200 + index * 100}ms` }}
                 >
                   <div className={`absolute inset-0 rounded-full bg-linear-to-br opacity-0 transition-opacity duration-500 group-hover/card:opacity-10 ${item.color}`} />
-                  <item.icon size={24} className="mb-3 text-[#00D492]" />
-                  <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Rp.</span>
-                  <p className="mt-1 font-upakarti text-[32px] font-bold leading-none md:text-[38px] lg:text-[44px]">{item.value}</p>
-                  <p className="mt-2 px-4 text-[11px] font-bold uppercase tracking-tight text-white/60">{item.label}</p>
+                  <item.icon className="mb-2 text-[#00D492] size-5 sm:size-6 sm:mb-3" />
+                  <span className="text-[9px] font-black uppercase tracking-widest text-white/40 sm:text-[10px]">Rp.</span>
+                  <p className="mt-1 font-upakarti text-[22px] font-bold leading-none sm:text-[32px] md:text-[38px] lg:text-[44px]">{item.value}</p>
+                  <p className="mt-1 px-2 text-center text-[9px] font-bold uppercase tracking-tight text-white/60 sm:mt-2 sm:px-4 sm:text-[11px]">{item.label}</p>
                 </div>
               ))}
             </div>

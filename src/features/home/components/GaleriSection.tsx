@@ -8,21 +8,25 @@ import { GALERI_PREVIEW } from "../config/home-data";
 
 export default function GaleriSection() {
   return (
-    <section className="bg-white px-6 py-12 md:px-10 md:py-16 lg:px-12">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
-        <SectionHeader 
-          title={["Galeri Desa", "Pameutingan"]}
-          description="Menampilkan sebagian dokumentasi kegiatan desa, suasana layanan, dan momen kebersamaan warga sebagai preview sebelum melihat galeri lengkap."
-          showInfoButton
-        />
+    <section className="bg-white px-6 py-8 md:px-10 md:py-12 lg:px-12">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 md:gap-8">
+        <div className="flex items-end justify-between">
+          <SectionHeader 
+            title={["Galeri Desa", "Pameutingan"]}
+            description="Menampilkan sebagian dokumentasi kegiatan desa, suasana layanan, dan momen kebersamaan warga sebagai preview sebelum melihat galeri lengkap."
+            showInfoButton
+          />
+        </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {GALERI_PREVIEW.map((item, index) => (
-            <article 
-              key={item.title} 
-              className="hero-reveal group relative h-full flex-col overflow-hidden rounded-[32px] bg-[#F4F3EF] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
-              style={{ animationDelay: `${200 + index * 100}ms` }}
-            >
+
+        <div className="relative -mx-6 overflow-hidden px-6 lg:mx-0 lg:px-0">
+          <div className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 pt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0 lg:pt-0">
+            {GALERI_PREVIEW.map((item, index) => (
+              <article 
+                key={item.title} 
+                className="hero-reveal group relative flex h-full w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-[32px] bg-[#F4F3EF] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl md:w-[340px] lg:w-full"
+                style={{ animationDelay: `${200 + index * 100}ms` }}
+              >
               {/* Image Container */}
               <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Image
@@ -48,7 +52,7 @@ export default function GaleriSection() {
               </div>
 
               {/* Info Body */}
-              <div className="flex flex-col p-8">
+              <div className="flex flex-col p-6">
                 <h3 className="font-upakarti text-[22px] font-bold leading-tight text-[#052119]">
                   {item.title}
                 </h3>
@@ -58,9 +62,13 @@ export default function GaleriSection() {
               </div>
             </article>
           ))}
+          
+          {/* Extra Spacer for mobile scroll-end */}
+          <div className="w-12 shrink-0 lg:hidden" />
         </div>
+      </div>
 
-        <div className="flex justify-center pt-6">
+        <div className="flex justify-center pt-4">
           <Link
             href="/galeri"
             className="group inline-flex items-center gap-4 rounded-2xl bg-[#052119] px-10 py-4 text-[15px] font-black text-[#00D492] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"

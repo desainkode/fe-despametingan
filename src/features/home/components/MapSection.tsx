@@ -56,10 +56,10 @@ export default function MapSection() {
   }, []);
 
   return (
-    <section className="bg-white px-4 py-12 md:px-10 lg:px-12">
-      <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-[40px] bg-[#052119] px-6 py-10 text-white shadow-2xl md:px-10 md:py-12 lg:rounded-[60px]">
+    <section className="bg-white px-4 py-8 md:px-10 lg:px-12">
+      <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-[40px] bg-[#052119] px-6 py-8 text-white shadow-2xl md:px-10 md:py-10 lg:rounded-[60px]">
         {/* Header Section */}
-        <div className="flex flex-col gap-8 border-b border-white/10 pb-10 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+        <div className="flex flex-col gap-6 border-b border-white/10 pb-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
           <div className="max-w-2xl">
             <h2 className="font-upakarti text-[38px] font-bold leading-[1.05] tracking-tight md:text-[52px] lg:text-[64px]">
               <span className="block opacity-90">Peta &</span>
@@ -77,13 +77,13 @@ export default function MapSection() {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[340px_1fr] lg:gap-12">
+        <div className="mt-8 grid gap-8 lg:grid-cols-[340px_1fr] lg:gap-12">
           {/* Boundary Cards Column */}
-          <div className="order-2 grid gap-4 sm:grid-cols-2 lg:order-1 lg:grid-cols-1">
+          <div className="order-2 grid grid-cols-2 gap-3 sm:gap-4 lg:order-1 lg:grid-cols-1">
             {BATAS_WILAYAH.map((item, index) => (
               <div
                 key={item.arah}
-                className="hero-reveal group rounded-2xl border border-white/5 bg-white/2 p-5 transition-all duration-500 hover:bg-white/5 hover:border-white/10"
+                className="hero-reveal group rounded-2xl border border-white/5 bg-white/2 p-4 transition-all duration-500 hover:bg-white/5 hover:border-white/10 sm:p-5"
                 onMouseEnter={() => {
                   setIsBoundaryCardHoverActive(true);
                   setHoveredMapMarkerId(null);
@@ -96,13 +96,13 @@ export default function MapSection() {
                 }}
                 style={{ animationDelay: `${100 + index * 100}ms` }}
               >
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F0B100] text-[#052119] shadow-lg transition-transform group-hover:scale-110">
-                    <span className="text-[18px] font-black tracking-tighter uppercase">{item.arah.charAt(0)}</span>
+                <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#F0B100] text-[#052119] shadow-lg transition-transform group-hover:scale-110 sm:h-12 sm:w-12">
+                    <span className="text-[16px] font-black tracking-tighter uppercase sm:text-[18px]">{item.arah.charAt(0)}</span>
                   </div>
                   <div>
-                    <h4 className="text-[16px] font-bold text-white">{item.arah}</h4>
-                    <p className="mt-1 text-[12px] leading-relaxed text-[#D0FAE5]/50">
+                    <h4 className="text-[14px] font-bold text-white sm:text-[16px]">{item.arah}</h4>
+                    <p className="mt-1 text-[10px] leading-relaxed text-[#D0FAE5]/50 sm:text-[12px]">
                       {item.detail}
                     </p>
                   </div>
@@ -218,7 +218,7 @@ export default function MapSection() {
         </div>
 
         {/* Bottom Quick Stats */}
-        <div className="mt-12 grid gap-4 sm:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
           {[
             { label: "Laki-laki", val: activeDusunInfo.laki_laki || "1,408", icon: Users2, color: "text-[#F0B100]" },
             { label: "Perempuan", val: activeDusunInfo.perempuan || "2,112", icon: Users2, color: "text-[#00D492]" },

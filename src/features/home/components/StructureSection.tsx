@@ -13,11 +13,11 @@ export default function StructureSection() {
   } = useStrukturPagination();
 
   return (
-    <section className="bg-white px-6 py-12 md:px-10 md:py-16 lg:px-12">
+    <section className="bg-white px-6 py-8 md:px-10 md:py-12 lg:px-12">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="grid items-center gap-12 lg:grid-cols-[380px_1fr] lg:gap-16">
+        <div className="grid items-center gap-8 lg:grid-cols-[380px_1fr] lg:gap-12">
           {/* Text Content */}
-          <div className="hero-reveal flex flex-col gap-10">
+          <div className="hero-reveal flex flex-col gap-6">
             <div className="flex flex-col gap-6">
               <div className="inline-flex items-center gap-2 rounded-full bg-[#00D492]/10 px-4 py-1.5 border border-[#00D492]/20 w-fit">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#00D492]" />
@@ -56,7 +56,7 @@ export default function StructureSection() {
             <div
               ref={strukturSliderRef}
               onScroll={handleStrukturScroll}
-              className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-10 pt-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 pt-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               {STRUKTUR_TATA_KELOLA.map((item, index) => (
                 <div
