@@ -136,3 +136,26 @@ export interface NewsCardProps {
   className?: string
   delay?: number
 }
+
+// ============================================================================
+// MAP SECTION TYPES
+// ============================================================================
+
+export interface DusunMarker {
+  id: string
+  nama: string
+  kepala: string
+  penduduk: string
+  laki_laki?: string
+  perempuan?: string
+  keterangan: string
+  warna: string
+  position: { left: string; top: string }
+  popupPlacement: 'top' | 'bottom' | 'left' | 'right'
+}
+
+export interface MapBoundary {
+  arah: string
+  detail: string
+  layerClass: string
+}

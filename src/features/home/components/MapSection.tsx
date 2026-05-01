@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { MapPin, Info, ArrowRight } from "lucide-react";
+import { MapPin, Info, Users2, LayoutGrid } from "lucide-react";
 import { BATAS_WILAYAH, DUSUN_MARKERS } from "../config/home-data";
 
 export default function MapSection() {
@@ -140,7 +140,7 @@ export default function MapSection() {
                       >
                         <button
                           type="button"
-                          className={`pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full border-2 border-white/20 transition-all duration-500 shadow-xl ${isActiveMarker ? "scale-125 bg-[#00D492] ring-8 ring-[#00D492]/20" : "bg-[#F0B100] hover:scale-110 hover:bg-[#00D492]"}`}
+                          className={`pointer-events-auto group/marker relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-white/20 transition-all duration-500 shadow-xl ${isActiveMarker ? "scale-125 bg-[#00D492] ring-8 ring-[#00D492]/20" : "bg-[#F0B100] hover:scale-110 hover:bg-[#00D492]"}`}
                           onMouseEnter={() => {
                             setIsBoundaryCardHoverActive(true);
                             setHoveredMapMarkerId(marker.id);
@@ -158,6 +158,30 @@ export default function MapSection() {
                           }}
                         >
                           <div className="h-2 w-2 rounded-full bg-white" />
+                          
+                          {/* Floating Tooltip */}
+                          <div 
+                            className={`absolute invisible opacity-0 group-hover/marker:visible group-hover/marker:opacity-100 transition-all duration-300 whitespace-nowrap rounded-xl bg-[#052119]/90 backdrop-blur-md px-3 py-2 text-[12px] font-bold text-white shadow-2xl border border-white/20 pointer-events-none z-50
+                              ${marker.popupPlacement === 'top' ? '-translate-x-1/2 bottom-full mb-4 left-1/2' : ''}
+                              ${marker.popupPlacement === 'bottom' ? '-translate-x-1/2 top-full mt-4 left-1/2' : ''}
+                              ${marker.popupPlacement === 'left' ? '-translate-y-1/2 right-full mr-4 top-1/2' : ''}
+                              ${marker.popupPlacement === 'right' ? '-translate-y-1/2 left-full ml-4 top-1/2' : ''}
+                              ${isActiveMarker ? '!visible !opacity-100' : ''}
+                            `}
+                          >
+                            <div className="flex items-center gap-2">
+                              <div className="h-2 w-2 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.5)]" style={{ backgroundColor: marker.warna }} />
+                              <span className="tracking-tight">{marker.nama}</span>
+                            </div>
+                            
+                            {/* Tooltip Arrow */}
+                            <div className={`absolute border-4 border-transparent
+                              ${marker.popupPlacement === 'top' ? 'top-full left-1/2 -translate-x-1/2 border-t-[#052119]/90' : ''}
+                              ${marker.popupPlacement === 'bottom' ? 'bottom-full left-1/2 -translate-x-1/2 border-b-[#052119]/90' : ''}
+                              ${marker.popupPlacement === 'left' ? 'left-full top-1/2 -translate-y-1/2 border-l-[#052119]/90' : ''}
+                              ${marker.popupPlacement === 'right' ? 'right-full top-1/2 -translate-y-1/2 border-r-[#052119]/90' : ''}
+                            `} />
+                          </div>
                         </button>
                       </div>
                     );
@@ -234,6 +258,3 @@ export default function MapSection() {
     </section>
   );
 }
-
-// Add missing icons
-import { Users2, LayoutGrid } from "lucide-react";

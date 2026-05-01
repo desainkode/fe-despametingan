@@ -1,4 +1,5 @@
 import { Sprout, Store, Mountain } from "lucide-react";
+import { DusunMarker, MapBoundary } from "../types";
 
 export const INFORMASI_TERKINI = [
   {
@@ -89,7 +90,7 @@ export const STATISTIK_DEMOGRAFI = [
   },
 ];
 
-export const BATAS_WILAYAH = [
+export const BATAS_WILAYAH: MapBoundary[] = [
   {
     arah: "Utara",
     detail: "Bagian utara berbatasan langsung dengan kawasan hutan lindung.",
@@ -112,7 +113,7 @@ export const BATAS_WILAYAH = [
   },
 ];
 
-export const DUSUN_MARKERS = [
+export const DUSUN_MARKERS: DusunMarker[] = [
   {
     id: "dusun-1",
     nama: "Dusun Cimawate",
@@ -161,7 +162,7 @@ export const DUSUN_MARKERS = [
     position: { left: "45%", top: "50%" },
     popupPlacement: "right",
   },
-] as const;
+];
 
 export const STRUKTUR_TATA_KELOLA = [
   {
