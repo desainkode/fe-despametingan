@@ -10,7 +10,7 @@ export function IdmSection() {
         description={idmContent.description}
       />
 
-      <div className="grid gap-3 md:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
         {idmContent.indicators.map((item) => (
           <MiniMetric key={item.label} label={item.label} value={item.value} />
         ))}

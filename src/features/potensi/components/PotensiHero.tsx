@@ -21,8 +21,8 @@ export function PotensiHero() {
             Kekayaan Desa Pameutingan
           </div>
 
-          <h1 className="hero-reveal max-w-5xl font-[Georgia,serif] text-[48px] font-bold leading-[1.05] tracking-tight sm:text-[68px] lg:text-[86px]">
-            Eksplorasi <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E0A1] to-[#F0B100]">Potensi</span> <br />
+          <h1 className="hero-reveal max-w-5xl font-[Georgia,serif] text-[32px] font-bold leading-[1.05] tracking-tight sm:text-[56px] md:text-[68px] lg:text-[86px]">
+            Eksplorasi <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E0A1] to-[#F0B100]">Potensi</span> <br className="hidden sm:block" />
             Unggulan Lokal
           </h1>
 

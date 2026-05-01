@@ -8,6 +8,7 @@ export function SdgsSection() {
       <SectionHeader
         title={sdgsContent.title}
         description={sdgsContent.description}
+        variant="dark"
       />
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center">
@@ -23,7 +24,7 @@ export function SdgsSection() {
           </p>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
           {sdgsContent.indicators.map((item) => (
             <StatPill key={item.label} label={item.label} value={item.value} />
           ))}

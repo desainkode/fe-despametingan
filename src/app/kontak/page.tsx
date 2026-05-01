@@ -20,7 +20,7 @@ export default function KontakPage() {
               </span>
             </div>
             
-            <h1 className="max-w-xl text-[48px] md:text-[72px] font-bold lowercase leading-[1.02] tracking-[0.052em]" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h1 className="max-w-xl text-[36px] md:text-[72px] font-bold lowercase leading-[1.02] tracking-[0.052em]" style={{ fontFamily: 'var(--font-heading)' }}>
               Sampaikan <br /> <span className="text-[#00D492]">aspirasi</span> anda
             </h1>
             
@@ -30,14 +30,14 @@ export default function KontakPage() {
           </div>
 
           {/* Overlapping Images Style from Infografis */}
-          <div className="relative h-64 md:h-96 w-full lg:h-[450px]">
-            <div className="absolute -right-4 top-0 h-4/5 w-4/5 overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+          <div className="relative h-48 sm:h-64 md:h-96 w-full lg:h-[450px]">
+            <div className="absolute -right-2 top-0 h-4/5 w-4/5 overflow-hidden rounded-2xl border border-white/10 shadow-2xl sm:rounded-3xl">
               <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000&auto=format&fit=crop" className="h-full w-full object-cover opacity-60" alt="" />
             </div>
-            <div className="absolute -left-6 bottom-4 h-4/5 w-4/5 overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+            <div className="absolute -left-2 bottom-2 h-4/5 w-4/5 overflow-hidden rounded-2xl border border-white/10 shadow-2xl sm:rounded-3xl">
               <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000&auto=format&fit=crop" className="h-full w-full object-cover opacity-80" alt="" />
             </div>
-            <div className="absolute left-4 top-12 h-[85%] w-[85%] overflow-hidden rounded-3xl border-4 border-[#006045] shadow-2xl">
+            <div className="absolute left-2 top-4 h-[85%] w-[85%] overflow-hidden rounded-2xl border-2 border-[#006045] shadow-2xl sm:rounded-3xl sm:border-4">
               <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000&auto=format&fit=crop" className="h-full w-full object-cover" alt="" />
             </div>
           </div>
@@ -45,29 +45,29 @@ export default function KontakPage() {
       </section>
 
       {/* Main Content Section: Form & Image */}
-      <section className="mx-auto max-w-7xl px-6 py-20 md:px-12 lg:px-16 -mt-16 relative z-20">
-        <div className="bg-white rounded-[40px] shadow-2xl shadow-black/5 p-8 md:p-12 lg:p-16 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20 items-start">
+      <section className="mx-auto max-w-7xl px-4 py-12 md:px-12 md:py-20 lg:px-16 -mt-12 md:-mt-16 relative z-20">
+        <div className="bg-white rounded-[32px] shadow-2xl shadow-black/5 p-6 md:rounded-[40px] md:p-12 lg:p-16 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20 items-start">
           {/* Form Side */}
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col gap-2 mb-4">
-              <h2 className="text-2xl font-bold text-[#0B281F]">Formulir Kontak</h2>
-              <div className="h-1 w-12 bg-emerald-500 rounded-full" />
+          <div className="flex flex-col gap-4 md:gap-6">
+            <div className="flex flex-col gap-2 mb-2 md:mb-4">
+              <h2 className="text-xl font-bold text-[#0B281F] md:text-2xl">Formulir Kontak</h2>
+              <div className="h-1 w-10 bg-emerald-500 rounded-full md:w-12" />
             </div>
 
-            <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <form className="flex flex-col gap-4 md:gap-5" onSubmit={(e) => e.preventDefault()}>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
                 <div className="relative group">
                   <input 
                     type="text" 
                     placeholder="Nama Lengkap"
-                    className="w-full bg-neutral-50 border border-neutral-100 rounded-2xl py-4 px-5 text-neutral-900 placeholder:text-neutral-400 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white transition-all outline-none"
+                    className="w-full bg-neutral-50 border border-neutral-100 rounded-xl py-3.5 px-5 text-neutral-900 text-sm placeholder:text-neutral-400 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white transition-all outline-none md:rounded-2xl md:py-4 md:text-base"
                   />
                 </div>
                 <div className="relative group">
                   <input 
                     type="tel" 
                     placeholder="Nomor Telepon"
-                    className="w-full bg-neutral-50 border border-neutral-100 rounded-2xl py-4 px-5 text-neutral-900 placeholder:text-neutral-400 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white transition-all outline-none"
+                    className="w-full bg-neutral-50 border border-neutral-100 rounded-xl py-3.5 px-5 text-neutral-900 text-sm placeholder:text-neutral-400 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white transition-all outline-none md:rounded-2xl md:py-4 md:text-base"
                   />
                 </div>
               </div>
@@ -76,30 +76,30 @@ export default function KontakPage() {
                 <input 
                   type="email" 
                   placeholder="Alamat Email"
-                  className="w-full bg-neutral-50 border border-neutral-100 rounded-2xl py-4 px-5 text-neutral-900 placeholder:text-neutral-400 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white transition-all outline-none"
+                  className="w-full bg-neutral-50 border border-neutral-100 rounded-xl py-3.5 px-5 text-neutral-900 text-sm placeholder:text-neutral-400 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white transition-all outline-none md:rounded-2xl md:py-4 md:text-base"
                 />
               </div>
 
               <div className="relative group">
                 <textarea 
                   placeholder="Pesan atau aspirasi Anda..."
-                  rows={6}
-                  className="w-full bg-neutral-50 border border-neutral-100 rounded-2xl py-5 px-5 text-neutral-900 placeholder:text-neutral-400 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white transition-all outline-none resize-none"
+                  rows={4}
+                  className="w-full bg-neutral-50 border border-neutral-100 rounded-xl py-4 px-5 text-neutral-900 text-sm placeholder:text-neutral-400 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white transition-all outline-none resize-none md:rounded-2xl md:py-5 md:text-base md:rows-6"
                 ></textarea>
               </div>
 
-              <button className="group mt-2 flex items-center justify-between bg-[#0B281F] hover:bg-emerald-600 rounded-2xl p-1.5 pr-1.5 transition-all duration-300 w-fit gap-8">
-                <span className="pl-6 font-bold text-white transition-colors">Kirim Aspirasi Sekarang</span>
-                <div className="h-10 w-10 bg-white/10 rounded-xl flex items-center justify-center text-white transition-all group-hover:bg-white/20">
-                  <ArrowRight size={20} />
+              <button className="group mt-2 flex items-center justify-between bg-[#0B281F] hover:bg-emerald-600 rounded-xl p-1 pr-1.5 transition-all duration-300 w-full md:rounded-2xl md:p-1.5 md:w-fit md:gap-8">
+                <span className="pl-4 font-bold text-white text-sm transition-colors md:pl-6 md:text-base">Kirim Aspirasi Sekarang</span>
+                <div className="h-9 w-9 bg-white/10 rounded-lg flex items-center justify-center text-white transition-all group-hover:bg-white/20 md:h-10 md:w-10 md:rounded-xl">
+                  <ArrowRight size={18} className="md:size-20" />
                 </div>
               </button>
             </form>
           </div>
 
-          {/* Image Side */}
-          <div className="relative hidden lg:block">
-            <div className="aspect-[4/5] rounded-[30px] overflow-hidden shadow-2xl relative">
+          {/* Image Side - Better Tablet handling */}
+          <div className="relative block lg:block">
+            <div className="aspect-video sm:aspect-square md:aspect-[4/5] rounded-[24px] md:rounded-[30px] overflow-hidden shadow-2xl relative">
               <img 
                 src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000&auto=format&fit=crop" 
                 alt="Desa Pameutingan View"
@@ -109,16 +109,16 @@ export default function KontakPage() {
             </div>
             
             {/* Contact quick info overlay */}
-            <div className="absolute -bottom-6 -right-6 bg-emerald-600 p-8 rounded-[30px] text-white shadow-xl max-w-xs">
-              <h3 className="text-lg font-bold mb-4">Butuh Bantuan?</h3>
-              <p className="text-sm text-white/80 mb-6 leading-relaxed">
+            <div className="absolute -bottom-4 -right-4 bg-emerald-600 p-6 rounded-[24px] text-white shadow-xl max-w-[200px] sm:-bottom-6 sm:-right-6 sm:p-8 sm:rounded-[30px] sm:max-w-xs">
+              <h3 className="text-base font-bold mb-2 sm:text-lg sm:mb-4">Butuh Bantuan?</h3>
+              <p className="text-[11px] text-white/80 mb-4 leading-relaxed sm:text-sm sm:mb-6">
                 Tim administrasi kami siap membantu Anda selama jam kerja.
               </p>
-              <div className="flex items-center gap-3">
-                <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center">
-                  <Phone size={14} />
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="h-7 w-7 rounded-full bg-white/20 flex items-center justify-center sm:h-8 sm:w-8">
+                  <Phone size={12} className="sm:size-14" />
                 </div>
-                <span className="font-bold">08138944493</span>
+                <span className="text-xs font-bold sm:text-base">08138944493</span>
               </div>
             </div>
           </div>

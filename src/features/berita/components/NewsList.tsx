@@ -33,34 +33,34 @@ export function NewsList() {
   }, []);
 
   return (
-    <section id="news-list" className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 relative pt-20">
+    <section id="news-list" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 relative pt-12 md:pt-20">
       {/* Search & Filter Integrated Bar */}
-      <div className="sticky top-28 z-40 mb-20 flex justify-center">
-        <div className="relative flex w-full max-w-3xl items-center gap-2 rounded-full border border-white/40 bg-white/70 p-2 shadow-[0_20px_50px_rgba(11,40,31,0.1)] backdrop-blur-2xl transition-all focus-within:bg-white focus-within:shadow-[0_25px_60px_rgba(11,40,31,0.15)]">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0B281F] text-white">
-            <Search size={20} />
+      <div className="sticky top-28 z-40 mb-12 md:mb-20 flex justify-center">
+        <div className="relative flex w-full max-w-3xl items-center gap-1.5 rounded-full border border-white/40 bg-white/70 p-1.5 shadow-[0_20px_50px_rgba(11,40,31,0.1)] backdrop-blur-2xl transition-all focus-within:bg-white focus-within:shadow-[0_25px_60px_rgba(11,40,31,0.15)] sm:gap-2 sm:p-2">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0B281F] text-white sm:h-12 sm:w-12">
+            <Search size={16} className="sm:size-20" />
           </div>
           
           <input
             type="text"
             placeholder="Cari kabar desa..."
-            className="flex-1 bg-transparent px-2 text-[15px] font-medium text-[#0B281F] outline-none placeholder:text-[#0B281F]/30"
+            className="flex-1 bg-transparent px-2 text-[14px] font-medium text-[#0B281F] outline-none placeholder:text-[#0B281F]/30 sm:text-[15px]"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
 
-          <div className="h-8 w-px bg-[#0B281F]/10 mx-1" />
+          <div className="h-6 w-px bg-[#0B281F]/10 mx-1 sm:h-8" />
           
           <div className="relative" ref={filterRef}>
             <button 
               onClick={() => setIsFilterOpen(!isFilterOpen)}
-              className={`flex items-center gap-2 rounded-full px-5 py-3 text-[13px] font-bold transition-all ${
+              className={`flex items-center gap-2 rounded-full px-4 py-2.5 text-[12px] font-bold transition-all sm:px-5 sm:py-3 sm:text-[13px] ${
                 isFilterOpen || activeCategory !== "semua"
                   ? "bg-[#0B281F] text-white shadow-lg"
                   : "bg-transparent text-[#0B281F] hover:bg-[#0B281F]/5"
               }`}
             >
-              <Filter size={16} />
+              <Filter size={14} className="sm:size-16" />
               <span className="hidden sm:inline">
                 {activeCategory === "semua" ? "Filter" : newsCategories.find(c => c.slug === activeCategory)?.name}
               </span>
@@ -68,7 +68,7 @@ export function NewsList() {
 
             {/* Minimalist Dropdown Popup */}
             {isFilterOpen && (
-              <div className="absolute right-0 mt-4 w-64 overflow-hidden rounded-[32px] border border-[#0B281F]/5 bg-white p-2 shadow-[0_25px_70px_rgba(0,0,0,0.15)] animate-in zoom-in-95 fade-in duration-200 origin-top-right">
+              <div className="absolute right-0 mt-4 w-64 overflow-hidden rounded-[24px] border border-[#0B281F]/5 bg-white p-2 shadow-[0_25px_70px_rgba(0,0,0,0.15)] animate-in zoom-in-95 fade-in duration-200 origin-top-right sm:rounded-[32px]">
                 <div className="flex flex-col">
                   {newsCategories.map((category) => (
                     <button
@@ -96,7 +96,7 @@ export function NewsList() {
 
       {/* News Grid */}
       {filteredNews.length > 0 ? (
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-4 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {filteredNews.map((news) => (
             <NewsCard key={news.id} news={news} />
           ))}

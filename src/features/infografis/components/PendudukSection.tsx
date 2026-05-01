@@ -427,13 +427,13 @@ function DemografiCard({
 }) {
   return (
     <article
-      className="hero-reveal group relative h-75.5 w-62.5 shrink-0 transform-gpu transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_20px_38px_rgba(0,0,0,0.18)]"
+      className="hero-reveal group relative aspect-[288/347] w-full shrink-0 transform-gpu transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_20px_38px_rgba(0,0,0,0.18)]"
       style={{ animationDelay: `${delayMs}ms` }}
     >
       <svg
         viewBox="0 0 288 347"
         className="absolute inset-0 h-full w-full"
-        preserveAspectRatio="none"
+        preserveAspectRatio="xMidYMid meet"
         aria-hidden="true"
       >
         <path
@@ -442,21 +442,21 @@ function DemografiCard({
         />
       </svg>
 
-      <div className="absolute left-[8%] top-[8.6%] h-[84.4%] w-[84.7%] rounded-[14px] border border-white/20 bg-linear-to-br from-white/24 via-white/13 to-white/8 backdrop-blur-[2px] shadow-[inset_0_10px_20px_rgba(255,255,255,0.16),inset_0_-10px_18px_rgba(0,0,0,0.14)]" />
+      <div className="absolute left-[8%] top-[8.6%] h-[84.4%] w-[84.7%] rounded-[10px] border border-white/20 bg-linear-to-br from-white/24 via-white/13 to-white/8 backdrop-blur-[2px] shadow-[inset_0_10px_20px_rgba(255,255,255,0.16),inset_0_-10px_18px_rgba(0,0,0,0.14)] sm:rounded-[14px]" />
       <div className="pointer-events-none absolute left-[13%] top-[13%] h-[21%] w-[60%] rounded-xl bg-linear-to-b from-white/26 to-transparent blur-[1px]" />
       <div className="pointer-events-none absolute bottom-[11%] right-[8%] h-[22%] w-[34%] rounded-full bg-[#6FF2C9]/12 blur-[14px]" />
 
-      <div className="absolute left-[17%] top-[20.5%] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5">
-        <div className="flex flex-col items-start justify-center gap-8" style={{ color: textColor }}>
+      <div className="absolute left-[17%] top-[20.5%] w-[70%] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5">
+        <div className="flex flex-col items-start justify-center gap-4 sm:gap-8" style={{ color: textColor }}>
           <h3
-            className="whitespace-pre-line font-[Georgia,serif] text-[19px] font-bold leading-[1.2]"
+            className="whitespace-pre-line font-[Georgia,serif] text-[13px] font-bold leading-[1.2] sm:text-[19px]"
             style={{ color: labelColor }}
           >
             {label}
           </h3>
 
           <p
-            className="text-[60px] leading-[0.9]"
+            className="text-[40px] leading-[0.9] sm:text-[60px]"
             style={{ fontFamily: "var(--font-upakarti)" }}
           >
             {angka}
@@ -464,8 +464,8 @@ function DemografiCard({
         </div>
       </div>
 
-      <div className="absolute left-[76.5%] top-0 z-10 flex h-14.5 w-14.5 items-center justify-center rounded-full bg-black text-white shadow-[0_10px_20px_rgba(0,0,0,0.22)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-hover:-rotate-3">
-        <Icon size={21} strokeWidth={2.2} />
+      <div className="absolute left-[72%] top-0 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black text-white shadow-[0_10px_20px_rgba(0,0,0,0.22)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-hover:-rotate-3 sm:h-14.5 sm:w-14.5">
+        <Icon size={16} strokeWidth={2.2} className="sm:size-21" />
       </div>
     </article>
   );
@@ -492,46 +492,46 @@ function JumlahPendudukCard({
 
   return (
     <article
-      className={`hero-reveal group relative isolate h-67.5 overflow-hidden rounded-tl-[28px] rounded-br-[28px] p-6 text-[#F3F8F6] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:h-75 md:h-80 ${isDark
+      className={`hero-reveal group relative isolate h-56 overflow-hidden rounded-tl-[24px] rounded-br-[24px] p-4 text-[#F3F8F6] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:h-75 md:h-80 sm:p-6 sm:rounded-tl-[28px] sm:rounded-br-[28px] ${isDark
         ? "bg-linear-to-br from-[#001F18] via-[#003326] to-[#005239] text-[#F3F8F6]"
         : "bg-[#D9D9D9] text-[#070C10]"
         }`}
       style={{ animationDelay: `${delayMs}ms` }}
     >
-      <div className="pointer-events-none absolute -right-14 -top-14 h-28 w-28 rotate-45 bg-[#FFFFFF]" />
-      <div className="pointer-events-none absolute -bottom-14 -left-14 h-28 w-28 rotate-45 bg-[#FFFFFF]" />
+      <div className="pointer-events-none absolute -right-10 -top-10 h-20 w-20 rotate-45 bg-[#FFFFFF] sm:-right-14 sm:-top-14 sm:h-28 sm:w-28" />
+      <div className="pointer-events-none absolute -bottom-10 -left-10 h-20 w-20 rotate-45 bg-[#FFFFFF] sm:-bottom-14 sm:-left-14 sm:h-28 sm:w-28" />
 
       <div
-        className={`relative inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-[0_6px_14px_rgba(11,40,31,0.12)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 ${isDark
+        className={`relative inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-[0_6px_14px_rgba(11,40,31,0.12)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 sm:h-11 sm:w-11 ${isDark
           ? "border-white/18 bg-[#0B281F]/48 text-[#EAF7F1]"
           : "border-[#0B281F]/8 bg-white/42 text-[#0B281F]"
           }`}
       >
-        <Icon size={18} strokeWidth={2.1} />
+        <Icon size={16} strokeWidth={2.1} className="sm:size-18" />
       </div>
 
-      <div className="relative mt-6 flex h-[calc(100%-4.75rem)] flex-col justify-between">
+      <div className="relative mt-4 flex h-[calc(100%-3.5rem)] flex-col justify-between sm:mt-6 sm:h-[calc(100%-4.75rem)]">
         <div>
-          <div className={`mb-3 inline-flex items-center gap-1.5 rounded-md px-2 py-1 ${isDark ? "bg-[#009966] text-white" : "bg-[#009966] text-white"}`}>
-            <span className="h-1.5 w-1.5 rounded-full bg-[#F0B100]" />
-            <span className="text-[11px] leading-none" style={{ fontFamily: "var(--font-upakarti)" }}>
+          <div className={`mb-2 inline-flex items-center gap-1.5 rounded-md px-1.5 py-0.5 sm:mb-3 sm:px-2 sm:py-1 ${isDark ? "bg-[#009966] text-white" : "bg-[#009966] text-white"}`}>
+            <span className="h-1 w-1 rounded-full bg-[#F0B100] sm:h-1.5 sm:w-1.5" />
+            <span className="text-[9px] leading-none sm:text-[11px]" style={{ fontFamily: "var(--font-upakarti)" }}>
               Jiwa
             </span>
           </div>
 
           <p
-            className={`text-[54px] leading-[0.9] sm:text-[58px] ${isDark ? "text-[#F3F8F6]" : "text-black"}`}
+            className={`text-[36px] leading-[0.9] sm:text-[58px] ${isDark ? "text-[#F3F8F6]" : "text-black"}`}
             style={{ fontFamily: "var(--font-upakarti)" }}
           >
             {angka}
           </p>
 
-          <h3 className={`mt-3 font-[Georgia,serif] text-[19px] font-bold leading-[1.15] sm:text-[21px] md:text-[23px] ${isDark ? "text-[#F3F8F6]" : "text-black"}`}>
+          <h3 className={`mt-2 font-[Georgia,serif] text-[15px] font-bold leading-[1.15] sm:mt-3 sm:text-[21px] md:text-[23px] ${isDark ? "text-[#F3F8F6]" : "text-black"}`}>
             {label}
           </h3>
         </div>
 
-        <p className={`self-end text-right text-[12px] leading-tight ${isDark ? "text-[#F5F7F6]/85" : "text-black"}`}>
+        <p className={`self-end text-right text-[10px] leading-tight sm:text-[12px] ${isDark ? "text-[#F5F7F6]/85" : "text-black"}`}>
           Terdata
           <br />
           oleh sistem
@@ -690,26 +690,26 @@ function DusunInfoCard({
 }) {
   return (
     <article className="hero-reveal group relative pt-4" style={{ animationDelay: `${delayMs}ms` }}>
-      <div className="absolute -left-3 -top-5 z-20 inline-flex h-17 w-19 items-start justify-start rounded-xl bg-[#F0B100] px-2.5 pt-1 shadow-[0_10px_16px_rgba(0,0,0,0.16)] transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
-        <span className="text-[38px] leading-none text-white" style={{ fontFamily: "var(--font-upakarti)" }}>
+      <div className="absolute -left-2 -top-4 z-20 inline-flex h-12 w-14 items-start justify-start rounded-lg bg-[#F0B100] px-2 pt-0.5 shadow-[0_10px_16px_rgba(0,0,0,0.16)] transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3 sm:-left-3 sm:-top-5 sm:h-17 sm:w-19 sm:rounded-xl sm:px-2.5 sm:pt-1">
+        <span className="text-[28px] leading-none text-white sm:text-[38px]" style={{ fontFamily: "var(--font-upakarti)" }}>
           {kode}
         </span>
       </div>
 
-      <span className="absolute right-2 top-1 z-30 inline-flex items-center gap-1.5 rounded-full bg-[#00E0A1] px-3 py-1 text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(0,0,0,0.2)] border border-white/20">
-        <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
+      <span className="absolute right-2 top-1 z-30 inline-flex items-center gap-1 rounded-full bg-[#00E0A1] px-2 py-0.5 text-[10px] font-bold text-white shadow-[0_4px_12px_rgba(0,0,0,0.2)] border border-white/20 sm:gap-1.5 sm:px-3 sm:py-1 sm:text-[13px]">
+        <span className="h-1 w-1 rounded-full bg-white animate-pulse sm:h-1.5 sm:w-1.5" />
         {persentase}%
       </span>
 
-      <div className="relative z-10 min-h-38 overflow-hidden rounded-[24px] border border-white/10 bg-linear-to-br from-white/15 via-white/5 to-transparent px-5 pb-5 pt-7 shadow-[0_20px_40px_rgba(0,0,0,0.15)] backdrop-blur-sm transition-all duration-300 group-hover:border-white/25 group-hover:bg-white/10">
+      <div className="relative z-10 min-h-32 overflow-hidden rounded-[20px] border border-white/10 bg-linear-to-br from-white/15 via-white/5 to-transparent px-4 pb-4 pt-6 shadow-[0_20px_40px_rgba(0,0,0,0.15)] backdrop-blur-sm transition-all duration-300 group-hover:border-white/25 group-hover:bg-white/10 sm:min-h-38 sm:rounded-[24px] sm:px-5 sm:pb-5 sm:pt-7">
         <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#00E0A1]/15 blur-2xl transition-all duration-500 group-hover:bg-[#00E0A1]/25" />
 
         <div className="relative">
-          <h3 className="font-[Georgia,serif] text-[34px] leading-[0.85] text-white">
-            <span className="block text-[38px] opacity-70">Dusun</span>
+          <h3 className="font-[Georgia,serif] text-[24px] leading-[0.85] text-white sm:text-[34px]">
+            <span className="block text-[28px] opacity-70 sm:text-[38px]">Dusun</span>
             <span className="mt-1 block font-bold tracking-tight">{nama.replace("Dusun ", "")}</span>
           </h3>
-          <p className="mt-3 text-[13px] leading-relaxed text-white/70">{deskripsi}</p>
+          <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-white/70 sm:mt-3 sm:line-clamp-none sm:text-[13px]">{deskripsi}</p>
         </div>
       </div>
     </article>
@@ -955,7 +955,7 @@ function StatusPerkawinanSection() {
   return (
     <section className={sectionCardClass + " bg-[#ffffff]"}>
       <div className="flex flex-col gap-7">
-        <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+        <div className="relative grid gap-4 border-b border-[#0B281F]/10 pb-6 pr-14 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)] md:items-start md:gap-6 md:pr-16">
           <h2 className="hero-reveal font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
             Berdasarkan
             <br />
@@ -971,7 +971,7 @@ function StatusPerkawinanSection() {
           <button
             type="button"
             aria-label="Informasi berdasarkan status perkawinan"
-            className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5"
+            className="hero-reveal absolute right-0 top-0 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5 md:h-14 md:w-14"
           >
             <HeartHandshake size={22} strokeWidth={2.2} />
           </button>
@@ -1138,7 +1138,7 @@ function AgamaSection() {
   return (
     <section className={sectionCardClass + " bg-[#ffffff]"}>
       <div className="flex flex-col gap-7">
-        <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+        <div className="relative grid gap-4 border-b border-[#0B281F]/10 pb-6 pr-14 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)] md:items-start md:gap-6 md:pr-16">
           <h2 className="hero-reveal font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
             Berdasarkan
             <br />
@@ -1153,7 +1153,7 @@ function AgamaSection() {
           <button
             type="button"
             aria-label="Informasi berdasarkan agama"
-            className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5"
+            className="hero-reveal absolute right-0 top-0 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5 md:h-14 md:w-14"
           >
             <Paperclip size={22} strokeWidth={2.2} />
           </button>
@@ -1223,36 +1223,36 @@ function PekerjaanTopCard({
 }) {
   return (
     <article
-      className="hero-reveal group relative isolate h-67.5 overflow-hidden rounded-tl-[28px] rounded-br-[28px] bg-linear-to-br from-[#001F18] via-[#003326] to-[#005239] p-6 text-[#F3F8F6] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:h-75 md:h-80"
+      className="hero-reveal group relative isolate h-56 overflow-hidden rounded-tl-[24px] rounded-br-[24px] bg-linear-to-br from-[#001F18] via-[#003326] to-[#005239] p-4 text-[#F3F8F6] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:h-75 md:h-80 sm:p-6 sm:rounded-tl-[28px] sm:rounded-br-[28px]"
       style={{ animationDelay: `${delayMs}ms` }}
     >
-      <div className="pointer-events-none absolute -right-14 -top-14 h-28 w-28 rotate-45 bg-[#FFFFFF]" />
-      <div className="pointer-events-none absolute -bottom-14 -left-14 h-28 w-28 rotate-45 bg-[#FFFFFF]" />
+      <div className="pointer-events-none absolute -right-10 -top-10 h-20 w-20 rotate-45 bg-[#FFFFFF] sm:-right-14 sm:-top-14 sm:h-28 sm:w-28" />
+      <div className="pointer-events-none absolute -bottom-10 -left-10 h-20 w-20 rotate-45 bg-[#FFFFFF] sm:-bottom-14 sm:-left-14 sm:h-28 sm:w-28" />
 
-      <div className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/18 bg-[#0B281F]/48 text-[#EAF7F1] shadow-[0_6px_14px_rgba(11,40,31,0.12)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:-rotate-3">
-        <Icon size={18} strokeWidth={2.1} />
+      <div className="relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/18 bg-[#0B281F]/48 text-[#EAF7F1] shadow-[0_6px_14px_rgba(11,40,31,0.12)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:-rotate-3 sm:h-11 sm:w-11">
+        <Icon size={16} strokeWidth={2.1} className="sm:size-18" />
       </div>
 
-      <div className="relative mt-6 flex h-[calc(100%-4.75rem)] flex-col justify-between transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5">
+      <div className="relative mt-4 flex h-[calc(100%-3.5rem)] flex-col justify-between transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 sm:mt-6 sm:h-[calc(100%-4.75rem)]">
         <div>
-          <div className="mb-3 inline-flex items-center gap-2 rounded-lg bg-[#00E0A1] px-3 py-1 text-[11px] leading-none font-bold text-[#0B281F] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#0B281F]" />
+          <div className="mb-2 inline-flex items-center gap-1.5 rounded-lg bg-[#00E0A1] px-2 py-0.5 text-[9px] leading-none font-bold text-[#0B281F] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] sm:mb-3 sm:gap-2 sm:px-3 sm:py-1 sm:text-[11px]">
+            <span className="inline-block h-1 w-1 rounded-full bg-[#0B281F] sm:h-1.5 sm:w-1.5" />
             {rank}
           </div>
 
           <p
-            className="text-[54px] font-bold leading-[0.9] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 sm:text-[58px]"
+            className="text-[36px] font-bold leading-[0.9] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 sm:text-[58px]"
             style={{ fontFamily: "var(--font-upakarti)" }}
           >
             {jumlah}
           </p>
 
-          <h3 className="mt-3 font-[Georgia,serif] text-[19px] font-bold leading-[1.15] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 sm:text-[21px] md:text-[23px]">
+          <h3 className="mt-2 font-[Georgia,serif] text-[15px] font-bold leading-[1.15] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 sm:mt-3 sm:text-[21px] md:text-[23px]">
             {nama}
           </h3>
         </div>
 
-        <p className="self-end text-right text-[12px] leading-tight text-[#F5F7F6]/85">
+        <p className="self-end text-right text-[10px] leading-tight text-[#F5F7F6]/85 sm:text-[12px]">
           Terdata
           <br />
           oleh sistem
@@ -1524,9 +1524,9 @@ function PekerjaanViewAllModal({
 
 export function PendudukSection() {
   return (
-    <div className="space-y-8" id="penduduk">
+    <div className="space-y-6 md:space-y-8" id="penduduk">
       <div className={sectionCardClass + " bg-white"}>
-        <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+        <div className="relative grid gap-4 border-b border-[#0B281F]/10 pb-6 pr-14 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)] md:items-start md:gap-6 md:pr-16">
           <h2
             className="hero-reveal font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]"
             style={{ animationDelay: "40ms" }}
@@ -1541,7 +1541,7 @@ export function PendudukSection() {
             style={{ animationDelay: "140ms" }}
           >
             Demografi Penduduk merupakan penyajian data kependudukan yang
-            transparan, akurat, dan terintegrasi guna mendukung proses
+            transparan, akurat, and terintegrasi guna mendukung proses
             perencanaan pembangunan, pengambilan kebijakan, serta evaluasi
             program secara tepat sasaran.
           </p>
@@ -1549,23 +1549,17 @@ export function PendudukSection() {
           <button
             type="button"
             aria-label="Informasi demografi penduduk"
-            className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5"
+            className="hero-reveal absolute right-0 top-0 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5 md:h-14 md:w-14"
             style={{ animationDelay: "220ms" }}
           >
             <Info size={22} strokeWidth={2.2} />
           </button>
         </div>
 
-        <div className="mt-7 overflow-x-auto px-2 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mt-8 px-2">
           <div
-            className="mx-auto flex w-max min-w-full items-start justify-start xl:justify-center"
-            style={{
-              maxWidth: 1120,
-              minHeight: 308,
-              paddingTop: 4,
-              paddingBottom: 4,
-              gap: 65,
-            }}
+            className="hero-reveal grid grid-cols-2 gap-4 sm:gap-8 lg:grid-cols-4 xl:gap-16"
+            style={{ animationDelay: "300ms" }}
           >
             {kartuDemografi.map((item, idx) => (
               <DemografiCard
@@ -1585,7 +1579,7 @@ export function PendudukSection() {
 
       <section className={sectionCardClass + " bg-[#FFFFFF]"}>
         <div className="flex flex-col gap-7">
-          <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+          <div className="relative grid gap-4 border-b border-[#0B281F]/10 pb-6 pr-14 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)] md:items-start md:gap-6 md:pr-16">
             <h2 className="hero-reveal font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
               Jumlah
               <br />
@@ -1594,7 +1588,7 @@ export function PendudukSection() {
 
             <p className="hero-reveal max-w-none pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7">
               Jumlah Penduduk merupakan penyajian data mengenai total populasi
-              yang ditampilkan secara transparan, akurat, dan terintegrasi guna
+              yang ditampilkan secara transparan, akurat, and terintegrasi guna
               mendukung proses perencanaan pembangunan, pengambilan kebijakan,
               serta evaluasi program secara tepat sasaran.
             </p>
@@ -1602,13 +1596,13 @@ export function PendudukSection() {
             <button
               type="button"
               aria-label="Informasi jumlah penduduk"
-              className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-black transition-transform duration-300 hover:-translate-y-0.5"
+              className="hero-reveal absolute right-0 top-0 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5 md:h-14 md:w-14"
             >
               <Info size={22} strokeWidth={2.2} />
             </button>
           </div>
 
-          <div className="hero-reveal grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3" style={{ animationDelay: "180ms" }}>
+          <div className="hero-reveal grid grid-cols-2 gap-4 md:grid-cols-2 xl:grid-cols-3" style={{ animationDelay: "180ms" }}>
             {kartuJumlahPenduduk.map((item, idx) => (
               <JumlahPendudukCard
                 key={`${item.label}-${idx}`}
@@ -1625,7 +1619,7 @@ export function PendudukSection() {
 
       <section className={sectionCardClass + " bg-[#ffffff]"}>
         <div className="flex flex-col gap-7">
-          <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+          <div className="relative grid gap-4 border-b border-[#0B281F]/10 pb-6 pr-14 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)] md:items-start md:gap-6 md:pr-16">
             <h2 className="hero-reveal font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]" style={{ animationDelay: "40ms" }}>
               Berdasarkan
               <br />
@@ -1635,7 +1629,7 @@ export function PendudukSection() {
             <p className="hero-reveal max-w-none pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7" style={{ animationDelay: "140ms" }}>
               Kelompok Umur merupakan penyajian data penduduk berdasarkan
               rentang usia tertentu yang ditampilkan secara transparan, akurat,
-              dan terintegrasi guna mendukung proses perencanaan pembangunan,
+              and terintegrasi guna mendukung proses perencanaan pembangunan,
               pengambilan kebijakan, serta evaluasi program secara tepat
               sasaran.
             </p>
@@ -1643,7 +1637,7 @@ export function PendudukSection() {
             <button
               type="button"
               aria-label="Informasi kelompok umur"
-              className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5"
+              className="hero-reveal absolute right-0 top-0 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5 md:h-14 md:w-14"
               style={{ animationDelay: "220ms" }}
             >
               <ChartNoAxesCombined size={22} strokeWidth={2.2} />
@@ -1666,7 +1660,7 @@ export function PendudukSection() {
 
       <section className={sectionCardClass + " bg-[#ffffff]"}>
         <div className="flex flex-col gap-7">
-          <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+          <div className="relative grid gap-4 border-b border-[#0B281F]/10 pb-6 pr-14 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)] md:items-start md:gap-6 md:pr-16">
             <h2 className="hero-reveal font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
               Berdasarkan
               <br />
@@ -1675,15 +1669,15 @@ export function PendudukSection() {
 
             <p className="hero-reveal max-w-none pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7">
               Berdasarkan Dusun merupakan penyajian data penduduk menurut
-              rentang usia di setiap dusun yang disajikan secara transparan dan
-              akurat untuk mendukung perencanaan dan pengambilan kebijakan
+              rentang usia di setiap dusun yang disajikan secara transparan and
+              akurat untuk mendukung perencanaan and pengambilan kebijakan
               secara tepat sasaran.
             </p>
 
             <button
               type="button"
               aria-label="Informasi berdasarkan dusun"
-              className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5"
+              className="hero-reveal absolute right-0 top-0 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5 md:h-14 md:w-14"
             >
               <ChartNoAxesCombined size={22} strokeWidth={2.2} />
             </button>
@@ -1695,7 +1689,7 @@ export function PendudukSection() {
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle_at_center,rgba(0,224,161,0.05)_0%,transparent_70%)]" />
 
             <div className="relative z-10 grid items-stretch gap-10 xl:grid-cols-[1fr_minmax(280px,0.6fr)] xl:gap-16">
-              <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:gap-8">
                 {berdasarkanDusunCards.map((item, idx) => (
                   <DusunInfoCard
                     key={`${item.kode}-${item.nama}`}
@@ -1708,7 +1702,7 @@ export function PendudukSection() {
                 ))}
               </div>
 
-              <div className="flex flex-col items-center justify-center rounded-[28px] border border-white/5 bg-white/2 p-8 shadow-3xl backdrop-blur-md">
+              <div className="flex flex-col items-center justify-center rounded-[28px] border border-white/5 bg-white/2 p-6 shadow-3xl backdrop-blur-md sm:p-8">
                 <DusunPieChart delayMs={220} />
               </div>
             </div>
@@ -1718,7 +1712,7 @@ export function PendudukSection() {
 
       <section className={sectionCardClass + " bg-[#ffffff]"}>
         <div className="flex flex-col gap-7">
-          <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+          <div className="relative grid gap-4 border-b border-[#0B281F]/10 pb-6 pr-14 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)] md:items-start md:gap-6 md:pr-16">
             <h2 className="hero-reveal font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
               Berdasarkan
               <br />
@@ -1727,14 +1721,14 @@ export function PendudukSection() {
 
             <p className="hero-reveal max-w-none pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7">
               Berdasarkan Pendidikan merupakan penyajian data penduduk menurut
-              tingkat pendidikan terakhir yang disajikan secara transparan dan
+              tingkat pendidikan terakhir yang disajikan secara transparan and
               akurat untuk mendukung perencanaan pembangunan desa.
             </p>
 
             <button
               type="button"
               aria-label="Informasi berdasarkan pendidikan"
-              className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5"
+              className="hero-reveal absolute right-0 top-0 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5 md:h-14 md:w-14"
             >
               <GraduationCap size={22} strokeWidth={2.2} />
             </button>
@@ -1746,7 +1740,7 @@ export function PendudukSection() {
 
       <section className={sectionCardClass + " bg-[#ffffff]"}>
         <div className="flex flex-col gap-7">
-          <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+          <div className="relative grid gap-4 border-b border-[#0B281F]/10 pb-6 pr-14 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)] md:items-start md:gap-6 md:pr-16">
             <h2 className="hero-reveal font-[Georgia,serif] text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]" style={{ animationDelay: "40ms" }}>
               Berdasarkan
               <br />
@@ -1756,21 +1750,21 @@ export function PendudukSection() {
             <p className="hero-reveal max-w-none pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7" style={{ animationDelay: "140ms" }}>
               Kelompok Berdasarkan Pekerjaan merupakan penyajian data penduduk
               menurut jenis atau bidang pekerjaan yang disajikan secara
-              transparan dan akurat untuk mendukung perencanaan serta
+              transparan and akurat untuk mendukung perencanaan serta
               pengambilan kebijakan secara tepat sasaran.
             </p>
 
             <button
               type="button"
               aria-label="Informasi berdasarkan pekerjaan"
-              className="hero-reveal inline-flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5"
+              className="hero-reveal absolute right-0 top-0 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5 md:h-14 md:w-14"
               style={{ animationDelay: "220ms" }}
             >
               <Briefcase size={22} strokeWidth={2.2} />
             </button>
           </div>
 
-          <div className="hero-reveal grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-5" style={{ animationDelay: "180ms" }}>
+          <div className="hero-reveal grid grid-cols-2 gap-4 md:grid-cols-3 lg:gap-5" style={{ animationDelay: "180ms" }}>
             {pekerjaanTopCards.map((item, idx) => (
               <PekerjaanTopCard
                 key={`${item.nama}-${idx}`}

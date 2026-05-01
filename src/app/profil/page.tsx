@@ -12,7 +12,7 @@ export default function ProfilePage() {
     <main className="min-h-screen bg-[#F6F8F7] overflow-x-hidden">
       <ProfileHero name={mockProfile.name} slogan={mockProfile.slogan} />
       
-      <div id="profile-content" className="relative z-20 py-20 space-y-32 pb-32">
+      <div id="profile-content" className="relative z-20 py-12 space-y-12 md:py-20 md:space-y-24 pb-24 md:pb-32">
         {/* Overview Section */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <AboutSection />

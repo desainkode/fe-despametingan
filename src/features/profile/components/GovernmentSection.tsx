@@ -19,11 +19,11 @@ export function GovernmentSection({ members }: { members: GovernmentMember[] }) 
       </div>
 
       {/* Apparatus Grid - Matching Home Page Style */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
         {members.map((member, idx) => (
           <div 
             key={idx}
-            className="group relative h-[400px] overflow-hidden rounded-[32px] bg-[#0B281F] shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(11,40,31,0.2)]"
+            className="group relative h-[320px] overflow-hidden rounded-[24px] bg-[#0B281F] shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(11,40,31,0.2)] sm:h-[380px] sm:rounded-[32px] md:h-[400px]"
           >
             {/* Base Image */}
             <img 
@@ -34,17 +34,17 @@ export function GovernmentSection({ members }: { members: GovernmentMember[] }) 
             
             {/* Overlays */}
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-            <div className="absolute inset-0 border border-white/10 rounded-[32px] pointer-events-none" />
+            <div className="absolute inset-0 border border-white/10 rounded-[24px] pointer-events-none sm:rounded-[32px]" />
 
             {/* Content at Bottom */}
-            <div className="absolute bottom-0 w-full p-6 text-center">
+            <div className="absolute bottom-0 w-full p-4 text-center sm:p-6">
               <p 
-                className="text-xl font-bold text-white md:text-2xl"
+                className="text-[16px] font-bold text-white sm:text-xl md:text-2xl"
                 style={{ fontFamily: 'var(--font-heading)' }}
               >
                 {member.position}
               </p>
-              <p className="mt-1 text-sm font-medium text-[#D4FBEA]">
+              <p className="mt-1 text-[11px] font-medium text-[#D4FBEA] sm:text-sm">
                 {member.name}
               </p>
             </div>
@@ -53,13 +53,15 @@ export function GovernmentSection({ members }: { members: GovernmentMember[] }) 
       </div>
 
       {/* Org Chart Section */}
-      <div className="flex flex-col items-center gap-8 border-t border-[#0B281F]/5 pt-16">
+      <div className="flex flex-col items-center gap-6 border-t border-[#0B281F]/5 pt-12 md:gap-8 md:pt-16">
         <button 
           onClick={() => setShowOrgChart(!showOrgChart)}
-          className="flex items-center gap-3 rounded-full bg-[#F0B100] px-10 py-5 text-[14px] font-bold text-[#0B281F] shadow-xl transition-all hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(240,177,0,0.3)]"
+          className="flex items-center gap-3 rounded-full bg-[#F0B100] px-8 py-4 text-[13px] font-bold text-[#0B281F] shadow-xl transition-all hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(240,177,0,0.3)] sm:px-10 sm:py-5 sm:text-[14px]"
         >
-          <ImageIcon size={20} />
-          {showOrgChart ? "Sembunyikan Bagan" : "Lihat Bagan Struktur Organisasi Lengkap"}
+          <ImageIcon size={18} />
+          <span className="max-w-[200px] truncate sm:max-w-none">
+            {showOrgChart ? "Sembunyikan Bagan" : "Bagan Struktur Organisasi"}
+          </span>
           {showOrgChart ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
         </button>
 

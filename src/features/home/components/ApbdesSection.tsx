@@ -99,11 +99,11 @@ export default function ApbdesSection() {
 
           <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_340px] lg:items-center">
             {/* Circular Stats Container */}
-            <div className="flex flex-row flex-wrap justify-center gap-4 sm:gap-6 lg:justify-start lg:flex-nowrap lg:gap-0">
+            <div className="grid grid-cols-2 justify-center gap-4 sm:gap-6 lg:flex lg:flex-nowrap lg:justify-start lg:gap-0">
               {apbdesStatistik.map((item, index) => (
                 <div
                   key={item.label}
-                  className={`hero-reveal relative flex h-[120px] w-[120px] flex-col items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:z-20 hover:-translate-y-2 group/card sm:h-44 sm:w-44 lg:h-52 lg:w-52 ${index > 0 ? "lg:-ml-12" : ""}`}
+                  className={`hero-reveal relative flex aspect-square w-full flex-col items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:z-20 hover:-translate-y-2 group/card sm:h-44 sm:w-44 sm:aspect-auto lg:h-52 lg:w-52 ${index > 0 ? "lg:-ml-12" : ""}`}
                   style={{ animationDelay: `${200 + index * 100}ms` }}
                 >
                   <div className={`absolute inset-0 rounded-full bg-linear-to-br opacity-0 transition-opacity duration-500 group-hover/card:opacity-10 ${item.color}`} />
