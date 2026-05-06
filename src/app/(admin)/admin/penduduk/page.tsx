@@ -7,7 +7,10 @@ import {
   ChevronLeft, 
   ChevronRight, 
   Loader2,
-  RefreshCw
+  Plus,
+  Edit,
+  Trash2,
+  Eye
 } from "lucide-react";
 import { 
   Table, 
@@ -21,22 +24,29 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
-  Pagination, 
-  PaginationContent, 
-  PaginationEllipsis, 
-  PaginationItem, 
-  PaginationLink, 
-  PaginationNext, 
-  PaginationPrevious 
-} from "@/components/ui/pagination";
-import { getPendudukList, Penduduk, PaginatedResponse } from "@/lib/api/penduduk";
+  getPendudukList, 
+  Penduduk, 
+  PaginatedResponse,
+  createPenduduk,
+  updatePenduduk,
+  deletePenduduk,
+  getPendudukDetail
+} from "@/lib/api/penduduk";
 import { toast } from "sonner";
+import { PendudukForm } from "./components/PendudukForm";
+import { ConfirmDeleteDialog } from "./components/ConfirmDeleteDialog";
 
 export default function PendudukPage() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<PaginatedResponse<Penduduk> | null>(null);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+
+  // CRUD State
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [selectedPenduduk, setSelectedPenduduk] = useState<any | null>(null);
+  const [isActionLoading, setIsActionLoading] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -58,24 +68,84 @@ export default function PendudukPage() {
     }
   };
 
+  const handleAdd = () => {
+    setSelectedPenduduk(null);
+    setIsFormOpen(true);
+  };
+
+  const handleEdit = async (penduduk: Penduduk) => {
+    try {
+      setIsActionLoading(true);
+      const detail = await getPendudukDetail(penduduk.id);
+      setSelectedPenduduk(detail);
+      setIsFormOpen(true);
+    } catch (error) {
+      toast.error("Gagal mengambil detail penduduk");
+    } finally {
+      setIsActionLoading(false);
+    }
+  };
+
+  const handleDeleteClick = (penduduk: Penduduk) => {
+    setSelectedPenduduk(penduduk);
+    setIsDeleteOpen(true);
+  };
+
+  const onFormSubmit = async (values: any) => {
+    try {
+      if (selectedPenduduk) {
+        await updatePenduduk(selectedPenduduk.id, values);
+        toast.success("Data penduduk berhasil diperbarui");
+      } else {
+        await createPenduduk(values);
+        toast.success("Data penduduk berhasil ditambahkan");
+      }
+      fetchData();
+    } catch (error) {
+      toast.error(selectedPenduduk ? "Gagal memperbarui data" : "Gagal menambahkan data");
+      throw error;
+    }
+  };
+
+  const onConfirmDelete = async () => {
+    if (!selectedPenduduk) return;
+    try {
+      setIsActionLoading(true);
+      await deletePenduduk(selectedPenduduk.id);
+      toast.success("Data penduduk berhasil dihapus");
+      setIsDeleteOpen(false);
+      fetchData();
+    } catch (error) {
+      toast.error("Gagal menghapus data");
+    } finally {
+      setIsActionLoading(false);
+    }
+  };
+
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 pb-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Data Penduduk</h1>
           <p className="text-sm text-muted-foreground">Kelola dan pantau seluruh data warga desa</p>
         </div>
-        <div className="relative w-full md:w-80">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input 
-            placeholder="Cari nama atau NIK..." 
-            className="pl-10" 
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-              setPage(1); // Reset to page 1 on search
-            }}
-          />
+        <div className="flex flex-col sm:flex-row gap-3">
+          <div className="relative w-full md:w-64">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input 
+              placeholder="Cari nama atau NIK..." 
+              className="pl-10" 
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setPage(1); // Reset to page 1 on search
+              }}
+            />
+          </div>
+          <Button onClick={handleAdd} className="bg-emerald-700 hover:bg-emerald-800">
+            <Plus className="h-4 w-4 mr-1.5" />
+            Tambah Penduduk
+          </Button>
         </div>
       </div>
 
@@ -112,7 +182,7 @@ export default function PendudukPage() {
               </TableRow>
             ) : (
               data?.data.map((item) => (
-                <TableRow key={item.id} className="hover:bg-muted/30 transition-colors">
+                <TableRow key={item.id} className="hover:bg-muted/30 transition-colors group">
                   <TableCell className="font-mono text-xs font-semibold">
                     {item.nik}
                   </TableCell>
@@ -124,9 +194,25 @@ export default function PendudukPage() {
                   </TableCell>
                   <TableCell>{item.tanggal_lahir}</TableCell>
                   <TableCell className="text-right">
-                    <Button variant="ghost" size="sm" className="text-emerald-700 hover:text-emerald-800 hover:bg-emerald-50">
-                      Detail
-                    </Button>
+                    <div className="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="h-8 w-8 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50"
+                        onClick={() => handleEdit(item)}
+                        disabled={isActionLoading}
+                      >
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-50"
+                        onClick={() => handleDeleteClick(item)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </TableCell>
                 </TableRow>
               ))
@@ -165,6 +251,26 @@ export default function PendudukPage() {
           </div>
         </div>
       )}
+
+      {/* CRUD Dialogs */}
+      <PendudukForm 
+        open={isFormOpen}
+        onOpenChange={setIsFormOpen}
+        onSubmit={onFormSubmit}
+        initialData={selectedPenduduk}
+        title={selectedPenduduk ? "Edit Data Penduduk" : "Tambah Penduduk Baru"}
+        description={selectedPenduduk ? "Perbarui informasi penduduk yang sudah terdaftar." : "Masukkan data lengkap penduduk sesuai KTP."}
+      />
+
+      <ConfirmDeleteDialog 
+        open={isDeleteOpen}
+        onOpenChange={setIsDeleteOpen}
+        onConfirm={onConfirmDelete}
+        title="Hapus Data Penduduk"
+        description={`Apakah Anda yakin ingin menghapus data penduduk dengan nama ${selectedPenduduk?.nama}? Tindakan ini tidak dapat dibatalkan.`}
+        loading={isActionLoading}
+      />
     </div>
   );
 }
+

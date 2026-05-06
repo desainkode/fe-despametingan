@@ -37,3 +37,17 @@ export async function getPendudukDetail(id: string): Promise<Penduduk> {
   const response = await api.get<ApiResponse<Penduduk>>(`penduduk/${id}`);
   return response.data.data;
 }
+
+export async function createPenduduk(data: Partial<Penduduk>): Promise<Penduduk> {
+  const response = await api.post<ApiResponse<Penduduk>>("penduduk", data);
+  return response.data.data;
+}
+
+export async function updatePenduduk(id: string, data: Partial<Penduduk>): Promise<Penduduk> {
+  const response = await api.put<ApiResponse<Penduduk>>(`penduduk/${id}`, data);
+  return response.data.data;
+}
+
+export async function deletePenduduk(id: string): Promise<void> {
+  await api.delete(`penduduk/${id}`);
+}
