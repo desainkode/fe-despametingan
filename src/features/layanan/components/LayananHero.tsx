@@ -10,10 +10,10 @@ export function LayananHero() {
       <div className="pointer-events-none absolute -right-24 -top-24 h-[500px] w-[500px] rounded-full bg-[#00E0A1]/15 blur-[120px] animate-pulse" />
       <div className="pointer-events-none absolute -left-16 -bottom-16 h-[400px] w-[400px] rounded-full bg-[#F0B100]/10 blur-[120px] animate-pulse" />
       <div className="pointer-events-none absolute top-1/4 right-1/3 h-64 w-64 rounded-full bg-[#F0B100]/5 blur-[100px]" />
-      
+
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="flex flex-col items-center text-center">
@@ -22,9 +22,9 @@ export function LayananHero() {
             Layanan Terintegrasi & Aman
           </div>
 
-          <h1 
+          <h1
             className="hero-reveal max-w-4xl font-bold leading-[1.1] tracking-tight text-[40px] sm:text-[56px] lg:text-[72px]"
-            style={{ fontFamily: 'var(--font-heading)' }}
+            style={{ fontFamily: 'var(--font-upakarti)' }}
           >
             Pelayanan Masyarakat <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E0A1] to-[#F0B100]">Desa Pameutingan</span>

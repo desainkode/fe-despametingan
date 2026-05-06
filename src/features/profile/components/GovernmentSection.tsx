@@ -40,7 +40,7 @@ export function GovernmentSection({ members }: { members: GovernmentMember[] }) 
             <div className="absolute bottom-0 w-full p-4 text-center sm:p-6">
               <p 
                 className="text-[16px] font-bold text-white sm:text-xl md:text-2xl"
-                style={{ fontFamily: 'var(--font-heading)' }}
+                style={{ fontFamily: 'var(--font-upakarti)' }}
               >
                 {member.position}
               </p>

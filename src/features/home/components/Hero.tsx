@@ -3,8 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Map, Users, LayoutGrid } from "lucide-react";
+import { Desa } from "@/types";
 
-export default function Hero() {
+export default function Hero({ desa }: { desa?: Desa | null }) {
   return (
     <section className="relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-[#0B281F] text-[#F4F3EF]">
       {/* Background Media */}
@@ -48,7 +49,7 @@ export default function Hero() {
           </h1>
 
           <p className="hero-reveal mt-4 max-w-xl text-[13px] font-medium leading-relaxed text-[#D0FAE5]/70 sm:text-[16px] [animation-delay:250ms]">
-            Selamat datang di portal digital Desa Pameutingan. Transformasi tata kelola desa yang transparan, modern, dan melayani sepenuh hati.
+            Selamat datang di portal digital {desa?.nama_desa || "Desa Pameutingan"}. Transformasi tata kelola desa yang transparan, modern, dan melayani sepenuh hati.
           </p>
 
           <div className="hero-reveal mt-6 flex w-full flex-row items-center gap-2.5 [animation-delay:350ms] lg:w-auto lg:items-start sm:gap-5">
@@ -71,7 +72,7 @@ export default function Hero() {
           {/* Quick Stats */}
           <div className="hero-reveal mt-8 grid w-full grid-cols-3 gap-2.5 [animation-delay:450ms] lg:max-w-xl lg:gap-4">
             {[
-              { label: "Luas Wilayah", value: "12.5", unit: "km²", icon: Map },
+              { label: "Luas Wilayah", value: desa?.luas_wilayah || "12.5", unit: "km²", icon: Map },
               { label: "Total Penduduk", value: "3.5k", unit: "+", icon: Users },
               { label: "Potensi Desa", value: "8", unit: "Sektor", icon: LayoutGrid },
             ].map((stat, i) => (
@@ -97,8 +98,8 @@ export default function Hero() {
 
           <div className="hero-float group relative aspect-[4/5] overflow-hidden rounded-[40px] bg-linear-to-b from-emerald-900 to-[#0B281F] shadow-2xl [animation-delay:0s]">
             <Image
-              src="/img/hero-kepala-desa.png"
-              alt="Kepala Desa Pameutingan"
+              src={desa?.foto_kepala_desa || "/img/hero-kepala-desa.png"}
+              alt={`Kepala Desa ${desa?.nama_desa || "Desa Pameutingan"}`}
               fill
               className="hero-zoom object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
               priority
@@ -108,7 +109,7 @@ export default function Hero() {
             <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/10 bg-black/40 p-4 shadow-2xl backdrop-blur-xl transition-all duration-500 group-hover:-translate-y-1">
               <div className="flex items-start justify-between">
                 <div>
-                  <h3 className="text-base font-black leading-tight text-white">Majang Dudi B.</h3>
+                  <h3 className="text-base font-black leading-tight text-white">{desa?.nama_kepala_desa || "Majang Dudi B."}</h3>
                   <p className="mt-0.5 text-[10px] font-bold uppercase tracking-widest text-[#00D492]">Kepala Desa</p>
                 </div>
                 <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#F0B100] text-lg font-black text-[#0B281F]">
@@ -116,7 +117,7 @@ export default function Hero() {
                 </div>
               </div>
               <p className="mt-3 text-[11px] italic leading-relaxed text-[#D0FAE5]/80">
-                &quot;Melayani dengan hati, membangun dengan inovasi untuk kemajuan bersama.&quot;
+                &quot;{desa?.kata_sambutan || "Melayani dengan hati, membangun dengan inovasi untuk kemajuan bersama."}&quot;
               </p>
             </div>
           </div>

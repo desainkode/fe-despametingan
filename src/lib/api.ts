@@ -1,12 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000",
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/api/`,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
   },
-  withCredentials: false,
 });
 
 // ── Request interceptor: inject Bearer token ──────────────────────────────
@@ -20,10 +19,11 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// ── Response interceptor: handle 401 ─────────────────────────────────────
+// ── Response interceptor: handle errors ─────────────────────────────────────
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    // Session expired or invalid token
     if (
       error.response?.status === 401 &&
       typeof window !== "undefined" &&
@@ -32,6 +32,12 @@ api.interceptors.response.use(
       localStorage.removeItem("auth_token");
       window.location.href = "/admin/login";
     }
+
+    // Attach more info to error for debugging
+    if (error.response?.data?.message) {
+      error.message = error.response.data.message;
+    }
+
     return Promise.reject(error);
   }
 );

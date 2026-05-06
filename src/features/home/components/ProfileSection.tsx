@@ -4,8 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { SectionHeader } from "./ui/SectionHeader";
 import { ArrowRight, Quote } from "lucide-react";
+import { Desa } from "@/types";
 
-export default function ProfileSection() {
+export default function ProfileSection({ desa }: { desa?: Desa | null }) {
   return (
     <section className="bg-white px-6 py-8 md:px-10 md:py-12 lg:px-12">
       <div className="mx-auto w-full max-w-7xl">
@@ -27,15 +28,13 @@ export default function ProfileSection() {
               </div>
               
               <h3 className="font-upakarti mt-6 text-[38px] font-bold leading-[1.1] tracking-tight md:text-[52px] lg:text-[64px]">
-                Majang Budi Budiana
+                {desa?.nama_kepala_desa || "Majang Budi Budiana"}
               </h3>
               
               <div className="relative mt-8 max-w-xl">
                 <Quote size={40} className="absolute -left-6 -top-6 opacity-10 text-[#00D492] hidden lg:block" />
                 <p className="text-[15px] leading-relaxed text-[#D0FAE5]/70 md:text-[17px]">
-                  &quot;Berkomitmen untuk memajukan Desa Pameutingan melalui transparansi, 
-                  inovasi layanan digital, dan pemberdayaan potensi lokal guna 
-                  meningkatkan kesejahteraan seluruh lapisan masyarakat.&quot;
+                  &quot;{desa?.kata_sambutan || "Berkomitmen untuk memajukan Desa Pameutingan melalui transparansi, inovasi layanan digital, dan pemberdayaan potensi lokal guna meningkatkan kesejahteraan seluruh lapisan masyarakat."}&quot;
                 </p>
               </div>
 
@@ -54,8 +53,8 @@ export default function ProfileSection() {
               <div className="absolute inset-4 rotate-2 rounded-[40px] border border-[#00D492]/20" />
               
               <Image
-                src="/img/unsplash_jiOJQF5xEdw.png"
-                alt="Foto Kepala Desa"
+                src={desa?.foto_kepala_desa || "/img/unsplash_jiOJQF5xEdw.png"}
+                alt={`Foto Kepala Desa ${desa?.nama_kepala_desa || "Desa Pameutingan"}`}
                 fill
                 className="absolute inset-0 z-10 object-contain drop-shadow-2xl lg:object-bottom lg:scale-110"
                 priority

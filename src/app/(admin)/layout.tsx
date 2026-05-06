@@ -65,7 +65,9 @@ export default function AdminLayout({
 }) {
   return (
     <AuthProvider>
-      <AdminLayoutInner>{children}</AdminLayoutInner>
+      <div className="admin-theme h-full">
+        <AdminLayoutInner>{children}</AdminLayoutInner>
+      </div>
     </AuthProvider>
   );
 }

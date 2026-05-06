@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useDesa } from "@/hooks/useDesa";
 
 const navItems = [
   { label: "Beranda", href: "/" },
@@ -16,6 +17,7 @@ const navItems = [
 ];
 
 export default function Navbar() {
+  const { desa } = useDesa();
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,8 +62,8 @@ export default function Navbar() {
         >
           <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 p-1.5 shadow-inner backdrop-blur-sm md:h-10 md:w-10">
             <img
-              src="/img/image.png"
-              alt="Logo Desa Pametingan"
+              src={desa?.logo_desa || "/img/image.png"}
+              alt={`Logo ${desa?.nama_desa || "Desa Pameutingan"}`}
               width={40}
               height={40}
               className="h-full w-full object-contain"
@@ -70,10 +72,10 @@ export default function Navbar() {
           </div>
           <span className="flex flex-col leading-none" style={{ fontFamily: 'var(--font-sans)' }}>
             <span className="text-[1.1rem] font-bold tracking-tight text-white md:text-[1.35rem]">
-              Desa Pameutingan
+              {desa?.nama_desa || "Desa Pameutingan"}
             </span>
             <span className="mt-0.5 text-[0.62rem] font-medium tracking-[0.14em] text-[#D0FAE5]/80 md:text-[0.68rem]">
-              KAB. TASIKMALAYA
+              {desa?.kabupaten || "KAB. TASIKMALAYA"}
             </span>
           </span>
         </Link>
@@ -167,7 +169,7 @@ export default function Navbar() {
             
             <div className="mt-8 flex flex-col items-center gap-1 text-center">
               <span className="text-[0.65rem] font-bold tracking-[0.2em] text-white/30 uppercase">
-                Pemerintah Desa Pametingan
+                Pemerintah {desa?.nama_desa || "Desa Pameutingan"}
               </span>
               <span className="text-[0.6rem] text-white/20">
                 &copy; 2026 • All Rights Reserved
