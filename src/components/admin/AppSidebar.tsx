@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
   Users,
+  UserCog,
   Home,
   FileText,
   Settings,
@@ -124,13 +125,9 @@ const NAV_SETTINGS: NavItem[] = [
     icon: Building2,
   },
   {
-    title: "Pengaturan",
+    title: "Pengaturan Akun",
     href: "/admin/pengaturan",
     icon: Settings,
-    items: [
-      { title: "Umum", href: "/admin/pengaturan" },
-      { title: "Keamanan", href: "/admin/pengaturan/keamanan" },
-    ],
   },
 ];
 
@@ -146,7 +143,7 @@ function getInitials(name: string | undefined) {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
-  const { user, logout, isLoading } = useAuth();
+  const { user, logout, isLoading, isSuperAdmin } = useAuth();
 
   return (
     <Sidebar variant="inset" collapsible="icon" className="border-none" {...props}>
@@ -303,6 +300,26 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             })}
           </SidebarMenu>
         </SidebarGroup>
+
+        {/* ── Administrasi (Superadmin & Admin Desa) ─────────────────────────── */}
+        <SidebarGroup>
+          <SidebarGroupLabel>Administrasi</SidebarGroupLabel>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                asChild
+                isActive={pathname.startsWith("/admin/users")}
+                tooltip="Manajemen User"
+              >
+                <Link href="/admin/users">
+                  <UserCog />
+                  <span>Manajemen User</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
+
       </SidebarContent>
 
       <SidebarFooter>

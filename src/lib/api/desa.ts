@@ -32,3 +32,12 @@ export async function updateDesaProfile(data: FormData): Promise<Desa> {
   });
   return response.data.data;
 }
+
+/**
+ * Mengambil list semua desa (ringkas) untuk dropdown.
+ * Hanya bisa diakses superadmin.
+ */
+export async function getAllDesas(): Promise<Pick<Desa, "id" | "nama_desa">[]> {
+  const response = await api.get<{ data: Pick<Desa, "id" | "nama_desa">[] }>("desas");
+  return response.data.data;
+}

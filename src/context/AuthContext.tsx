@@ -18,8 +18,10 @@ interface AuthContextValue {
   token: string | null;
   isLoading: boolean;
   isAuthenticated: boolean;
+  isSuperAdmin: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
+  updateUser: (userData: User) => void;
 }
 
 // ── Context ────────────────────────────────────────────────────────────────
@@ -42,11 +44,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setToken(savedToken);
     // Verify token is still valid by calling /api/me
     getMe()
-      .then((userData) => setUser(userData))
-      .catch(() => {
+      .then((userData) => {
+        if (userData && (userData as any).id) {
+          setUser(userData);
+        } else {
+          setUser(null);
+        }
+      })
+      .catch((err) => {
+        console.error("Sesi tidak valid:", err);
         localStorage.removeItem("auth_token");
         document.cookie = "auth_token=; Max-Age=0; path=/";
         setToken(null);
+        setUser(null);
       })
       .finally(() => setIsLoading(false));
   }, []);
@@ -80,6 +90,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     router.push("/admin/login");
   }, [router]);
 
+  const updateUser = useCallback((userData: User) => {
+    setUser(userData);
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -87,8 +101,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         token,
         isLoading,
         isAuthenticated: !!user && !!token,
+        isSuperAdmin: user?.role === "superadmin",
         login,
         logout,
+        updateUser,
       }}
     >
       {children}

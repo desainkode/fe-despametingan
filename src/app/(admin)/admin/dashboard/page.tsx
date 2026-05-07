@@ -8,6 +8,7 @@ import {
   TrendingUp,
   Activity,
   ArrowUpRight,
+  UserCog,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -211,7 +212,7 @@ export default function DashboardPage() {
                 { label: "Data Penduduk", href: "/admin/penduduk", icon: Users },
                 { label: "Kartu Keluarga", href: "/admin/kartu-keluarga", icon: Home },
                 { label: "Profil Desa", href: "/admin/profil-desa", icon: TrendingUp },
-                { label: "Surat (Segera)", href: "#", icon: FileText },
+                { label: "Kelola User", href: "/admin/users", icon: UserCog },
               ].map((item) => (
                 <a
                   key={item.label}
