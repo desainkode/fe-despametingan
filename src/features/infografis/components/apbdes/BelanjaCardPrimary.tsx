@@ -1,6 +1,9 @@
 import { Briefcase, Check } from 'lucide-react'
 
-export function BelanjaCardPrimary() {
+export function BelanjaCardPrimary({ totalBelanja = 0, percentage = 100 }: { totalBelanja?: number, percentage?: number }) {
+  const formatCurrency = (val: number) => {
+    return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(val);
+  };
   return (
     <div className="relative flex h-full flex-col rounded-[32px] bg-[linear-gradient(135deg,#00C185_0%,#009A64_100%)] p-6 pt-10 text-white transition-transform duration-300 hover:-translate-y-1 sm:p-8 sm:pt-12">
       {/* Glass Shine */}
@@ -8,7 +11,7 @@ export function BelanjaCardPrimary() {
       <div className="pointer-events-none absolute inset-0 rounded-[32px] shadow-[inset_0_2px_4px_rgba(255,255,255,0.4)]" />
 
       {/* Top Left Overlapping Badge */}
-      <div className="absolute -left-3 -top-3 z-20 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-b from-[#2A2A2A] to-[#111111] text-white shadow-[inset_0_2px_4px_rgba(255,255,255,0.1),0_8px_16px_rgba(0,0,0,0.3)]">
+      <div className="absolute -left-3 -top-3 z-20 flex h-14 w-14 items-center justify-center rounded-full bg-linear-to-b from-[#2A2A2A] to-[#111111] text-white shadow-[inset_0_2px_4px_rgba(255,255,255,0.1),0_8px_16px_rgba(0,0,0,0.3)]">
         <Briefcase size={20} />
       </div>
 
@@ -21,7 +24,7 @@ export function BelanjaCardPrimary() {
 
         <div className="mt-4 flex items-end gap-2">
           <span className="font-timeless text-[34px] font-bold leading-none tracking-tight sm:text-[40px]">
-            Rp. 1.000.000
+            {formatCurrency(totalBelanja)}
           </span>
         </div>
 
@@ -34,7 +37,7 @@ export function BelanjaCardPrimary() {
         {/* Pill Badge */}
         <div className="inline-flex items-center gap-1.5 rounded-full bg-[#111] px-4 py-1.5 text-[12px] font-bold tracking-widest text-white shadow-md">
           <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
-          50%
+          {percentage}%
         </div>
       </div>
 

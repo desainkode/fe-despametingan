@@ -1,22 +1,58 @@
+import { useState, useEffect } from 'react'
 import { CircleDollarSign, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { sectionCardClass } from '../constants/styles'
-import { apbdesCards } from '../config/apbdes-data'
+import { apbdesCards as staticApbdesCards } from '../config/apbdes-data'
 import { ApbdesCard } from './apbdes/ApbdesCard'
 import { PendapatanDesaSection } from './apbdes/PendapatanDesaSection'
 import { BelanjaDesaSection } from './apbdes/BelanjaDesaSection'
 import { ProgramDesaSection } from './apbdes/ProgramDesaSection'
 import { RealisasiAnggaranSection } from './apbdes/RealisasiAnggaranSection'
 import { GrafikVisualisasiSection } from './apbdes/GrafikVisualisasiSection'
+import { apbdesService, ApbdesPublicSummary } from '@/lib/api/apbdes'
 
 export function ApbdesSection() {
+  const [data, setData] = useState<ApbdesPublicSummary | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    apbdesService.getPublicSummary()
+      .then(res => {
+        setData(res)
+        setLoading(false)
+      })
+      .catch(err => {
+        console.error(err)
+        setLoading(false)
+      })
+  }, [])
+
+  // Override static cards with dynamic data if available
+  const displayCards = [...staticApbdesCards];
+  if (data) {
+    if (data.ringkasan.pendapatan) {
+      displayCards[0] = { ...displayCards[0], amount: Number(data.ringkasan.pendapatan.anggaran).toLocaleString('id-ID') };
+    }
+    if (data.ringkasan.belanja) {
+      displayCards[1] = { ...displayCards[1], amount: Number(data.ringkasan.belanja.anggaran).toLocaleString('id-ID') };
+    }
+    if (data.ringkasan.pembiayaan) {
+      displayCards[2] = { ...displayCards[2], amount: Number(data.ringkasan.pembiayaan.anggaran).toLocaleString('id-ID') };
+    }
+  }
+
   return (
     <section
       className={
         sectionCardClass +
-        ' overflow-hidden'
+        ' overflow-hidden relative min-h-[400px]'
       }
     >
+      {loading && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#0B281F] border-t-transparent"></div>
+        </div>
+      )}
 
       <div className="hero-reveal mb-4 flex justify-end">
         <Link
@@ -42,25 +78,25 @@ export function ApbdesSection() {
       </div>
 
       <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {apbdesCards.map((card, index) => (
+        {displayCards.map((card, index) => (
           <ApbdesCard key={card.title} card={card} index={index} />
         ))}
       </div>
 
       <div className="mt-20 md:mt-24">
-        <PendapatanDesaSection />
+        <PendapatanDesaSection rincian={data?.rincian_pendapatan} />
       </div>
 
       <div className="mt-20 md:mt-24">
-        <BelanjaDesaSection />
+        <BelanjaDesaSection rincian={data?.rincian_belanja} />
       </div>
 
       <div className="mt-20 md:mt-24">
-        <ProgramDesaSection />
+        <ProgramDesaSection dokumentasi={data?.dokumentasi} />
       </div>
 
       <div className="mt-40 md:mt-24">
-        <RealisasiAnggaranSection />
+        <RealisasiAnggaranSection rincian={data?.rincian_belanja} />
       </div>
 
       <div className="mt-40 md:mt-24">

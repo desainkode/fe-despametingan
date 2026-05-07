@@ -34,7 +34,14 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export function RealisasiAnggaranSection() {
+import { ApbdesItem } from '@/lib/api/apbdes'
+
+export function RealisasiAnggaranSection({ rincian }: { rincian?: ApbdesItem[] }) {
+  const dynamicChartData = rincian && rincian.length > 0 ? rincian.map(item => ({
+    bidang: item.uraian.replace('Bidang ', '').substring(0, 15) + (item.uraian.length > 15 ? '...' : ''),
+    anggaran: Number(item.anggaran),
+    realisasi: Number(item.realisasi)
+  })) : chartData;
   return (
     <div className="flex flex-col gap-8 md:gap-10">
       <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
@@ -72,7 +79,7 @@ export function RealisasiAnggaranSection() {
           <ChartContainer config={chartConfig} className="h-[400px] w-full">
             <BarChart
               accessibilityLayer
-              data={chartData}
+              data={dynamicChartData}
               layout="vertical"
               margin={{ top: 8, right: 16, bottom: 8, left: 10 }}
               barGap={4}

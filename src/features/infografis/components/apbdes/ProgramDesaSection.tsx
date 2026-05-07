@@ -12,6 +12,7 @@ interface ProgramCardProps {
   textClass: string
   pillBgClass: string
   iconBgClass: string
+  image?: string | null
 }
 
 function ProgramCard({
@@ -25,6 +26,7 @@ function ProgramCard({
   textClass,
   pillBgClass,
   iconBgClass,
+  image,
 }: ProgramCardProps) {
   return (
     <div
@@ -60,6 +62,12 @@ function ProgramCard({
         <p className="mt-3 max-w-[95%] text-[11px] leading-relaxed opacity-80 sm:text-[13px]">
           {description}
         </p>
+        
+        {image && (
+          <div className="mt-6 rounded-xl overflow-hidden h-32 relative z-10 shadow-sm border border-white/10">
+             <img src={`http://localhost:8000${image}`} alt={title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
+          </div>
+        )}
       </div>
 
       <div className="mt-12 flex items-end justify-between">
@@ -81,8 +89,10 @@ function ProgramCard({
   )
 }
 
-export function ProgramDesaSection() {
-  const programs = [
+import { ApbdesItem } from '@/lib/api/apbdes'
+
+export function ProgramDesaSection({ dokumentasi }: { dokumentasi?: ApbdesItem[] }) {
+  const defaultPrograms = [
     {
       title: 'Pembangunan Irigasi',
       description: 'Meningkatkan produktivitas hasil panen petani dan sistem perairan.',
@@ -120,6 +130,25 @@ export function ProgramDesaSection() {
       iconBgClass: 'bg-[#00E0A1]/20 text-[#00E0A1]',
     },
   ]
+
+  const programs = dokumentasi && dokumentasi.length > 0 ? dokumentasi.map((item, index) => {
+    const isFirst = index % 3 === 0;
+    const isSecond = index % 3 === 1;
+    
+    return {
+      title: item.uraian,
+      description: `Realisasi kegiatan dengan anggaran Rp. ${Number(item.anggaran).toLocaleString('id-ID')}`,
+      location: 'Kegiatan Desa',
+      status: Number(item.realisasi) > 0 ? 'Terealisasi' : 'Direncanakan',
+      statusDot: Number(item.realisasi) > 0 ? 'bg-[#00E0A1]' : 'bg-[#F0B100]',
+      icon: <CheckCircle2 size={20} strokeWidth={2.5} />,
+      bgClass: isFirst ? 'bg-[linear-gradient(135deg,#00C185_0%,#009A64_100%)]' : (isSecond ? 'bg-[#E8EAE9]' : 'bg-[#0B281F]'),
+      textClass: isSecond ? 'text-[#111]' : 'text-white',
+      pillBgClass: isFirst || isSecond ? 'bg-[#111] text-white shadow-sm' : 'bg-white/10 text-white shadow-sm backdrop-blur-sm',
+      iconBgClass: isFirst ? 'bg-[#111]/20 text-white' : (isSecond ? 'bg-[#111]/10 text-[#111]' : 'bg-[#00E0A1]/20 text-[#00E0A1]'),
+      image: item.foto_url
+    };
+  }) : defaultPrograms;
 
   return (
     <div className="flex flex-col gap-8 md:gap-10">

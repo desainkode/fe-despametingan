@@ -44,23 +44,50 @@ function PendapatanChartTooltip({
   )
 }
 
-export function PendapatanChart({ delayMs }: { delayMs: number }) {
+export function PendapatanChart({ delayMs, customData }: { delayMs: number, customData?: any[] }) {
+  const chartData = customData && customData.length > 0 ? customData.map(c => ({
+    source: c.sourceId || c.nama,
+    label: c.nama,
+    value: c.persentase,
+    nominal: c.nominal,
+  })) : pendapatanChartData;
+
   const totalValue = useMemo(() => {
-    return pendapatanChartData.reduce((accumulator, current) => accumulator + current.value, 0)
-  }, [])
+    return chartData.reduce((accumulator, current) => accumulator + current.value, 0)
+  }, [chartData])
+
+  const chartConfig = useMemo(() => {
+    if (!customData || customData.length === 0) return pendapatanChartConfig;
+    const colors = ['#00E0A1', '#F0B100', '#8FE8C8', '#2DCB8C', '#00B179'];
+    const config: any = {};
+    customData.forEach((item, i) => {
+      config[item.sourceId || item.nama] = { label: item.nama, color: colors[i % colors.length] };
+    });
+    return config;
+  }, [customData]);
+
+  const gradientIds = useMemo(() => {
+    if (!customData || customData.length === 0) return pendapatanChartGradientIds;
+    const ids: any = {};
+    customData.forEach(item => {
+      const src = item.sourceId || item.nama;
+      ids[src] = `pendapatan-${src.replace(/[^a-z0-9]+/gi, '-')}`;
+    });
+    return ids;
+  }, [customData]);
 
   return (
     <article className="hero-reveal flex w-full flex-col items-center justify-center" style={{ animationDelay: `${delayMs}ms` }}>
       <div className="relative aspect-square w-full max-w-60 sm:max-w-72">
         <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(0,224,161,0.16)_0%,rgba(0,43,34,0.06)_55%,transparent_75%)] blur-3xl" />
 
-        <ChartContainer config={pendapatanChartConfig} className="mx-auto h-full w-full">
+        <ChartContainer config={chartConfig} className="mx-auto h-full w-full">
           <PieChart>
             <defs>
-              {pendapatanChartData.map((item) => (
-                <linearGradient key={pendapatanChartGradientIds[item.source]} id={pendapatanChartGradientIds[item.source]} x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor={pendapatanChartConfig[item.source as keyof typeof pendapatanChartConfig]?.color} stopOpacity={1} />
-                  <stop offset="100%" stopColor={pendapatanChartConfig[item.source as keyof typeof pendapatanChartConfig]?.color} stopOpacity={0.75} />
+              {chartData.map((item) => (
+                <linearGradient key={gradientIds[item.source]} id={gradientIds[item.source]} x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor={chartConfig[item.source]?.color} stopOpacity={1} />
+                  <stop offset="100%" stopColor={chartConfig[item.source]?.color} stopOpacity={0.75} />
                 </linearGradient>
               ))}
             </defs>
@@ -71,7 +98,7 @@ export function PendapatanChart({ delayMs }: { delayMs: number }) {
             />
 
             <Pie
-              data={pendapatanChartData}
+              data={chartData}
               dataKey="value"
               nameKey="source"
               innerRadius={75}
@@ -85,10 +112,10 @@ export function PendapatanChart({ delayMs }: { delayMs: number }) {
               animationDuration={1100}
               animationEasing="ease-out"
             >
-              {pendapatanChartData.map((entry) => (
+              {chartData.map((entry) => (
                 <Cell
                   key={entry.source}
-                  fill={`url(#${pendapatanChartGradientIds[entry.source]})`}
+                  fill={`url(#${gradientIds[entry.source]})`}
                   className="transition-all duration-500 hover:opacity-90"
                 />
               ))}

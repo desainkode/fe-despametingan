@@ -1,8 +1,39 @@
 import { ShoppingBag, Landmark, HardHat, Users, Sprout, ShieldAlert } from 'lucide-react'
 import { BelanjaCardPrimary } from './BelanjaCardPrimary'
 import { BelanjaCardSecondary } from './BelanjaCardSecondary'
+import { ApbdesItem } from '@/lib/api/apbdes'
 
-export function BelanjaDesaSection() {
+const iconMap: Record<string, any> = {
+  '5.1': Landmark,
+  '5.2': HardHat,
+  '5.3': Users,
+  '5.4': Sprout,
+  '5.5': ShieldAlert
+}
+
+export function BelanjaDesaSection({ rincian }: { rincian?: ApbdesItem[] }) {
+  const totalAnggaran = rincian?.reduce((acc, item) => acc + Number(item.anggaran), 0) || 1;
+  const totalRealisasi = rincian?.reduce((acc, item) => acc + Number(item.realisasi), 0) || 0;
+
+  const percentage = Math.round((totalRealisasi / totalAnggaran) * 100);
+
+  const displayCards = rincian && rincian.length > 0 ? rincian.map((item) => {
+    const nominalNum = Number(item.anggaran);
+    const nominalStr = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(nominalNum);
+    return {
+      title: item.uraian,
+      value: nominalStr,
+      description: `Rincian anggaran untuk ${item.uraian.toLowerCase()}.`,
+      percentage: Math.round((nominalNum / totalAnggaran) * 100),
+      icon: iconMap[item.kode_rekening.substring(0, 3)] || ShoppingBag,
+    };
+  }) : [
+    { title: "Pemerintahan", value: "Rp. 300.000", description: "Penyelenggaraan tata praja", percentage: 30, icon: Landmark },
+    { title: "Pembangunan", value: "Rp. 400.000", description: "Infrastruktur", percentage: 40, icon: HardHat },
+    { title: "Pembinaan", value: "Rp. 100.000", description: "Kesenian olahraga", percentage: 10, icon: Users },
+    { title: "Pemberdayaan", value: "Rp. 100.000", description: "Ekonomi produktif", percentage: 10, icon: Sprout },
+    { title: "Bencana/Darurat", value: "Rp. 100.000", description: "Bencana mendesak", percentage: 10, icon: ShieldAlert },
+  ];
   return (
     <div className="flex flex-col gap-10">
       <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
@@ -32,63 +63,24 @@ export function BelanjaDesaSection() {
 
         {/* Card 1: Primary (Green) */}
         <div className="hero-reveal relative z-10" style={{ animationDelay: '300ms' }}>
-          <BelanjaCardPrimary />
+          <BelanjaCardPrimary totalBelanja={totalAnggaran} percentage={percentage} />
         </div>
 
-        {/* Card 2: Pemerintahan Desa */}
-        <div className="hero-reveal relative z-10" style={{ animationDelay: '380ms' }}>
-          <BelanjaCardSecondary
-            title="Pemerintahan"
-            value="Rp. 300.000"
-            description="Penyelenggaraan tata praja pemerintahan, operasional, dan pelayanan administrasi publik desa."
-            percentage={30}
-            icon={<Landmark size={20} />}
-          />
-        </div>
-
-        {/* Card 3: Pembangunan Desa */}
-        <div className="hero-reveal relative z-10" style={{ animationDelay: '460ms' }}>
-          <BelanjaCardSecondary
-            title="Pembangunan"
-            value="Rp. 400.000"
-            description="Pengadaan infrastruktur dan fasilitas fisik berkelanjutan untuk kemajuan wilayah."
-            percentage={40}
-            icon={<HardHat size={20} />}
-          />
-        </div>
-
-        {/* Card 4: Pembinaan Kemasyarakatan */}
-        <div className="hero-reveal relative z-10" style={{ animationDelay: '540ms' }}>
-          <BelanjaCardSecondary
-            title="Pembinaan"
-            value="Rp. 100.000"
-            description="Pembinaan pemuda, kesenian, olahraga, dan kegiatan sosial untuk kerukunan warga."
-            percentage={10}
-            icon={<Users size={20} />}
-          />
-        </div>
-
-        {/* Card 5: Pemberdayaan Masyarakat */}
-        <div className="hero-reveal relative z-10" style={{ animationDelay: '620ms' }}>
-          <BelanjaCardSecondary
-            title="Pemberdayaan"
-            value="Rp. 100.000"
-            description="Peningkatan kapasitas keterampilan dan dukungan ekonomi produktif masyarakat."
-            percentage={10}
-            icon={<Sprout size={20} />}
-          />
-        </div>
-
-        {/* Card 6: Penanggulangan Bencana */}
-        <div className="hero-reveal relative z-10" style={{ animationDelay: '700ms' }}>
-          <BelanjaCardSecondary
-            title="Bencana/Darurat"
-            value="Rp. 100.000"
-            description="Dana cadangan untuk penanggulangan keadaan darurat dan bencana mendesak di desa."
-            percentage={10}
-            icon={<ShieldAlert size={20} />}
-          />
-        </div>
+        {/* Dynamic Cards */}
+        {displayCards.map((card, idx) => {
+          const IconComponent = card.icon;
+          return (
+            <div key={card.title} className="hero-reveal relative z-10" style={{ animationDelay: `${380 + idx * 80}ms` }}>
+              <BelanjaCardSecondary
+                title={card.title}
+                value={card.value}
+                description={card.description}
+                percentage={card.percentage}
+                icon={typeof IconComponent === 'function' || typeof IconComponent === 'object' ? <IconComponent size={20} /> : <ShoppingBag size={20} />}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   )

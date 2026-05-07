@@ -22,6 +22,7 @@ import {
   ChevronRight,
   Bell,
   Database,
+  CircleDollarSign,
 } from "lucide-react";
 import {
   Sidebar,
@@ -115,6 +116,11 @@ const NAV_MAIN: NavItem[] = [
     title: "Integrasi Kemendesa",
     href: "/admin/kemendesa",
     icon: ExternalLink,
+  },
+  {
+    title: "APBDes",
+    href: "/admin/apbdes",
+    icon: CircleDollarSign,
   },
 ];
 
