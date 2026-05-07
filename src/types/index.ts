@@ -6,6 +6,8 @@ export interface Desa {
   id: string;
   nama_desa: string;
   kode_desa?: string;
+  kode_desa_idm?: string;
+  kode_desa_sdgs?: string;
   kecamatan?: string;
   kabupaten?: string;
   provinsi?: string;

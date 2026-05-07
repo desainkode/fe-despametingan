@@ -57,6 +57,11 @@ const NAV_MAIN = [
     icon: FileText,
     badge: "Segera",
   },
+  {
+    title: "Integrasi Kemendesa",
+    href: "/admin/kemendesa",
+    icon: ExternalLink,
+  },
 ];
 
 const NAV_SETTINGS = [
