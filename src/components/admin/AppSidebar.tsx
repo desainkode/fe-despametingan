@@ -11,6 +11,11 @@ import {
   LogOut,
   Building2,
   ExternalLink,
+  Newspaper,
+  Lightbulb,
+  ShieldCheck,
+  Map,
+  Contact,
 } from "lucide-react";
 import {
   Sidebar,
@@ -35,7 +40,14 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/context/AuthContext";
 
-const NAV_MAIN = [
+interface NavItem {
+  title: string;
+  href: string;
+  icon: any;
+  badge?: string;
+}
+
+const NAV_MAIN: NavItem[] = [
   {
     title: "Dashboard",
     href: "/admin/dashboard",
@@ -52,14 +64,33 @@ const NAV_MAIN = [
     icon: Home,
   },
   {
-    title: "Surat & Dokumen",
-    href: "/admin/surat",
-    icon: FileText,
-    badge: "Segera",
+    title: "Berita Desa",
+    href: "/admin/berita",
+    icon: Newspaper,
+  },
+  {
+    title: "Potensi Desa",
+    href: "/admin/potensi",
+    icon: Lightbulb,
+  },
+  {
+    title: "PPID",
+    href: "/admin/ppid",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Wilayah",
+    href: "/admin/wilayah",
+    icon: Map,
+  },
+  {
+    title: "Perangkat Desa",
+    href: "/admin/perangkat-desa",
+    icon: Contact,
   },
 ];
 
-const NAV_SETTINGS = [
+const NAV_SETTINGS: NavItem[] = [
   {
     title: "Profil Desa",
     href: "/admin/profil-desa",
