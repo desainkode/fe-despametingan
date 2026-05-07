@@ -37,6 +37,7 @@ export default function NewsSection() {
                   alt={item.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, (max-width: 1440px) 33vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-[#052119]/80 via-transparent to-transparent" />
                 <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-[#F0B100] px-3 py-1.5 text-[10px] font-black text-[#052119] shadow-lg">
