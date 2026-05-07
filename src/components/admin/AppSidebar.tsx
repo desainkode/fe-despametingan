@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
   Users,
@@ -11,51 +12,103 @@ import {
   LogOut,
   Building2,
   ExternalLink,
+  Newspaper,
+  Lightbulb,
+  ShieldCheck,
+  Map,
+  Contact,
+  ChevronsUpDown,
+  ChevronRight,
+  Bell,
+  Database,
 } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
+  SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarRail,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/context/AuthContext";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
-const NAV_MAIN = [
+interface NavItem {
+  title: string;
+  href: string;
+  icon: any;
+  badge?: string;
+  items?: {
+    title: string;
+    href: string;
+  }[];
+}
+
+const NAV_MAIN: NavItem[] = [
   {
     title: "Dashboard",
     href: "/admin/dashboard",
     icon: LayoutDashboard,
   },
   {
-    title: "Data Penduduk",
-    href: "/admin/penduduk",
-    icon: Users,
+    title: "Master Data",
+    href: "/admin/master",
+    icon: Database,
+    items: [
+      { title: "Daftar Penduduk", href: "/admin/penduduk" },
+      { title: "Data Kartu Keluarga", href: "/admin/kartu-keluarga" },
+    ],
   },
   {
-    title: "Kartu Keluarga",
-    href: "/admin/kartu-keluarga",
-    icon: Home,
+    title: "Berita Desa",
+    href: "/admin/berita",
+    icon: Newspaper,
   },
   {
-    title: "Surat & Dokumen",
-    href: "/admin/surat",
-    icon: FileText,
-    badge: "Segera",
+    title: "Potensi Desa",
+    href: "/admin/potensi",
+    icon: Lightbulb,
+  },
+  {
+    title: "PPID",
+    href: "/admin/ppid",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Wilayah",
+    href: "/admin/wilayah",
+    icon: Map,
+  },
+  {
+    title: "Perangkat Desa",
+    href: "/admin/perangkat-desa",
+    icon: Contact,
   },
   {
     title: "Integrasi Kemendesa",
@@ -64,7 +117,7 @@ const NAV_MAIN = [
   },
 ];
 
-const NAV_SETTINGS = [
+const NAV_SETTINGS: NavItem[] = [
   {
     title: "Profil Desa",
     href: "/admin/profil-desa",
@@ -74,6 +127,10 @@ const NAV_SETTINGS = [
     title: "Pengaturan",
     href: "/admin/pengaturan",
     icon: Settings,
+    items: [
+      { title: "Umum", href: "/admin/pengaturan" },
+      { title: "Keamanan", href: "/admin/pengaturan/keamanan" },
+    ],
   },
 ];
 
@@ -87,56 +144,104 @@ function getInitials(name: string | undefined) {
     .toUpperCase();
 }
 
-export function AppSidebar() {
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
   const { user, logout, isLoading } = useAuth();
 
   return (
-    <Sidebar>
-      {/* ── Header: Logo & Desa ──────────────────────────────── */}
-      <SidebarHeader className="border-b border-sidebar-border">
-        <div className="flex items-center gap-3 px-2 py-3">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm">
-            <Building2 size={18} />
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-bold leading-tight text-sidebar-foreground">
-              {isLoading
-                ? "Memuat..."
-                : (user?.desa?.nama_desa ?? "Desa Pameutingan")}
-            </p>
-            <p className="truncate text-[10px] font-medium uppercase tracking-wider text-sidebar-foreground/50">
-              Panel Admin
-            </p>
-          </div>
-        </div>
+    <Sidebar variant="inset" collapsible="icon" className="border-none" {...props}>
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton
+                  size="lg"
+                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                >
+                  <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-emerald-600 text-white">
+                    <Building2 className="size-4" />
+                  </div>
+                  <div className="grid flex-1 text-left text-sm leading-tight">
+                    <span className="truncate font-semibold">
+                      {isLoading ? "Memuat..." : (user?.desa?.nama_desa ?? "Desa Pameutingan")}
+                    </span>
+                    <span className="truncate text-xs text-muted-foreground">Admin Panel</span>
+                  </div>
+                  <ChevronsUpDown className="ml-auto size-4" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+                align="start"
+                side="bottom"
+                sideOffset={4}
+              >
+                <DropdownMenuLabel className="text-xs text-muted-foreground">
+                  Workspace
+                </DropdownMenuLabel>
+                <DropdownMenuItem className="gap-2 p-2">
+                  <div className="flex size-6 items-center justify-center rounded-sm border">
+                    <Building2 className="size-4 shrink-0" />
+                  </div>
+                  {user?.desa?.nama_desa ?? "Desa Pameutingan"}
+                  <Badge variant="outline" className="ml-auto">Enterprise</Badge>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
 
-      {/* ── Content: Navigation ─────────────────────────────── */}
       <SidebarContent>
-        {/* Main Navigation */}
         <SidebarGroup>
-          <SidebarGroupLabel>Menu Utama</SidebarGroupLabel>
+          <SidebarGroupLabel>Platform</SidebarGroupLabel>
           <SidebarMenu>
             {NAV_MAIN.map((item) => {
-              const isActive =
-                item.href === "/admin/dashboard"
-                  ? pathname === item.href
-                  : pathname.startsWith(item.href);
+              const isActive = item.href === "/admin/dashboard" 
+                ? pathname === item.href 
+                : pathname.startsWith(item.href);
+              
+              if (item.items) {
+                return (
+                  <Collapsible
+                    key={item.title}
+                    asChild
+                    defaultOpen={isActive}
+                    className="group/collapsible"
+                  >
+                    <SidebarMenuItem>
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton tooltip={item.title}>
+                          <item.icon />
+                          <span>{item.title}</span>
+                          <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent>
+                        <SidebarMenuSub>
+                          {item.items.map((subItem) => (
+                            <SidebarMenuSubItem key={subItem.title}>
+                              <SidebarMenuSubButton asChild isActive={pathname === subItem.href}>
+                                <Link href={subItem.href}>
+                                  <span>{subItem.title}</span>
+                                </Link>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          ))}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
+                    </SidebarMenuItem>
+                  </Collapsible>
+                );
+              }
+
               return (
-                <SidebarMenuItem key={item.href}>
+                <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild isActive={isActive} tooltip={item.title}>
                     <Link href={item.href}>
                       <item.icon />
                       <span>{item.title}</span>
-                      {item.badge && (
-                        <Badge
-                          variant="secondary"
-                          className="ml-auto text-[10px] px-1.5 py-0"
-                        >
-                          {item.badge}
-                        </Badge>
-                      )}
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -145,16 +250,48 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroup>
 
-        <SidebarSeparator />
-
-        {/* Settings Navigation */}
         <SidebarGroup>
-          <SidebarGroupLabel>Pengaturan</SidebarGroupLabel>
+          <SidebarGroupLabel>Sistem</SidebarGroupLabel>
           <SidebarMenu>
             {NAV_SETTINGS.map((item) => {
               const isActive = pathname.startsWith(item.href);
+              
+              if (item.items) {
+                return (
+                  <Collapsible
+                    key={item.title}
+                    asChild
+                    defaultOpen={isActive}
+                    className="group/collapsible"
+                  >
+                    <SidebarMenuItem>
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton tooltip={item.title}>
+                          <item.icon />
+                          <span>{item.title}</span>
+                          <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent>
+                        <SidebarMenuSub>
+                          {item.items.map((subItem) => (
+                            <SidebarMenuSubItem key={subItem.title}>
+                              <SidebarMenuSubButton asChild isActive={pathname === subItem.href}>
+                                <Link href={subItem.href}>
+                                  <span>{subItem.title}</span>
+                                </Link>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          ))}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
+                    </SidebarMenuItem>
+                  </Collapsible>
+                );
+              }
+
               return (
-                <SidebarMenuItem key={item.href}>
+                <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild isActive={isActive} tooltip={item.title}>
                     <Link href={item.href}>
                       <item.icon />
@@ -168,56 +305,65 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      {/* ── Footer: User Menu ───────────────────────────────── */}
-      <SidebarFooter className="border-t border-sidebar-border">
+      <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton
                   size="lg"
-                  className="w-full data-[state=open]:bg-sidebar-accent"
+                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                 >
                   <Avatar className="h-8 w-8 rounded-lg">
-                    <AvatarFallback className="rounded-lg bg-emerald-100 text-emerald-700 text-xs font-bold">
+                    <AvatarFallback className="rounded-lg bg-emerald-600 text-white text-xs font-bold">
                       {getInitials(user?.name)}
                     </AvatarFallback>
                   </Avatar>
                   <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">
-                      {user?.name ?? "Admin"}
-                    </span>
-                    <span className="truncate text-xs text-sidebar-foreground/60">
-                      {user?.email ?? ""}
-                    </span>
+                    <span className="truncate font-semibold">{user?.name ?? "Admin"}</span>
+                    <span className="truncate text-xs text-muted-foreground">{user?.email ?? "admin@desa.go.id"}</span>
                   </div>
+                  <ChevronsUpDown className="ml-auto size-4" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent
-                className="min-w-56 rounded-lg"
+                className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
                 side="top"
                 align="end"
                 sideOffset={4}
               >
-                <DropdownMenuItem asChild>
-                  <Link href="/" target="_blank" className="gap-2">
-                    <ExternalLink size={14} />
-                    Lihat Website Desa
-                  </Link>
-                </DropdownMenuItem>
+                <DropdownMenuLabel className="p-0 font-normal">
+                  <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                    <Avatar className="h-8 w-8 rounded-lg">
+                      <AvatarFallback className="rounded-lg bg-emerald-600 text-white text-xs font-bold">
+                        {getInitials(user?.name)}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="grid flex-1 text-left text-sm leading-tight">
+                      <span className="truncate font-semibold">{user?.name ?? "Admin"}</span>
+                      <span className="truncate text-xs text-muted-foreground">{user?.email ?? "admin@desa.go.id"}</span>
+                    </div>
+                  </div>
+                </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  className="gap-2 text-destructive focus:text-destructive"
-                  onClick={() => logout()}
-                >
-                  <LogOut size={14} />
-                  Keluar
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>
+                    <Bell className="mr-2 size-4" />
+                    Notifications
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => logout()} className="text-destructive focus:text-destructive focus:bg-destructive/10">
+                  <LogOut className="mr-2 size-4" />
+                  Log out
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
+      <SidebarRail />
     </Sidebar>
   );
 }
+

@@ -103,6 +103,7 @@ export default function Hero({ desa }: { desa?: Desa | null }) {
               fill
               className="hero-zoom object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
               priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
             />
 
             {/* Floating Info Badge */}

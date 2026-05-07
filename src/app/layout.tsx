@@ -30,8 +30,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${upakarti.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-[#f5f7f6]">
+      <body
+        className="min-h-full flex flex-col bg-[#f5f7f6]"
+        suppressHydrationWarning
+      >
         <MainLayout>{children}</MainLayout>
         <Toaster position="top-center" richColors />
       </body>

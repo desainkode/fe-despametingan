@@ -58,6 +58,7 @@ export default function ProfileSection({ desa }: { desa?: Desa | null }) {
                 fill
                 className="absolute inset-0 z-10 object-contain drop-shadow-2xl lg:object-bottom lg:scale-110"
                 priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 420px"
               />
             </div>
           </div>

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { LayoutDashboard } from "lucide-react";
 import { AppSidebar } from "@/components/admin/AppSidebar";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 
@@ -40,15 +41,29 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
         <AppSidebar />
         <SidebarInset>
           {/* ── Header Bar ──────────────────────────────────── */}
-          <header className="sticky top-0 z-10 flex h-14 items-center gap-2 border-b bg-background/95 backdrop-blur-sm px-4">
-            <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <span className="text-sm text-muted-foreground">
-              Sistem Informasi Desa
-            </span>
+          <header className="sticky top-0 z-30 flex h-16 shrink-0 items-center gap-4 bg-background/60 backdrop-blur-xl px-6 transition-all duration-300">
+            <SidebarTrigger className="-ml-2 h-9 w-9 rounded-lg hover:bg-emerald-50 hover:text-emerald-600 transition-colors" />
+            <Separator orientation="vertical" className="h-4 bg-border/60" />
+            
+            <div className="flex flex-1 items-center gap-2 overflow-hidden">
+              <span className="truncate text-sm font-semibold tracking-tight text-foreground/80">
+                Sistem Informasi Desa
+              </span>
+              <span className="text-muted-foreground/30 font-light">/</span>
+              <span className="truncate text-xs font-medium text-emerald-600/80 bg-emerald-50 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                Admin Panel
+              </span>
+            </div>
+
+            <div className="flex items-center gap-3">
+               {/* Add any right-side header actions here if needed */}
+               <div className="hidden md:flex h-8 w-8 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                  <LayoutDashboard size={16} />
+               </div>
+            </div>
           </header>
           {/* ── Page Content ─────────────────────────────────── */}
-          <main className="flex flex-1 flex-col gap-4 p-4 md:p-6">
+          <main className="flex-1 overflow-y-auto p-4 md:p-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
             {children}
           </main>
         </SidebarInset>
