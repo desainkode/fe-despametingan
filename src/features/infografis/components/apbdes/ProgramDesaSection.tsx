@@ -137,7 +137,7 @@ export function ProgramDesaSection({ dokumentasi }: { dokumentasi?: ApbdesItem[]
     
     return {
       title: item.uraian,
-      description: `Realisasi kegiatan dengan anggaran Rp. ${Number(item.anggaran).toLocaleString('id-ID')}`,
+      description: item.keterangan_realisasi || `Realisasi kegiatan dengan anggaran Rp. ${Number(item.anggaran).toLocaleString('id-ID')}`,
       location: 'Kegiatan Desa',
       status: Number(item.realisasi) > 0 ? 'Terealisasi' : 'Direncanakan',
       statusDot: Number(item.realisasi) > 0 ? 'bg-[#00E0A1]' : 'bg-[#F0B100]',

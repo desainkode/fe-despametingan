@@ -9,6 +9,16 @@ export interface ApbdesTahunAnggaran {
   updated_at?: string;
 }
 
+export interface ApbdesRealisasi {
+  id: number;
+  apbdes_item_id: number;
+  tanggal: string;
+  jumlah: number | string;
+  keterangan: string | null;
+  foto_url: string | null;
+  created_at: string;
+}
+
 export interface ApbdesItem {
   id: number;
   tahun_anggaran_id: number;
@@ -20,7 +30,9 @@ export interface ApbdesItem {
   urutan: number;
   is_header: boolean;
   foto_url?: string | null;
+  keterangan_realisasi?: string | null;
   children_recursive?: ApbdesItem[];
+  realisasis?: ApbdesRealisasi[];
 }
 
 export interface ApbdesPublicSummary {
@@ -81,6 +93,22 @@ export const apbdesService = {
     return response.data;
   },
   
+  // Realisasi History
+  getRealisasiHistory: async (itemId: number) => {
+    const response = await api.get(`/apbdes/items/${itemId}/realisasi`);
+    return response.data as ApbdesRealisasi[];
+  },
+  addRealisasi: async (itemId: number, data: FormData) => {
+    const response = await api.post(`/apbdes/items/${itemId}/realisasi`, data, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    });
+    return response.data as ApbdesRealisasi;
+  },
+  deleteRealisasi: async (itemId: number, realisasiId: number) => {
+    const response = await api.delete(`/apbdes/items/${itemId}/realisasi/${realisasiId}`);
+    return response.data;
+  },
+
   // Public
   getPublicSummary: async () => {
     const response = await api.get('/public/apbdes/summary');

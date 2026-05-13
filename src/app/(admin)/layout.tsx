@@ -63,7 +63,7 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
             </div>
           </header>
           {/* ── Page Content ─────────────────────────────────── */}
-          <main className="flex-1 overflow-y-auto p-4 md:p-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
+          <main className="flex-1 min-w-0 overflow-y-auto p-4 md:p-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
             {children}
           </main>
         </SidebarInset>
