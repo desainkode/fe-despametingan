@@ -1,8 +1,7 @@
-'use client'
-
+import Link from 'next/link'
 import type { TabButtonProps } from '../../types/infografis'
 
-export function TabButton({ item, active, onClick }: TabButtonProps) {
+export function TabButton({ item, active, href }: TabButtonProps) {
   const dropShadow = active
     ? "drop-shadow-[0_-4px_10px_rgba(255,255,255,0.4)]"
     : "drop-shadow-[0_-2px_6px_rgba(0,0,0,0.15)]";
@@ -13,9 +12,8 @@ export function TabButton({ item, active, onClick }: TabButtonProps) {
   const hoverAnim = "";
 
   return (
-    <button
-      type="button"
-      onClick={() => onClick(item.key)}
+    <Link
+      href={href}
       aria-pressed={active}
       className={`group relative flex items-center justify-center focus:outline-none transition-all duration-300 ${zIndex} ${dropShadow} ${heightClass} ${hoverAnim}`}
     >
@@ -27,6 +25,6 @@ export function TabButton({ item, active, onClick }: TabButtonProps) {
       <span className={`relative z-10 pl-8 pr-6 md:pl-10 md:pr-8 text-[13px] md:text-[14.5px] font-bold tracking-wide transition-colors duration-300 ${active ? 'text-[#0B281F]' : 'text-[#0B281F]/90'}`}>
         {item.label}
       </span>
-    </button>
+    </Link>
   )
 }

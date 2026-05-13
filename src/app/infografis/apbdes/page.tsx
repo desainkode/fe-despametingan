@@ -240,48 +240,13 @@ function APBDesTable({ title, data, icon: Icon, themeColor }: { title: string, d
 
 export default function ApbdesDetailPage() {
   return (
-    <main className="min-h-screen bg-[#F6F8F7] pb-24">
-      {/* Full Width Hero Section */}
-      <section className="relative overflow-hidden bg-[#0B281F] pt-28 pb-16 text-white shadow-2xl sm:pt-32 md:pt-36 lg:pt-40 lg:pb-24">
-        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[#00E0A1]/12 blur-[100px]" />
-        <div className="pointer-events-none absolute -left-16 -bottom-16 h-80 w-80 rounded-full bg-[#F0B100]/10 blur-[110px]" />
-        
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative z-10 flex flex-col items-center text-center">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#00E0A1] backdrop-blur-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#00E0A1] animate-pulse" />
-              Laporan Realisasi & Akuntabilitas Desa
-            </div>
-
-            <h1 className="max-w-4xl font-[Georgia,serif] text-[40px] font-bold leading-[1.05] tracking-tight sm:text-[52px] lg:text-[64px]">
-              Realisasi <span className="text-[#F0B100]">APB Desa</span>
-              <br />
-              Pameutingan 2026
-            </h1>
-
-            <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-white/70 sm:text-[17px]">
-              Transparansi penuh progres pembangunan desa. Pantau setiap rupiah yang direalisasikan lengkap dengan dokumentasi visual dari lapangan.
-            </p>
-          </div>
+    <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-3 rounded-2xl bg-[#009966]/10 px-4 py-2 text-[#009966]">
+          <CheckCircle2 size={18} />
+          <span className="text-[13px] font-bold uppercase tracking-wider">Status Realisasi: Berjalan (On-Going)</span>
         </div>
-      </section>
-
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-4 py-10 sm:px-6 lg:px-8">
-        {/* Navigation & Info */}
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <Link
-            href="/infografis"
-            className="inline-flex items-center gap-2 self-start rounded-full border border-[#0B281F]/10 bg-white px-5 py-2.5 text-[13px] font-bold text-[#0B281F] shadow-[0_10px_24px_rgba(11,40,31,0.08)] transition-transform duration-300 hover:-translate-y-0.5"
-          >
-            <ArrowLeft size={16} />
-            Kembali ke Infografis
-          </Link>
-
-          <div className="flex items-center gap-3 rounded-2xl bg-[#009966]/10 px-4 py-2 text-[#009966]">
-            <CheckCircle2 size={18} />
-            <span className="text-[13px] font-bold uppercase tracking-wider">Status Realisasi: Berjalan (On-Going)</span>
-          </div>
-        </div>
+      </div>
 
         {/* Ringkasan Section */}
         <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -414,7 +379,6 @@ export default function ApbdesDetailPage() {
             <p>Data ini merupakan ringkasan eksekutif dari realisasi APBDes Pameutingan. Untuk rincian per kegiatan secara lebih mendalam, silakan klik dropdown pada tabel di atas.</p>
           </div>
         </section>
-      </div>
-    </main>
+    </div>
   );
 }

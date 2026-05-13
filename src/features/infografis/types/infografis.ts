@@ -181,7 +181,7 @@ export interface SdgsSectionContent {
 export interface TabButtonProps {
   item: InfografisTab
   active: boolean
-  onClick: (key: InfografisKey) => void
+  href: string
 }
 
 export interface DemografiCardProps {

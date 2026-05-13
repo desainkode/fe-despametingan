@@ -9,10 +9,9 @@ const kepalaDesaImage =
 
 interface HeroSectionProps {
   activeTab: InfografisKey
-  onChangeTab: (key: InfografisKey) => void
 }
 
-export function HeroSection({ activeTab, onChangeTab }: HeroSectionProps) {
+export function HeroSection({ activeTab }: HeroSectionProps) {
   const hero = heroContentByFeature[activeTab]
   const isStunting = activeTab === 'stunting'
   const isBansos = activeTab === 'bansos'
@@ -69,7 +68,6 @@ export function HeroSection({ activeTab, onChangeTab }: HeroSectionProps) {
         <div className="hero-reveal relative mx-auto mt-8 w-full max-w-sm [animation-delay:180ms] lg:mt-0 lg:pt-0">
           {isCustomHero ? (
             <div className="relative h-64 w-full sm:h-88 md:h-112">
-              {/* Overlapping images as seen in Figma */}
               <div className="absolute -right-6 top-0 h-4/5 w-4/5 overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
                 <img src="img/unsplash_tB5ZZtHZ_tI.png" className="h-full w-full object-cover opacity-60" alt="" />
               </div>
@@ -93,7 +91,7 @@ export function HeroSection({ activeTab, onChangeTab }: HeroSectionProps) {
                   loading="eager"
                 />
 
-                <div className="hero-pulse absolute bottom-3 left-3 right-3 rounded-2xl border border-white/20 bg-black/35 p-2.5 shadow-[0_10px_15px_rgba(0,0,0,0.1),0_4px_6px_rgba(0,0,0,0.1)] backdrop-blur-[2px] md:bottom-4 md:left-4 md:right-4 md:p-3">
+                <div className="hero-pulse absolute bottom-3 left-3 right-3 rounded-2xl border border-white/20 bg-black/35 p-2.5 shadow-[0_10px_15px_rgba(0,0,0,0.1),0_4_6px_rgba(0,0,0,0.1)] backdrop-blur-[2px] md:bottom-4 md:left-4 md:right-4 md:p-3">
                   <div className="flex items-start justify-between">
                     <div>
                       <p className="text-[12px] font-bold leading-5 md:text-sm">
@@ -128,12 +126,12 @@ export function HeroSection({ activeTab, onChangeTab }: HeroSectionProps) {
                 key={item.key}
                 item={item}
                 active={activeTab === item.key}
-                onClick={onChangeTab}
+                href={`/infografis/${item.key}`}
               />
             ))}
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
