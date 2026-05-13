@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { upakarti } from "../lib/fonts";
+
 import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${upakarti.variable} h-full antialiased`}
+      className={`${inter.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body

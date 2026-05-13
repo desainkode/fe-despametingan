@@ -20,7 +20,7 @@ export default function KontakPage() {
               </span>
             </div>
             
-            <h1 className="max-w-xl text-[36px] md:text-[72px] font-bold lowercase leading-[1.02] tracking-[0.052em]" style={{ fontFamily: 'var(--font-upakarti)' }}>
+            <h1 className="max-w-xl text-[36px] md:text-[72px] font-bold lowercase leading-[1.02] tracking-[0.052em]" style={{ fontFamily: 'Georgia, serif' }}>
               Sampaikan <br /> <span className="text-[#00D492]">aspirasi</span> anda
             </h1>
             

@@ -82,7 +82,7 @@ export default function StructureSection() {
                         <span className="mb-2 w-fit rounded-lg bg-[#00D492]/20 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[#00D492] backdrop-blur-md">
                           {item.jabatan}
                         </span>
-                        <h4 className="font-upakarti text-[24px] font-bold text-white md:text-[28px]">{item.nama}</h4>
+                        <h4 className="font-georgia text-[24px] font-bold text-white md:text-[28px]">{item.nama}</h4>
                         <div className="mt-4 h-1 w-0 bg-[#F0B100] transition-all duration-500 group-hover:w-full" />
                       </div>
                     </div>

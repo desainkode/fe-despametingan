@@ -20,7 +20,7 @@ export function DusunInfoCard({
   return (
     <article className="hero-reveal group relative pt-4" style={{ animationDelay: `${delayMs}ms` }}>
       <div className="absolute -left-2 -top-4 z-20 inline-flex h-12 w-14 items-start justify-start rounded-lg bg-[#F0B100] px-2 pt-0.5 shadow-[0_10px_16px_rgba(0,0,0,0.16)] transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3 sm:-left-3 sm:-top-5 sm:h-17 sm:w-19 sm:rounded-xl sm:px-2.5 sm:pt-1">
-        <span className="text-[28px] leading-none text-white sm:text-[38px]" style={{ fontFamily: "var(--font-upakarti)" }}>
+        <span className="text-[28px] leading-none text-white sm:text-[38px]" style={{ fontFamily: "Georgia, serif" }}>
           {kode}
         </span>
       </div>

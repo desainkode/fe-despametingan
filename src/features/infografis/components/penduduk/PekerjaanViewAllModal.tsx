@@ -101,7 +101,7 @@ export function PekerjaanViewAllModal({
                           style={{
                             backgroundColor: `rgba(255, 255, 255, 0.2)`,
                             color: "#FFFFFF",
-                            fontFamily: "var(--font-upakarti)",
+                            fontFamily: "Georgia, serif",
                           }}
                         >
                           {item.kode}
@@ -131,7 +131,7 @@ export function PekerjaanViewAllModal({
                         <p className="text-[11px] text-white/70 mb-1">Jumlah</p>
                         <p
                           className="text-[28px] sm:text-[32px] font-bold text-white"
-                          style={{ fontFamily: "var(--font-upakarti)" }}
+                          style={{ fontFamily: "Georgia, serif" }}
                         >
                           {item.jumlah}
                         </p>

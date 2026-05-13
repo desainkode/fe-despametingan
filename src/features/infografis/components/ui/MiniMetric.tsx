@@ -55,7 +55,7 @@ export function MiniMetric({ label, description, value, index = 0 }: MiniMetricP
 
             <p
               className="font-timeless text-[20px] leading-[1.12] text-[#FEFEFE]"
-              style={{ fontFamily: 'Timeless, var(--font-upakarti), Georgia, serif' }}
+              style={{ fontFamily: 'Timeless, Georgia, serif, Georgia, serif' }}
             >
               {label}
             </p>
@@ -68,7 +68,7 @@ export function MiniMetric({ label, description, value, index = 0 }: MiniMetricP
 
         <p
           className="shrink-0 text-right text-[44px] leading-none text-[#FEFEFE] md:text-[55px]"
-          style={{ fontFamily: 'var(--font-upakarti)' }}
+          style={{ fontFamily: 'Georgia, serif' }}
         >
           {value}
         </p>

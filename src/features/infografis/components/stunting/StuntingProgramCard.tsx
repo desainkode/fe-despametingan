@@ -23,7 +23,7 @@ export function StuntingProgramCard({ program }: StuntingProgramCardProps) {
         </p>
         <div className="text-right">
           <div className="flex items-baseline justify-end gap-0.5">
-            <span className="text-4xl font-bold text-[#0B281F]" style={{ fontFamily: 'var(--font-upakarti)' }}>
+            <span className="text-4xl font-bold text-[#0B281F]" style={{ fontFamily: 'Georgia, serif' }}>
               {program.coverage}
             </span>
             <span className="text-2xl font-bold text-[#0B281F]">%</span>

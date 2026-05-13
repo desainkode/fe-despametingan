@@ -35,7 +35,7 @@ function PendapatanChartTooltip({
         <span className="text-[12px] font-semibold tracking-[0.02em] text-white/85">{label}</span>
       </div>
       <div className="mt-2 flex items-end gap-2">
-        <span className="text-[24px] font-bold leading-none text-white" style={{ fontFamily: 'var(--font-upakarti)' }}>
+        <span className="text-[24px] font-bold leading-none text-white" style={{ fontFamily: 'Georgia, serif' }}>
           {value}%
         </span>
         <span className="pb-1 text-[10px] uppercase tracking-[0.35em] text-white/45">kontribusi</span>
@@ -129,7 +129,7 @@ export function PendapatanChart({ delayMs, customData }: { delayMs: number, cust
                           x={viewBox.cx}
                           y={viewBox.cy}
                           className="fill-white text-3xl font-bold"
-                          style={{ fontFamily: 'var(--font-upakarti)' }}
+                          style={{ fontFamily: 'Georgia, serif' }}
                         >
                           {totalValue}%
                         </tspan>

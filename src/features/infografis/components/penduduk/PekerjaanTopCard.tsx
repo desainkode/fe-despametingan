@@ -42,7 +42,7 @@ export function PekerjaanTopCard({
 
           <p
             className="text-[36px] font-bold leading-[0.9] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 sm:text-[58px]"
-            style={{ fontFamily: "var(--font-upakarti)" }}
+            style={{ fontFamily: "Georgia, serif" }}
           >
             {jumlah}
           </p>

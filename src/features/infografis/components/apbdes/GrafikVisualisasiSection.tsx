@@ -170,7 +170,7 @@ export function GrafikVisualisasiSection() {
                               x={viewBox.cx}
                               y={viewBox.cy}
                               className="fill-white text-4xl font-bold"
-                              style={{ fontFamily: 'var(--font-upakarti)' }}
+                              style={{ fontFamily: 'Georgia, serif' }}
                             >
                               {totalPieValue}%
                             </tspan>

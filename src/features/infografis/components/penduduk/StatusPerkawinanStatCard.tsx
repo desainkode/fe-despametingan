@@ -47,7 +47,7 @@ export function StatusPerkawinanStatCard({
           <div>
             <p
               className="text-[42px] leading-[0.9] text-white sm:text-[48px]"
-              style={{ fontFamily: "var(--font-upakarti)" }}
+              style={{ fontFamily: "Georgia, serif" }}
             >
               {jumlah}
             </p>

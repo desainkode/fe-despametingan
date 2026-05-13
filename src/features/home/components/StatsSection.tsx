@@ -43,7 +43,7 @@ export default function StatsSection() {
               </div>
             </div>
 
-            <h2 className="font-upakarti mt-6 text-[32px] font-bold leading-[1.1] tracking-tight text-white md:text-[38px] lg:text-[44px]">
+            <h2 className="font-georgia mt-6 text-[32px] font-bold leading-[1.1] tracking-tight text-white md:text-[38px] lg:text-[44px]">
               Demografi & <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-white/60">Statistik Desa</span>
             </h2>

@@ -34,7 +34,7 @@ export function BansosIndicatorCard({ indicator }: BansosIndicatorCardProps) {
         <div className="flex items-center justify-center">
           <span 
             className="text-6xl font-normal leading-none" 
-            style={{ fontFamily: 'var(--font-upakarti)' }}
+            style={{ fontFamily: 'Georgia, serif' }}
           >
             {indicator.value}
           </span>

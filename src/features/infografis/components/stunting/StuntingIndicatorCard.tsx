@@ -33,7 +33,7 @@ export function StuntingIndicatorCard({ indicator }: StuntingIndicatorCardProps)
           <div className="flex items-baseline justify-between">
              <span
               className="text-4xl font-bold leading-none tracking-tight"
-              style={{ fontFamily: 'var(--font-upakarti)' }}
+              style={{ fontFamily: 'Georgia, serif' }}
             >
               {indicator.value}
             </span>

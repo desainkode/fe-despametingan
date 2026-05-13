@@ -20,7 +20,7 @@ export function StuntingAgeGroupCard({ data }: StuntingAgeGroupCardProps) {
       <div className="flex items-end justify-between gap-4">
         <span
           className="text-4xl font-bold leading-none tracking-tight"
-          style={{ fontFamily: 'var(--font-upakarti)' }}
+          style={{ fontFamily: 'Georgia, serif' }}
         >
           {data.count}
         </span>

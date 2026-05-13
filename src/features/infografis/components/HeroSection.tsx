@@ -38,7 +38,7 @@ export function HeroSection({ activeTab, onChangeTab }: HeroSectionProps) {
                 ? 'text-[42px] md:text-[72px] font-bold lowercase'
                 : 'text-[34px] sm:text-[40px] md:text-[56px] lg:text-[64px] font-bold'
             }`}
-            style={{ fontFamily: 'var(--font-upakarti)' }}
+            style={{ fontFamily: 'Georgia, serif' }}
           >
             {isCustomHero ? (
               <>

@@ -61,8 +61,8 @@ body {
   font-family: "Timeless", Georgia, serif;
 }
 
-.font-upakarti {
-  font-family: var(--font-upakarti), serif;
+.font-georgia {
+  font-family: Georgia, serif;
 }
 
 .admin-theme {

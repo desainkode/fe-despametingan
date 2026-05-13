@@ -39,7 +39,7 @@ export default function Hero({ desa }: { desa?: Desa | null }) {
             </span>
           </div>
 
-          <h1 className="hero-reveal mt-4 font-upakarti text-[32px] font-bold leading-[1.05] tracking-tight sm:text-[48px] md:text-[60px] lg:text-[76px] [animation-delay:150ms]">
+          <h1 className="hero-reveal mt-4 font-georgia text-[32px] font-bold leading-[1.05] tracking-tight sm:text-[48px] md:text-[60px] lg:text-[76px] [animation-delay:150ms]">
             <span className="block opacity-90">Membangun Desa,</span>
             <span className="relative mt-1 block text-transparent bg-clip-text bg-linear-to-r from-[#00D492] to-[#A4F4CF]">
               Mensejahterakan

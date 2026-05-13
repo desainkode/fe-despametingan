@@ -58,7 +58,7 @@ export default function ApbdesSection() {
           <div className="relative z-30 mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
             <div className="flex flex-col gap-2">
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#00D492]">Laporan Keuangan</span>
-              <h3 className="font-upakarti text-[32px] font-bold leading-tight md:text-[42px]">
+              <h3 className="font-georgia text-[32px] font-bold leading-tight md:text-[42px]">
                 APBDes Tahun {selectedYear}
               </h3>
             </div>
@@ -109,7 +109,7 @@ export default function ApbdesSection() {
                   <div className={`absolute inset-0 rounded-full bg-linear-to-br opacity-0 transition-opacity duration-500 group-hover/card:opacity-10 ${item.color}`} />
                   <item.icon className="mb-2 text-[#00D492] size-5 sm:size-6 sm:mb-3" />
                   <span className="text-[9px] font-black uppercase tracking-widest text-white/40 sm:text-[10px]">Rp.</span>
-                  <p className="mt-1 font-upakarti text-[22px] font-bold leading-none sm:text-[32px] md:text-[38px] lg:text-[44px]">{item.value}</p>
+                  <p className="mt-1 font-georgia text-[22px] font-bold leading-none sm:text-[32px] md:text-[38px] lg:text-[44px]">{item.value}</p>
                   <p className="mt-1 px-2 text-center text-[9px] font-bold uppercase tracking-tight text-white/60 sm:mt-2 sm:px-4 sm:text-[11px]">{item.label}</p>
                 </div>
               ))}

@@ -26,7 +26,7 @@ export function BansosBenefitTypeCard({ type }: BansosBenefitTypeCardProps) {
           <div className="flex flex-col gap-2">
             <span 
               className={`text-8xl font-normal leading-none ${textColor}`} 
-              style={{ fontFamily: 'var(--font-upakarti)' }}
+              style={{ fontFamily: 'Georgia, serif' }}
             >
               {type.count}
             </span>

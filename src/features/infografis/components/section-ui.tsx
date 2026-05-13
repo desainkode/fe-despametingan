@@ -14,7 +14,7 @@ export function SectionHeader({
     <div className="mb-6 grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
       <h2
         className="text-[28px] font-bold leading-[1.08] tracking-[0.02em] text-[#0B281F] md:text-[34px]"
-        style={{ fontFamily: "var(--font-upakarti)" }}
+        style={{ fontFamily: "Georgia, serif" }}
       >
         {title}
       </h2>

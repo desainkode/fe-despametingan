@@ -23,7 +23,7 @@ export function SectionHeader({
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className="flex items-start justify-between gap-4 md:contents">
-        <h2 className="hero-reveal font-upakarti text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
+        <h2 className="hero-reveal font-georgia text-[26px] font-bold leading-[1.06] text-[#0B281F] md:text-[34px] lg:text-[42px]">
           {titleLines.map((line, i) => (
             <span key={i} className="block">
               {line}

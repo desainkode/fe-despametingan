@@ -54,7 +54,7 @@ export default function GaleriSection() {
 
               {/* Info Body */}
               <div className="flex flex-col p-6">
-                <h3 className="font-upakarti text-[22px] font-bold leading-tight text-[#052119]">
+                <h3 className="font-georgia text-[22px] font-bold leading-tight text-[#052119]">
                   {item.title}
                 </h3>
                 <p className="mt-3 text-[14px] leading-relaxed text-[#052119]/60">

@@ -24,7 +24,7 @@ export function LayananHero() {
 
           <h1
             className="hero-reveal max-w-4xl font-bold leading-[1.1] tracking-tight text-[40px] sm:text-[56px] lg:text-[72px]"
-            style={{ fontFamily: 'var(--font-upakarti)' }}
+            style={{ fontFamily: 'Georgia, serif' }}
           >
             Pelayanan Masyarakat <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E0A1] to-[#F0B100]">Desa Pameutingan</span>
