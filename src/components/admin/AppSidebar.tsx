@@ -24,6 +24,7 @@ import {
   Database,
   CircleDollarSign,
   Activity,
+  HandHeart,
 } from "lucide-react";
 import {
   Sidebar,
@@ -127,6 +128,11 @@ const NAV_MAIN: NavItem[] = [
     title: "Stunting",
     href: "/admin/stunting",
     icon: Activity,
+  },
+  {
+    title: "Bansos",
+    href: "/admin/bansos",
+    icon: HandHeart,
   },
 ];
 

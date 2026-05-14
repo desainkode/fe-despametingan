@@ -51,3 +51,11 @@ export async function updatePenduduk(id: string, data: Partial<Penduduk>): Promi
 export async function deletePenduduk(id: string): Promise<void> {
   await api.delete(`penduduk/${id}`);
 }
+
+export const pendudukApi = {
+  getAll: (params?: { search?: string; page?: number }) => getPendudukList(params),
+  getDetail: (id: string) => getPendudukDetail(id),
+  create: (data: Partial<Penduduk>) => createPenduduk(data),
+  update: (id: string, data: Partial<Penduduk>) => updatePenduduk(id, data),
+  delete: (id: string) => deletePenduduk(id),
+};

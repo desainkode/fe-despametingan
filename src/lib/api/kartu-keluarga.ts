@@ -34,3 +34,11 @@ export async function updateKartuKeluarga(id: string, data: Partial<KartuKeluarg
 export async function deleteKartuKeluarga(id: string): Promise<void> {
   await api.delete(`kartu-keluarga/${id}`);
 }
+
+export const kkApi = {
+  getAll: (params?: { search?: string; page?: number }) => getKartuKeluargaList(params),
+  getDetail: (id: string) => getKartuKeluargaDetail(id),
+  create: (data: Partial<KartuKeluarga>) => createKartuKeluarga(data),
+  update: (id: string, data: Partial<KartuKeluarga>) => updateKartuKeluarga(id, data),
+  delete: (id: string) => deleteKartuKeluarga(id),
+};
