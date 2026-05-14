@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { useDesa } from "@/hooks/useDesa";
 
 const navItems = [
@@ -47,89 +47,89 @@ export default function Navbar() {
 
   return (
     <header 
-      className={`navbar-enter fixed top-0 z-50 w-full px-4 transition-all duration-500 md:px-10 ${
+      className={`fixed top-0 z-50 w-full py-4 transition-all duration-500 ${
         isScrolled || isMenuOpen
-          ? "border-b border-white/10 bg-linear-to-r from-[#004F3B]/95 to-[#003126]/95 shadow-md backdrop-blur-md"
-          : "border-b border-transparent bg-transparent"
+          ? "bg-[#004F3B]/90 backdrop-blur-xl shadow-lg"
+          : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between md:h-20">
-        {/* Logo */}
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-x-4 px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:justify-stretch lg:gap-x-12 xl:px-0">
+        {/* Logo Section */}
         <Link 
           href="/" 
           onClick={closeMenu}
-          className="hero-reveal z-50 flex items-center gap-2.5 [animation-delay:80ms]"
+          className="flex items-center gap-3"
         >
-          <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 p-1.5 shadow-inner backdrop-blur-sm md:h-10 md:w-10">
+          <div className="relative flex h-9 w-9 items-center justify-center md:h-10 md:w-10">
             <img
               src={desa?.logo_desa || "/img/image.png"}
               alt={`Logo ${desa?.nama_desa || "Desa Pameutingan"}`}
-              width={40}
-              height={40}
               className="h-full w-full object-contain"
               loading="eager"
             />
           </div>
-          <span className="flex flex-col leading-none" style={{ fontFamily: 'var(--font-sans)' }}>
-            <span className="text-[1.1rem] font-bold tracking-tight text-white md:text-[1.35rem]">
+          <span className="flex flex-col leading-none">
+            <span className="text-[1.1rem] font-bold tracking-tight text-white md:text-[1.2rem]">
               {desa?.nama_desa || "Desa Pameutingan"}
             </span>
-            <span className="mt-0.5 text-[0.62rem] font-medium tracking-[0.14em] text-[#D0FAE5]/80 md:text-[0.68rem]">
+            <span className="mt-0.5 text-[0.62rem] font-medium tracking-[0.14em] text-[#D0FAE5]/70">
               {desa?.kabupaten || "KAB. TASIKMALAYA"}
             </span>
           </span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hero-reveal hidden items-center gap-7 [animation-delay:160ms] md:flex">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={`nav-link-animated text-[0.95rem] font-semibold transition-all duration-300 ${isActive
-                    ? "is-active text-white"
-                    : "text-[#D0FAE5]/90 hover:text-white"
-                  }`}
-                style={{ fontFamily: 'var(--font-sans)' }}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+        <nav className="hidden lg:block">
+          <ul className="flex items-center gap-1">
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className={`px-3 py-2 text-[0.92rem] font-medium transition-all duration-300 rounded-lg ${
+                      isActive
+                        ? "text-white bg-white/10"
+                        : "text-[#D0FAE5]/80 hover:text-white hover:bg-white/5"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </nav>
 
-        {/* Desktop CTA */}
-        <div className="hero-reveal hidden [animation-delay:240ms] md:block">
+        {/* Actions Section */}
+        <div className="flex flex-wrap items-center justify-center gap-3 justify-self-end lg:flex-nowrap lg:gap-x-4">
           <Link
             href="/layanan-masyarakat"
-            className="nav-cta group relative inline-flex h-11 items-center justify-center overflow-hidden rounded-full bg-white px-7 text-[0.92rem] font-bold text-[#004F3B] shadow-xl"
-            style={{ fontFamily: 'var(--font-sans)' }}
+            className="flex items-center justify-center gap-2 whitespace-nowrap text-sm font-bold transition-all bg-white text-[#004F3B] hover:bg-emerald-50 active:scale-95 px-5 py-2.5 rounded-xl shadow-xl shadow-black/10"
           >
-            <span className="relative z-10">Layanan Masyarakat</span>
-            <div className="absolute inset-0 translate-y-full bg-emerald-50 transition-transform duration-300 group-hover:translate-y-0" />
+            Layanan
+            <ArrowUpRight size={16} className="opacity-70" />
           </Link>
+          
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={toggleMenu}
+            className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white backdrop-blur-md transition-all active:scale-95 lg:hidden"
+            aria-label="Toggle Menu"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
-
-        {/* Mobile Menu Toggle */}
-        <button
-          onClick={toggleMenu}
-          className="hero-reveal z-50 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition-all active:scale-95 md:hidden"
-          aria-label="Toggle Menu"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
 
       {/* Mobile Menu Overlay */}
       <div 
-        className={`fixed inset-0 z-40 h-screen w-full bg-[#002B20]/98 backdrop-blur-xl transition-all duration-500 ease-in-out md:hidden ${
+        className={`fixed inset-0 z-40 h-screen w-full bg-[#002B20] transition-all duration-500 ease-in-out lg:hidden ${
           isMenuOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
         }`}
       >
         <div className="flex h-full flex-col px-8 pt-28 pb-10">
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             {navItems.map((item, index) => {
               const isActive = pathname === item.href;
               return (
@@ -137,23 +137,20 @@ export default function Navbar() {
                   key={item.label}
                   href={item.href}
                   onClick={closeMenu}
-                  className={`group flex items-center justify-between text-2xl font-bold tracking-tight transition-all duration-300 ${
+                  className={`flex items-center justify-between text-2xl font-bold tracking-tight transition-all duration-300 ${
                     isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                  } ${isActive ? "text-white" : "text-white/60"}`}
-                  style={{ 
-                    fontFamily: 'var(--font-sans)',
-                    transitionDelay: `${150 + index * 50}ms`
-                  }}
+                  } ${isActive ? "text-[#00D492]" : "text-white/60"}`}
+                  style={{ transitionDelay: `${150 + index * 50}ms` }}
                 >
                   <span>{item.label}</span>
-                  <div className={`h-1.5 w-1.5 rounded-full bg-[#F0B100] transition-all duration-500 ${isActive ? "scale-100 opacity-100" : "scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100"}`} />
+                  {isActive && <div className="h-2 w-2 rounded-full bg-[#00D492]" />}
                 </Link>
               );
             })}
           </div>
 
           <div 
-            className={`mt-auto transition-all duration-500 ${
+            className={`mt-auto space-y-4 transition-all duration-500 ${
               isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
             }`}
             style={{ transitionDelay: `${150 + navItems.length * 50}ms` }}
@@ -162,17 +159,16 @@ export default function Navbar() {
               href="/layanan-masyarakat"
               onClick={closeMenu}
               className="flex h-14 items-center justify-center rounded-2xl bg-white text-lg font-bold text-[#004F3B] shadow-2xl active:scale-[0.98] transition-transform"
-              style={{ fontFamily: 'var(--font-sans)' }}
             >
               Layanan Masyarakat
             </Link>
             
-            <div className="mt-8 flex flex-col items-center gap-1 text-center">
+            <div className="flex flex-col items-center gap-1 text-center py-4">
               <span className="text-[0.65rem] font-bold tracking-[0.2em] text-white/30 uppercase">
                 Pemerintah {desa?.nama_desa || "Desa Pameutingan"}
               </span>
               <span className="text-[0.6rem] text-white/20">
-                &copy; 2026 • All Rights Reserved
+                &copy; 2026 • Semua Hak Dilindungi
               </span>
             </div>
           </div>
