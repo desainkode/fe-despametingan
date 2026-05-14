@@ -1,11 +1,11 @@
-import { stuntingContent } from '../config/infografis-content'
+import { StuntingSectionContent } from '../types/infografis'
 import { StuntingIndicatorCard } from './stunting/StuntingIndicatorCard'
 import { StuntingAgeGroupCard } from './stunting/StuntingAgeGroupCard'
 import { StuntingProgramCard } from './stunting/StuntingProgramCard'
 import { StuntingBarChart } from './stunting/StuntingBarChart'
 import { Activity, Share2, TrendingUp, ClipboardList } from 'lucide-react'
 
-export function StuntingSection() {
+export function StuntingSection({ data }: { data: StuntingSectionContent }) {
   return (
     <div className="mx-auto w-full max-w-7xl space-y-12 px-4 py-6 md:space-y-24 md:px-0 md:py-8">
       {/* Statistik Stunting Section */}
@@ -18,7 +18,7 @@ export function StuntingSection() {
           </div>
           <div className="flex flex-1 flex-col md:flex-row md:items-center justify-between gap-8">
             <p className="text-sm leading-relaxed text-[#0B281F]/70 md:text-base lg:max-w-lg md:text-center md:mx-auto">
-              {stuntingContent.description}
+              {data.description}
             </p>
             <div className="absolute right-0 top-0 flex h-11 w-11 items-center justify-center rounded-full bg-[#0B281F] text-white shadow-lg shadow-black/10 md:h-12 md:w-12">
               <Activity size={24} />
@@ -27,7 +27,7 @@ export function StuntingSection() {
         </div>
 
         <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
-          {stuntingContent.indicators.map((indicator, index) => (
+          {data.indicators.map((indicator, index) => (
             <div key={index} className="w-full">
               <StuntingIndicatorCard indicator={indicator} />
             </div>
@@ -55,9 +55,9 @@ export function StuntingSection() {
 
         <div className="overflow-x-auto pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div className="flex gap-4 w-max min-w-full">
-            {stuntingContent.prevalenceByAge?.map((data, index) => (
+            {data.prevalenceByAge?.map((item, index) => (
               <div key={index} className="w-[200px] shrink-0 sm:w-[260px]">
-                <StuntingAgeGroupCard data={data} />
+                <StuntingAgeGroupCard data={item} />
               </div>
             ))}
           </div>
@@ -82,8 +82,8 @@ export function StuntingSection() {
           </div>
         </div>
 
-        {stuntingContent.trendData && (
-          <StuntingBarChart data={stuntingContent.trendData} />
+        {data.trendData && (
+          <StuntingBarChart data={data.trendData} />
         )}
       </section>
 
@@ -106,7 +106,7 @@ export function StuntingSection() {
         </div>
 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
-          {stuntingContent.programs?.map((program, index) => (
+          {data.programs?.map((program, index) => (
             <StuntingProgramCard key={index} program={program} />
           ))}
         </div>

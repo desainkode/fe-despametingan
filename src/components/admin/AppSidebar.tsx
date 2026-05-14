@@ -23,6 +23,7 @@ import {
   Bell,
   Database,
   CircleDollarSign,
+  Activity,
 } from "lucide-react";
 import {
   Sidebar,
@@ -121,6 +122,11 @@ const NAV_MAIN: NavItem[] = [
     title: "APBDes",
     href: "/admin/apbdes",
     icon: CircleDollarSign,
+  },
+  {
+    title: "Stunting",
+    href: "/admin/stunting",
+    icon: Activity,
   },
 ];
 
