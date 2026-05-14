@@ -7,7 +7,17 @@ import ScrollToTop from "@/app/components/ScrollToTop";
 import SessionProviderComp from "@/app/provider/nextauth/SessionProvider";
 import { AuthDialogProvider } from "../context/AuthDialogContext";
 import NextTopLoader from "nextjs-toploader";
+import { Metadata } from "next";
+
 const manrope = Manrope({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Portal Resmi Desa Pameutingan",
+  description: "Website Resmi Pemerintahan Desa Pameutingan, Kecamatan Cipatujah, Kabupaten Tasikmalaya.",
+  icons: {
+    icon: "/images/logo/logo-desa.png",
+  },
+};
 
 export default function RootLayout({
   children,

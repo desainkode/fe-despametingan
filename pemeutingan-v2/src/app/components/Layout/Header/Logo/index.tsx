@@ -6,7 +6,7 @@ const Logo: React.FC = () => {
     <Link href="/" className="flex items-center gap-3">
       <div className="relative h-10 w-10 flex-shrink-0">
         <Image
-          src="/images/logo/logo-desa.svg"
+          src="/images/logo/logo-desa.png"
           alt="Logo Desa Pameutingan"
           fill
           className="object-contain"
