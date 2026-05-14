@@ -20,7 +20,7 @@ const ContactForm = () => {
     const isValid = Object.values(formData).every((value) => value.trim() !== "");
     setIsFormValid(isValid);
   }, [formData]);
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -28,13 +28,15 @@ const ContactForm = () => {
     }));
   };
   const reset = () => {
-    formData.name = "";
-    formData.projectname = "";
-    formData.email = "";
-    formData.Project = "";
-    formData.Message = "";
+    setFormData({
+      name: "",
+      projectname: "",
+      email: "",
+      Project: "",
+      Message: ""
+    });
   };
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoader(true);
 
@@ -65,6 +67,9 @@ const ContactForm = () => {
       })
       .catch((error) => {
         console.log(error.message);
+      })
+      .finally(() => {
+        setLoader(false);
       });
   };
   return (

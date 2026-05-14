@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { headerData } from "./Navigation/menuData";
 import Logo from "./Logo";
 import HeaderLink from "./Navigation/HeaderLink";
 import MobileHeaderLink from "./Navigation/MobileHeaderLink";
 import Signin from "@/app/components/Auth/SignIn";
-import SignUp from "@/app/components/Auth/SignUp";
+
 import { useTheme } from "next-themes";
 import { Icon } from "@iconify/react";
 import { signOut, useSession } from 'next-auth/react'
@@ -18,32 +18,26 @@ const Header: React.FC = () => {
   const pathUrl = usePathname();
   const { theme, setTheme } = useTheme();
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const [user, setUser] = useState<{ user: any } | null>(null);
+  const [user, setUser] = useState<any>(null);
   const [sticky, setSticky] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+
   const pathname = usePathname();
   const navbarRef = useRef<HTMLDivElement>(null);
   const signInRef = useRef<HTMLDivElement>(null);
-  const signUpRef = useRef<HTMLDivElement>(null);
+
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = () => {
     setSticky(window.scrollY >= 80);
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
+  const handleClickOutside = useCallback((event: MouseEvent) => {
     if (
       signInRef.current &&
       !signInRef.current.contains(event.target as Node)
     ) {
       setIsSignInOpen(false);
-    }
-    if (
-      signUpRef.current &&
-      !signUpRef.current.contains(event.target as Node)
-    ) {
-      setIsSignUpOpen(false);
     }
     if (
       mobileMenuRef.current &&
@@ -52,7 +46,7 @@ const Header: React.FC = () => {
     ) {
       setNavbarOpen(false);
     }
-  };
+  }, [navbarOpen]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -78,15 +72,15 @@ const Header: React.FC = () => {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [navbarOpen, isSignInOpen, isSignUpOpen]);
+  }, [handleClickOutside]);
 
   useEffect(() => {
-    if (isSignInOpen || isSignUpOpen || navbarOpen) {
+    if (isSignInOpen || navbarOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
-  }, [isSignInOpen, isSignUpOpen, navbarOpen]);
+  }, [isSignInOpen, navbarOpen]);
 
   return (
     <header

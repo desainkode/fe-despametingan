@@ -4,13 +4,8 @@ import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 
-type Props = {
-  params: { slug: string };
-};
-
-export async function generateMetadata({ params }: any) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const posts = getAllPosts(["title", "date", "excerpt", "coverImage", "slug"]);
   const post = getPostBySlug(slug, [
     "title",
     "author",
@@ -61,9 +56,8 @@ export async function generateMetadata({ params }: any) {
   }
 }
 
-export default async function Post({ params }: any) {
+export default async function Post({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const posts = getAllPosts(["title", "date", "excerpt", "coverImage", "slug"]);
   const post = getPostBySlug(slug, [
     "title",
     "author",

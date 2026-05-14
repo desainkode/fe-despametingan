@@ -1,8 +1,7 @@
 "use client";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import MapComponent from "./MapComponent";
 
 const Features = () => {

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import SingleService, { ServiceType } from "./SingleService";
 
 const Services = () => {
