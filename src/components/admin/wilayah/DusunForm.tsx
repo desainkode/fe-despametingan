@@ -1,35 +1,30 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { 
   Loader2, 
-  AlertCircle,
-  MapPin,
-  Users
+  MapPin
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { 
   Dusun, 
   createDusun, 
   updateDusun 
 } from "@/lib/api/dusun";
+import { getPendudukList } from "@/lib/api/penduduk";
+import { SearchableSelect } from "@/components/ui/searchable-select";
 import { toast } from "sonner";
 
 const formSchema = z.object({
   nama: z.string().min(3, "Nama dusun minimal 3 karakter"),
-  kepala_dusun: z.string().min(3, "Nama kepala dusun minimal 3 karakter"),
-  laki_laki: z.number().min(0),
-  perempuan: z.number().min(0),
-  warna: z.string().regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, "Warna tidak valid"),
+  kepala_dusun: z.string().optional().or(z.literal("")),
   koordinat_x: z.string().optional(),
   koordinat_y: z.string().optional(),
-  keterangan: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -46,38 +41,54 @@ export function DusunForm({ initialData, onSuccess, onCancel }: DusunFormProps) 
   const {
     register,
     handleSubmit,
-    watch,
-    setValue,
+    control,
     formState: { errors }
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       nama: initialData?.nama || "",
       kepala_dusun: initialData?.kepala_dusun || "",
-      laki_laki: initialData?.laki_laki || 0,
-      perempuan: initialData?.perempuan || 0,
-      warna: initialData?.warna || "#10b981",
       koordinat_x: initialData?.koordinat_x || "",
       koordinat_y: initialData?.koordinat_y || "",
-      keterangan: initialData?.keterangan || "",
     }
   });
 
-  const currentWarna = watch("warna");
+  const handleSearchPenduduk = async (query: string) => {
+    try {
+      const res = await getPendudukList({ search: query });
+      return res.data.map((p) => ({
+        value: p.nama, // Use name since kepala_dusun column in BE is a string name
+        label: p.nama,
+        sublabel: `NIK: ${p.nik} - ${p.jenis_kelamin === "L" ? "Laki-laki" : "Perempuan"}`
+      }));
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  };
 
   const onSubmit = async (values: FormValues) => {
     try {
       setLoading(true);
+      
+      // Submit data - let backend handle stat calculations
       const data = {
-        ...values,
-        jml_penduduk: values.laki_laki + values.perempuan
+        nama: values.nama,
+        kepala_dusun: values.kepala_dusun || null,
+        koordinat_x: values.koordinat_x || null,
+        koordinat_y: values.koordinat_y || null,
+        // Send defaults for BE columns that might have non-null constraints
+        warna: initialData?.warna || "#10b981",
+        jml_penduduk: initialData?.jml_penduduk || 0,
+        laki_laki: initialData?.laki_laki || 0,
+        perempuan: initialData?.perempuan || 0,
       };
 
       if (initialData) {
-        await updateDusun(initialData.id, data);
+        await updateDusun(initialData.id, data as any);
         toast.success("Data dusun berhasil diperbarui");
       } else {
-        await createDusun(data);
+        await createDusun(data as any);
         toast.success("Dusun baru berhasil ditambahkan");
       }
       
@@ -105,48 +116,23 @@ export function DusunForm({ initialData, onSuccess, onCancel }: DusunFormProps) 
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="kepala_dusun" className="text-sm font-semibold text-slate-700">Kepala Dusun</Label>
-          <Input 
-            id="kepala_dusun" 
-            placeholder="Nama lengkap kepala dusun" 
-            {...register("kepala_dusun")}
-            className="h-11 bg-slate-50/50 border-slate-200 focus:border-emerald-500 focus:ring-emerald-500/20"
+          <Label htmlFor="kepala_dusun" className="text-sm font-semibold text-slate-700">Kepala Dusun (Opsional)</Label>
+          <Controller
+            name="kepala_dusun"
+            control={control}
+            render={({ field }) => (
+              <SearchableSelect
+                value={field.value}
+                onChange={field.onChange}
+                placeholder="Pilih Kepala Dusun..."
+                searchPlaceholder="Cari dari data penduduk..."
+                onSearchAsync={handleSearchPenduduk}
+              />
+            )}
           />
-          {errors.kepala_dusun && <p className="text-xs text-red-500">{errors.kepala_dusun.message}</p>}
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="space-y-2">
-          <Label className="text-sm font-semibold text-slate-700">Penduduk (Laki-laki)</Label>
-          <Input 
-            type="number"
-            {...register("laki_laki", { valueAsNumber: true })}
-            className="h-11 bg-slate-50/50 border-slate-200"
-          />
-        </div>
-        <div className="space-y-2">
-          <Label className="text-sm font-semibold text-slate-700">Penduduk (Perempuan)</Label>
-          <Input 
-            type="number"
-            {...register("perempuan", { valueAsNumber: true })}
-            className="h-11 bg-slate-50/50 border-slate-200"
-          />
-        </div>
-        <div className="space-y-2">
-          <Label className="text-sm font-semibold text-slate-700">Warna Marker</Label>
-          <div className="flex gap-2">
-            <Input 
-              type="color"
-              {...register("warna")}
-              className="w-12 h-11 p-1 bg-white cursor-pointer border-slate-200"
-            />
-            <Input 
-              value={currentWarna}
-              onChange={(e) => setValue("warna", e.target.value)}
-              className="h-11 flex-1 bg-slate-50/50 border-slate-200 font-mono text-xs"
-            />
-          </div>
+          <p className="text-[11px] text-slate-400 font-medium">
+            Ketik nama penduduk untuk mencari. Kosongkan jika belum ditentukan.
+          </p>
         </div>
       </div>
 
@@ -171,16 +157,6 @@ export function DusunForm({ initialData, onSuccess, onCancel }: DusunFormProps) 
             className="h-11 bg-slate-50/50 border-slate-200"
           />
         </div>
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="keterangan" className="text-sm font-semibold text-slate-700">Keterangan Wilayah</Label>
-        <Textarea 
-          id="keterangan" 
-          placeholder="Tambahkan detail wilayah dusun jika ada..." 
-          className="h-24 bg-slate-50/50 border-slate-200 focus:border-emerald-500 focus:ring-emerald-500/20 transition-all resize-none"
-          {...register("keterangan")}
-        />
       </div>
 
       <div className="pt-4 flex gap-3">
