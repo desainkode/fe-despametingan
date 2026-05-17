@@ -1,3 +1,5 @@
+'use client'
+
 import { SectionHeader, MiniMetric } from './ui'
 import { sectionCardClass } from '../constants/styles'
 import { idmContent } from '../config/infografis-content'

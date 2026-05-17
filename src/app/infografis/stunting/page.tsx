@@ -2,6 +2,8 @@ import { StuntingSection } from "@/features/infografis/components/StuntingSectio
 import { Metadata } from "next";
 import { getPublicStuntingData } from "@/lib/api/stunting";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Data Stunting | Desa Pameutingan",
   description: "Statistik prevalensi dan program penanganan stunting di Desa Pameutingan.",

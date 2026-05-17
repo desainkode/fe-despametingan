@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect } from 'react'
 import { CircleDollarSign, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
