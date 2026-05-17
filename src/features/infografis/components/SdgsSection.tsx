@@ -1,3 +1,5 @@
+'use client'
+
 import { SectionHeader, StatPill } from './ui'
 import { sectionCardClass } from '../constants/styles'
 import { sdgsContent } from '../config/infografis-content'
