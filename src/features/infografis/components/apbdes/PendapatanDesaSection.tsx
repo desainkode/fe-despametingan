@@ -2,8 +2,31 @@ import { Landmark } from 'lucide-react'
 import { PendapatanInfoCard } from './PendapatanInfoCard'
 import { PendapatanChart } from './PendapatanChart'
 import { pendapatanCards } from '../../config/apbdes-data'
+import { ApbdesItem } from '@/lib/api/apbdes'
+import { Coins, PiggyBank, Wallet } from 'lucide-react'
 
-export function PendapatanDesaSection() {
+const iconMap: Record<string, any> = {
+  '4.1': Wallet,
+  '4.2': Coins,
+  '4.3': PiggyBank
+}
+
+export function PendapatanDesaSection({ rincian }: { rincian?: ApbdesItem[] }) {
+  const totalAnggaran = rincian?.reduce((acc, item) => acc + Number(item.anggaran), 0) || 1;
+  
+  const displayCards = rincian && rincian.length > 0 ? rincian.map((item) => {
+    const nominalNum = Number(item.anggaran);
+    const nominalStr = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(nominalNum);
+    return {
+      sourceId: item.kode_rekening,
+      nama: item.uraian,
+      deskripsi: `Sumber pendapatan dari ${item.uraian.toLowerCase()}.`,
+      nominal: nominalStr,
+      persentase: Math.round((nominalNum / totalAnggaran) * 100),
+      icon: iconMap[item.kode_rekening.substring(0, 3)] || Landmark,
+    };
+  }) : pendapatanCards.map(c => ({...c, sourceId: c.nama}));
+
   return (
     <div className="flex flex-col gap-10">
       <div className="grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
@@ -34,9 +57,9 @@ export function PendapatanDesaSection() {
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle_at_center,rgba(0,224,161,0.05)_0%,transparent_70%)]" />
 
         <div className="relative z-10 grid gap-4 md:grid-cols-2 lg:gap-5">
-          {pendapatanCards.map((item, idx) => (
+          {displayCards.map((item, idx) => (
             <PendapatanInfoCard
-              key={item.nama}
+              key={item.sourceId}
               nama={item.nama}
               deskripsi={item.deskripsi}
               nominal={item.nominal}
@@ -48,7 +71,7 @@ export function PendapatanDesaSection() {
         </div>
 
         <div className="relative z-10 flex flex-col items-center justify-center rounded-[28px] border border-white/10 bg-[linear-gradient(160deg,rgba(0,43,34,0.98)_0%,rgba(0,61,48,0.96)_55%,rgba(0,29,23,0.99)_100%)] p-6 shadow-[0_14px_28px_rgba(0,0,0,0.14)] backdrop-blur-md sm:p-8">
-          <PendapatanChart delayMs={220} />
+          <PendapatanChart delayMs={220} customData={displayCards} />
         </div>
       </div>
     </div>

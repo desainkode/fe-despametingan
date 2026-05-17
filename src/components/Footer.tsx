@@ -13,6 +13,7 @@ import {
   Shield,
   ChevronDown,
 } from "lucide-react";
+import { useDesa } from "@/hooks/useDesa";
 
 const footerLogo = "/img/image.png";
 
@@ -76,6 +77,8 @@ function FooterList({
 }
 
 export default function Footer() {
+  const { desa } = useDesa();
+
   return (
     <footer className="w-full bg-white">
       <div className="relative overflow-hidden rounded-t-[40px] bg-[#052119] text-[#F4F3EF] md:rounded-t-[80px]">
@@ -90,17 +93,17 @@ export default function Footer() {
               <div className="flex items-center gap-3.5">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/5 p-2 shadow-inner backdrop-blur-sm">
                   <img
-                    src={footerLogo}
+                    src={desa?.logo_desa || footerLogo}
                     alt="Logo Desa"
                     className="h-full w-full object-contain"
                   />
                 </div>
                 <div className="flex flex-col">
                   <p className="text-xl font-black leading-none text-white tracking-tight md:text-2xl" style={{ fontFamily: 'var(--font-sans)' }}>
-                    Desa Pameutingan
+                    {desa?.nama_desa || "Desa Pameutingan"}
                   </p>
                   <span className="mt-1 text-[0.65rem] font-bold tracking-[0.15em] text-[#00D492]/60 uppercase">
-                    KAB. TASIKMALAYA
+                    {desa?.kabupaten || "KAB. TASIKMALAYA"}
                   </span>
                 </div>
               </div>
@@ -111,7 +114,7 @@ export default function Footer() {
                     <MapPin size={14} className="text-[#00D492]" />
                   </div>
                   <p className="text-[13.5px] leading-relaxed text-[#D0FAE5]/70 lg:max-w-[300px]">
-                    Jl. Raya Cipatujah No.16, Kp. Ciceuri, Darawati, Kec. Cipatujah, Kabupaten Tasikmalaya, Jawa Barat 46189
+                    {desa?.alamat_kantor || "Jl. Raya Cipatujah No.16, Kp. Ciceuri, Darawati, Kec. Cipatujah, Kabupaten Tasikmalaya, Jawa Barat 46189"}
                   </p>
                 </div>
 
@@ -119,14 +122,14 @@ export default function Footer() {
                   <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-emerald-950/50 border border-emerald-900/30">
                     <Phone size={14} className="text-[#00D492]" />
                   </div>
-                  <span className="text-[13.5px] text-[#D0FAE5]/70">0813-8944-4933</span>
+                  <span className="text-[13.5px] text-[#D0FAE5]/70">{desa?.telepon || "0813-8944-4933"}</span>
                 </div>
 
                 <div className="flex items-center gap-4">
                   <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-emerald-950/50 border border-emerald-900/30">
                     <Mail size={14} className="text-[#00D492]" />
                   </div>
-                  <span className="text-[13.5px] text-[#D0FAE5]/70">kontak@desapameutingan.go.id</span>
+                  <span className="text-[13.5px] text-[#D0FAE5]/70">{desa?.email || "kontak@desapameutingan.go.id"}</span>
                 </div>
               </div>
 
@@ -156,7 +159,7 @@ export default function Footer() {
               </h4>
 
               <p className="text-[13px] leading-relaxed text-[#D0FAE5]/50">
-                Layanan bantuan cepat 24 jam untuk warga Desa Pameutingan.
+                Layanan bantuan cepat 24 jam untuk warga {desa?.nama_desa || "Desa Pameutingan"}.
               </p>
 
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
@@ -186,8 +189,8 @@ export default function Footer() {
           {/* Footer Bottom */}
           <div className="mt-8 flex flex-col gap-6 border-t border-white/5 pt-10 text-[12.5px] md:flex-row md:items-center md:justify-between">
             <div className="flex flex-col gap-1.5 opacity-40">
-              <p>© 2026 Pemerintah Desa Pameutingan.</p>
-              <p className="text-[11px] uppercase tracking-widest font-medium">Built for Excellence • Cipatujah, Tasikmalaya</p>
+              <p>© 2026 Pemerintah {desa?.nama_desa || "Desa Pameutingan"}.</p>
+              <p className="text-[11px] uppercase tracking-widest font-medium">Built for Excellence • {desa?.kecamatan || "Cipatujah"}, {desa?.kabupaten || "Tasikmalaya"}</p>
             </div>
 
             <div className="flex items-center gap-8 font-medium">

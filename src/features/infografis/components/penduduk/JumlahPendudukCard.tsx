@@ -49,14 +49,14 @@ export function JumlahPendudukCard({
         <div>
           <div className="mb-2 inline-flex items-center gap-1.5 rounded-md bg-[#009966] px-1.5 py-0.5 sm:mb-3 sm:px-2 sm:py-1 text-white">
             <span className="h-1 w-1 rounded-full bg-[#F0B100] sm:h-1.5 sm:w-1.5" />
-            <span className="text-[9px] leading-none sm:text-[11px]" style={{ fontFamily: "var(--font-upakarti)" }}>
+            <span className="text-[9px] leading-none sm:text-[11px]" style={{ fontFamily: "Georgia, serif" }}>
               Jiwa
             </span>
           </div>
 
           <p
             className={`text-[36px] leading-[0.9] sm:text-[58px] ${isDark ? "text-[#F3F8F6]" : "text-black"}`}
-            style={{ fontFamily: "var(--font-upakarti)" }}
+            style={{ fontFamily: "Georgia, serif" }}
           >
             {angka}
           </p>

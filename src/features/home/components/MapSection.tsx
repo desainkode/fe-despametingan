@@ -61,7 +61,7 @@ export default function MapSection() {
         {/* Header Section */}
         <div className="flex flex-col gap-6 border-b border-white/10 pb-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
           <div className="max-w-2xl">
-            <h2 className="font-upakarti text-[38px] font-bold leading-[1.05] tracking-tight md:text-[52px] lg:text-[64px]">
+            <h2 className="font-georgia text-[38px] font-bold leading-[1.05] tracking-tight md:text-[52px] lg:text-[64px]">
               <span className="block opacity-90">Peta &</span>
               <span className="block text-transparent bg-clip-text bg-linear-to-r from-[#00D492] to-[#A4F4CF]">Batas Wilayah</span>
             </h2>

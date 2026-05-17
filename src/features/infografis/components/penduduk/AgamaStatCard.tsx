@@ -54,7 +54,7 @@ export function AgamaStatCard({
 
         <div className="mt-2.5 flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="font-upakarti text-[52px] leading-[0.82] text-white sm:text-[58px]">
+            <p className="font-georgia text-[52px] leading-[0.82] text-white sm:text-[58px]">
               {jumlah}
             </p>
             <p className="mt-0.5 font-timeless text-[14px] leading-none text-white sm:text-[16px]">

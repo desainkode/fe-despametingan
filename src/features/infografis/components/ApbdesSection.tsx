@@ -1,22 +1,60 @@
+import { useState, useEffect } from 'react'
 import { CircleDollarSign, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { sectionCardClass } from '../constants/styles'
-import { apbdesCards } from '../config/apbdes-data'
+import { apbdesCards as staticApbdesCards } from '../config/apbdes-data'
 import { ApbdesCard } from './apbdes/ApbdesCard'
 import { PendapatanDesaSection } from './apbdes/PendapatanDesaSection'
 import { BelanjaDesaSection } from './apbdes/BelanjaDesaSection'
 import { ProgramDesaSection } from './apbdes/ProgramDesaSection'
 import { RealisasiAnggaranSection } from './apbdes/RealisasiAnggaranSection'
 import { GrafikVisualisasiSection } from './apbdes/GrafikVisualisasiSection'
+import { apbdesService, ApbdesPublicSummary } from '@/lib/api/apbdes'
 
 export function ApbdesSection() {
+  const [data, setData] = useState<ApbdesPublicSummary | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    apbdesService.getPublicSummary()
+      .then(res => {
+        setData(res)
+        setLoading(false)
+      })
+      .catch(err => {
+        console.error(err)
+        setError(err.response?.data?.message || 'Data APBDes belum tersedia')
+        setLoading(false)
+      })
+  }, [])
+
+  // Override static cards with dynamic data if available
+  const displayCards = [...staticApbdesCards];
+  if (data) {
+    if (data.ringkasan.pendapatan) {
+      displayCards[0] = { ...displayCards[0], amount: Number(data.ringkasan.pendapatan.anggaran).toLocaleString('id-ID') };
+    }
+    if (data.ringkasan.belanja) {
+      displayCards[1] = { ...displayCards[1], amount: Number(data.ringkasan.belanja.anggaran).toLocaleString('id-ID') };
+    }
+    if (data.ringkasan.pembiayaan) {
+      displayCards[2] = { ...displayCards[2], amount: Number(data.ringkasan.pembiayaan.anggaran).toLocaleString('id-ID') };
+    }
+  }
+
   return (
     <section
       className={
         sectionCardClass +
-        ' overflow-hidden'
+        ' overflow-hidden relative min-h-[400px]'
       }
     >
+      {loading && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#0B281F] border-t-transparent"></div>
+        </div>
+      )}
 
       <div className="hero-reveal mb-4 flex justify-end">
         <Link
@@ -41,31 +79,43 @@ export function ApbdesSection() {
         </div>
       </div>
 
-      <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {apbdesCards.map((card, index) => (
-          <ApbdesCard key={card.title} card={card} index={index} />
-        ))}
-      </div>
+      {error ? (
+        <div className="hero-reveal bg-[#0B281F]/5 border border-[#0B281F]/10 p-8 md:p-12 rounded-[32px] text-center my-10">
+          <CircleDollarSign size={48} className="mx-auto text-[#0B281F]/40 mb-4" />
+          <h3 className="text-xl font-bold text-[#0B281F] mb-2">{error}</h3>
+          <p className="text-[#0B281F]/60 max-w-md mx-auto text-sm">
+            Data Anggaran Pendapatan dan Belanja Desa belum tersedia untuk tahun ini atau belum dipublikasikan oleh admin desa.
+          </p>
+        </div>
+      ) : (
+        <>
+          <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {displayCards.map((card, index) => (
+              <ApbdesCard key={card.title} card={card} index={index} />
+            ))}
+          </div>
 
-      <div className="mt-20 md:mt-24">
-        <PendapatanDesaSection />
-      </div>
+          <div className="mt-20 md:mt-24">
+            <PendapatanDesaSection rincian={data?.rincian_pendapatan} />
+          </div>
 
-      <div className="mt-20 md:mt-24">
-        <BelanjaDesaSection />
-      </div>
+          <div className="mt-20 md:mt-24">
+            <BelanjaDesaSection rincian={data?.rincian_belanja} />
+          </div>
 
-      <div className="mt-20 md:mt-24">
-        <ProgramDesaSection />
-      </div>
+          <div className="mt-20 md:mt-24">
+            <ProgramDesaSection dokumentasi={data?.dokumentasi} />
+          </div>
 
-      <div className="mt-40 md:mt-24">
-        <RealisasiAnggaranSection />
-      </div>
+          <div className="mt-40 md:mt-24">
+            <RealisasiAnggaranSection rincian={data?.rincian_belanja} />
+          </div>
 
-      <div className="mt-40 md:mt-24">
-        <GrafikVisualisasiSection />
-      </div>
+          <div className="mt-40 md:mt-24">
+            <GrafikVisualisasiSection />
+          </div>
+        </>
+      )}
     </section>
   )
 }

@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { upakarti } from "../lib/fonts";
+
+import { Inter } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
   title: "Website Desa Pameutingan",
@@ -22,10 +29,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${upakarti.variable} h-full antialiased`}
+      className={`${inter.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-[#f5f7f6]">
+      <body
+        className="min-h-full flex flex-col bg-[#f5f7f6]"
+        suppressHydrationWarning
+      >
         <MainLayout>{children}</MainLayout>
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   );

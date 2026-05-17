@@ -57,7 +57,7 @@ export function DemografiCard({
 
           <p
             className="text-[40px] leading-[0.9] sm:text-[60px]"
-            style={{ fontFamily: "var(--font-upakarti)" }}
+            style={{ fontFamily: "Georgia, serif" }}
           >
             {angka}
           </p>

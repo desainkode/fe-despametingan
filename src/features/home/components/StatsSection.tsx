@@ -5,12 +5,12 @@ import { STATISTIK_DEMOGRAFI } from "../config/home-data";
 
 export default function StatsSection() {
   return (
-    <section className="bg-white px-6 py-8 md:px-10 md:py-12 lg:px-12">
+    <section className="bg-white px-4 py-8 md:px-10 md:py-12 lg:px-12">
       <div className="relative mx-auto min-h-[480px] w-full max-w-7xl overflow-hidden rounded-[32px] border border-[#007A55]/20 bg-[#005E45] shadow-2xl md:min-h-[400px] lg:min-h-[420px]">
         {/* Background Gradient & Pattern */}
         <div className="absolute inset-0 bg-linear-to-br from-[#005E45] via-[#004D39] to-[#003B2C]" />
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.15)_1px,transparent_0)] bg-[size:24px_24px]" />
-        
+
         {/* Animated Data Wave */}
         <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
           <svg
@@ -43,7 +43,7 @@ export default function StatsSection() {
               </div>
             </div>
 
-            <h2 className="font-upakarti mt-6 text-[32px] font-bold leading-[1.1] tracking-tight text-white md:text-[38px] lg:text-[44px]">
+            <h2 className="font-georgia mt-6 text-[32px] font-bold leading-[1.1] tracking-tight text-white md:text-[38px] lg:text-[44px]">
               Demografi & <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-white/60">Statistik Desa</span>
             </h2>
@@ -51,7 +51,7 @@ export default function StatsSection() {
             <p className="mt-5 text-[14px] leading-relaxed text-[#D0FAE5]/60 md:text-[15px]">
               Menyajikan data kependudukan yang transparan, akurat, dan terintegrasi untuk mendukung perencanaan pembangunan Desa Pameutingan.
             </p>
-            
+
             <div className="mt-8 flex items-center gap-4">
               <div className="h-0.5 w-12 rounded-full bg-[#F0B100]/30" />
               <span className="text-[10px] font-bold uppercase tracking-widest text-[#F0B100]">Visi Digital 2024</span>
@@ -63,7 +63,7 @@ export default function StatsSection() {
             {STATISTIK_DEMOGRAFI.map((item, index) => {
               const icons = [Users2, MapIcon, TrendingUp];
               const Icon = icons[index % icons.length];
-              
+
               return (
                 <div
                   key={item.label}
@@ -71,21 +71,21 @@ export default function StatsSection() {
                   style={{ animationDelay: `${300 + index * 100}ms` }}
                 >
                   <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#00D492] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-10" />
-                  
+
                   <div className="mb-1 flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 text-[#00D492] sm:mb-3 sm:h-10 sm:w-10 sm:rounded-xl">
                     <Icon className="size-4 sm:size-5" />
                   </div>
-                  
+
                   <div className="flex items-baseline gap-0.5 sm:gap-1">
                     <span className="text-[22px] font-black leading-none tracking-tighter text-white sm:text-[36px] md:text-[42px] lg:text-[48px]">
                       {item.angka}
                     </span>
                   </div>
-                  
+
                   <p className="mt-1 px-2 text-center text-[8px] font-bold uppercase tracking-widest text-white/90 sm:mt-2 sm:text-[11px]">
                     {item.label}
                   </p>
-                  
+
                   <div className="mt-1 flex items-center gap-1.5 rounded-full bg-black/20 px-2 py-0.5 border border-white/5 sm:mt-3 sm:px-3 sm:py-1">
                     <div className="h-0.5 w-0.5 rounded-full bg-[#00D492] animate-pulse sm:h-1 sm:w-1" />
                     <span className="text-[7px] font-medium text-white/40 sm:text-[10px]">

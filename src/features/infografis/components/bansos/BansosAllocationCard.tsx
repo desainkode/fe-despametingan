@@ -34,7 +34,7 @@ export function BansosAllocationCard({ summary }: BansosAllocationCardProps) {
           )}
           <span 
             className="text-6xl font-normal leading-none" 
-            style={{ fontFamily: 'var(--font-upakarti)' }}
+            style={{ fontFamily: 'Georgia, serif' }}
           >
             {summary.value}
           </span>

@@ -20,7 +20,7 @@ export const INFORMASI_TERKINI = [
   {
     title: "Posyandu Balita Gelar Pemeriksaan Rutin",
     description: "Pelayanan kesehatan ibu dan anak berjalan tertib bersama tenaga kesehatan.",
-    image: "https://images.unsplash.com/photo-1511688878354-3a2f5be94cd7?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 
@@ -59,7 +59,7 @@ export const GALERI_PREVIEW = [
   {
     title: "Gotong Royong Kampung",
     description: "Dokumentasi aksi warga menjaga kebersihan lingkungan desa.",
-    image: "https://images.unsplash.com/photo-1593113511432-84da4528ce05?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=1200&q=80",
     tag: "Kegiatan",
     accent: "#00E0A1",
   },

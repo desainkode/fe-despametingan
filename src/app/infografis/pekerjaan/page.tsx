@@ -78,7 +78,7 @@ function JobCard({
       <div className="relative z-10 flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-start gap-3">
           <div className="inline-flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl border border-white/20 bg-black text-white shadow-[0_8px_18px_rgba(0,0,0,0.16)]">
-            <span className="text-[17px] font-bold" style={{ fontFamily: "var(--font-upakarti)" }}>
+            <span className="text-[17px] font-bold" style={{ fontFamily: "Georgia, serif" }}>
               {item.kode}
             </span>
           </div>
@@ -101,7 +101,7 @@ function JobCard({
 
       <div className="relative z-10 mt-4 border-t border-white/10 pt-3.5">
         <p className="text-[11px] uppercase tracking-[0.14em] text-white/62">Jumlah penduduk</p>
-        <p className="mt-1 text-[30px] font-bold leading-none text-white" style={{ fontFamily: "var(--font-upakarti)" }}>
+        <p className="mt-1 text-[30px] font-bold leading-none text-white" style={{ fontFamily: "Georgia, serif" }}>
           {item.jumlah}
         </p>
       </div>

@@ -27,7 +27,7 @@ export function BansosDistributionCard({ data }: BansosDistributionCardProps) {
         <div className="flex flex-col items-end">
           <span 
             className="text-4xl font-normal leading-none" 
-            style={{ fontFamily: 'var(--font-upakarti)' }}
+            style={{ fontFamily: 'Georgia, serif' }}
           >
             {data.keluarga}
           </span>

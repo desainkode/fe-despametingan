@@ -39,7 +39,7 @@ export function PekerjaanDetailCard({
               <div className="text-center leading-none">
                 <span
                   className="block text-[21px] font-bold sm:text-[24px]"
-                  style={{ fontFamily: "var(--font-upakarti)" }}
+                  style={{ fontFamily: "Georgia, serif" }}
                 >
                   {kode}
                 </span>
@@ -73,7 +73,7 @@ export function PekerjaanDetailCard({
             </p>
             <p
               className="mt-1 text-[32px] font-bold leading-none sm:text-[36px]"
-              style={{ color: textColor, fontFamily: "var(--font-upakarti)" }}
+              style={{ color: textColor, fontFamily: "Georgia, serif" }}
             >
               {jumlah}
             </p>

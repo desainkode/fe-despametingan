@@ -41,7 +41,7 @@ export default function PotensiSection() {
                   <Sparkles size={20} className="text-[#F0B100] opacity-0 transition-opacity group-hover:opacity-100" />
                 </div>
 
-                <h3 className="font-upakarti mt-6 text-[28px] font-bold leading-tight text-white md:text-[32px]">
+                <h3 className="font-georgia mt-6 text-[28px] font-bold leading-tight text-white md:text-[32px]">
                   {item.title}
                 </h3>
 
@@ -55,6 +55,7 @@ export default function PotensiSection() {
                     alt={item.title}
                     fill
                     className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-[#052119] via-transparent to-transparent opacity-60" />
                 </div>

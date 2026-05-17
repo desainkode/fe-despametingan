@@ -59,7 +59,7 @@ export function DusunPieChart({ delayMs }: { delayMs: number }) {
                   if (viewBox && "cx" in viewBox && "cy" in viewBox) {
                     return (
                       <text x={viewBox.cx} y={viewBox.cy} textAnchor="middle" dominantBaseline="middle">
-                        <tspan x={viewBox.cx} y={viewBox.cy} className="fill-white text-4xl font-bold" style={{ fontFamily: "var(--font-upakarti)" }}>
+                        <tspan x={viewBox.cx} y={viewBox.cy} className="fill-white text-4xl font-bold" style={{ fontFamily: "Georgia, serif" }}>
                           {totalValue}%
                         </tspan>
                         <tspan x={viewBox.cx} y={(viewBox.cy || 0) + 22} className="fill-white/40 text-[9px] font-bold uppercase tracking-[0.4em]">
@@ -80,7 +80,7 @@ export function DusunPieChart({ delayMs }: { delayMs: number }) {
           <div key={item.dusun} className="flex items-center gap-2 rounded-full border border-white/5 bg-white/3 py-1.5 pl-2.5 pr-3.5 backdrop-blur-sm transition-all duration-300 hover:bg-white/10">
             <div className="h-2 w-2 shrink-0 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.1)]" style={{ backgroundColor: chartConfig[item.dusun as keyof typeof chartConfig]?.color }} />
             <div className="flex items-baseline gap-2">
-              <span className="text-[12px] font-medium text-white/70" style={{ fontFamily: "var(--font-upakarti)" }}>
+              <span className="text-[12px] font-medium text-white/70" style={{ fontFamily: "Georgia, serif" }}>
                 {item.label.replace("Dusun ", "")}
               </span>
               <span className="text-[13px] font-bold text-[#00E0A1]">{item.value}%</span>
