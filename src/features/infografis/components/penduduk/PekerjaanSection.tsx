@@ -40,7 +40,10 @@ export function PekerjaanSection() {
           </button>
         </div>
 
-        <div className="hero-reveal grid grid-cols-2 gap-4 md:grid-cols-3 lg:gap-5" style={{ animationDelay: "180ms" }}>
+        <div
+          className="hero-reveal flex gap-5 overflow-x-auto pb-6 pt-2 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 md:pb-0 md:pt-0 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible"
+          style={{ animationDelay: "180ms" }}
+        >
           {PEKERJAAN_TOP_CARDS.map((item, idx) => (
             <PekerjaanTopCard
               key={`${item.nama}-${idx}`}
@@ -73,7 +76,7 @@ export function PekerjaanSection() {
                 </Link>
               </div>
 
-              <div className="space-y-3">
+              <div className="flex gap-4 overflow-x-auto pb-6 pt-2 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scrollbar-hide -mx-6 px-6 sm:mx-0 sm:px-0 sm:pb-0 sm:pt-0 sm:flex-col sm:space-y-3 sm:overflow-visible">
                 {PEKERJAAN_KIRI_BAHASAN.map((item, idx) => (
                   <PekerjaanDetailCard
                     key={`kiri-${item.kode}-${idx}`}
@@ -109,7 +112,7 @@ export function PekerjaanSection() {
                 </Link>
               </div>
 
-              <div className="space-y-3">
+              <div className="flex gap-4 overflow-x-auto pb-6 pt-2 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scrollbar-hide -mx-6 px-6 sm:mx-0 sm:px-0 sm:pb-0 sm:pt-0 sm:flex-col sm:space-y-3 sm:overflow-visible">
                 {PEKERJAAN_KANAN_BAHASAN.map((item, idx) => (
                   <PekerjaanDetailCard
                     key={`kanan-${item.kode}-${idx}`}

@@ -217,7 +217,7 @@ function APBDesTable({ title, data, icon: Icon, themeColor }: { title: string, d
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <table className="w-full min-w-[700px] text-left border-collapse">
           <thead>
             <tr className="bg-[#F6F8F7] text-[11px] font-bold uppercase tracking-widest text-[#0B281F]/50">
               <th className="px-4 py-5 md:px-6">Kode</th>

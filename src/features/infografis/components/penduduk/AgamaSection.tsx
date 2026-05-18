@@ -68,9 +68,9 @@ export function AgamaSection() {
             const element = event.currentTarget;
             updateActiveIndex(element.scrollLeft, element.scrollWidth, element.clientWidth);
           }}
-          className="overflow-x-auto px-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="overflow-x-auto pb-6 pt-2 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scrollbar-hide -mx-6 px-6 sm:mx-0 sm:px-0 sm:pb-0 sm:pt-0 sm:overflow-visible"
         >
-          <div className="flex w-max min-w-full snap-x snap-mandatory gap-4 pr-1 sm:gap-4.25">
+          <div className="flex snap-x snap-mandatory gap-5">
             {AGAMA_CARDS.map((item, idx) => (
               <AgamaStatCard
                 key={`${item.nama}-${idx}`}

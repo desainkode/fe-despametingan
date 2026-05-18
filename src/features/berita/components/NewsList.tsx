@@ -96,7 +96,7 @@ export function NewsList() {
 
       {/* News Grid */}
       {filteredNews.length > 0 ? (
-        <div className="grid grid-cols-2 gap-4 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {filteredNews.map((news) => (
             <NewsCard key={news.id} news={news} />
           ))}

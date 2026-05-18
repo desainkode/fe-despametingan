@@ -8,10 +8,10 @@ import { Desa } from "@/types";
 
 export default function ProfileSection({ desa }: { desa?: Desa | null }) {
   return (
-    <section className="bg-white px-6 py-8 md:px-10 md:py-12 lg:px-12">
+    <section className="bg-white px-4 py-8 md:px-10 md:py-16 lg:px-12">
       <div className="mx-auto w-full max-w-7xl">
         <SectionHeader 
-          title={["Mengenal Lebih", "Dekat Kepala Desa"]}
+          title={["Mengenal Lebih", "Dekat Desa Pameutingan"]}
           description="Menyajikan profil singkat pimpinan desa sebagai sumber informasi publik yang transparan, akurat, dan terintegrasi untuk mendukung perencanaan pembangunan Desa Pameutingan."
           showInfoButton
         />
@@ -38,28 +38,41 @@ export default function ProfileSection({ desa }: { desa?: Desa | null }) {
                 </p>
               </div>
 
+              {/* Desktop Button: Hidden on mobile/tablet */}
               <Link
                 href="/profil"
-                className="group mt-8 inline-flex items-center gap-3 rounded-2xl bg-[#F0B100] px-8 py-4 text-[15px] font-black text-[#052119] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"
+                className="hidden lg:inline-flex group mt-8 items-center gap-3 rounded-2xl bg-[#F0B100] px-8 py-4 text-[15px] font-black text-[#052119] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"
               >
                 Profil Lengkap
                 <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
 
-            <div className="hero-reveal relative mx-auto aspect-[4/5] w-full max-w-xs transition-transform duration-700 hover:scale-105 sm:max-w-sm lg:aspect-square lg:h-[120%] lg:max-w-none">
-              {/* Image Frame Decor */}
-              <div className="absolute inset-0 -rotate-3 rounded-[40px] border border-white/5 bg-white/2" />
-              <div className="absolute inset-4 rotate-2 rounded-[40px] border border-[#00D492]/20" />
-              
-              <Image
-                src={desa?.foto_kepala_desa || "/img/unsplash_jiOJQF5xEdw.png"}
-                alt={`Foto Kepala Desa ${desa?.nama_kepala_desa || "Desa Pameutingan"}`}
-                fill
-                className="absolute inset-0 z-10 object-contain drop-shadow-2xl lg:object-bottom lg:scale-110"
-                priority
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 420px"
-              />
+            {/* Right Column: Image and Mobile/Tablet Button */}
+            <div className="flex flex-col items-center gap-6 w-full lg:contents">
+              <div className="hero-reveal relative mx-auto aspect-[4/5] w-full max-w-xs transition-transform duration-700 hover:scale-105 sm:max-w-sm lg:aspect-square lg:h-[120%] lg:max-w-none">
+                {/* Image Frame Decor */}
+                <div className="absolute inset-0 -rotate-3 rounded-[40px] border border-white/5 bg-white/2" />
+                <div className="absolute inset-4 rotate-2 rounded-[40px] border border-[#00D492]/20" />
+                
+                <Image
+                  src={desa?.foto_kepala_desa || "/img/unsplash_jiOJQF5xEdw.png"}
+                  alt={`Foto Kepala Desa ${desa?.nama_kepala_desa || "Desa Pameutingan"}`}
+                  fill
+                  className="absolute inset-0 z-10 object-contain drop-shadow-2xl lg:object-bottom lg:scale-110"
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 420px"
+                />
+              </div>
+
+              {/* Mobile/Tablet Button: Placed below the image */}
+              <Link
+                href="/profil"
+                className="inline-flex lg:hidden group mt-6 items-center gap-3 rounded-2xl bg-[#F0B100] px-8 py-4 text-[15px] font-black text-[#052119] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95 w-full sm:w-auto justify-center"
+              >
+                Profil Lengkap
+                <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
           </div>
         </div>

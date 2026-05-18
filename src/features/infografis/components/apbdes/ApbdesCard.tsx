@@ -1,4 +1,13 @@
-import { ArrowUpRight } from 'lucide-react'
+import { Coins, Wallet, Landmark, PiggyBank, ArrowUpRight, LucideIcon } from 'lucide-react'
+
+const iconMap: Record<string, LucideIcon> = {
+  'Total Pendapatan': Coins,
+  'Total Belanja': Wallet,
+  'Surplus/Defisit': Landmark,
+  'Penerima Pembiayaan': PiggyBank,
+  'Pengeluaran Pembiayaan': PiggyBank,
+  'SiLPA': Coins,
+}
 
 export interface ApbdesCardProps {
   card: {
@@ -12,55 +21,70 @@ export interface ApbdesCardProps {
 
 export function ApbdesCard({ card, index }: ApbdesCardProps) {
   const isEmerald = card.tone === 'emerald'
+  const Icon = iconMap[card.title] || Coins
 
   return (
     <article
-      className={`hero-reveal group relative h-full overflow-hidden rounded-[20px] border border-white/12 p-4 text-[#F4F8F6] shadow-[0_14px_26px_rgba(0,0,0,0.16)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_20px_34px_rgba(0,0,0,0.22)] sm:p-5 md:min-h-62 ${
+      className={`hero-reveal group relative isolate overflow-hidden rounded-tl-[24px] rounded-br-[24px] p-5 text-[#F3F8F6] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:rounded-tl-[28px] sm:rounded-br-[28px] flex flex-col justify-between min-h-[260px] sm:min-h-[280px] ${
         isEmerald
           ? 'bg-linear-to-br from-[#009E70] via-[#00885F] to-[#055E45]'
           : 'bg-linear-to-br from-[#00170F] via-[#01241A] to-[#00110A]'
       }`}
       style={{ animationDelay: `${index * 45}ms` }}
     >
-      <button
-        type="button"
-        aria-label={`Detail ${card.title.replace(/\n/g, ' ')}`}
-        className="absolute right-4 top-4 z-10 inline-flex h-8.5 w-8.5 items-center justify-center rounded-full bg-black/88 text-white shadow-[0_10px_18px_rgba(0,0,0,0.24)] transition-transform duration-300 ease-out hover:scale-105"
-      >
-        <ArrowUpRight size={15} strokeWidth={2.5} />
-      </button>
+      {/* 45-degree angle cuts */}
+      <div className="pointer-events-none absolute -right-10 -top-10 h-20 w-20 rotate-45 bg-[#FFFFFF] sm:-right-14 sm:-top-14 sm:h-28 sm:w-28" />
+      <div className="pointer-events-none absolute -bottom-10 -left-10 h-20 w-20 rotate-45 bg-[#FFFFFF] sm:-bottom-14 sm:-left-14 sm:h-28 sm:w-28" />
 
-      <div className="pointer-events-none absolute -left-8 top-8 h-28 w-28 rounded-full bg-white/8 blur-2xl" />
-      <div className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full bg-[#00E0A1]/10 blur-3xl transition-all duration-500 group-hover:bg-[#00E0A1]/20" />
-
-      <div className="relative flex h-full flex-col pt-2">
-        <div className="flex-1">
-          <h3 className="max-w-[12ch] font-[Georgia,serif] text-[24px] font-bold leading-[1.02] tracking-[-0.01em] text-[#F3F8F6] sm:text-[26px] md:text-[27px] lg:text-[29px]">
-            {card.title}
-          </h3>
-
-          <p className="mt-3 max-w-none text-[11px] leading-normal text-[#EAF7F1]/85 sm:text-[12px] lg:text-[12px]">
-            {card.description}
-          </p>
+      {/* Top row: Icon and Detail Trigger Button */}
+      <div className="relative z-10 flex items-center justify-between">
+        <div
+          className={`relative inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-[0_6px_14px_rgba(11,40,31,0.12)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 sm:h-11 sm:w-11 ${
+            isEmerald
+              ? 'border-white/18 bg-[#0B281F]/48 text-[#EAF7F1]'
+              : 'border-[#00E0A1]/12 bg-[#00E0A1]/8 text-[#00E0A1]'
+          }`}
+        >
+          <Icon size={16} strokeWidth={2.1} className="size-[16px] sm:size-[18px]" />
         </div>
 
-        <div className="mt-5 flex flex-col gap-4">
-          <div
-            className={`relative overflow-hidden rounded-[14px] px-4 py-4 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5 ${
-              isEmerald
-                ? 'bg-[radial-gradient(circle_at_28%_24%,rgba(0,224,161,0.42),rgba(0,106,75,0.86)_60%,rgba(2,52,38,0.98)_100%)]'
-                : 'bg-[radial-gradient(circle_at_28%_24%,rgba(0,132,94,0.2),rgba(1,46,33,0.9)_62%,rgba(1,24,17,0.98)_100%)]'
-            }`}
-          >
-            <div className="pointer-events-none absolute -right-8 -top-8 h-22 w-22 rounded-full bg-white/10 blur-2xl" />
-            <p className="relative font-timeless text-[14px] font-bold uppercase tracking-[0.04em] text-[#E8F7F1]/88 sm:text-[15px]">
-              RP.
-            </p>
-            <p className="relative mt-1 font-timeless text-[28px] font-bold leading-[0.92] tracking-[-0.02em] text-[#F2FAF7] sm:text-[30px] lg:text-[34px]">
+        <button
+          type="button"
+          aria-label={`Detail ${card.title.replace(/\n/g, ' ')}`}
+          className="mr-6 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10 border border-white/15 text-white shadow-[0_4px_10px_rgba(0,0,0,0.04)] backdrop-blur-xs transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105"
+        >
+          <ArrowUpRight size={15} strokeWidth={2.4} />
+        </button>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 mt-5 flex flex-col justify-between flex-1">
+        <div>
+          <div className="mb-2 inline-flex items-center gap-1.5 rounded-md bg-[#009966] px-1.5 py-0.5 sm:mb-2.5 sm:px-2 sm:py-0.5 text-white">
+            <span className="h-1 w-1 rounded-full bg-[#F0B100] sm:h-1.5 sm:w-1.5" />
+            <span className="text-[9px] leading-none sm:text-[11px]" style={{ fontFamily: 'Georgia, serif' }}>
+              Anggaran
+            </span>
+          </div>
+
+          <div className="flex items-baseline">
+            <span className="text-[12px] font-bold text-[#EAF7F1]/80 mr-1 font-[Georgia,serif]">RP.</span>
+            <p
+              className="text-[22px] xs:text-[26px] sm:text-[30px] md:text-[34px] lg:text-[38px] font-bold leading-none tracking-tight text-white"
+              style={{ fontFamily: 'Georgia, serif' }}
+            >
               {card.amount}
             </p>
           </div>
+
+          <h3 className="mt-3 font-[Georgia,serif] text-[15px] font-bold leading-[1.15] sm:text-[18px] md:text-[20px] text-white">
+            {card.title}
+          </h3>
         </div>
+
+        <p className="mt-4 text-[10px] leading-relaxed text-[#EAF7F1]/75 max-w-none">
+          {card.description}
+        </p>
       </div>
     </article>
   )

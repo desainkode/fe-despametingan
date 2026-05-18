@@ -101,8 +101,8 @@ export function RealisasiAnggaranSection({ rincian }: { rincian?: ApbdesItem[] }
                 type="category"
                 tickLine={false}
                 axisLine={false}
-                width={120}
-                tick={{ fill: '#000000', fontSize: 13, fontWeight: 700, fontFamily: 'Georgia, serif' }}
+                width={85}
+                tick={{ fill: '#000000', fontSize: 11, fontWeight: 700, fontFamily: 'Georgia, serif' }}
               />
               <XAxis type="number" hide />
               <ChartTooltip

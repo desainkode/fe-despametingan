@@ -101,8 +101,8 @@ export function PendapatanChart({ delayMs, customData }: { delayMs: number, cust
               data={chartData}
               dataKey="value"
               nameKey="source"
-              innerRadius={75}
-              outerRadius={110}
+              innerRadius="65%"
+              outerRadius="90%"
               strokeWidth={3}
               stroke="rgba(255,255,255,0.16)"
               paddingAngle={8}

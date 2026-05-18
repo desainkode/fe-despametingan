@@ -6,27 +6,30 @@ export const sectionCardClass =
 export function SectionHeader({
   title,
   description,
+  ariaLabel,
 }: {
-  title: string;
+  title: React.ReactNode;
   description: string;
+  ariaLabel?: string;
 }) {
+  const cleanAriaLabel = ariaLabel || (typeof title === "string" ? title : "Detail Informasi");
+
   return (
-    <div className="mb-6 grid gap-4 border-b border-[#0B281F]/10 pb-6 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)_auto] md:items-start md:gap-6">
+    <div className="relative grid gap-4 border-b border-[#0B281F]/10 pb-6 pr-14 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)] md:items-start md:gap-6 md:pr-16 mb-6">
       <h2
-        className="text-[28px] font-bold leading-[1.08] tracking-[0.02em] text-[#0B281F] md:text-[34px]"
-        style={{ fontFamily: "Georgia, serif" }}
+        className="font-[Georgia,serif] text-[26px] font-bold leading-[1.06] tracking-[0.02em] text-[#0B281F] md:text-[34px] lg:text-[42px]"
       >
         {title}
       </h2>
 
-      <p className="max-w-none pt-0.5 text-[13px] leading-6 text-[#0B281F]/78 md:text-[14px] md:leading-7">
+      <p className="max-w-none pt-0.5 text-[12px] leading-6 text-[#0B281F]/80 md:text-[13px] md:leading-7">
         {description}
       </p>
 
       <button
         type="button"
-        aria-label={`Informasi ${title}`}
-        className="inline-flex h-11 w-11 shrink-0 items-center justify-center self-start rounded-full bg-[#004F3B] text-[#F4F3EF] shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg md:h-12 md:w-12"
+        aria-label={`Informasi ${cleanAriaLabel}`}
+        className="absolute right-0 top-0 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0B281F] text-white transition-transform duration-300 hover:-translate-y-0.5 md:h-14 md:w-14"
       >
         <Info size={20} strokeWidth={2.5} />
       </button>

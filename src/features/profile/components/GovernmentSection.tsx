@@ -18,38 +18,43 @@ export function GovernmentSection({ members }: { members: GovernmentMember[] }) 
         <p className="max-w-2xl text-[15px] text-[#0B281F]/50">Melayani dengan integritas, transparansi, dan dedikasi untuk kemajuan bersama.</p>
       </div>
 
-      {/* Apparatus Grid - Matching Home Page Style */}
-      <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-        {members.map((member, idx) => (
-          <div 
-            key={idx}
-            className="group relative h-[320px] overflow-hidden rounded-[24px] bg-[#0B281F] shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(11,40,31,0.2)] sm:h-[380px] sm:rounded-[32px] md:h-[400px]"
-          >
-            {/* Base Image */}
-            <img 
-              src={member.photo} 
-              alt={member.name} 
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            
-            {/* Overlays */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-            <div className="absolute inset-0 border border-white/10 rounded-[24px] pointer-events-none sm:rounded-[32px]" />
+      {/* Apparatus Container - Horizontal Scroll on Mobile/Tablet, Grid on Desktop */}
+      <div className="relative -mx-4 overflow-hidden px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0">
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-6 pt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-3 xl:grid-cols-4 lg:gap-6 lg:overflow-visible lg:pb-0 lg:pt-0">
+          {members.map((member, idx) => (
+            <div 
+              key={idx}
+              className="group relative h-[320px] w-[240px] shrink-0 snap-start overflow-hidden rounded-[24px] bg-[#0B281F] shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(11,40,31,0.2)] sm:h-[380px] sm:w-[280px] sm:rounded-[32px] md:h-[400px] lg:w-full"
+            >
+              {/* Base Image */}
+              <img 
+                src={member.photo} 
+                alt={member.name} 
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              
+              {/* Overlays */}
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute inset-0 border border-white/10 rounded-[24px] pointer-events-none sm:rounded-[32px]" />
 
-            {/* Content at Bottom */}
-            <div className="absolute bottom-0 w-full p-4 text-center sm:p-6">
-              <p 
-                className="text-[16px] font-bold text-white sm:text-xl md:text-2xl"
-                style={{ fontFamily: 'Georgia, serif' }}
-              >
-                {member.position}
-              </p>
-              <p className="mt-1 text-[11px] font-medium text-[#D4FBEA] sm:text-sm">
-                {member.name}
-              </p>
+              {/* Content at Bottom */}
+              <div className="absolute bottom-0 w-full p-4 text-center sm:p-6">
+                <p 
+                  className="text-[16px] font-bold text-white sm:text-xl md:text-2xl"
+                  style={{ fontFamily: 'Georgia, serif' }}
+                >
+                  {member.position}
+                </p>
+                <p className="mt-1 text-[11px] font-medium text-[#D4FBEA] sm:text-sm">
+                  {member.name}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+          
+          {/* Extra Spacer for mobile scroll-end */}
+          <div className="w-8 shrink-0 lg:hidden" />
+        </div>
       </div>
 
       {/* Org Chart Section */}

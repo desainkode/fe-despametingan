@@ -134,6 +134,7 @@ export const BERDASARKAN_DUSUN_CARDS = [
 export const DUSUN_CHART_DATA = [
   { dusun: "dusun1", label: "Dusun Pameutingan", value: 30, fill: "var(--color-dusun1)" },
   { dusun: "dusun2", label: "Dusun Citalem", value: 18, fill: "var(--color-dusun2)" },
+  { dusun: "dusun3", label: "Dusun Pencut", value: 24, fill: "var(--color-dusun3)" },
   { dusun: "dusun4", label: "Dusun Mekarjaya", value: 28, fill: "var(--color-dusun4)" },
 ];
 

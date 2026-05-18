@@ -44,8 +44,8 @@ export function DusunPieChart({ delayMs }: { delayMs: number }) {
               data={DUSUN_CHART_DATA}
               dataKey="value"
               nameKey="dusun"
-              innerRadius={75}
-              outerRadius={110}
+              innerRadius="65%"
+              outerRadius="90%"
               strokeWidth={4}
               stroke="rgba(255,255,255,0.05)"
               paddingAngle={8}
@@ -75,15 +75,15 @@ export function DusunPieChart({ delayMs }: { delayMs: number }) {
         </ChartContainer>
       </div>
 
-      <div className="mt-8 flex w-full flex-wrap justify-center gap-x-4 gap-y-3">
+      <div className="mt-8 grid w-full grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-4 sm:gap-y-3">
         {DUSUN_CHART_DATA.map((item) => (
-          <div key={item.dusun} className="flex items-center gap-2 rounded-full border border-white/5 bg-white/3 py-1.5 pl-2.5 pr-3.5 backdrop-blur-sm transition-all duration-300 hover:bg-white/10">
+          <div key={item.dusun} className="flex items-center justify-center gap-2 rounded-full border border-white/5 bg-white/3 py-1.5 px-3.5 backdrop-blur-sm transition-all duration-300 hover:bg-white/10">
             <div className="h-2 w-2 shrink-0 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.1)]" style={{ backgroundColor: chartConfig[item.dusun as keyof typeof chartConfig]?.color }} />
             <div className="flex items-baseline gap-2">
-              <span className="text-[12px] font-medium text-white/70" style={{ fontFamily: "Georgia, serif" }}>
+              <span className="text-[11px] font-medium text-white/70 sm:text-[12px]" style={{ fontFamily: "Georgia, serif" }}>
                 {item.label.replace("Dusun ", "")}
               </span>
-              <span className="text-[13px] font-bold text-[#00E0A1]">{item.value}%</span>
+              <span className="text-[12px] font-bold text-[#00E0A1] sm:text-[13px]">{item.value}%</span>
             </div>
           </div>
         ))}

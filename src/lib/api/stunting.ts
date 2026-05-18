@@ -139,8 +139,14 @@ export const deleteStuntingIntervention = async (
 // -----------------------------------------------------------------------------
 
 import { StuntingSectionContent } from '@/features/infografis/types/infografis'
+import { stuntingContent } from '@/features/infografis/config/infografis-content'
 
 export const getPublicStuntingData = async (): Promise<StuntingSectionContent> => {
-  const { data } = await api.get('/public/stunting')
-  return data
+  try {
+    const { data } = await api.get('/public/stunting')
+    return data
+  } catch (error) {
+    console.error('Failed to fetch public stunting data from API, using fallback:', error)
+    return stuntingContent
+  }
 }

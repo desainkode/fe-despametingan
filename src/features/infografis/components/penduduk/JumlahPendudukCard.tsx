@@ -42,7 +42,7 @@ export function JumlahPendudukCard({
             : "border-[#0B281F]/8 bg-white/42 text-[#0B281F]"
         }`}
       >
-        <Icon size={16} strokeWidth={2.1} className="sm:size-18" />
+        <Icon size={16} strokeWidth={2.1} className="size-[16px] sm:size-[18px]" />
       </div>
 
       <div className="relative mt-4 flex h-[calc(100%-3.5rem)] flex-col justify-between sm:mt-6 sm:h-[calc(100%-4.75rem)]">

@@ -7,7 +7,7 @@ import { INFORMASI_TERKINI } from "../config/home-data";
 
 export default function NewsSection() {
   return (
-    <section className="bg-white px-6 py-8 md:px-10 md:py-12 lg:px-12">
+    <section className="bg-white px-4 py-8 md:px-10 md:py-16 lg:px-12">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 md:gap-8">
         <div className="flex items-end justify-between">
           <SectionHeader 
@@ -21,7 +21,7 @@ export default function NewsSection() {
         </div>
 
 
-        <div className="relative -mx-6 overflow-hidden px-6 lg:mx-0 lg:px-0">
+        <div className="relative -mx-4 overflow-hidden px-4 lg:mx-0 lg:px-0">
           <div className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 pt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-3 xl:grid-cols-4 lg:overflow-visible lg:pb-0 lg:pt-0">
             {INFORMASI_TERKINI.map((item, index) => (
               <button

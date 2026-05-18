@@ -8,9 +8,9 @@ import { SectionHeader } from "./ui/SectionHeader";
 
 const apbdesYears = [2026, 2025, 2024, 2023, 2022];
 const apbdesStatistik = [
-  { label: "Total Pendapatan", value: "3.54B", icon: TrendingUp, color: "from-[#00D492] to-[#00A172]" },
-  { label: "Total Belanja", value: "3.12B", icon: Wallet, color: "from-[#F0B100] to-[#D49C00]" },
-  { label: "Sisa Anggaran", value: "420M", icon: PieChart, color: "from-white/20 to-white/10" },
+  { label: "Total Pendapatan", value: "3.540.000.000", icon: TrendingUp, color: "from-[#00D492] to-[#00A172]" },
+  { label: "Total Belanja", value: "3.120.000.000", icon: Wallet, color: "from-[#F0B100] to-[#D49C00]" },
+  { label: "Sisa Anggaran", value: "420.000.000", icon: PieChart, color: "from-white/20 to-white/10" },
 ];
 
 export default function ApbdesSection() {
@@ -29,7 +29,7 @@ export default function ApbdesSection() {
   }, []);
 
   return (
-    <section className="bg-white px-6 py-8 md:px-10 md:py-12 lg:px-12">
+    <section className="bg-white px-4 py-8 md:px-10 md:py-16 lg:px-12">
       <div className="mx-auto w-full max-w-7xl">
         <SectionHeader 
           title={["Anggaran Pendapatan", "& Belanja Desa"]}
@@ -37,7 +37,7 @@ export default function ApbdesSection() {
           showInfoButton
         />
 
-        <div className="hero-reveal group/apbdes relative overflow-visible rounded-[40px] bg-[#004D39] p-6 text-[#F4F3EF] shadow-2xl transition-all duration-500 md:p-10 lg:p-14">
+        <div className="hero-reveal group/apbdes relative overflow-visible rounded-[40px] bg-[#004D39] p-6 sm:p-8 md:p-12 lg:p-14 text-[#F4F3EF] shadow-2xl transition-all duration-500">
           {/* Background Elements */}
           <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[40px]">
             <div className="absolute inset-0 bg-linear-to-br from-[#004D39] via-[#003B2C] to-[#002B20]" />
@@ -55,7 +55,7 @@ export default function ApbdesSection() {
             </svg>
           </div>
 
-          <div className="relative z-30 mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+          <div className="relative z-30 mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center border-b border-white/10 pb-6">
             <div className="flex flex-col gap-2">
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#00D492]">Laporan Keuangan</span>
               <h3 className="font-georgia text-[32px] font-bold leading-tight md:text-[42px]">
@@ -63,13 +63,13 @@ export default function ApbdesSection() {
               </h3>
             </div>
 
-            <div ref={yearDropdownRef} className="hero-reveal relative">
+            <div ref={yearDropdownRef} className="hero-reveal relative w-full md:w-auto">
               <button
                 type="button"
                 onClick={() => setIsYearDropdownOpen((prev) => !prev)}
-                className="group/year flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-6 py-3 text-[14px] font-bold text-white backdrop-blur-md transition-all hover:bg-white/10"
+                className="group/year flex w-full md:w-auto items-center justify-between md:justify-start gap-4 rounded-2xl border border-white/10 bg-white/5 px-6 py-3.5 text-[14px] font-bold text-white backdrop-blur-md transition-all hover:bg-white/10"
               >
-                <span>Pilih Tahun: {selectedYear}</span>
+                <span>Pilih Anggaran: {selectedYear}</span>
                 <ChevronDown
                   size={18}
                   className={`transition-transform duration-500 ${isYearDropdownOpen ? "rotate-180" : "rotate-0"}`}
@@ -97,29 +97,13 @@ export default function ApbdesSection() {
             </div>
           </div>
 
-          <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_340px] lg:items-center">
-            {/* Circular Stats Container */}
-            <div className="grid grid-cols-2 justify-center gap-4 sm:gap-6 lg:flex lg:flex-nowrap lg:justify-start lg:gap-0">
-              {apbdesStatistik.map((item, index) => (
-                <div
-                  key={item.label}
-                  className={`hero-reveal relative flex aspect-square w-full flex-col items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:z-20 hover:-translate-y-2 group/card sm:h-44 sm:w-44 sm:aspect-auto lg:h-52 lg:w-52 ${index > 0 ? "lg:-ml-12" : ""}`}
-                  style={{ animationDelay: `${200 + index * 100}ms` }}
-                >
-                  <div className={`absolute inset-0 rounded-full bg-linear-to-br opacity-0 transition-opacity duration-500 group-hover/card:opacity-10 ${item.color}`} />
-                  <item.icon className="mb-2 text-[#00D492] size-5 sm:size-6 sm:mb-3" />
-                  <span className="text-[9px] font-black uppercase tracking-widest text-white/40 sm:text-[10px]">Rp.</span>
-                  <p className="mt-1 font-georgia text-[22px] font-bold leading-none sm:text-[32px] md:text-[38px] lg:text-[44px]">{item.value}</p>
-                  <p className="mt-1 px-2 text-center text-[9px] font-bold uppercase tracking-tight text-white/60 sm:mt-2 sm:px-4 sm:text-[11px]">{item.label}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col items-center gap-8 text-center lg:items-start lg:text-left">
-              <p className="hero-reveal text-[15px] leading-relaxed text-[#D0FAE5]/70 md:text-[16px]">
+          <div className="relative z-10 grid gap-8 lg:grid-cols-[380px_1fr] lg:items-center xl:gap-12">
+            {/* Left Column: Description & Details */}
+            <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
+              <p className="hero-reveal text-[15px] leading-relaxed text-[#D0FAE5]/80 md:text-[16px]">
                 Dokumentasi transparansi anggaran periode {selectedYear} yang dikelola secara akuntabel untuk pembangunan berkelanjutan Desa Pameutingan.
               </p>
-              <div className="flex flex-col w-full gap-4 sm:flex-row sm:justify-center lg:justify-start">
+              <div className="hidden lg:flex flex-col w-full gap-4 sm:flex-row sm:justify-center lg:justify-start">
                 <Link
                   href="/infografis/apbdes"
                   className="hero-reveal group inline-flex items-center justify-center gap-3 rounded-2xl bg-[#F0B100] px-8 py-4 text-[15px] font-black text-[#052119] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"
@@ -128,6 +112,34 @@ export default function ApbdesSection() {
                   <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
+            </div>
+
+            {/* Right Column: Dynamic Overlapping Stats (Stacked on mobile, Grid on tablet, Circles on desktop) */}
+            <div className="flex flex-col gap-4 sm:grid sm:grid-cols-3 sm:gap-6 lg:flex lg:flex-row lg:flex-nowrap lg:justify-end lg:gap-0 w-full">
+              {apbdesStatistik.map((item, index) => (
+                <div
+                  key={item.label}
+                  className={`hero-reveal relative flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 shadow-xl backdrop-blur-xl transition-all duration-500 hover:z-20 hover:-translate-y-2 group/card w-full sm:h-44 sm:w-44 lg:h-52 lg:w-52 lg:rounded-full ${index > 0 ? "lg:-ml-12" : ""}`}
+                  style={{ animationDelay: `${200 + index * 100}ms` }}
+                >
+                  <div className={`absolute inset-0 rounded-2xl lg:rounded-full bg-linear-to-br opacity-0 transition-opacity duration-500 group-hover/card:opacity-10 ${item.color}`} />
+                  <item.icon className="mb-2 text-[#00D492] size-6 sm:size-6" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-white/30 sm:text-[9px]">Rp.</span>
+                  <p className="mt-0.5 font-georgia text-[24px] sm:text-[16px] md:text-[18px] lg:text-[22px] font-bold leading-none">{item.value}</p>
+                  <p className="mt-1.5 px-3 text-center text-[11px] font-bold uppercase tracking-tight text-white/50 sm:mt-2 sm:px-3 sm:text-[10px]">{item.label}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile Button: Hidden on desktop, shown below cards on mobile and tablet */}
+            <div className="flex lg:hidden flex-col w-full gap-4 sm:flex-row sm:justify-center mt-4">
+              <Link
+                href="/infografis/apbdes"
+                className="hero-reveal group inline-flex items-center justify-center gap-3 rounded-2xl bg-[#F0B100] px-8 py-4 text-[15px] font-black text-[#052119] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95 w-full sm:w-auto"
+              >
+                Detail Anggaran
+                <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
           </div>
         </div>

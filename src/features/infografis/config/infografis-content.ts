@@ -42,6 +42,8 @@ export const heroContentByFeature: Record<InfografisKey, HeroContent> = {
     quoteRole: 'Majang Dudi Budiana',
     quoteText:
       'Data penduduk yang akurat adalah fondasi perencanaan pembangunan yang tepat.',
+    image: '/img/hero-kepala-desa.png',
+    alt: 'Kepala Desa Pameutingan',
   },
   apbdes: {
     eyebrow: 'Keuangan Desa',
@@ -57,10 +59,12 @@ export const heroContentByFeature: Record<InfografisKey, HeroContent> = {
     quoteRole: 'Petugas Keuangan',
     quoteText:
       'Transparansi keuangan adalah komitmen kami kepada masyarakat desa.',
+    image: '/img/unsplash_tB5ZZtHZ_tI.png',
+    alt: 'Bendahara Desa Pameutingan',
   },
   stunting: {
-    eyebrow: 'WEBSITE RESMI PEMERINTAH DESA',
-    titleLines: ['data stunting', 'desa pameutingan', ''],
+    eyebrow: 'Statistik Kesehatan',
+    titleLines: ['Generasi Sehat,', 'Balita Tumbuh', 'Lebih Kuat'],
     description:
       'Statistik Stunting Desa Pameutingan merupakan data jumlah dan persentase balita yang mengalami stunting sebagai gambaran kondisi gizi dan pertumbuhan anak.',
     stats: [
@@ -72,10 +76,12 @@ export const heroContentByFeature: Record<InfografisKey, HeroContent> = {
     quoteRole: 'Puskesmas Desa',
     quoteText:
       'Anak yang sehat adalah investasi masa depan desa yang lebih baik.',
+    image: '/img/hero-petugas-kesehatan.png',
+    alt: 'Petugas Kesehatan Desa Pameutingan',
   },
   bansos: {
-    eyebrow: 'Website Resmi Pemerintah Desa',
-    titleLines: ['Data Bansos', 'Desa Pameutingan', ''],
+    eyebrow: 'Bantuan Sosial',
+    titleLines: ['Bantuan Sosial,', 'Transparan &', 'Tepat Sasaran'],
     description:
       'Ringkasan Bantuan Sosial Desa Pameutingan merupakan data jumlah dan jenis bantuan sosial yang diterima masyarakat sebagai gambaran kondisi kesejahteraan warga serta dasar perencanaan dan penyaluran bantuan di desa.',
     stats: [
@@ -86,28 +92,32 @@ export const heroContentByFeature: Record<InfografisKey, HeroContent> = {
     quoteName: 'Koordinator Bansos',
     quoteRole: 'Aparatur Desa',
     quoteText:
-      'Setiap program bansos harus menyentuh mereka yang paling membutuhkan.',
+      'Penyaluran bantuan sosial yang transparan menjamin keadilan bagi seluruh warga desa Pameutingan.',
+    image: '/img/unsplash_bBuUjB98PPY.png',
+    alt: 'Koordinator Bantuan Sosial Desa Pameutingan',
   },
   idm: {
     eyebrow: 'Indeks Pembangunan',
-    titleLines: ['Ukur Kemajuan,', 'Rencanakan', 'Masa Depan'],
+    titleLines: ['Indeks Desa,', 'Membangun &', 'Mandiri'],
     description:
-      'Indeks Desa Membangun sebagai alat evaluasi komprehensif untuk mengetahui status pembangunan desa dan area yang perlu ditingkatkan.',
+      'Indeks Desa Membangun (IDM) sebagai alat evaluasi komprehensif untuk mengukur status kemajuan dan kemandirian Desa Pameutingan di Kecamatan Cipatujah.',
     stats: [
-      { label: 'Status', value: 'Maju' },
-      { label: 'Skor', value: '0,792' },
-      { label: 'Fokus', value: 'Layanan' },
+      { label: 'Status', value: 'Mandiri' },
+      { label: 'Skor', value: '0,8924' },
+      { label: 'Tahun', value: '2026' },
     ],
     quoteName: 'Kepala Desa',
     quoteRole: 'Majang Dudi Budiana',
     quoteText:
-      'Dengan data IDM, kita tahu kemana desa harus berkembang ke depannya.',
+      'Dengan status Desa Mandiri, kita berkomitmen untuk terus meningkatkan kualitas hidup warga secara berkelanjutan.',
+    image: '/img/hero-kepala-desa.png',
+    alt: 'Kepala Desa Pameutingan',
   },
   sdgs: {
     eyebrow: 'Pembangunan Berkelanjutan',
-    titleLines: ['SDGs Desa,', 'Komitmen untuk', 'Masa Depan'],
+    titleLines: ['SDGs Desa,', 'Pembangunan', 'Berkelanjutan'],
     description:
-      'Pelacakan pencapaian SDGs di level desa untuk mendukung agenda pembangunan berkelanjutan dan meningkatkan kualitas hidup masyarakat.',
+      'Pelacakan pencapaian target SDGs Desa Pameutingan untuk mewujudkan komitmen pembangunan berkelanjutan tingkat lokal secara presisi.',
     stats: [
       { label: 'Indikator', value: '17' },
       { label: 'Prioritas', value: '6' },
@@ -117,6 +127,8 @@ export const heroContentByFeature: Record<InfografisKey, HeroContent> = {
     quoteRole: 'Pendamping Desa',
     quoteText:
       'Pembangunan berkelanjutan adalah tanggung jawab bersama kita semua.',
+    image: '/img/unsplash_KIPqvvTOC1s.png',
+    alt: 'Tim SDGs Desa Pameutingan',
   },
 }
 

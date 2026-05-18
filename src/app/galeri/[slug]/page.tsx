@@ -145,7 +145,7 @@ export default async function GaleriDetailPage({ params }: { params: Promise<{ s
               <p className="text-[14px] leading-relaxed text-[#0B281F]/60">
                 Butuh dokumentasi kegiatan ini dalam resolusi tinggi untuk keperluan publikasi? Hubungi sekretariat desa.
               </p>
-              <Link href="/kontak" className="mt-6 inline-block text-[14px] font-bold text-[#009966] hover:underline">
+              <Link href="/layanan-masyarakat" className="mt-6 inline-block text-[14px] font-bold text-[#009966] hover:underline">
                 Hubungi Kami &rarr;
               </Link>
             </div>

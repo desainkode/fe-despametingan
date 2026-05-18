@@ -39,9 +39,9 @@ export function DemografiSection() {
         </button>
       </div>
 
-      <div className="mt-8 px-2">
+      <div className="mt-8">
         <div
-          className="hero-reveal grid grid-cols-2 gap-4 sm:gap-8 lg:grid-cols-4 xl:gap-16"
+          className="hero-reveal flex gap-5 overflow-x-auto pb-6 pt-2 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scrollbar-hide -mx-6 px-6 sm:mx-0 sm:px-0 sm:pb-0 sm:pt-0 sm:grid sm:grid-cols-2 sm:gap-8 lg:grid-cols-4 xl:gap-16 sm:overflow-visible"
           style={{ animationDelay: "300ms" }}
         >
           {KARTU_DEMOGRAFI.map((item, idx) => (

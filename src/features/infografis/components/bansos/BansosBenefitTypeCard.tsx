@@ -1,3 +1,4 @@
+import React from 'react'
 import { Users } from 'lucide-react'
 import { BansosBenefitType } from '../../types/infografis'
 
@@ -6,42 +7,38 @@ interface BansosBenefitTypeCardProps {
 }
 
 export function BansosBenefitTypeCard({ type }: BansosBenefitTypeCardProps) {
-  const isDark = type.color.includes('emerald') || type.color.includes('teal') || type.color.includes('green') || type.color.includes('900') || type.color.includes('700') || type.color.includes('600')
-  const textColor = isDark ? 'text-white' : 'text-black'
-  const iconBg = isDark ? 'bg-white/10' : 'bg-black/5'
-
   return (
-    <div className={`p-8 ${type.color} rounded-xl rounded-tr-[80px] rounded-bl-[80px] shadow-xl flex flex-col justify-between h-[360px] relative overflow-hidden group`}>
-      <div className="flex flex-col gap-6 relative z-10">
-        <div className={`w-12 h-12 ${iconBg} rounded-full flex items-center justify-center`}>
-          <Users size={20} className={textColor} />
+    <article
+      className="hero-reveal group relative overflow-hidden rounded-[24px] border border-[#0B281F]/8 bg-[#0b281f]/[0.02] p-5.5 shadow-[0_12px_24px_rgba(0,0,0,0.03)] backdrop-blur-xs transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-[#009966]/25 hover:bg-[#0b281f]/[0.04] hover:shadow-[0_20px_38px_rgba(11,40,31,0.06)] flex flex-col justify-between h-56"
+    >
+      {/* Soft Hover Spotlight */}
+      <div className="pointer-events-none absolute -bottom-6 -right-6 h-24 w-24 rounded-full bg-[#009966]/5 blur-xl transition-all duration-500 group-hover:bg-[#009966]/10 group-hover:scale-110" />
+
+      <div>
+        <div className="flex items-center justify-between gap-4 mb-4">
+          <div className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#009966]/10 text-[#009966] transition-transform duration-500 group-hover:scale-105">
+            <Users size={16} strokeWidth={2.2} />
+          </div>
+          <span className="inline-flex items-center gap-1 rounded-full border border-[#009966]/20 bg-[#009966]/5 px-2.5 py-0.5 text-[9.5px] font-bold text-[#009966] tracking-wide uppercase">
+            Orang
+          </span>
         </div>
 
-        <div className="flex flex-col items-start gap-4">
-          <div className="px-3 py-1 bg-[#0B281F] rounded-full flex items-center gap-2">
-            <div className="w-2 h-2 bg-[#FDC700] rounded-full" />
-            <span className="text-[10px] font-medium text-white">Orang</span>
-          </div>
-          
-          <div className="flex flex-col gap-2">
-            <span 
-              className={`text-8xl font-normal leading-none ${textColor}`} 
-              style={{ fontFamily: 'Georgia, serif' }}
-            >
-              {type.count}
-            </span>
-            <h3 className={`text-3xl font-bold ${textColor}`} style={{ fontFamily: 'var(--font-timeless)' }}>
-              {type.name}
-            </h3>
-          </div>
-        </div>
+        <h3 className="font-[Georgia,serif] text-[18px] font-bold leading-tight text-[#0B281F] sm:text-[20px] transition-colors duration-300 group-hover:text-[#009966]">
+          {type.name}
+        </h3>
       </div>
 
-      <div className="mt-auto text-right relative z-10">
-        <p className={`text-[10px] leading-tight font-medium opacity-60 ${textColor}`}>
-          Terdata<br />oleh sistem
-        </p>
+      <div className="flex flex-col gap-1 mt-auto">
+        <span 
+          className="text-[32px] sm:text-[38px] font-bold text-[#0B281F] font-[Georgia,serif] leading-none"
+        >
+          {type.count}
+        </span>
+        <span className="text-[9px] font-bold uppercase tracking-[0.1em] text-[#0B281F]/40">
+          TOTAL PENERIMA
+        </span>
       </div>
-    </div>
+    </article>
   )
 }

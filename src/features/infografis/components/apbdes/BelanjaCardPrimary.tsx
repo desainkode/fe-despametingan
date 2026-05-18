@@ -23,7 +23,7 @@ export function BelanjaCardPrimary({ totalBelanja = 0, percentage = 100 }: { tot
         </h3>
 
         <div className="mt-4 flex items-end gap-2">
-          <span className="font-timeless text-[34px] font-bold leading-none tracking-tight sm:text-[40px]">
+          <span className="font-timeless text-[22px] xs:text-[26px] sm:text-[34px] lg:text-[40px] font-bold leading-none tracking-tight">
             {formatCurrency(totalBelanja)}
           </span>
         </div>
