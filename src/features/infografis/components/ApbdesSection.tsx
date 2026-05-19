@@ -67,7 +67,7 @@ export function ApbdesSection() {
         </Link>
       </div>
       <div className="relative mb-6 border-b border-[#0B281F]/10 pb-6 pr-14 md:grid md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)] md:items-start md:gap-6 md:pr-16">
-        <h2 className="hero-reveal whitespace-pre-line font-[Georgia,serif] text-[26px] font-bold leading-[1.08] tracking-[0.01em] text-[#0B0D10] md:text-[30px] lg:text-[38px]">
+        <h2 className="hero-reveal whitespace-pre-line font-[Georgia,serif] text-[26px] font-bold leading-[1.08] tracking-[0.01em] text-[#0B0D10] md:text-[30px] lg:text-[38px] max-w-[calc(100%-48px)] md:max-w-none">
           APB Desa{`\n`}Pameutingan
         </h2>
 

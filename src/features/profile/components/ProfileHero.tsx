@@ -21,15 +21,15 @@ export function ProfileHero({ name, slogan }: { name: string, slogan: string }) 
             Mengenal Lebih Dekat
           </div>
 
-          <h1 className="hero-reveal max-w-5xl font-[Georgia,serif] text-[48px] font-bold leading-[1.05] tracking-tight sm:text-[68px] lg:text-[86px]">
+          <h1 className="hero-reveal max-w-5xl font-[Georgia,serif] text-[36px] font-bold leading-[1.05] tracking-tight sm:text-[48px] lg:text-[60px]">
             Profil <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E0A1] to-[#F0B100]">{name}</span>
           </h1>
 
-          <p className="hero-reveal mt-10 max-w-2xl text-[18px] font-medium text-[#F0B100] italic sm:text-[22px]">
+          <p className="hero-reveal mt-10 max-w-2xl text-[15px] font-medium text-[#F0B100] italic sm:text-[18px]">
             "{slogan}"
           </p>
 
-          <p className="hero-reveal mt-8 max-w-2xl text-[16px] leading-relaxed text-white/60 sm:text-[18px]">
+          <p className="hero-reveal mt-8 max-w-2xl text-[14px] leading-relaxed text-white/60 sm:text-[15px]">
             Menelusuri sejarah panjang, visi masa depan, dan struktur kepemimpinan yang membangun harmoni di Desa Pameutingan.
           </p>
           

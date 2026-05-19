@@ -40,7 +40,7 @@ export function DusunSection() {
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle_at_center,rgba(0,224,161,0.05)_0%,transparent_70%)]" />
 
           <div className="relative z-10 grid items-stretch gap-10 xl:grid-cols-[1fr_minmax(280px,0.6fr)] xl:gap-16">
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-2 lg:gap-8">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
               {BERDASARKAN_DUSUN_CARDS.map((item, idx) => (
                 <DusunInfoCard
                   key={`${item.kode}-${item.nama}`}

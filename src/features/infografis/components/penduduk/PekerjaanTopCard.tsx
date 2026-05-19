@@ -23,14 +23,14 @@ export function PekerjaanTopCard({
 }: PekerjaanTopCardProps) {
   return (
     <article
-      className="hero-reveal group relative isolate h-56 overflow-hidden rounded-tl-[24px] rounded-br-[24px] bg-linear-to-br from-[#001F18] via-[#003326] to-[#005239] p-4 text-[#F3F8F6] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:h-75 md:h-80 sm:p-6 sm:rounded-tl-[28px] sm:rounded-br-[28px]"
+      className="hero-reveal group relative isolate h-56 w-[210px] xs:w-[230px] sm:w-full shrink-0 snap-center overflow-hidden rounded-tl-[24px] rounded-br-[24px] bg-linear-to-br from-[#001F18] via-[#003326] to-[#005239] p-4 text-[#F3F8F6] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 sm:h-75 md:h-80 sm:p-6 sm:rounded-tl-[28px] sm:rounded-br-[28px]"
       style={{ animationDelay: `${delayMs}ms` }}
     >
       <div className="pointer-events-none absolute -right-10 -top-10 h-20 w-20 rotate-45 bg-[#FFFFFF] sm:-right-14 sm:-top-14 sm:h-28 sm:w-28" />
       <div className="pointer-events-none absolute -bottom-10 -left-10 h-20 w-20 rotate-45 bg-[#FFFFFF] sm:-bottom-14 sm:-left-14 sm:h-28 sm:w-28" />
 
       <div className="relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/18 bg-[#0B281F]/48 text-[#EAF7F1] shadow-[0_6px_14px_rgba(11,40,31,0.12)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:-rotate-3 sm:h-11 sm:w-11">
-        <Icon size={16} strokeWidth={2.1} className="sm:size-18" />
+        <Icon size={16} strokeWidth={2.1} className="size-[16px] sm:size-[18px]" />
       </div>
 
       <div className="relative mt-4 flex h-[calc(100%-3.5rem)] flex-col justify-between transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 sm:mt-6 sm:h-[calc(100%-4.75rem)]">

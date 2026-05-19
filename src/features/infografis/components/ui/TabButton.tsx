@@ -15,6 +15,7 @@ export function TabButton({ item, active, href }: TabButtonProps) {
     <Link
       href={href}
       aria-pressed={active}
+      id={`tab-btn-${item.key}`}
       className={`group relative flex items-center justify-center focus:outline-none transition-all duration-300 ${zIndex} ${dropShadow} ${heightClass} ${hoverAnim}`}
     >
       <div className="absolute inset-0 flex transition-transform duration-300">

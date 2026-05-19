@@ -14,7 +14,7 @@ export function VisionMissionSection({ vision, mission }: { vision: string, miss
             <Target size={18} />
             Visi Desa
           </div>
-          <blockquote className="font-[Georgia,serif] text-lg font-bold italic leading-relaxed sm:text-2xl md:text-3xl">
+          <blockquote className="font-[Georgia,serif] text-base font-bold italic leading-relaxed sm:text-xl md:text-2xl">
             "{vision}"
           </blockquote>
         </div>
@@ -31,7 +31,7 @@ export function VisionMissionSection({ vision, mission }: { vision: string, miss
                 <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#009966] text-white text-[11px] font-bold">
                   {idx + 1}
                 </div>
-                <p className="text-[14px] leading-relaxed text-white/70 group-hover:text-white transition-colors md:text-[15px]">
+                <p className="text-[13px] leading-relaxed text-white/70 group-hover:text-white transition-colors md:text-[14px]">
                   {item}
                 </p>
               </div>

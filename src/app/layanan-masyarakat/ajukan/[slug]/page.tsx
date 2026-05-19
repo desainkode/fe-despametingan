@@ -1,12 +1,21 @@
-import React from "react";
-import { SubmissionForm } from "@/features/layanan/components/SubmissionForm";
+"use client";
 
-export default async function AjukanLayananPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+export default function AjukanLayananPage({ params }: { params: Promise<{ slug: string }> }) {
+  const router = useRouter();
+
+  // Unwrap params using React.use() or a simple async/await approach in an effect
+  useEffect(() => {
+    params.then((p) => {
+      router.replace(`/layanan-masyarakat?tab=surat&slug=${p.slug}`);
+    });
+  }, [params, router]);
+
   return (
-    <main className="min-h-screen bg-[#F6F8F7] pt-24 pb-20">
-      <SubmissionForm serviceSlug={slug} />
-    </main>
+    <div className="min-h-screen bg-[#0B281F] flex items-center justify-center">
+      <div className="h-12 w-12 border-4 border-[#00E0A1] border-t-transparent rounded-full animate-spin"></div>
+    </div>
   );
 }

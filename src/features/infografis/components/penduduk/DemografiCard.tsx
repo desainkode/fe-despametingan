@@ -27,7 +27,7 @@ export function DemografiCard({
 }: DemografiCardProps) {
   return (
     <article
-      className="hero-reveal group relative aspect-[288/347] w-full shrink-0 transform-gpu transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_20px_38px_rgba(0,0,0,0.18)]"
+      className="hero-reveal group relative aspect-[288/347] w-[240px] xs:w-[260px] sm:w-full shrink-0 snap-center transform-gpu transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_20px_38px_rgba(0,0,0,0.18)]"
       style={{ animationDelay: `${delayMs}ms` }}
     >
       <svg
@@ -64,8 +64,8 @@ export function DemografiCard({
         </div>
       </div>
 
-      <div className="absolute left-[72%] top-0 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black text-white shadow-[0_10px_20px_rgba(0,0,0,0.22)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-hover:-rotate-3 sm:h-14.5 sm:w-14.5">
-        <Icon size={16} strokeWidth={2.2} className="sm:size-21" />
+      <div className="absolute left-[77%] top-[-0.8%] z-10 flex w-[24%] aspect-square items-center justify-center rounded-full bg-black text-white shadow-[0_10px_20px_rgba(0,0,0,0.22)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:-rotate-3 sm:w-[20%] sm:left-[79%] sm:top-[0.8%]">
+        <Icon className="w-[45%] h-[45%]" strokeWidth={2.2} />
       </div>
     </article>
   );

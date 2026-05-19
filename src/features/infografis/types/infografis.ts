@@ -26,6 +26,8 @@ export interface HeroContent {
   quoteName: string
   quoteRole: string
   quoteText: string
+  image: string
+  alt: string
 }
 
 // ============================================================================
@@ -69,6 +71,7 @@ export interface BansosIndicator {
   value: string
   description: string
   color: string
+  unit?: string
 }
 
 export interface BansosAllocation {

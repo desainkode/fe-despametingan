@@ -61,19 +61,19 @@ export default function MapSection() {
         {/* Header Section */}
         <div className="flex flex-col gap-6 border-b border-white/10 pb-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
           <div className="max-w-2xl">
-            <h2 className="font-georgia text-[38px] font-bold leading-[1.05] tracking-tight md:text-[52px] lg:text-[64px]">
+            <h2 className="font-georgia text-[24px] font-bold leading-[1.05] tracking-tight md:text-[32px] lg:text-[38px] xl:text-[42px]">
               <span className="block opacity-90">Peta &</span>
               <span className="block text-transparent bg-clip-text bg-linear-to-r from-[#00D492] to-[#A4F4CF]">Batas Wilayah</span>
             </h2>
-            <p className="mt-6 text-[14px] leading-relaxed text-[#D0FAE5]/70 md:text-[16px]">
+            <p className="mt-6 text-[13px] leading-relaxed text-[#D0FAE5]/70 md:text-[14px]">
               Gambaran visual pembagian administratif per dusun beserta batas-batas geografis Desa Pameutingan yang strategis dan terdokumentasi secara digital.
             </p>
           </div>
 
           <div className="hidden h-28 w-28 shrink-0 flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md md:flex">
             <MapPin className="mb-2 text-[#F0B100]" size={24} />
-            <p className="text-[20px] font-black leading-none">345</p>
-            <p className="mt-1 text-[10px] font-bold uppercase tracking-widest text-[#00D492]/60">Migrasi</p>
+            <p className="text-[18px] font-bold leading-none">345</p>
+            <p className="mt-1 text-[9px] font-bold uppercase tracking-widest text-[#00D492]/60">Migrasi</p>
           </div>
         </div>
 
@@ -82,7 +82,7 @@ export default function MapSection() {
           <div className="order-2 flex flex-col gap-4 lg:order-1">
             <div className="flex items-center gap-2 px-1">
               <LayoutGrid size={14} className="text-[#00D492]" />
-              <h4 className="text-[11px] font-black uppercase tracking-widest text-white/30">Batas Wilayah</h4>
+              <h4 className="text-[11px] font-bold uppercase tracking-widest text-white/30">Batas Wilayah</h4>
             </div>
             <div className="grid grid-cols-2 gap-2 lg:grid-cols-1">
               {BATAS_WILAYAH.map((item, index) => (
@@ -99,12 +99,12 @@ export default function MapSection() {
                     setCombinedMapActiveLayer(hasPinned ? "layer-5" : null);
                   }}
                 >
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#F0B100] text-[#052119] text-[14px] font-black group-hover:scale-110 transition-transform">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#F0B100] text-[#052119] text-[13px] font-bold group-hover:scale-110 transition-transform">
                     {item.arah.charAt(0)}
                   </div>
                   <div className="min-w-0">
-                    <h4 className="truncate text-[12px] font-bold text-white/90">{item.arah}</h4>
-                    <p className="line-clamp-2 text-[9px] leading-relaxed text-[#D0FAE5]/40">{item.detail}</p>
+                    <h4 className="truncate text-[11px] font-bold text-white/90">{item.arah}</h4>
+                    <p className="line-clamp-2 text-[8.5px] leading-normal text-[#D0FAE5]/40">{item.detail}</p>
                   </div>
                 </button>
               ))}
@@ -114,13 +114,13 @@ export default function MapSection() {
             <div className="mt-auto hidden flex-col gap-3 rounded-2xl border border-white/5 bg-white/2 p-4 lg:flex">
               <div className="flex items-center gap-2">
                 <Info size={14} className="text-[#00D492]" />
-                <h4 className="text-[10px] font-black uppercase tracking-widest text-white/30">Dusun</h4>
+                <h4 className="text-[10px] font-bold uppercase tracking-widest text-white/30">Dusun</h4>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 {DUSUN_MARKERS.slice(0, 4).map((marker) => (
                   <div key={marker.id} className="flex items-center gap-2 opacity-60">
                     <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: marker.warna }} />
-                    <span className="truncate text-[10px] font-bold text-white">{marker.nama.replace('Dusun ', '')}</span>
+                    <span className="truncate text-[9.5px] font-bold text-white">{marker.nama.replace('Dusun ', '')}</span>
                   </div>
                 ))}
               </div>
@@ -196,15 +196,15 @@ export default function MapSection() {
             <div className="rounded-3xl border border-[#00D492]/30 bg-linear-to-br from-[#00D492]/10 to-transparent p-5 backdrop-blur-xl shadow-xl">
               <div className="flex items-center justify-between gap-4">
                 <div className="min-w-0">
-                  <h3 className="truncate text-[20px] font-black tracking-tight text-white">{activeDusunInfo.nama}</h3>
-                  <p className="truncate text-[10px] font-bold uppercase tracking-widest text-[#00D492]">{activeDusunInfo.kepala}</p>
+                  <h3 className="truncate text-[17px] font-bold tracking-tight text-white">{activeDusunInfo.nama}</h3>
+                  <p className="truncate text-[9px] font-bold uppercase tracking-widest text-[#00D492]">{activeDusunInfo.kepala}</p>
                 </div>
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F0B100] text-[18px] font-black text-[#052119]">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F0B100] text-[16px] font-bold text-[#052119]">
                   {activeDusunInfo.id.split('-')[1]}
                 </div>
               </div>
 
-              <p className="mt-4 text-[12px] leading-relaxed text-[#D0FAE5]/50 line-clamp-2">
+              <p className="mt-4 text-[11px] leading-normal text-[#D0FAE5]/50 line-clamp-2">
                 {activeDusunInfo.keterangan}
               </p>
 
@@ -217,8 +217,8 @@ export default function MapSection() {
                   { label: "Total Unit", val: "1.087", color: "text-white" }
                 ].map((stat, i) => (
                   <div key={i} className="rounded-xl bg-white/5 border border-white/5 p-2.5">
-                    <p className="text-[8px] font-bold uppercase tracking-widest text-white/30">{stat.label}</p>
-                    <p className={`text-[14px] font-black ${stat.color}`}>{stat.val}</p>
+                    <p className="text-[8px] font-semibold uppercase tracking-widest text-white/30">{stat.label}</p>
+                    <p className={`text-[13px] font-bold ${stat.color}`}>{stat.val}</p>
                   </div>
                 ))}
               </div>
@@ -228,7 +228,7 @@ export default function MapSection() {
             <div className="flex-1 rounded-3xl border border-white/5 bg-white/2 p-5">
               <div className="mb-3 flex items-center gap-2">
                 <Users2 size={14} className="text-[#00D492]" />
-                <h4 className="text-[10px] font-black uppercase tracking-widest text-white/30">Pilih Dusun</h4>
+                <h4 className="text-[10px] font-bold uppercase tracking-widest text-white/30">Pilih Dusun</h4>
               </div>
               <div className="grid gap-1.5">
                 {DUSUN_MARKERS.map((marker) => (
@@ -239,9 +239,9 @@ export default function MapSection() {
                   >
                     <div className="flex items-center gap-2 min-w-0">
                       <div className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: marker.warna }} />
-                      <span className="truncate text-[11px] font-bold text-white/80">{marker.nama.replace('Dusun ', '')}</span>
+                      <span className="truncate text-[10px] font-bold text-white/80">{marker.nama.replace('Dusun ', '')}</span>
                     </div>
-                    <span className="text-[9px] font-black text-white/20">#{marker.id.split('-')[1]}</span>
+                    <span className="text-[8px] font-bold text-white/20">#{marker.id.split('-')[1]}</span>
                   </button>
                 ))}
               </div>

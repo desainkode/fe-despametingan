@@ -8,7 +8,7 @@ import { GALERI_PREVIEW } from "../config/home-data";
 
 export default function GaleriSection() {
   return (
-    <section className="bg-white px-6 py-8 md:px-10 md:py-12 lg:px-12">
+    <section className="bg-white px-4 py-8 md:px-10 md:py-16 lg:px-12">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 md:gap-8">
         <div className="flex items-end justify-between">
           <SectionHeader 
@@ -19,7 +19,7 @@ export default function GaleriSection() {
         </div>
 
 
-        <div className="relative -mx-6 overflow-hidden px-6 lg:mx-0 lg:px-0">
+        <div className="relative -mx-4 overflow-hidden px-4 lg:mx-0 lg:px-0">
           <div className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 pt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0 lg:pt-0">
             {GALERI_PREVIEW.map((item, index) => (
               <article 
@@ -38,10 +38,10 @@ export default function GaleriSection() {
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-[#052119]/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                 
-                {/* Floating Badge */}
+                 {/* Floating Badge */}
                 <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-white/20 px-3 py-1.5 text-white backdrop-blur-md border border-white/10">
                   <Camera size={14} />
-                  <span className="text-[10px] font-black uppercase tracking-widest">{item.tag}</span>
+                  <span className="text-[9px] font-bold uppercase tracking-widest">{item.tag}</span>
                 </div>
 
                 {/* Hover Icon */}
@@ -54,10 +54,10 @@ export default function GaleriSection() {
 
               {/* Info Body */}
               <div className="flex flex-col p-6">
-                <h3 className="font-georgia text-[22px] font-bold leading-tight text-[#052119]">
+                <h3 className="font-georgia text-[18px] font-bold leading-tight text-[#052119]">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-[14px] leading-relaxed text-[#052119]/60">
+                <p className="mt-3 text-[12.5px] leading-normal text-[#052119]/60">
                   {item.description}
                 </p>
               </div>
@@ -72,7 +72,7 @@ export default function GaleriSection() {
         <div className="flex justify-center pt-4">
           <Link
             href="/galeri"
-            className="group inline-flex items-center gap-4 rounded-2xl bg-[#052119] px-10 py-4 text-[15px] font-black text-[#00D492] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"
+            className="group inline-flex items-center gap-4 rounded-2xl bg-[#052119] px-10 py-4 text-[14px] font-bold text-[#00D492] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"
           >
             Lihat Galeri Lengkap
             <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />

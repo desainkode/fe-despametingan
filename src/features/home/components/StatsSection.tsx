@@ -34,21 +34,21 @@ export default function StatsSection() {
                 <BarChart3 size={28} strokeWidth={2.5} />
               </div>
               <div className="flex flex-col">
-                <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#00D492]">
+                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#00D492]">
                   Data Terkini 2024
                 </span>
-                <span className="flex items-center gap-1 text-[11px] font-bold text-white/40">
+                <span className="flex items-center gap-1 text-[11px] font-semibold text-white/40">
                   <TrendingUp size={12} className="text-[#00D492]" /> Terverifikasi
                 </span>
               </div>
             </div>
 
-            <h2 className="font-georgia mt-6 text-[32px] font-bold leading-[1.1] tracking-tight text-white md:text-[38px] lg:text-[44px]">
+            <h2 className="font-georgia mt-6 text-[24px] font-bold leading-[1.1] tracking-tight text-white sm:text-[28px] lg:text-[32px] xl:text-[36px]">
               Demografi & <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-white/60">Statistik Desa</span>
             </h2>
 
-            <p className="mt-5 text-[14px] leading-relaxed text-[#D0FAE5]/60 md:text-[15px]">
+            <p className="mt-5 text-[13px] leading-relaxed text-[#D0FAE5]/60 md:text-[14px]">
               Menyajikan data kependudukan yang transparan, akurat, dan terintegrasi untuk mendukung perencanaan pembangunan Desa Pameutingan.
             </p>
 
@@ -77,18 +77,18 @@ export default function StatsSection() {
                   </div>
 
                   <div className="flex items-baseline gap-0.5 sm:gap-1">
-                    <span className="text-[22px] font-black leading-none tracking-tighter text-white sm:text-[36px] md:text-[42px] lg:text-[48px]">
+                    <span className="text-[20px] font-extrabold leading-none tracking-tighter text-white sm:text-[32px] md:text-[38px] lg:text-[40px] xl:text-[44px]">
                       {item.angka}
                     </span>
                   </div>
 
-                  <p className="mt-1 px-2 text-center text-[8px] font-bold uppercase tracking-widest text-white/90 sm:mt-2 sm:text-[11px]">
+                  <p className="mt-1 px-2 text-center text-[8px] font-bold uppercase tracking-wider text-white/90 sm:mt-2 sm:text-[10px]">
                     {item.label}
                   </p>
 
                   <div className="mt-1 flex items-center gap-1.5 rounded-full bg-black/20 px-2 py-0.5 border border-white/5 sm:mt-3 sm:px-3 sm:py-1">
                     <div className="h-0.5 w-0.5 rounded-full bg-[#00D492] animate-pulse sm:h-1 sm:w-1" />
-                    <span className="text-[7px] font-medium text-white/40 sm:text-[10px]">
+                    <span className="text-[7px] font-medium text-white/40 sm:text-[9.5px]">
                       {item.detail}
                     </span>
                   </div>

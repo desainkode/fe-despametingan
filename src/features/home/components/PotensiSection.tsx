@@ -8,7 +8,7 @@ import { POTENSI_PREVIEW } from "../config/home-data";
 
 export default function PotensiSection() {
   return (
-    <section className="bg-white px-6 py-8 md:px-10 md:py-12 lg:px-12">
+    <section className="bg-white px-4 py-8 md:px-10 md:py-16 lg:px-12">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 md:gap-8">
         <div className="flex items-end justify-between">
           <SectionHeader 
@@ -19,7 +19,7 @@ export default function PotensiSection() {
         </div>
 
 
-        <div className="relative -mx-6 overflow-hidden px-6 lg:mx-0 lg:px-0">
+        <div className="relative -mx-4 overflow-hidden px-4 lg:mx-0 lg:px-0">
           <div className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 pt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0 lg:pt-0">
             {POTENSI_PREVIEW.map((item, index) => (
               <article 
@@ -41,11 +41,11 @@ export default function PotensiSection() {
                   <Sparkles size={20} className="text-[#F0B100] opacity-0 transition-opacity group-hover:opacity-100" />
                 </div>
 
-                <h3 className="font-georgia mt-6 text-[28px] font-bold leading-tight text-white md:text-[32px]">
+                <h3 className="font-georgia mt-6 text-[24px] font-bold leading-tight text-white md:text-[26px]">
                   {item.title}
                 </h3>
 
-                <p className="mt-4 text-[14px] leading-relaxed text-[#D0FAE5]/50">
+                <p className="mt-4 text-[12.5px] leading-normal text-[#D0FAE5]/50">
                   {item.description}
                 </p>
 
@@ -61,7 +61,7 @@ export default function PotensiSection() {
                 </div>
 
                 <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4">
-                  <span className="text-[12px] font-black uppercase tracking-widest text-[#00D492]">Eksplorasi</span>
+                  <span className="text-[11.5px] font-bold uppercase tracking-widest text-[#00D492]">Eksplorasi</span>
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#F0B100] text-[#052119] transition-all group-hover:rotate-45">
                     <ArrowRight size={20} strokeWidth={2.5} />
                   </div>
@@ -78,7 +78,7 @@ export default function PotensiSection() {
         <div className="flex justify-center pt-2">
           <Link
             href="/potensi"
-            className="group inline-flex items-center gap-3 rounded-2xl border border-[#052119]/10 bg-[#F4F3EF] px-10 py-4 text-[15px] font-black text-[#052119] transition-all hover:bg-[#052119] hover:text-[#00D492] hover:shadow-xl active:scale-95"
+            className="group inline-flex items-center gap-3 rounded-2xl border border-[#052119]/10 bg-[#F4F3EF] px-10 py-4 text-[14px] font-bold text-[#052119] transition-all hover:bg-[#052119] hover:text-[#00D492] hover:shadow-xl active:scale-95"
           >
             Lihat Potensi Lainnya
             <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />

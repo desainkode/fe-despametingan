@@ -25,8 +25,8 @@ export default function InfografisLayout({
     <div className="bg-linear-to-b from-[#0B281F] via-[#0B281F] to-[#004F3B]">
       <HeroSection activeTab={activeTab} />
 
-      <section className="bg-[#FFFFFF] px-4 py-8 md:px-10 md:py-10 lg:px-12 lg:py-12 transition-colors duration-300 ease-out">
-        <div className="animate-fade-in">
+      <section className="bg-white transition-colors duration-300 ease-out px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <div className="mx-auto max-w-7xl animate-fade-in">
           {children}
         </div>
       </section>
