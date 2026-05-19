@@ -50,8 +50,8 @@ export function FacilitySection({ facilities }: { facilities: Facility[] }) {
           <Building2 size={16} />
           Fasilitas Umum
         </div>
-        <h2 className="font-[Georgia,serif] text-[32px] font-bold text-[#0B281F] md:text-[42px]">Sarana & Prasarana Desa</h2>
-        <p className="max-w-2xl text-[15px] text-[#0B281F]/50">Daftar sarana publik, sarana ibadah, pendidikan, serta kesehatan yang tersedia di Desa Pameutingan.</p>
+        <h2 className="font-[Georgia,serif] text-[22px] font-bold text-[#0B281F] md:text-[28px] lg:text-[32px] xl:text-[36px]">Sarana & Prasarana Desa</h2>
+        <p className="max-w-2xl text-[13px] text-[#0B281F]/50 md:text-[14px]">Daftar sarana publik, sarana ibadah, pendidikan, serta kesehatan yang tersedia di Desa Pameutingan.</p>
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -81,12 +81,12 @@ export function FacilitySection({ facilities }: { facilities: Facility[] }) {
                 {/* Content */}
                 <div className="space-y-2">
                   <h3 
-                    className="text-[20px] font-bold text-[#0B281F] leading-snug group-hover:text-[#009966] transition-colors"
+                    className="text-[16px] font-bold text-[#0B281F] leading-snug group-hover:text-[#009966] transition-colors"
                     style={{ fontFamily: 'Georgia, serif' }}
                   >
                     {f.name}
                   </h3>
-                  <p className="text-[13px] leading-relaxed text-[#0B281F]/60 line-clamp-3">
+                  <p className="text-[12px] leading-relaxed text-[#0B281F]/60 line-clamp-3">
                     {f.description}
                   </p>
                 </div>

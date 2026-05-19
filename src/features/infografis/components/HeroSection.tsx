@@ -42,7 +42,7 @@ export function HeroSection({ activeTab }: HeroSectionProps) {
           </div>
 
           <h1
-            className="hero-reveal mt-3 max-w-132 text-[34px] sm:text-[40px] md:text-[56px] lg:text-[64px] font-bold leading-[1.05] tracking-[0.052em] [animation-delay:120ms]"
+            className="hero-reveal mt-3 max-w-132 text-[28px] sm:text-[38px] md:text-[46px] lg:text-[48px] xl:text-[52px] font-bold leading-[1.05] tracking-[0.052em] [animation-delay:120ms]"
             style={{ fontFamily: 'Georgia, serif' }}
           >
             <span className="block">{hero.titleLines[0]}</span>
@@ -53,7 +53,7 @@ export function HeroSection({ activeTab }: HeroSectionProps) {
             {hero.titleLines[2] && <span className="mt-1 block">{hero.titleLines[2]}</span>}
           </h1>
 
-          <p className="hero-reveal mt-4 max-w-140 text-[10.5px] font-light leading-5 text-[#A4F4CF]/80 sm:text-[11px] md:text-[13px] md:leading-6 [animation-delay:220ms]">
+          <p className="hero-reveal mt-4 max-w-140 text-[10px] font-light leading-5 text-[#A4F4CF]/80 sm:text-[11px] md:text-[12.5px] md:leading-6 [animation-delay:220ms]">
             {hero.description}
           </p>
         </div>
@@ -73,10 +73,10 @@ export function HeroSection({ activeTab }: HeroSectionProps) {
             <div className="hero-pulse absolute bottom-3 left-3 right-3 rounded-2xl border border-white/20 bg-black/35 p-2.5 shadow-[0_10px_15px_rgba(0,0,0,0.1),0_4_6px_rgba(0,0,0,0.1)] backdrop-blur-[2px] md:bottom-4 md:left-4 md:right-4 md:p-3">
               <div className="flex items-start justify-between">
                 <div>
-                  <p className="text-[12px] font-bold leading-5 md:text-sm">
+                  <p className="text-[11px] font-bold leading-5 md:text-[12.5px]">
                     {hero.quoteName}
                   </p>
-                  <p className="mt-1 text-[9px] text-[#A4F4CF] md:text-[11px]">
+                  <p className="mt-1 text-[8px] text-[#A4F4CF] md:text-[9.5px]">
                     {hero.quoteRole}
                   </p>
                 </div>
@@ -84,7 +84,7 @@ export function HeroSection({ activeTab }: HeroSectionProps) {
                   &quot;
                 </span>
               </div>
-              <p className="mt-1 text-[9px] italic leading-4 text-[#D0FAE5]/80 md:mt-1.5 md:text-[10px]">
+              <p className="mt-1 text-[8.5px] italic leading-4 text-[#D0FAE5]/80 md:mt-1.5 md:text-[9px]">
                 &quot;{hero.quoteText}&quot;
               </p>
             </div>

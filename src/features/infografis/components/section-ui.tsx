@@ -17,7 +17,7 @@ export function SectionHeader({
   return (
     <div className="relative grid gap-4 border-b border-[#0B281F]/10 pb-6 pr-14 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.45fr)] md:items-start md:gap-6 md:pr-16 mb-6">
       <h2
-        className="font-[Georgia,serif] text-[26px] font-bold leading-[1.06] tracking-[0.02em] text-[#0B281F] md:text-[34px] lg:text-[42px]"
+        className="font-[Georgia,serif] text-[22px] font-bold leading-[1.06] tracking-[0.02em] text-[#0B281F] md:text-[28px] lg:text-[32px] xl:text-[36px]"
       >
         {title}
       </h2>
@@ -49,7 +49,7 @@ export function StatPill({
       <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-white/76">
         {label}
       </p>
-      <p className="mt-2 font-[Georgia,serif] text-[30px] font-bold leading-none text-white md:text-[34px]">
+      <p className="mt-2 font-[Georgia,serif] text-[22px] font-bold leading-none text-white md:text-[26px]">
         {value}
       </p>
     </div>
@@ -68,7 +68,7 @@ export function MiniMetric({
       <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#004F3B]/65">
         {label}
       </p>
-      <p className="mt-2 font-[Georgia,serif] text-[26px] font-bold leading-none text-[#0B281F] md:text-[28px]">
+      <p className="mt-2 font-[Georgia,serif] text-[20px] font-bold leading-none text-[#0B281F] md:text-[22px]">
         {value}
       </p>
     </div>

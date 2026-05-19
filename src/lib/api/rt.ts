@@ -5,7 +5,7 @@ export interface Rt {
   id: string;
   rw_id: string;
   nama: string;
-  ketua_rt: string;
+  ketua_rt?: string | null;
   rw?: {
     id: string;
     nama: string;

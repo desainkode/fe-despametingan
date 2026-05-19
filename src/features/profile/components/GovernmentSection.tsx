@@ -14,8 +14,8 @@ export function GovernmentSection({ members }: { members: GovernmentMember[] }) 
           <Users2 size={16} />
           Struktur Pemerintahan
         </div>
-        <h2 className="font-[Georgia,serif] text-[32px] font-bold text-[#0B281F] md:text-[42px]">Perangkat Desa Pameutingan</h2>
-        <p className="max-w-2xl text-[15px] text-[#0B281F]/50">Melayani dengan integritas, transparansi, dan dedikasi untuk kemajuan bersama.</p>
+        <h2 className="font-[Georgia,serif] text-[22px] font-bold text-[#0B281F] md:text-[28px] lg:text-[32px] xl:text-[36px]">Perangkat Desa Pameutingan</h2>
+        <p className="max-w-2xl text-[13px] text-[#0B281F]/50 md:text-[14px]">Melayani dengan integritas, transparansi, dan dedikasi untuk kemajuan bersama.</p>
       </div>
 
       {/* Apparatus Container - Horizontal Scroll on Mobile/Tablet, Grid on Desktop */}
@@ -40,12 +40,12 @@ export function GovernmentSection({ members }: { members: GovernmentMember[] }) 
               {/* Content at Bottom */}
               <div className="absolute bottom-0 w-full p-4 text-center sm:p-6">
                 <p 
-                  className="text-[16px] font-bold text-white sm:text-xl md:text-2xl"
+                  className="text-[14px] font-bold text-white sm:text-base md:text-lg"
                   style={{ fontFamily: 'Georgia, serif' }}
                 >
                   {member.position}
                 </p>
-                <p className="mt-1 text-[11px] font-medium text-[#D4FBEA] sm:text-sm">
+                <p className="mt-1 text-[10px] font-medium text-[#D4FBEA] sm:text-[12px]">
                   {member.name}
                 </p>
               </div>

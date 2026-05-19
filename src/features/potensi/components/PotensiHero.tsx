@@ -21,12 +21,12 @@ export function PotensiHero() {
             Kekayaan Desa Pameutingan
           </div>
 
-          <h1 className="hero-reveal max-w-5xl font-[Georgia,serif] text-[32px] font-bold leading-[1.05] tracking-tight sm:text-[56px] md:text-[68px] lg:text-[86px]">
+          <h1 className="hero-reveal max-w-5xl font-[Georgia,serif] text-[28px] font-bold leading-[1.05] tracking-tight sm:text-[38px] md:text-[46px] lg:text-[52px] xl:text-[64px]">
             Eksplorasi <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E0A1] to-[#F0B100]">Potensi</span> <br className="hidden sm:block" />
             Unggulan Lokal
           </h1>
 
-          <p className="hero-reveal mt-10 max-w-2xl text-[16px] leading-relaxed text-white/60 sm:text-[18px] lg:text-[20px]">
+          <p className="hero-reveal mt-10 max-w-2xl text-[13px] leading-relaxed text-white/60 sm:text-[15px] lg:text-[16px]">
             Kenali kekayaan alam, sumber daya manusia, dan industri kreatif yang menjadi motor penggerak ekonomi Desa Pameutingan menuju kemandirian.
           </p>
           

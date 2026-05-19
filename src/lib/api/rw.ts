@@ -5,7 +5,7 @@ export interface Rw {
   id: string;
   dusun_id: string;
   nama: string;
-  ketua_rw: string;
+  ketua_rw?: string | null;
   dusun?: {
     id: string;
     nama: string;

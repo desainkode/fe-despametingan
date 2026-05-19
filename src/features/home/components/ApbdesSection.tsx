@@ -57,8 +57,8 @@ export default function ApbdesSection() {
 
           <div className="relative z-30 mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center border-b border-white/10 pb-6">
             <div className="flex flex-col gap-2">
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#00D492]">Laporan Keuangan</span>
-              <h3 className="font-georgia text-[32px] font-bold leading-tight md:text-[42px]">
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#00D492]">Laporan Keuangan</span>
+              <h3 className="font-georgia text-[22px] font-bold leading-tight md:text-[28px] xl:text-[32px]">
                 APBDes Tahun {selectedYear}
               </h3>
             </div>
@@ -100,13 +100,13 @@ export default function ApbdesSection() {
           <div className="relative z-10 grid gap-8 lg:grid-cols-[380px_1fr] lg:items-center xl:gap-12">
             {/* Left Column: Description & Details */}
             <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
-              <p className="hero-reveal text-[15px] leading-relaxed text-[#D0FAE5]/80 md:text-[16px]">
+              <p className="hero-reveal text-[14px] leading-relaxed text-[#D0FAE5]/80 md:text-[15px]">
                 Dokumentasi transparansi anggaran periode {selectedYear} yang dikelola secara akuntabel untuk pembangunan berkelanjutan Desa Pameutingan.
               </p>
               <div className="hidden lg:flex flex-col w-full gap-4 sm:flex-row sm:justify-center lg:justify-start">
                 <Link
                   href="/infografis/apbdes"
-                  className="hero-reveal group inline-flex items-center justify-center gap-3 rounded-2xl bg-[#F0B100] px-8 py-4 text-[15px] font-black text-[#052119] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"
+                  className="hero-reveal group inline-flex items-center justify-center gap-3 rounded-2xl bg-[#F0B100] px-8 py-4 text-[14px] font-bold text-[#052119] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"
                 >
                   Detail Anggaran
                   <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
@@ -124,9 +124,9 @@ export default function ApbdesSection() {
                 >
                   <div className={`absolute inset-0 rounded-2xl lg:rounded-full bg-linear-to-br opacity-0 transition-opacity duration-500 group-hover/card:opacity-10 ${item.color}`} />
                   <item.icon className="mb-2 text-[#00D492] size-6 sm:size-6" />
-                  <span className="text-[10px] font-black uppercase tracking-widest text-white/30 sm:text-[9px]">Rp.</span>
-                  <p className="mt-0.5 font-georgia text-[24px] sm:text-[16px] md:text-[18px] lg:text-[22px] font-bold leading-none">{item.value}</p>
-                  <p className="mt-1.5 px-3 text-center text-[11px] font-bold uppercase tracking-tight text-white/50 sm:mt-2 sm:px-3 sm:text-[10px]">{item.label}</p>
+                  <span className="text-[8.5px] font-bold uppercase tracking-widest text-white/30 sm:text-[8px]">Rp.</span>
+                  <p className="mt-0.5 font-georgia text-[20px] sm:text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] font-bold leading-none">{item.value}</p>
+                  <p className="mt-1.5 px-3 text-center text-[10px] font-semibold tracking-wide text-white/50 sm:mt-2 sm:px-3 sm:text-[9px] xl:text-[9.5px]">{item.label}</p>
                 </div>
               ))}
             </div>

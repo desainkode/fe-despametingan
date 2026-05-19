@@ -38,10 +38,10 @@ export default function GaleriSection() {
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-[#052119]/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                 
-                {/* Floating Badge */}
+                 {/* Floating Badge */}
                 <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-white/20 px-3 py-1.5 text-white backdrop-blur-md border border-white/10">
                   <Camera size={14} />
-                  <span className="text-[10px] font-black uppercase tracking-widest">{item.tag}</span>
+                  <span className="text-[9px] font-bold uppercase tracking-widest">{item.tag}</span>
                 </div>
 
                 {/* Hover Icon */}
@@ -54,10 +54,10 @@ export default function GaleriSection() {
 
               {/* Info Body */}
               <div className="flex flex-col p-6">
-                <h3 className="font-georgia text-[22px] font-bold leading-tight text-[#052119]">
+                <h3 className="font-georgia text-[18px] font-bold leading-tight text-[#052119]">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-[14px] leading-relaxed text-[#052119]/60">
+                <p className="mt-3 text-[12.5px] leading-normal text-[#052119]/60">
                   {item.description}
                 </p>
               </div>
@@ -72,7 +72,7 @@ export default function GaleriSection() {
         <div className="flex justify-center pt-4">
           <Link
             href="/galeri"
-            className="group inline-flex items-center gap-4 rounded-2xl bg-[#052119] px-10 py-4 text-[15px] font-black text-[#00D492] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"
+            className="group inline-flex items-center gap-4 rounded-2xl bg-[#052119] px-10 py-4 text-[14px] font-bold text-[#00D492] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"
           >
             Lihat Galeri Lengkap
             <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />

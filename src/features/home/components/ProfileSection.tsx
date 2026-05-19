@@ -24,16 +24,16 @@ export default function ProfileSection({ desa }: { desa?: Desa | null }) {
             <div className="hero-reveal flex flex-col items-center text-center lg:items-start lg:py-20 lg:text-left">
               <div className="inline-flex items-center gap-2 rounded-full bg-[#00D492]/10 px-4 py-1.5 border border-[#00D492]/20">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#00D492] animate-pulse" />
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#00D492]">Profil Pimpinan</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#00D492]">Profil Pimpinan</span>
               </div>
               
-              <h3 className="font-georgia mt-6 text-[38px] font-bold leading-[1.1] tracking-tight md:text-[52px] lg:text-[64px]">
+              <h3 className="font-georgia mt-6 text-[24px] font-bold leading-[1.1] tracking-tight md:text-[32px] lg:text-[38px] xl:text-[42px]">
                 {desa?.nama_kepala_desa || "Majang Budi Budiana"}
               </h3>
               
               <div className="relative mt-8 max-w-xl">
                 <Quote size={40} className="absolute -left-6 -top-6 opacity-10 text-[#00D492] hidden lg:block" />
-                <p className="text-[15px] leading-relaxed text-[#D0FAE5]/70 md:text-[17px]">
+                <p className="text-[14px] leading-relaxed text-[#D0FAE5]/70 md:text-[16px]">
                   &quot;{desa?.kata_sambutan || "Berkomitmen untuk memajukan Desa Pameutingan melalui transparansi, inovasi layanan digital, dan pemberdayaan potensi lokal guna meningkatkan kesejahteraan seluruh lapisan masyarakat."}&quot;
                 </p>
               </div>
@@ -41,7 +41,7 @@ export default function ProfileSection({ desa }: { desa?: Desa | null }) {
               {/* Desktop Button: Hidden on mobile/tablet */}
               <Link
                 href="/profil"
-                className="hidden lg:inline-flex group mt-8 items-center gap-3 rounded-2xl bg-[#F0B100] px-8 py-4 text-[15px] font-black text-[#052119] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"
+                className="hidden lg:inline-flex group mt-8 items-center gap-3 rounded-2xl bg-[#F0B100] px-8 py-4 text-[14px] font-bold text-[#052119] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95"
               >
                 Profil Lengkap
                 <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
@@ -68,7 +68,7 @@ export default function ProfileSection({ desa }: { desa?: Desa | null }) {
               {/* Mobile/Tablet Button: Placed below the image */}
               <Link
                 href="/profil"
-                className="inline-flex lg:hidden group mt-6 items-center gap-3 rounded-2xl bg-[#F0B100] px-8 py-4 text-[15px] font-black text-[#052119] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95 w-full sm:w-auto justify-center"
+                className="inline-flex lg:hidden group mt-6 items-center gap-3 rounded-2xl bg-[#F0B100] px-8 py-4 text-[14px] font-bold text-[#052119] shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl active:scale-95 w-full sm:w-auto justify-center"
               >
                 Profil Lengkap
                 <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
