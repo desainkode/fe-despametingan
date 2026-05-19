@@ -28,13 +28,13 @@ export default function RegisterPage() {
   };
 
   return (
-    <main className="h-screen w-full bg-gradient-to-br from-[#0B281F] via-[#004F3B] to-[#0B281F] relative flex flex-col items-center justify-center p-4 overflow-hidden">
+    <main className="h-screen w-full bg-gradient-to-br from-[#0B281F] via-[#004F3B] to-[#0B281F] relative flex flex-col items-center justify-center p-0 md:p-4 overflow-hidden">
       {/* Decorative Background Accents */}
       <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-[#00E0A1]/10 blur-[120px] animate-pulse" />
       <div className="pointer-events-none absolute -left-32 -bottom-32 h-[400px] w-[400px] rounded-full bg-[#F0B100]/10 blur-[100px] animate-pulse" />
       
       {/* Glassmorphism Register Card */}
-      <div className="relative z-20 w-full max-w-5xl overflow-hidden rounded-3xl border border-white/30 bg-white/70 shadow-[0_40px_100px_rgba(0,0,0,0.12)] backdrop-blur-2xl flex flex-col md:flex-row transition-all max-h-[95vh]">
+      <div className="relative z-20 w-full h-full md:h-auto max-w-full md:max-w-5xl overflow-hidden rounded-none md:rounded-3xl border-0 md:border border-white/30 bg-white/70 shadow-[0_40px_100px_rgba(0,0,0,0.12)] backdrop-blur-2xl flex flex-col md:flex-row transition-all md:max-h-[95vh]">
         
         {/* Left Side: Visual/Branding (Smaller on Register) */}
         <div className="relative hidden md:flex w-1/3 overflow-hidden">
@@ -58,140 +58,149 @@ export default function RegisterPage() {
             </p>
           </div>
         </div>
-
-        {/* Right Side: Form Area - Optimizing space to avoid scroll */}
-        <div className="w-full md:w-2/3 p-6 md:p-10 lg:p-12 flex flex-col justify-center bg-white/40 overflow-y-auto">
-          <div className="mb-6 flex items-center justify-between">
-            <div>
-              <h3 
-                className="text-2xl font-bold text-[#0B281F]"
-                style={{ fontFamily: 'var(--font-heading)' }}
+ 
+        {/* Right Side: Form Area */}
+        <div className="w-full md:w-2/3 p-5 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between bg-white/40 h-full overflow-y-auto">
+          <div className="flex-1 flex flex-col justify-center md:flex-none">
+            <div className="mb-4 sm:mb-6 flex items-center justify-between">
+              <div>
+                <h3 
+                  className="text-2xl font-bold text-[#0B281F]"
+                  style={{ fontFamily: 'var(--font-heading)' }}
+                >
+                  Buat Akun Baru
+                </h3>
+                <p className="mt-0.5 text-[12px] text-[#0B281F]/50 font-medium">Lengkapi formulir pendaftaran warga.</p>
+              </div>
+              <div className="h-8 w-8 sm:h-10 sm:w-10 overflow-hidden rounded-xl bg-white p-1 sm:p-1.5 shadow-sm border border-[#0B281F]/5">
+                 <img src="/img/image.png" alt="Logo" className="h-full w-full object-contain" />
+              </div>
+            </div>
+ 
+            <form onSubmit={handleSubmit} className="space-y-2.5 sm:space-y-4">
+              <div className="grid gap-2.5 sm:gap-4 sm:grid-cols-2">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0B281F]/40 ml-1">Nama Lengkap</label>
+                  <div className="group relative">
+                    <UserIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0B281F]/20 group-focus-within:text-[#009966]" size={15} />
+                    <input 
+                      type="text" required
+                      className="w-full h-9 sm:h-11 rounded-xl border border-white bg-white/60 px-4 pl-11 text-[13px] font-bold text-[#0B281F] shadow-sm outline-none focus:ring-4 focus:ring-[#009966]/10 transition-all"
+                      placeholder="Sesuai KTP"
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    />
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0B281F]/40 ml-1">NIK</label>
+                  <div className="group relative">
+                    <CreditCard className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0B281F]/20 group-focus-within:text-[#009966]" size={15} />
+                    <input 
+                      type="text" required
+                      className="w-full h-9 sm:h-11 rounded-xl border border-white bg-white/60 px-4 pl-11 text-[13px] font-bold text-[#0B281F] shadow-sm outline-none focus:ring-4 focus:ring-[#009966]/10 transition-all"
+                      placeholder="16 Digit NIK"
+                      value={formData.nik}
+                      onChange={(e) => setFormData({...formData, nik: e.target.value})}
+                    />
+                  </div>
+                </div>
+              </div>
+ 
+              <div className="grid gap-2.5 sm:gap-4 sm:grid-cols-2">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0B281F]/40 ml-1">Email</label>
+                  <div className="group relative">
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0B281F]/20 group-focus-within:text-[#009966]" size={15} />
+                    <input 
+                      type="email" required
+                      className="w-full h-9 sm:h-11 rounded-xl border border-white bg-white/60 px-4 pl-11 text-[13px] font-bold text-[#0B281F] shadow-sm outline-none focus:ring-4 focus:ring-[#009966]/10 transition-all"
+                      placeholder="contoh@mail.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    />
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0B281F]/40 ml-1">No. WhatsApp</label>
+                  <div className="group relative">
+                    <Smartphone className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0B281F]/20 group-focus-within:text-[#009966]" size={15} />
+                    <input 
+                      type="tel" required
+                      className="w-full h-9 sm:h-11 rounded-xl border border-white bg-white/60 px-4 pl-11 text-[13px] font-bold text-[#0B281F] shadow-sm outline-none focus:ring-4 focus:ring-[#009966]/10 transition-all"
+                      placeholder="08xxxxxxxxxx"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    />
+                  </div>
+                </div>
+              </div>
+ 
+              <div className="grid gap-2.5 sm:gap-4 sm:grid-cols-2">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0B281F]/40 ml-1">Password</label>
+                  <div className="group relative">
+                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0B281F]/20 group-focus-within:text-[#009966]" size={15} />
+                    <input 
+                      type="password" required
+                      className="w-full h-9 sm:h-11 rounded-xl border border-white bg-white/60 px-4 pl-11 text-[13px] font-bold text-[#0B281F] shadow-sm outline-none focus:ring-4 focus:ring-[#009966]/10 transition-all"
+                      placeholder="••••••••"
+                      value={formData.password}
+                      onChange={(e) => setFormData({...formData, password: e.target.value})}
+                    />
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-[#0B281F]/40 ml-1">Konfirmasi</label>
+                  <div className="group relative">
+                    <ShieldCheck className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0B281F]/20 group-focus-within:text-[#009966]" size={15} />
+                    <input 
+                      type="password" required
+                      className="w-full h-9 sm:h-11 rounded-xl border border-white bg-white/60 px-4 pl-11 text-[13px] font-bold text-[#0B281F] shadow-sm outline-none focus:ring-4 focus:ring-[#009966]/10 transition-all"
+                      placeholder="••••••••"
+                      value={formData.confirmPassword}
+                      onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
+                    />
+                  </div>
+                </div>
+              </div>
+ 
+              <button 
+                type="submit" 
+                disabled={loading}
+                className="group relative w-full h-10 sm:h-12 rounded-xl bg-[#0B281F] text-white font-bold shadow-xl transition-all hover:bg-[#004F3B] active:scale-[0.98] disabled:opacity-50"
               >
-                Buat Akun Baru
-              </h3>
-              <p className="mt-1 text-[13px] text-[#0B281F]/50 font-medium">Lengkapi formulir pendaftaran warga.</p>
-            </div>
-            <div className="h-10 w-10 overflow-hidden rounded-xl bg-white p-1.5 shadow-sm border border-[#0B281F]/5">
-               <img src="/img/image.png" alt="Logo" className="h-full w-full object-contain" />
-            </div>
+                <span className="flex items-center justify-center gap-2 text-[14px]">
+                  {loading ? "Mendaftar..." : "Daftar Akun"}
+                  {!loading && <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />}
+                </span>
+              </button>
+            </form>
           </div>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-1">
-                <label className="text-[11px] font-bold uppercase tracking-widest text-[#0B281F]/40 ml-1">Nama Lengkap</label>
-                <div className="group relative">
-                  <UserIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0B281F]/20 group-focus-within:text-[#009966]" size={16} />
-                  <input 
-                    type="text" required
-                    className="w-full h-11 rounded-xl border border-white bg-white/60 px-4 pl-11 text-[13px] font-bold text-[#0B281F] shadow-sm outline-none focus:ring-4 focus:ring-[#009966]/10 transition-all"
-                    placeholder="Sesuai KTP"
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  />
-                </div>
-              </div>
-              <div className="space-y-1">
-                <label className="text-[11px] font-bold uppercase tracking-widest text-[#0B281F]/40 ml-1">NIK</label>
-                <div className="group relative">
-                  <CreditCard className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0B281F]/20 group-focus-within:text-[#009966]" size={16} />
-                  <input 
-                    type="text" required
-                    className="w-full h-11 rounded-xl border border-white bg-white/60 px-4 pl-11 text-[13px] font-bold text-[#0B281F] shadow-sm outline-none focus:ring-4 focus:ring-[#009966]/10 transition-all"
-                    placeholder="16 Digit NIK"
-                    value={formData.nik}
-                    onChange={(e) => setFormData({...formData, nik: e.target.value})}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-1">
-                <label className="text-[11px] font-bold uppercase tracking-widest text-[#0B281F]/40 ml-1">Email</label>
-                <div className="group relative">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0B281F]/20 group-focus-within:text-[#009966]" size={16} />
-                  <input 
-                    type="email" required
-                    className="w-full h-11 rounded-xl border border-white bg-white/60 px-4 pl-11 text-[13px] font-bold text-[#0B281F] shadow-sm outline-none focus:ring-4 focus:ring-[#009966]/10 transition-all"
-                    placeholder="contoh@mail.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  />
-                </div>
-              </div>
-              <div className="space-y-1">
-                <label className="text-[11px] font-bold uppercase tracking-widest text-[#0B281F]/40 ml-1">No. WhatsApp</label>
-                <div className="group relative">
-                  <Smartphone className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0B281F]/20 group-focus-within:text-[#009966]" size={16} />
-                  <input 
-                    type="tel" required
-                    className="w-full h-11 rounded-xl border border-white bg-white/60 px-4 pl-11 text-[13px] font-bold text-[#0B281F] shadow-sm outline-none focus:ring-4 focus:ring-[#009966]/10 transition-all"
-                    placeholder="08xxxxxxxxxx"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-1">
-                <label className="text-[11px] font-bold uppercase tracking-widest text-[#0B281F]/40 ml-1">Password</label>
-                <div className="group relative">
-                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0B281F]/20 group-focus-within:text-[#009966]" size={16} />
-                  <input 
-                    type="password" required
-                    className="w-full h-11 rounded-xl border border-white bg-white/60 px-4 pl-11 text-[13px] font-bold text-[#0B281F] shadow-sm outline-none focus:ring-4 focus:ring-[#009966]/10 transition-all"
-                    placeholder="••••••••"
-                    value={formData.password}
-                    onChange={(e) => setFormData({...formData, password: e.target.value})}
-                  />
-                </div>
-              </div>
-              <div className="space-y-1">
-                <label className="text-[11px] font-bold uppercase tracking-widest text-[#0B281F]/40 ml-1">Konfirmasi</label>
-                <div className="group relative">
-                  <ShieldCheck className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0B281F]/20 group-focus-within:text-[#009966]" size={16} />
-                  <input 
-                    type="password" required
-                    className="w-full h-11 rounded-xl border border-white bg-white/60 px-4 pl-11 text-[13px] font-bold text-[#0B281F] shadow-sm outline-none focus:ring-4 focus:ring-[#009966]/10 transition-all"
-                    placeholder="••••••••"
-                    value={formData.confirmPassword}
-                    onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <button 
-              type="submit" 
-              disabled={loading}
-              className="group relative w-full h-12 rounded-xl bg-[#0B281F] text-white font-bold shadow-xl transition-all hover:bg-[#004F3B] active:scale-[0.98] disabled:opacity-50"
-            >
-              <span className="flex items-center justify-center gap-2 text-[14px]">
-                {loading ? "Mendaftar..." : "Daftar Akun"}
-                {!loading && <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />}
-              </span>
-            </button>
-          </form>
-
-          <div className="mt-6 pt-6 border-t border-[#0B281F]/5 text-center">
+ 
+          <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-[#0B281F]/5 text-center">
             <p className="text-[13px] text-[#0B281F]/40 font-medium">
               Sudah punya akun? {" "}
               <Link href="/layanan-masyarakat/login" className="font-bold text-[#009966] hover:underline">Masuk</Link>
             </p>
+ 
+            <Link 
+              href="/"
+              className="mt-3 md:hidden flex items-center justify-center gap-2 rounded-xl bg-[#0B281F]/5 border border-[#0B281F]/10 px-4 py-2 text-[11px] font-bold text-[#0B281F] hover:bg-[#0B281F]/10 transition-all"
+            >
+              <Home size={12} />
+              Kembali ke Beranda
+            </Link>
           </div>
         </div>
       </div>
-
-      {/* Back to Home Button */}
+ 
+      {/* Back to Home Button (Desktop only) */}
       <Link 
         href="/"
-        className="mt-6 z-30 flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 text-[11px] font-bold text-white hover:bg-white/20 transition-all shadow-sm"
+        className="mt-6 z-30 hidden md:flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 text-[11px] font-bold text-white hover:bg-white/20 transition-all shadow-sm"
       >
         <Home size={12} />
-        Kembali ke Beranda
       </Link>
     </main>
   );

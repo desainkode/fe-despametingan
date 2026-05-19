@@ -27,11 +27,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (nik: string, password: string) => {
     // Simulate API call
     if (nik && password) {
+      const isEmail = nik.includes("@");
       const mockUser: User = {
         id: "1",
         name: "Warga Pameutingan",
-        nik: nik,
-        email: "warga@desa.com"
+        nik: isEmail ? "3204112345670001" : nik,
+        email: isEmail ? nik : "warga@desa.com"
       };
       setUser(mockUser);
       localStorage.setItem("village_user", JSON.stringify(mockUser));
