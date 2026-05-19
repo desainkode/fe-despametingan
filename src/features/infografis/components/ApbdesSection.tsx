@@ -60,7 +60,7 @@ export function ApbdesSection() {
 
       <div className="hero-reveal mb-4 flex justify-end">
         <Link
-          href="/infografis/apbdes"
+          href="/infografis/apbdes/detail"
           className="inline-flex items-center gap-2 rounded-full border border-[#0B281F]/10 bg-white px-4 py-2 text-[11px] font-bold text-[#0B281F] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
         >
           Lihat Semua Detail <ArrowRight size={14} />

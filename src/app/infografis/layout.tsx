@@ -10,15 +10,15 @@ export default function InfografisLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
-  
+
   // Determine active tab from pathname
   // Pathname is expected to be "/infografis/[key]"
   const segments = pathname.split('/')
   const lastSegment = segments[segments.length - 1]
-  
+
   const validKeys: InfografisKey[] = ['penduduk', 'apbdes', 'stunting', 'bansos', 'idm', 'sdgs']
-  const activeTab = (validKeys.includes(lastSegment as InfografisKey) 
-    ? lastSegment 
+  const activeTab = (validKeys.includes(lastSegment as InfografisKey)
+    ? lastSegment
     : 'penduduk') as InfografisKey
 
   return (
