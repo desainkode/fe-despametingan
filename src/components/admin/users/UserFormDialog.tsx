@@ -102,9 +102,9 @@ export function UserFormDialog({
     if (open && user) {
       form.reset({
         name: user.name,
-        email: user.email,
+        email: user.email || "",
         password: "",
-        role: user.role,
+        role: user.role as "superadmin" | "admin_desa",
         desa_id: user.desa_id ?? null,
       });
     } else if (open && !user) {

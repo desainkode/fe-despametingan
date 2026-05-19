@@ -319,6 +319,37 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenu>
         </SidebarGroup>
 
+        {/* ── Pelayanan Digital (Surat & Aktivasi) ─────────────────────────── */}
+        <SidebarGroup>
+          <SidebarGroupLabel>Pelayanan Digital</SidebarGroupLabel>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                asChild
+                isActive={pathname.startsWith("/admin/layanan-surat")}
+                tooltip="Permohonan Surat"
+              >
+                <Link href="/admin/layanan-surat">
+                  <FileText />
+                  <span>Permohonan Surat</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                asChild
+                isActive={pathname.startsWith("/admin/aktivasi-warga")}
+                tooltip="Aktivasi Portal Warga"
+              >
+                <Link href="/admin/aktivasi-warga">
+                  <Users />
+                  <span>Aktivasi Portal Warga</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
+
         {/* ── Administrasi (Superadmin & Admin Desa) ─────────────────────────── */}
         <SidebarGroup>
           <SidebarGroupLabel>Administrasi</SidebarGroupLabel>

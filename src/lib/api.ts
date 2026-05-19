@@ -27,10 +27,15 @@ api.interceptors.response.use(
     if (
       error.response?.status === 401 &&
       typeof window !== "undefined" &&
-      !window.location.pathname.includes("/admin/login")
+      !window.location.pathname.includes("/admin/login") &&
+      !window.location.pathname.includes("/layanan-masyarakat/login")
     ) {
       localStorage.removeItem("auth_token");
-      window.location.href = "/admin/login";
+      if (window.location.pathname.includes("/layanan-masyarakat")) {
+        window.location.href = "/layanan-masyarakat/login";
+      } else {
+        window.location.href = "/admin/login";
+      }
     }
 
     // Attach more info to error for debugging

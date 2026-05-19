@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import api from "../../../lib/api";
 import { 
   LayoutDashboard, 
   FileText, 
@@ -69,37 +70,28 @@ export function CitizenDashboard() {
   const [isLayananSuratOpen, setIsLayananSuratOpen] = useState(true);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const [selectedSubmission, setSelectedSubmission] = useState<Submission | null>(null);
+  const [selectedSubmission, setSelectedSubmission] = useState<any | null>(null);
   const [isJenisPindahOpen, setIsJenisPindahOpen] = useState(false);
   const [isJenisKkOpen, setIsJenisKkOpen] = useState(false);
   const [isJenisKtpOpen, setIsJenisKtpOpen] = useState(false);
   const [isKategoriPengaduanOpen, setIsKategoriPengaduanOpen] = useState(false);
 
+  // Live database states
+  const [realSubmissions, setRealSubmissions] = useState<any[]>([]);
+  const [layananSurats, setLayananSurats] = useState<any[]>([]);
+  const [isLoadingData, setIsLoadingData] = useState(true);
+  const [dynamicFormValues, setDynamicFormValues] = useState<Record<string, any>>({});
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+
   // Notification states
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [notifications, setNotifications] = useState([
     {
-      id: "notif-1",
-      title: "Pengajuan Disetujui",
-      message: "Permohonan Layanan Kartu Keluarga Anda telah disetujui oleh Lurah. Silakan ambil fisik KK di Balai Desa.",
-      time: "2 jam yang lalu",
-      read: false,
-      type: "success"
-    },
-    {
-      id: "notif-2",
-      title: "Pengajuan Baru Diproses",
-      message: "Permohonan Layanan KTP-el sedang diteliti berkas persyaratannya oleh petugas pelayanan.",
-      time: "1 hari yang lalu",
-      read: true,
-      type: "info"
-    },
-    {
       id: "notif-3",
       title: "Selamat Datang!",
       message: "Selamat datang di Portal Layanan Mandiri Desa Pameutingan. Mulai ajukan permohonan surat kependudukan secara online.",
-      time: "3 hari yang lalu",
-      read: true,
+      time: "Baru saja",
+      read: false,
       type: "welcome"
     }
   ]);
@@ -119,72 +111,56 @@ export function CitizenDashboard() {
     avatar: ""
   });
 
-  // State-based submission log persisted in localStorage
-  const [submissions, setSubmissions] = useState<Submission[]>([]);
+  const fetchDashboardData = async () => {
+    setIsLoadingData(true);
+    try {
+      const resLayanan = await api.get("warga/layanan-surat");
+      setLayananSurats(resLayanan.data.data || []);
+
+      const resSubmissions = await api.get("warga/pengajuan");
+      setRealSubmissions(resSubmissions.data.data || []);
+    } catch (err) {
+      console.error("Gagal memuat data dashboard warga:", err);
+    } finally {
+      setIsLoadingData(false);
+    }
+  };
+
+  const downloadPdf = async (submissionId: string) => {
+    try {
+      toast.loading("Mempersiapkan unduhan PDF...");
+      const response = await api.get(`warga/pengajuan/${submissionId}/download`, {
+        responseType: 'blob'
+      });
+      const blob = new Blob([response.data], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `Surat_${submissionId}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode?.removeChild(link);
+      toast.dismiss();
+      toast.success("PDF berhasil diunduh.");
+    } catch (err) {
+      console.error(err);
+      toast.dismiss();
+      toast.error("Gagal mengunduh berkas PDF.");
+    }
+  };
 
   useEffect(() => {
-    // Load profile from localStorage if exists
-    const storedProfile = localStorage.getItem("village_profile_data");
-    if (storedProfile) {
-      try {
-        const parsed = JSON.parse(storedProfile);
-        setProfileData(prev => ({ ...prev, ...parsed }));
-      } catch (e) {
-        // Ignore parsing error
-      }
-    }
+    fetchDashboardData();
+  }, []);
 
-    // Sync default profile name with authenticated user context
-    if (user?.name) {
-      const cleanNik = user.nik && user.nik.includes("@") ? "3204112345670001" : (user.nik || "3204112345670001");
-      setProfileData(prev => {
-        const updated = { 
-          ...prev, 
-          name: user.name, 
-          nik: cleanNik,
-          email: user.email && user.email.includes("@") ? user.email : prev.email 
-        };
-        return updated;
-      });
-    }
-
-    // Load submissions from local storage or set defaults
-    const stored = localStorage.getItem("village_submissions");
-    if (stored) {
-      setSubmissions(JSON.parse(stored));
-    } else {
-      const defaultSubs: Submission[] = [
-        { 
-          id: "SUB-20260519-01", 
-          type: "Layanan KTP-el", 
-          date: "19 Mei 2026", 
-          status: "Diproses", 
-          color: "text-amber-600",
-          bg: "bg-amber-50",
-          details: { 
-            "Nama Lengkap": user?.name || "Warga Pameutingan", 
-            "NIK": user?.nik || "3204112345670001", 
-            "Jenis Pengajuan": "Penggantian KTP Rusak", 
-            "Keterangan": "KTP terkelupas dan tidak terbaca di chip scan." 
-          } 
-        },
-        { 
-          id: "SUB-20260515-04", 
-          type: "Layanan Kartu Keluarga", 
-          date: "15 Mei 2026", 
-          status: "Disetujui", 
-          color: "text-emerald-600",
-          bg: "bg-emerald-50",
-          details: { 
-            "Nama Lengkap": user?.name || "Warga Pameutingan", 
-            "NIK Kepala Keluarga": user?.nik || "3204112345670001", 
-            "Alasan Pengajuan": "Penambahan Anggota Keluarga Baru", 
-            "Keterangan": "Menambahkan akta kelahiran anak pertama ke KK." 
-          } 
-        }
-      ];
-      setSubmissions(defaultSubs);
-      localStorage.setItem("village_submissions", JSON.stringify(defaultSubs));
+  useEffect(() => {
+    if (user) {
+      setProfileData(prev => ({
+        ...prev,
+        name: user.name || prev.name,
+        nik: user.nik || prev.nik,
+        email: user.email || prev.email
+      }));
     }
   }, [user]);
 
@@ -195,7 +171,6 @@ export function CitizenDashboard() {
     if (tab) {
       setActiveTab(tab);
       if (tab === "surat" && slug) {
-        // Map slug to proper sub-menu
         setActiveTab(slug);
       }
     }
@@ -216,64 +191,101 @@ export function CitizenDashboard() {
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const filesArr = Array.from(e.target.files).map(f => f.name);
-      setUploadedFiles(prev => [...prev, ...filesArr]);
-      toast.success("Dokumen berhasil diunggah secara lokal.");
+      const filesArr = Array.from(e.target.files);
+      setSelectedFiles(prev => [...prev, ...filesArr]);
+      setUploadedFiles(prev => [...prev, ...filesArr.map(f => f.name)]);
+      toast.success("Dokumen persyaratan berhasil dipilih.");
     }
   };
 
   const clearUploads = () => {
     setUploadedFiles([]);
+    setSelectedFiles([]);
     setFileInputKey(Date.now());
   };
 
-  // Generic Submit Simulator
-  const triggerSubmit = (serviceName: string, details: Record<string, string>) => {
-    if (uploadedFiles.length === 0) {
-      toast.error("Mohon unggah dokumen persyaratan terlebih dahulu.");
-      return;
+  // Map real submissions to frontend model structure
+  const submissions = realSubmissions.map((sub: any) => {
+    let statusLabel: "Diproses" | "Disetujui" | "Ditolak" = "Diproses";
+    let color = "text-amber-600";
+    let bg = "bg-amber-50";
+
+    if (sub.status === "selesai") {
+      statusLabel = "Disetujui";
+      color = "text-emerald-600";
+      bg = "bg-emerald-50";
+    } else if (sub.status === "ditolak") {
+      statusLabel = "Ditolak";
+      color = "text-red-600";
+      bg = "bg-red-50";
     }
+
+    return {
+      id: sub.id,
+      type: sub.layanan_surat?.nama_layanan || "Layanan Surat",
+      date: sub.created_at,
+      status: statusLabel,
+      color,
+      bg,
+      details: {
+        "ID Pengajuan": sub.id,
+        "Nomor Surat": sub.nomor_surat || "Belum Diterbitkan",
+        "Nama Pemohon": sub.penduduk?.nama || user?.name || "",
+        "NIK Pemohon": sub.penduduk?.nik || user?.nik || "",
+        "Status Progres": sub.status_label || sub.status,
+        "Catatan Petugas": sub.catatan || "Tidak ada catatan.",
+        ...sub.isian_form
+      }
+    };
+  });
+
+  // Generic Submit to Backend API
+  const triggerSubmit = async (serviceName: string, details: Record<string, string>) => {
     setSubmittingForm(true);
+    try {
+      const cleanName = serviceName.toLowerCase();
+      let matchedLayanan = layananSurats.find(ls => 
+        cleanName.includes(ls.nama_layanan.toLowerCase()) || 
+        ls.nama_layanan.toLowerCase().includes(cleanName) ||
+        cleanName.includes(ls.kode_surat.toLowerCase())
+      );
 
-    setTimeout(() => {
-      const newId = `SUB-${new Date().getFullYear()}${(new Date().getMonth() + 1).toString().padStart(2, "0")}${new Date().getDate().toString().padStart(2, "0")}-${Math.floor(100 + Math.random() * 900)}`;
-      const newSubmission: Submission = {
-        id: newId,
-        type: serviceName,
-        date: new Date().toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" }),
-        status: "Diproses",
-        color: "text-amber-600",
-        bg: "bg-amber-50",
-        details: {
-          ...details,
-          "Nama Pengaju": profileData.name,
-          "NIK": profileData.nik,
-          "Dokumen Diunggah": uploadedFiles.join(", ")
+      if (!matchedLayanan && layananSurats.length > 0) {
+        matchedLayanan = layananSurats[0];
+      }
+
+      if (!matchedLayanan) {
+        toast.error("Layanan surat belum diaktifkan oleh admin desa.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("layanan_surat_id", matchedLayanan.id);
+      formData.append("isian_form", JSON.stringify(details));
+
+      if (selectedFiles.length > 0) {
+        selectedFiles.forEach((file) => {
+          formData.append("persyaratan_files[]", file);
+        });
+      }
+
+      await api.post("warga/pengajuan", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
         }
-      };
+      });
 
-      const updated = [newSubmission, ...submissions];
-      setSubmissions(updated);
-      localStorage.setItem("village_submissions", JSON.stringify(updated));
-
-      // Add a notification when submission completes
-      const newNotif = {
-        id: `notif-${Date.now()}`,
-        title: "Pengajuan Diproses",
-        message: `Permohonan ${serviceName} Anda berhasil diajukan dan sedang diproses.`,
-        time: "Baru saja",
-        read: false,
-        type: "info"
-      };
-      setNotifications(prev => [newNotif, ...prev]);
-
-      // Reset states
-      setSubmittingForm(false);
+      toast.success(`Pengajuan ${serviceName} berhasil terkirim!`);
+      setSelectedFiles([]);
       setUploadedFiles([]);
-      setFileInputKey(Date.now());
-      toast.success(`Pengajuan ${serviceName} berhasil dikirim!`);
+      fetchDashboardData();
       setActiveTab("monitoring");
-    }, 1500);
+    } catch (err: any) {
+      console.error(err);
+      toast.error(err?.response?.data?.message || err?.message || "Gagal mengirimkan pengajuan.");
+    } finally {
+      setSubmittingForm(false);
+    }
   };
 
   if (!user) return null;
@@ -290,7 +302,12 @@ export function CitizenDashboard() {
         { id: "akta-kematian-kelahiran", label: "Akta Kelahiran / Kematian", icon: FileSpreadsheet },
         { id: "layanan-kartu-keluarga", label: "Layanan Kartu Keluarga", icon: Users },
         { id: "layanan-ktp-el", label: "Layanan KTP-el", icon: IdCard },
-        { id: "kia", label: "Identitas Anak (KIA)", icon: Baby }
+        { id: "kia", label: "Identitas Anak (KIA)", icon: Baby },
+        ...layananSurats.map((ls: any) => ({
+          id: `layanan-${ls.id}`,
+          label: ls.nama_layanan,
+          icon: FileText
+        }))
       ]
     },
     { id: "pengaduan", label: "Layanan Pengaduan", icon: Megaphone },
@@ -641,6 +658,152 @@ export function CitizenDashboard() {
               </div>
             </div>
           )}
+
+          {/* TAB: DYNAMIC BACKEND LAYANAN SURAT FORM */}
+          {activeTab.startsWith("layanan-") && (() => {
+            const layananId = activeTab.replace("layanan-", "");
+            const selectedLayanan = layananSurats.find((ls: any) => ls.id.toString() === layananId);
+            if (!selectedLayanan) return <p className="text-center py-12 font-bold text-[#0B281F]/40">Layanan tidak ditemukan atau belum aktif.</p>;
+            
+            return (
+              <div className="mx-auto max-w-3xl rounded-3xl border border-white bg-white p-6 shadow-sm md:p-8 animate-fadeIn">
+                <div className="mb-6 flex justify-between items-start border-b border-[#0B281F]/5 pb-4">
+                  <div>
+                    <h3 className="text-xl font-bold text-[#0B281F] font-[Georgia,serif]">{selectedLayanan.nama_layanan}</h3>
+                    <p className="mt-1.5 text-[12.5px] leading-relaxed text-[#0B281F]/50 font-medium">{selectedLayanan.deskripsi || "Lengkapi formulir untuk mengajukan layanan ini."}</p>
+                  </div>
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#009966]/5 text-[#009966] shrink-0 font-bold text-[12px] tracking-wider">
+                    {selectedLayanan.kode_surat || "DESA"}
+                  </div>
+                </div>
+
+                <form 
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    setSubmittingForm(true);
+                    try {
+                      const formData = new FormData();
+                      formData.append("layanan_surat_id", selectedLayanan.id);
+                      formData.append("isian_form", JSON.stringify(dynamicFormValues));
+                      
+                      if (selectedFiles.length > 0) {
+                        selectedFiles.forEach((file) => {
+                          formData.append("persyaratan_files[]", file);
+                        });
+                      }
+
+                      await api.post("warga/pengajuan", formData, {
+                        headers: {
+                          "Content-Type": "multipart/form-data"
+                        }
+                      });
+
+                      toast.success(`Pengajuan ${selectedLayanan.nama_layanan} berhasil dikirim!`);
+                      
+                      // Refresh dashboard data
+                      fetchDashboardData();
+                      
+                      // Clear form states
+                      setDynamicFormValues({});
+                      setSelectedFiles([]);
+                      
+                      // Switch to monitoring tab
+                      setActiveTab("monitoring");
+                    } catch (err: any) {
+                      console.error(err);
+                      toast.error(err?.response?.data?.message || err?.message || "Gagal mengirimkan permohonan.");
+                    } finally {
+                      setSubmittingForm(false);
+                    }
+                  }} 
+                  className="space-y-6"
+                >
+                  {/* Render Dynamic Inputs based on form_schema */}
+                  {selectedLayanan.form_schema && selectedLayanan.form_schema.map((field: any) => (
+                    <div key={field.name} className="space-y-2">
+                      <label className="text-[11px] font-extrabold uppercase tracking-widest text-[#0B281F]/40 ml-1">
+                        {field.label} {field.required && <span className="text-red-500">*</span>}
+                      </label>
+                      {field.type === "textarea" ? (
+                        <textarea
+                          required={field.required}
+                          rows={3}
+                          placeholder={`Masukkan ${field.label.toLowerCase()}...`}
+                          className="w-full rounded-xl bg-[#F6F8F7] p-4 text-[13px] font-medium border border-[#0B281F]/5 outline-none focus:ring-2 focus:ring-[#009966]/20 transition-all text-[#0B281F]"
+                          value={dynamicFormValues[field.name] || ""}
+                          onChange={(e) => setDynamicFormValues({
+                            ...dynamicFormValues,
+                            [field.name]: e.target.value
+                          })}
+                        />
+                      ) : (
+                        <input
+                          type={field.type === "number" ? "number" : "text"}
+                          required={field.required}
+                          placeholder={`Masukkan ${field.label.toLowerCase()}...`}
+                          className="w-full h-12 rounded-xl bg-[#F6F8F7] px-4 text-[13px] font-medium border border-[#0B281F]/5 outline-none focus:ring-2 focus:ring-[#009966]/20 transition-all text-[#0B281F]"
+                          value={dynamicFormValues[field.name] || ""}
+                          onChange={(e) => setDynamicFormValues({
+                            ...dynamicFormValues,
+                            [field.name]: e.target.value
+                          })}
+                        />
+                      )}
+                    </div>
+                  ))}
+
+                  {/* Persyaratan Callout */}
+                  {selectedLayanan.persyaratan && selectedLayanan.persyaratan.length > 0 && (
+                    <div className="rounded-2xl border border-[#009966]/10 bg-[#009966]/5 p-4 space-y-2">
+                      <h5 className="text-[12px] font-bold text-[#009966] uppercase tracking-wider">Persyaratan Dokumen:</h5>
+                      <ul className="list-disc list-inside text-[11.5px] text-[#0B281F]/70 space-y-1 font-medium">
+                        {selectedLayanan.persyaratan.map((req: string, idx: number) => (
+                          <li key={idx}>{req}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Upload Section */}
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-extrabold uppercase tracking-widest text-[#0B281F]/40 ml-1">Upload Berkas Persyaratan (PDF/JPG/PNG) - Maks. 2MB</label>
+                    <div className="relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-[#0B281F]/10 bg-[#F6F8F7] p-8 text-center transition-all hover:bg-emerald-50/20 hover:border-[#009966]/40">
+                      <Upload className="mb-2 text-[#0B281F]/20" size={24} />
+                      <p className="text-[12px] font-bold text-[#0B281F]/60">Pilih berkas persyaratan Anda</p>
+                      <p className="text-[10px] text-[#0B281F]/30 uppercase tracking-widest mt-1">Maksimal 2MB per file</p>
+                      <input type="file" multiple className="absolute inset-0 opacity-0 cursor-pointer" onChange={(e) => {
+                        if (e.target.files) {
+                          setSelectedFiles(Array.from(e.target.files));
+                          toast.success("Dokumen berhasil dipilih.");
+                        }
+                      }} />
+                    </div>
+                    {selectedFiles.length > 0 && (
+                      <div className="mt-2 rounded-xl bg-[#F6F8F7] p-3 flex justify-between items-center">
+                        <span className="text-[12px] font-semibold text-[#0B281F]/70">{selectedFiles.length} berkas dipilih.</span>
+                        <button type="button" onClick={() => setSelectedFiles([])} className="text-[11px] font-bold text-red-500">Hapus</button>
+                      </div>
+                    )}
+                    {selectedFiles.length > 0 && (
+                      <ul className="pl-4 list-disc text-[11px] text-[#0B281F]/50">
+                        {selectedFiles.map((file, idx) => (
+                          <li key={idx}>{file.name} ({Math.round(file.size / 1024)} KB)</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    disabled={submittingForm}
+                    className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#009966] text-[13px] font-bold text-white shadow-lg transition-all hover:bg-[#007f55] disabled:opacity-50"
+                  >
+                    {submittingForm ? <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" /> : "Kirim Pengajuan Surat"}
+                  </button>
+                </form>
+              </div>
+            );
+          })()}
 
           {/* TAB 2: SURAT PINDAH / DATANG FORM */}
           {activeTab === "surat-pindah-datang" && (
@@ -1481,7 +1644,7 @@ export function CitizenDashboard() {
                               </button>
                               {sub.status === "Disetujui" && (
                                 <button 
-                                  onClick={() => toast.success(`Mendownload tanda terima untuk ${sub.id}`)}
+                                  onClick={() => downloadPdf(sub.id)}
                                   className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50 text-[#009966] hover:bg-[#009966] hover:text-white transition-all"
                                   title="Unduh Dokumen / Tanda Terima"
                                 >
@@ -1527,7 +1690,7 @@ export function CitizenDashboard() {
                           </button>
                           {sub.status === "Disetujui" && (
                             <button 
-                              onClick={() => toast.success(`Mendownload tanda terima untuk ${sub.id}`)}
+                              onClick={() => downloadPdf(sub.id)}
                               className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-50 text-[#009966] text-[11px] font-bold active:scale-95 transition-all"
                             >
                               <Download size={12} />
@@ -1811,7 +1974,7 @@ export function CitizenDashboard() {
                 {Object.entries(selectedSubmission.details).map(([key, value]) => (
                   <div key={key} className="flex flex-col">
                     <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#0B281F]/30">{key}</span>
-                    <span className="text-[13px] font-semibold text-[#0B281F] mt-0.5 leading-relaxed">{value}</span>
+                    <span className="text-[13px] font-semibold text-[#0B281F] mt-0.5 leading-relaxed">{value as React.ReactNode}</span>
                   </div>
                 ))}
               </div>
@@ -1827,7 +1990,7 @@ export function CitizenDashboard() {
               {selectedSubmission.status === "Disetujui" && (
                 <button 
                   onClick={() => {
-                    toast.success("Tanda terima terunduh secara otomatis.");
+                    downloadPdf(selectedSubmission.id);
                     setSelectedSubmission(null);
                   }}
                   className="rounded-xl bg-[#009966] px-5 py-2.5 text-[12px] font-bold text-white shadow-md hover:bg-[#007f55]"

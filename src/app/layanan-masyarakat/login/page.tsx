@@ -10,12 +10,17 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const { login } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError("");
     try {
       await login(nik, password);
+    } catch (err: any) {
+      console.error(err);
+      setError(err?.response?.data?.message || err?.message || "Kredensial tidak cocok atau terjadi kesalahan.");
     } finally {
       setLoading(false);
     }
@@ -69,6 +74,12 @@ export default function LoginPage() {
               </h3>
               <p className="mt-1 text-[13px] text-[#0B281F]/50 font-medium">Lengkapi data autentikasi Anda.</p>
             </div>
+
+            {error && (
+              <div className="mb-4 p-3 rounded-xl border border-red-500/20 bg-red-50 text-[13px] font-bold text-red-600 shadow-sm animate-shake">
+                {error}
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-1.5">

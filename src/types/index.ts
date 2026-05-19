@@ -42,15 +42,18 @@ export interface Desa {
   created_at?: string;
 }
 
-export type UserRole = "superadmin" | "admin_desa";
+export type UserRole = "superadmin" | "admin_desa" | "warga";
 
 export interface User {
   id: string;
   name: string;
-  email: string;
+  email: string | null;
   role: UserRole;
   desa_id?: string | null;
   desa: Desa | null;
+  penduduk_id?: string | null;
+  nik?: string | null;
+  is_active?: boolean;
   created_at?: string;
 }
 

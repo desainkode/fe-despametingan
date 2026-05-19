@@ -82,8 +82,8 @@ export default function AccountSettingsPage() {
   useEffect(() => {
     if (user) {
       profileForm.reset({
-        name: user.name,
-        email: user.email,
+        name: user.name || "",
+        email: user.email || "",
       });
     }
   }, [user, profileForm]);
